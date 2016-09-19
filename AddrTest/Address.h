@@ -1,7 +1,7 @@
 #ifndef ADDRESS_H
 #define ADDRESS_H
 #include <string>
-namespace AddrBook
+namespace AddrBookLib
 {
 	/*
 		Address class

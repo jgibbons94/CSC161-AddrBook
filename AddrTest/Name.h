@@ -1,7 +1,7 @@
 #ifndef NAME_H
 #define NAME_H
 #include <string>
-namespace AddrBook
+namespace AddrBookLib
 {
 	/*
 		Name class

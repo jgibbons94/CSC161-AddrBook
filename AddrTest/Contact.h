@@ -3,7 +3,7 @@
 #include <string>
 #include "Name.h"
 #include "Address.h"
-namespace AddrBook
+namespace AddrBookLib
 {
 	/*
 		Contact class

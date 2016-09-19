@@ -1,4 +1,4 @@
-namespace AddrBook
+namespace AddrBookLib
 {
 	/*
 		Design and implement the AddrBook data structure class (collection class)

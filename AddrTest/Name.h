@@ -4,8 +4,15 @@
 namespace AddrBook
 {
 	/*
-		Class Name
-		Represents the Name in an address book.
+		Name class
+		File names: Name.(h and cpp)
+		Data members: firstName as string and lastName as string
+		Private data and public get and set member functions
+		Default constructors and constructors that take parameters
+		ToString member function formatted for output window: string ToString();
+		ToFileString member function formatted for file: string ToFileString();
+		<strike>ConsoleInput member function (extract from keyboard): void ConsoleInput();</strike>
+		Implemented with a unique macro guard
 	*/
 	class Name
 	{
@@ -21,7 +28,7 @@ namespace AddrBook
 
 		//member functions:
 		std::string ToString() const;
-		std::string ToFileString() const;
+		std::string ToFileString(char delimeter = ',') const;
 		void ConsoleInput();
 	private:
 		std::string firstName;

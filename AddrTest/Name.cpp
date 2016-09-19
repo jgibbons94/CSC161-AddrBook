@@ -27,9 +27,9 @@ Member function formatted for file
 Example:
 Jesse,Gibbons
 */
-string Name::ToFileString() const
+string Name::ToFileString(char delimeter) const
 {
-	return firstName + "," + lastName;
+	return firstName + delimeter + lastName;
 }
 
 /*

@@ -45,6 +45,7 @@ int main()
 	do
 	{
 		menuAnswer = GetResponseFromMenu();
+		cout << endl;
 		/*
 		1. Add a new Contact to the AddressBook
 			Prompt for First Name
@@ -79,16 +80,18 @@ int main()
 			if (!InRange(subMenuAnswer, 1, yellowPages.GetUsed()))
 				cout << "Invalid response. Please enter a number between 1 and " << yellowPages.GetUsed() << endl;
 			else
-				yellowPages.RemoveContactByIndex(subMenuAnswer);
+				yellowPages.RemoveContactByIndex(subMenuAnswer-1);
 			break;
 		}
+		cout << endl;
 
 	} while (menuAnswer != 5);
 
 	yellowPages.WriteFile(DB_LOCATION);
 
 	cout << "\n\n";
-	system("pause");
+	//no need to pause.
+	//system("pause");
 	return EXIT_SUCCESS;
 }
 

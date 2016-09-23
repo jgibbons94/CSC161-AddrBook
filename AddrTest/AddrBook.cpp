@@ -60,7 +60,7 @@ void AddrBookLib::AddrBook::AddContactFromCommandPrompt()
 	Contact tmpContact;
 	if (used >= MAX_ADDRBOOK_SIZE)
 	{
-		cout << "Address book full. Please delete a contact and try again.";
+		cout << "Address book full. Please delete a contact and try again.\n";
 		return;
 	}
 	tmpContact.ConsoleInput();

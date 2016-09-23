@@ -27,6 +27,7 @@ namespace AddrBookLib
 	inline bool InRange(int value, int min, int max) { return (value >= min && value <= max); }
 	int GetResponseFromMenu();
 	int GetContactToDeleteFromConsole(const AddrBook & book);
+	void ClearConsoleInput();
 }
 
 #endif

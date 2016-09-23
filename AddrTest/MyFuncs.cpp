@@ -12,6 +12,7 @@ std::string AddrBookLib::Prompt(std::string strPrompt)
 {
 	string response = "";
 	cout << strPrompt;
+	ClearConsoleInput();
 	getline(cin, response);
 	return response;
 }
@@ -30,39 +31,50 @@ bool AddrBookLib::GetField(std::ifstream & fileIn, string & outField, char delim
 int AddrBookLib::GetResponseFromMenu()
 {
 	int response = -1;
-	char chResponse = '\0';
+	//char chResponse = '\0';
+	char peek;
+	//Enter the numbered choice
+	//Or enter the letter.
 	cout << "1: (A)dd a new contact to the address book.\n";
 	cout << "2: (C)ount the Contacts are in the address book.\n";
 	cout << "3: (P)rint out all the Contacts in the address Book.\n";
-	cout << "4: (D)elete a contact from the address book";
-	cout << "5: (Q)uit.";
+	cout << "4: (D)elete a contact from the address book\n";
+	cout << "5: (Q)uit.\n";
+	cout << endl;
 	cout << "Plese pick an option: ";
-	if (isdigit(cin.peek()))
+	//Spaces prevent this menu from working. 
+	ClearConsoleInput();
+	if (isdigit(peek = cin.peek()))
 	{
 		cin >> response;
 	}
 	else
 	{
-		cin >> chResponse;
-		switch (tolower(chResponse))
+		switch (tolower(peek))
 		{
 		case 'a':
+		case '1':
 			response = 1;
 			break;
 		case 'c':
+		case '2':
 			response = 2;
 			break;
 		case 'p':
+		case '3':
 			response = 3;
 			break;
 		case 'd':
+		case '4':
 			response = 4;
 			break;
 		case 'q':
+		case '5':
 			response = 5;
 			break;
 		}
 	}
+	//ClearConsoleInput();
 	return response;
 }
 
@@ -71,6 +83,19 @@ int AddrBookLib::GetContactToDeleteFromConsole(const AddrBook & book)
 	int response = -1;
 	book.PrintAllContacts();
 	cout << "Which contact would you like to delete?";
-	cin >> response;
+	ClearConsoleInput();
+	if (isdigit(cin.peek()))
+		cin >> response;
 	return response;
+}
+
+
+void AddrBookLib::ClearConsoleInput()
+{
+	string str = "";
+	char peek = '/0';
+	while ((peek = cin.peek()) == '\n')
+	{
+		getline(cin, str);
+	}
 }

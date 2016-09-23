@@ -24,6 +24,7 @@ namespace AddrBookLib
 	std::string Prompt(std::string strPrompt);
 	bool GetField(std::ifstream & fileIn, string & outField, char delimeter = ',');
 	inline bool InRange(int value, int min, int max) { return (value >= min && value <= max); }
+	int GetResponseFromMenu();
 }
 
 #endif

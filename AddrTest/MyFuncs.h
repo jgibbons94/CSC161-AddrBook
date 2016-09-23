@@ -4,6 +4,7 @@
 #define MY_FUNCS_H
 #include <string>
 #include <fstream>
+#include "AddrBook.h"
 namespace AddrBookLib
 {
 	/*
@@ -25,6 +26,7 @@ namespace AddrBookLib
 	bool GetField(std::ifstream & fileIn, string & outField, char delimeter = ',');
 	inline bool InRange(int value, int min, int max) { return (value >= min && value <= max); }
 	int GetResponseFromMenu();
+	int GetContactToDeleteFromConsole(const AddrBook & book);
 }
 
 #endif

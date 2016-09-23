@@ -4,6 +4,7 @@
 #include <string>
 using namespace std;
 #include "MyFuncs.h"
+#include "AddrBook.h"
 using namespace AddrBookLib;
 
 
@@ -62,5 +63,14 @@ int AddrBookLib::GetResponseFromMenu()
 			break;
 		}
 	}
+	return response;
+}
+
+int AddrBookLib::GetContactToDeleteFromConsole(const AddrBook & book)
+{
+	int response = -1;
+	book.PrintAllContacts();
+	cout << "Which contact would you like to delete?";
+	cin >> response;
 	return response;
 }

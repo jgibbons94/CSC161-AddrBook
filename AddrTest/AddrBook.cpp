@@ -55,6 +55,18 @@ void AddrBookLib::AddrBook::PrintAllContacts() const
 	};
 }
 
+void AddrBookLib::AddrBook::AddContactFromCommandPrompt()
+{
+	Contact tmpContact;
+	if (used >= MAX_ADDRBOOK_SIZE)
+	{
+		cout << "Address book full. Please delete a contact and try again.";
+		return;
+	}
+	tmpContact.ConsoleInput();
+	AddContact(tmpContact);
+}
+
 void AddrBookLib::AddrBook::ReadFile(std::string fileName)
 {
 	ifstream fileIn(fileName);

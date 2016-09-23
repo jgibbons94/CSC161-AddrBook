@@ -25,10 +25,44 @@
 	Sources Cited (book, website, other):
 		No citations.
 */
+#include <iostream>
+//#include <string>
 #include <cstdlib>
 using namespace std;
+#include "Name.h"
+#include "Address.h"
+#include "Contact.h"
+#include "AddrBook.h"
+#include "MyFuncs.h"
+using namespace AddrBookLib;
+#define DB_LOCATION ("Address.csv")
 int main()
 {
+	AddrBook yellowPages;
+	yellowPages.ReadFile(DB_LOCATION);
+	Contact tempContact;
+	char chAnswer = 'y';
+
+	tempContact.ConsoleInput();
+	yellowPages.AddContact(tempContact);
+	//how many contacts?
+	yellowPages.PrintAllContacts();
+	cout << "There are " << yellowPages.GetUsed() << " contacts in the AddressBook.\n";
+	//What if the user does not want to delete a contact?
+	//Prompt the user if we should delete a contact:
+	if (yellowPages.GetUsed() < MAX_ADDRBOOK_SIZE)
+	{
+		do
+		{
+			cout << "Do you want to delete a contact? (y/n) ";
+			cin >> chAnswer;
+		} while (tolower(chAnswer) != 'y'&&tolower(chAnswer) != 'n');
+	}
+	if (tolower(chAnswer) == 'y')
+	{
+		//TODO: list all the contacts in yellowPages, prompt which one we should delete, and delete by index that contact.
+	}
+	yellowPages.WriteFile(DB_LOCATION);
 
 	cout << "\n\n";
 	system("pause");

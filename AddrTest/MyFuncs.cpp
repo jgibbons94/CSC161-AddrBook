@@ -1,13 +1,27 @@
+//MyFuncs.cpp
+//Written by Jesse Gibbons
 #include <iostream>
 #include <string>
+using namespace std;
 #include "MyFuncs.h"
+using namespace AddrBookLib;
 
 
-std::string helperFuncs::prompt(std::string strPrompt)
+std::string AddrBookLib::Prompt(std::string strPrompt)
 {
-	using namespace std;
 	string response = "";
 	cout << strPrompt;
 	getline(cin, response);
 	return response;
+}
+bool AddrBookLib::GetField(std::ifstream & fileIn, string & outField, char delimeter)
+{
+	if (!fileIn)
+	{
+		cerr << "Could not read from file";
+		return false;
+	}
+	getline(fileIn, outField, delimeter);
+	if (fileIn.peek() == delimeter) fileIn.ignore();
+	
 }

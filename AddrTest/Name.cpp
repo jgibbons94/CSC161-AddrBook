@@ -1,8 +1,12 @@
+//Name.cpp
+//Written by Jesse Gibbons
 #include <string>
 #include <iostream>
+#include <fstream>
 using namespace std;
 #include "Name.h"
-using namespace AddrBook;
+#include "MyFuncs.h"
+using namespace AddrBookLib;
 
 Name::Name(string initialFirstName, string initialLastName)
 {
@@ -33,15 +37,24 @@ string Name::ToFileString(char delimeter) const
 }
 
 /*
-ConsoleInput 
+ConsoleInput
 member function (extract from keyboard): void ConsoleInput();
 Prompts for white-space delimited input from the user and stores it in the object.
 Asks for the first name first, then the last name.
 */
 void Name::ConsoleInput()
 {
-	cout << "Enter a first name: ";
-	cin >> firstName;
-	cout << "Enter a last name: ";
-	cin >> lastName;
+	firstName = Prompt("Enter a first name: ");
+	lastName = Prompt("Enter " + firstName + "'s last name: ");
+}
+
+bool AddrBookLib::Name::ReadFromFile(std::ifstream & fileIn, char delimeter)
+{
+	bool retVal = true;
+	string tmpField;
+	retVal = retVal && GetField(fileIn, tmpField, delimeter);
+	SetFirstName(tmpField);
+	retVal = retVal && GetField(fileIn, tmpField, delimeter);
+	SetLastName(tmpField);
+	return retVal;
 }

@@ -1,3 +1,10 @@
+//AddrBook.h
+//Written by Jesse Gibbons
+#ifndef ADDR_BOOK_H
+#define ADDR_BOOK_H
+#include <string>
+#include "Contact.h"
+#define MAX_ADDRBOOK_SIZE (5)
 namespace AddrBookLib
 {
 	/*
@@ -17,6 +24,24 @@ namespace AddrBookLib
 	{
 	public:
 		AddrBook();
+		// no Set methods
+		// Get methods
+		int GetUsed() const { return used; }
+		// Member functions
+		void AddContact(Contact itemToAdd);
+		void RemoveContact(Contact itemToRemove);
+		int FindContact(Contact itemToFind) const;
+		void RemoveContactByIndex(int indexToRemove);
+		void PrintAllContacts() const;
+
+		// File I/O
+		void ReadFile(std::string fileName);
+		void WriteFile(std::string fileName) const;
+
+	private:
+		int used;
+		Contact contacts[MAX_ADDRBOOK_SIZE];
 	};
 
 }
+#endif

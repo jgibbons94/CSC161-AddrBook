@@ -1,7 +1,10 @@
+//MyFuncs.h
+//Written by Jesse Gibbons
 #ifndef MY_FUNCS_H
 #define MY_FUNCS_H
 #include <string>
-namespace helperFuncs
+#include <fstream>
+namespace AddrBookLib
 {
 	/*
 		std::string prompt(std::string strPrompt);
@@ -18,7 +21,8 @@ namespace helperFuncs
 		If STDOUT is piped to a file, the prompt is written to that file rather than the console.
 
 	*/
-	std::string prompt(std::string strPrompt);
+	std::string Prompt(std::string strPrompt);
+	bool GetField(std::ifstream & fileIn, string & outField, char delimeter = ',');
 }
 
 #endif

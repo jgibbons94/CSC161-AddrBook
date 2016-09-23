@@ -1,3 +1,5 @@
+//Name.h
+//Written by Jesse Gibbons
 #ifndef NAME_H
 #define NAME_H
 #include <string>
@@ -18,18 +20,22 @@ namespace AddrBookLib
 	{
 	public:
 		//	constructor
-		Name(std::string initialFirstName= "", std::string initialLastName="");
+		Name(std::string initialFirstName = "", std::string initialLastName = "");
 		//	get methods
 		std::string GetFirstName() const { return firstName; }
 		std::string GetLastName() const { return lastName; }
 		//	set methods:
-		std::string SetFirstName(std::string newFirstName) { firstName = newFirstName; }
-		std::string SetLastName(std::string newLastName) { lastName = newLastName; }
+		void SetFirstName(std::string newFirstName) { firstName = newFirstName; }
+		void SetLastName(std::string newLastName) { lastName = newLastName; }
 
-		//member functions:
+		// member functions:
+		// out
 		std::string ToString() const;
 		std::string ToFileString(char delimeter = ',') const;
+		//in
 		void ConsoleInput();
+		bool ReadFromFile(std::ifstream & fileIn, char delimeter = ',');
+
 	private:
 		std::string firstName;
 		std::string lastName;

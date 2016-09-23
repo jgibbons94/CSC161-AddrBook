@@ -1,3 +1,5 @@
+//Address.h
+//Written by Jesse Gibbons
 #ifndef ADDRESS_H
 #define ADDRESS_H
 #include <string>
@@ -28,15 +30,16 @@ namespace AddrBookLib
 		std::string GetZip() const { return zip; }
 
 		//Set methods:
-		void setStreetAddress(std::string newStreetAddress) { streetAddress = newStreetAddress; }
-		void setCity(std::string newCity) { city = newCity; }
-		void setState(std::string newState) { state = newState; }
-		void setZip(std::string newZip) { zip = newZip; }
+		void SetStreetAddress(std::string newStreetAddress) { streetAddress = newStreetAddress; }
+		void SetCity(std::string newCity) { city = newCity; }
+		void SetState(std::string newState) { state = newState; }
+		void SetZip(std::string newZip) { zip = newZip; }
 
 		//Member functions:
 		std::string ToString() const;
 		std::string ToFileString(char delimeter = ',') const;
-		std::string ConsoleInput();
+		void ConsoleInput();
+		bool ReadFromFile(std::ifstream & fileIn, char delimeter = ',');
 
 	private:
 		std::string streetAddress;

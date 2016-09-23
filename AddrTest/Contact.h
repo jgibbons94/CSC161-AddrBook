@@ -1,6 +1,9 @@
+//Contact.h
+//Written by Jesse Gibbons
 #ifndef CONTACT_H
 #define CONTACT_H
 #include <string>
+#include <fstream>
 #include "Name.h"
 #include "Address.h"
 namespace AddrBookLib
@@ -43,7 +46,8 @@ namespace AddrBookLib
 
 		std::string ToString() const;
 		std::string ToFileString(char delimeter = ',') const;
-		std::string ConsoleInput();
+		void ConsoleInput();
+		bool ReadFromFile(std::ifstream & fileIn, char delimeter = ',');
 
 	private:
 		Name fullName;

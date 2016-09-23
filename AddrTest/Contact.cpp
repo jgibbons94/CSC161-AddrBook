@@ -1,7 +1,12 @@
+//Contact.cpp
+//Written by Jesse Gibbons
+#include <fstream>
+using namespace std;
 #include "Contact.h"
-using namespace AddrBook;
+#include "MyFuncs.h"
+using namespace AddrBookLib;
 
-AddrBook::Contact::Contact(Name initialName, Address initialAddress, std::string initialPhone, std::string initialEmail, std::string initialBirthday, std::string initialPictureFile)
+AddrBookLib::Contact::Contact(Name initialName, Address initialAddress, std::string initialPhone, std::string initialEmail, std::string initialBirthday, std::string initialPictureFile)
 {
 	fullName = initialName;
 	fullAddress = initialAddress;
@@ -11,7 +16,7 @@ AddrBook::Contact::Contact(Name initialName, Address initialAddress, std::string
 	pictureFile = initialPictureFile;
 }
 
-std::string AddrBook::Contact::ToString() const
+std::string AddrBookLib::Contact::ToString() const
 {
 	return fullName.ToString() + '\n'
 		+ fullAddress.ToString() + '\n'
@@ -21,19 +26,40 @@ std::string AddrBook::Contact::ToString() const
 		+ pictureFile + '\n';
 }
 
-std::string AddrBook::Contact::ToFileString(char delimeter) const
+std::string AddrBookLib::Contact::ToFileString(char delimeter) const
 {
 	return fullName.ToFileString(delimeter) + delimeter
 		+ fullAddress.ToFileString(delimeter) + delimeter
 		+ phone + delimeter
 		+ email + delimeter
 		+ birthday + delimeter
-		+ pictureFile;
+		+ pictureFile + delimeter;
 }
 
-std::string AddrBook::Contact::ConsoleInput()
+void AddrBookLib::Contact::ConsoleInput()
 {
 	fullName.ConsoleInput();
 	fullAddress.ConsoleInput();
+	phone = Prompt("Please enter " + fullName.GetFirstName() + "'s phone number: ");
+	email = Prompt("Please enter " + fullName.GetFirstName() + "'s email address: ");
+	birthday = Prompt("Please enter " + fullName.GetFirstName() + "'s birthday: ");
+	pictureFile = Prompt("Please enter the file location for " + fullName.GetFirstName() + "'s picture: ");
+}
 
+bool AddrBookLib::Contact::ReadFromFile(std::ifstream & fileIn, char delimeter)
+{
+	bool retVal = true;
+	string tmpField;
+	retVal = retVal && fullName.ReadFromFile(fileIn, delimeter);
+	retVal = retVal && fullAddress.ReadFromFile(fileIn, delimeter);
+	//read the rest of the line in format: phone1, email1, bday1, picture file1,
+	retVal = retVal && GetField(fileIn, tmpField, delimeter);
+	SetPhone(tmpField);
+	retVal = retVal && GetField(fileIn, tmpField, delimeter);
+	SetEmail(tmpField);
+	retVal = retVal && GetField(fileIn, tmpField, delimeter);
+	SetBirthday(tmpField);
+	retVal = retVal && GetField(fileIn, tmpField, delimeter);
+	SetPictureFile(tmpField);
+	return retVal;
 }

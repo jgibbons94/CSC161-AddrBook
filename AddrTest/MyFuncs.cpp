@@ -18,10 +18,10 @@ bool AddrBookLib::GetField(std::ifstream & fileIn, string & outField, char delim
 {
 	if (!fileIn)
 	{
-		cerr << "Could not read from file";
 		return false;
 	}
 	getline(fileIn, outField, delimeter);
-	if (fileIn.peek() == delimeter) fileIn.ignore();
-	
+	if (fileIn.peek() == delimeter)
+		fileIn.ignore();
+	return true;
 }

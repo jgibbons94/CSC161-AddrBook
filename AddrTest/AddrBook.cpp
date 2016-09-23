@@ -9,6 +9,7 @@ using namespace std;
 #include "Contact.h"
 #include "Name.h"
 #include "Address.h"
+#include "MyFuncs.h"
 using namespace AddrBookLib;
 
 AddrBook::AddrBook()
@@ -41,7 +42,7 @@ int AddrBookLib::AddrBook::FindContact(Contact itemToFind) const
 
 void AddrBookLib::AddrBook::RemoveContactByIndex(int indexToRemove)
 {
-	if (used > 0 && indexToRemove >= 0 && indexToRemove < used)
+	if (used > 0 && InRange(indexToRemove,0,used-1))
 		contacts[indexToRemove] = contacts[--used];
 }
 
@@ -95,8 +96,10 @@ void AddrBookLib::AddrBook::WriteFile(std::string fileName) const
 	{
 		outFile << contacts[i].ToFileString() << endl;
 		string str = contacts[i].ToFileString();
+		/*
 		int loc = str.find_first_of('\n');
 		cerr << contacts[i].ToFileString() << endl;
+		*/
 	}
 
 	outFile.close();

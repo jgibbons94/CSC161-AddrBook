@@ -50,7 +50,7 @@ int main()
 	cout << "There are " << yellowPages.GetUsed() << " contacts in the AddressBook.\n";
 	//What if the user does not want to delete a contact?
 	//Prompt the user if we should delete a contact:
-	if (yellowPages.GetUsed() < MAX_ADDRBOOK_SIZE)
+	if (yellowPages.GetUsed() < MAX_ADDRBOOK_SIZE-1)
 	{
 		do
 		{
@@ -58,9 +58,24 @@ int main()
 			cin >> chAnswer;
 		} while (tolower(chAnswer) != 'y'&&tolower(chAnswer) != 'n');
 	}
+	else
+	{
+		cout << "Address book is almost Full. Please delete a contact.";
+	}
 	if (tolower(chAnswer) == 'y')
 	{
+		int indexToRemove = -1;
 		//TODO: list all the contacts in yellowPages, prompt which one we should delete, and delete by index that contact.
+		do
+		{
+			yellowPages.PrintAllContacts();
+			cout << endl;
+
+			cout << "Please enter the contact number to delete: ";
+			cin >> indexToRemove;
+		}
+		while (!(InRange(indexToRemove,1,yellowPages.GetUsed())));
+		yellowPages.RemoveContactByIndex(indexToRemove-1);
 	}
 	yellowPages.WriteFile(DB_LOCATION);
 

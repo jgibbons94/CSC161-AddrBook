@@ -1,3 +1,8 @@
 AddrTest/.vs/
-AddrTest/Debug/
-AddrTest/x64/
+*.ilk
+*.pdb
+*.obj
+*.log
+*.idb
+AddrTest/Debug/AddrTest.tlog/
+AddrTest/x64/Debug/AddrTest.tlog/

@@ -34,11 +34,12 @@ namespace AddrBookLib
 		void RemoveContactByIndex(int indexToRemove);
 		void PrintAllContacts() const;
 
-		void AddContactFromCommandPrompt();
-
 		// File I/O
 		void ReadFile(std::string fileName);
 		void WriteFile(std::string fileName) const;
+
+		//not necessarily required, but used in this program
+		void AddContactFromCommandPrompt();
 
 	private:
 		int used;

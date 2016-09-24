@@ -16,6 +16,7 @@ std::string AddrBookLib::Prompt(std::string strPrompt)
 	getline(cin, response);
 	return response;
 }
+
 bool AddrBookLib::GetField(std::ifstream & fileIn, string & outField, char delimeter)
 {
 	if (!fileIn)
@@ -31,18 +32,17 @@ bool AddrBookLib::GetField(std::ifstream & fileIn, string & outField, char delim
 int AddrBookLib::GetResponseFromMenu()
 {
 	int response = -1;
-	//char chResponse = '\0';
 	char peek;
-	//Enter the numbered choice
-	//Or enter the letter.
+	//Enter the numbered choice.
+	//Or enter the letter in the parentheses.
 	cout << "1: (A)dd a new contact to the address book.\n";
 	cout << "2: (C)ount the Contacts are in the address book.\n";
 	cout << "3: (P)rint out all the Contacts in the address Book.\n";
-	cout << "4: (D)elete a contact from the address book\n";
+	cout << "4: (D)elete a contact from the address book.\n";
 	cout << "5: (Q)uit.\n";
 	cout << endl;
 	cout << "Plese pick an option: ";
-	//Spaces prevent this menu from working. 
+	//Spaces prevent this menu style from working with other functions.
 	ClearConsoleInput();
 	if (isdigit(peek = cin.peek()))
 	{
@@ -74,7 +74,6 @@ int AddrBookLib::GetResponseFromMenu()
 			break;
 		}
 	}
-	//ClearConsoleInput();
 	return response;
 }
 
@@ -93,8 +92,8 @@ int AddrBookLib::GetContactToDeleteFromConsole(const AddrBook & book)
 void AddrBookLib::ClearConsoleInput()
 {
 	string str = "";
-	char peek = '/0';
-	while ((peek = cin.peek()) == '\n')
+	char peek = '\n';
+	while ((peek = (char)(cin.peek())) == '\n')
 	{
 		getline(cin, str);
 	}

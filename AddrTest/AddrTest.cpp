@@ -2,8 +2,8 @@
 	Name: Jesse Gibbons
 	Course Prefix, Number, Section: CSC161001
 	Program Name: AddrTest
-	Program Description: Tests the AddrBook library:
-	Add a new Contact to the AddressBook
+	Program Description: Menu-driven program to test the AddrBook library:
+	1. Add a new Contact to the AddressBook
 	Prompt for First Name
 	Prompt for Last Name
 	Prompt for Street Address
@@ -26,11 +26,11 @@
 		No citations.
 */
 #include <iostream>
-#include <cstdlib>
+//#include <cstdlib>
 using namespace std;
-#include "Name.h"
-#include "Address.h"
-#include "Contact.h"
+//#include "Name.h"
+//#include "Address.h"
+//#include "Contact.h"
 #include "AddrBook.h"
 #include "MyFuncs.h"
 using namespace AddrBookLib;
@@ -39,7 +39,7 @@ int main()
 {
 	AddrBook yellowPages;
 	yellowPages.ReadFile(DB_LOCATION);
-	Contact tempContact;
+	//Contact tempContact;
 	int menuAnswer = -1;
 	int subMenuAnswer = -1;
 	do
@@ -47,7 +47,8 @@ int main()
 		menuAnswer = GetResponseFromMenu();
 		cout << endl;
 		/*
-		1. Add a new Contact to the AddressBook
+			menu:
+			1. Add a new Contact to the AddressBook
 			Prompt for First Name
 			Prompt for Last Name
 			Prompt for Street Address
@@ -91,7 +92,6 @@ int main()
 
 	cout << "\n\n";
 	//no need to pause.
-	//system("pause");
 	return EXIT_SUCCESS;
 }
 

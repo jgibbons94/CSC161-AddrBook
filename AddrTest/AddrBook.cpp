@@ -107,11 +107,6 @@ void AddrBookLib::AddrBook::WriteFile(std::string fileName) const
 	for (int i = 0; i < used; i++)
 	{
 		outFile << contacts[i].ToFileString() << endl;
-		string str = contacts[i].ToFileString();
-		/*
-		int loc = str.find_first_of('\n');
-		cerr << contacts[i].ToFileString() << endl;
-		*/
 	}
 
 	outFile.close();

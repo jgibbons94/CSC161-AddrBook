@@ -43,9 +43,10 @@ namespace AddrBookLib
 		void SetPictureFile(std::string newPicFile) { pictureFile = newPicFile; }
 
 		//Member functions:
-
+		//out
 		std::string ToString() const;
 		std::string ToFileString(char delimeter = ',') const;
+		//in
 		void ConsoleInput();
 		bool ReadFromFile(std::ifstream & fileIn, char delimeter = ',');
 

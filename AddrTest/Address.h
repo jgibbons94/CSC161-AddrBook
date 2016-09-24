@@ -36,8 +36,10 @@ namespace AddrBookLib
 		void SetZip(std::string newZip) { zip = newZip; }
 
 		//Member functions:
+		//out
 		std::string ToString() const;
 		std::string ToFileString(char delimeter = ',') const;
+		//in
 		void ConsoleInput();
 		bool ReadFromFile(std::ifstream & fileIn, char delimeter = ',');
 

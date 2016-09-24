@@ -50,6 +50,7 @@ bool AddrBookLib::Contact::ReadFromFile(std::ifstream & fileIn, char delimeter)
 {
 	bool retVal = true;
 	string tmpField;
+	//Using && skips the remainder of the function when retval is false. That is why it fails only once when the file has an incomplete final entry.
 	retVal = retVal && fullName.ReadFromFile(fileIn, delimeter);
 	retVal = retVal && fullAddress.ReadFromFile(fileIn, delimeter);
 	//read the rest of the line in format: phone1, email1, bday1, picture file1,

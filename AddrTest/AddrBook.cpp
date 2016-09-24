@@ -77,7 +77,7 @@ void AddrBookLib::AddrBook::ReadFile(std::string fileName)
 	char delim = ',';
 	if (!fileIn)
 	{
-		cerr << "Error opening file " << fileName << " to read." << endl;
+		cerr << "Error opening file " << fileName << " to read." << endl << endl;
 		return;
 	}
 	while (!fileIn.fail())
@@ -97,7 +97,7 @@ void AddrBookLib::AddrBook::WriteFile(std::string fileName) const
 	outFile.open(fileName);
 	if (!outFile)
 	{
-		cerr << "Error opening file for writing\n";
+		cerr << "Error opening file for writing." << endl << endl;
 		system("pause");
 		return;
 	}

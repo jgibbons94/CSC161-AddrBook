@@ -6,3 +6,4 @@ AddrTest/.vs/
 *.idb
 AddrTest/Debug/AddrTest.tlog/
 AddrTest/x64/Debug/AddrTest.tlog/
+*.db

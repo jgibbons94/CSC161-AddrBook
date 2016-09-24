@@ -42,7 +42,7 @@ int AddrBookLib::AddrBook::FindContact(Contact itemToFind) const
 
 void AddrBookLib::AddrBook::RemoveContactByIndex(int indexToRemove)
 {
-	if (used > 0 && InRange(indexToRemove,0,used-1))
+	if (used > 0 && InRange(indexToRemove, 0, used - 1))
 		contacts[indexToRemove] = contacts[--used];
 }
 
@@ -50,7 +50,7 @@ void AddrBookLib::AddrBook::PrintAllContacts() const
 {
 	for (int i = 0; i < used; i++)
 	{
-		cout << i+1 << ") ";
+		cout << i + 1 << ") ";
 		cout << contacts[i].ToString() << endl;
 	};
 }
@@ -83,7 +83,7 @@ void AddrBookLib::AddrBook::ReadFile(std::string fileName)
 	while (!fileIn.fail())
 	{
 		//read format fname1,lname1,street address1,city1,state1,zip1,phone1,email1,bday1,picture file1,
-		if(tmpContact.ReadFromFile(fileIn, delim))
+		if (tmpContact.ReadFromFile(fileIn, delim))
 			AddContact(tmpContact);
 		if (fileIn.peek() == '\n') fileIn.ignore();
 	}

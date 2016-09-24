@@ -81,7 +81,7 @@ int main()
 			if (!InRange(subMenuAnswer, 1, yellowPages.GetUsed()))
 				cout << "Invalid response. Please enter a number between 1 and " << yellowPages.GetUsed() << endl;
 			else
-				yellowPages.RemoveContactByIndex(subMenuAnswer-1);
+				yellowPages.RemoveContactByIndex(subMenuAnswer - 1);
 			break;
 		}
 		cout << endl;

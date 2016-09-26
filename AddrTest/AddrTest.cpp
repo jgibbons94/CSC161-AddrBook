@@ -26,11 +26,8 @@
 		No citations.
 */
 #include <iostream>
-//#include <cstdlib>
+#include <cstdlib>
 using namespace std;
-//#include "Name.h"
-//#include "Address.h"
-//#include "Contact.h"
 #include "AddrBook.h"
 #include "MyFuncs.h"
 using namespace AddrBookLib;

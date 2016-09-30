@@ -7,3 +7,4 @@ AddrTest/.vs/
 AddrTest/Debug/AddrTest.tlog/
 AddrTest/x64/Debug/AddrTest.tlog/
 *.db
+*.opendb

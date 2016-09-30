@@ -1,101 +1,346 @@
-/*
-	Name: Jesse Gibbons
-	Course Prefix, Number, Section: CSC161001
-	Program Name: AddrTest
-	Program Description: Menu-driven program to test the AddrBook library:
-	1. Add a new Contact to the AddressBook
-	Prompt for First Name
-	Prompt for Last Name
-	Prompt for Street Address
-	Prompt for City Address
-	Prompt for State Address
-	Prompt for Zip Address
-	Prompt for Phone Number
-	Prompt for Email Address
-	Prompt for Birthday
-	Prompt for Picture File
-	2. Find out how many Contacts are in the AddressBook
-	3. Print out all the Contacts in the AddressBook
-	(Print a counter in front of each contact - starting at 1)
-	4. Delete a Contact from the AddressBook
-	Prompt for the item number to delete (counting number starting at 1)
-	5. Exit the Program
 
-	Program Date: 12 September, 2016
-	Sources Cited (book, website, other):
-		No citations.
-*/
-#include <iostream>
-//#include <cstdlib>
+/*
+ Name:                
+ Course:              CSC161 - Section ???
+ Program Name:        AddrBook Project ???
+ Program Description: 
+ Program Date:
+ Main Source
+ Developer:		      Scott Miner
+ Scott's Source:      http://stackoverflow.com/questions/1798112/removing-leading-and-trailing-spaces-from-a-string,
+                      Jones, B. L., Aitken, P., & Miller, D. (2014). Sames Teach Yourself C Programming In One Hour a Day (7th ed.). Indianapolis, IN: Sams Publishing.
+                      Forouzan, B. A., & Gilberg, R. F. (2007). Computer science: A structured programming approach using C. Boston, MA: Thomson Course Technology.
+
+ TODO in main
+ for Project 2:		 1.  All strings that are Contact fields, need to be changed to Field class
+					 2.  Remove all getline functions and use >> on the Field object
+					 3.  Change the remove - instead of printing the entire Contact object for each, print Last, First for each one.
+					 4.  Change the print to print by category using the same format as Scott setup with this new sub-menu:
+					    (a) Work
+						(b) Family
+						(c) Friends
+						(d) Other
+						(e) All Contacts	
+					  5. Change address.csv to include the category name (not letter) for an 11th Field.
+					  6. Change to CategorizedContact not Contact
+					  7. Review the project #2 specs for compliance 
+					  */
+
+#include <iostream> //provides cout and cin
+#include <sstream>  //provides stringstream
+#include <string>
 using namespace std;
-//#include "Name.h"
-//#include "Address.h"
-//#include "Contact.h"
 #include "AddrBook.h"
-#include "MyFuncs.h"
+#include "Address.h"
+#include "Contact.h"
+#include "Name.h"
+
 using namespace AddrBookLib;
-#define DB_LOCATION ("Address.csv")
-int main()
+
+//PROTOTYPES for functions used by this demonstration program:
+
+int menu(void);
+//Postcondition: An integer is returned representing the user's menu choice
+
+void delay(void);
+//Postcondition: The program has been delayed for the specified amount of time
+
+void addNewContact(AddrBook& myAddrBook);
+//Precondition: getUsed() <= Capacity
+//Postcondition: A new contact has been added into the bag
+
+void printUsed(AddrBook& myAddrBook);
+//Postcondition: The number of entries in the address book is printed to the console window
+
+void removeContacts(AddrBook& myAddrBook);
+//Postcondition: If the entry is a valid entry, the entry is removed from the address book
+
+string trim(const std::string& str, const std::string& whitespace = " \t");
+//Postcondition: leading and trailing white space have been removed from the string
+
+string reduce(const std::string& str, const std::string& fill = " ", const std::string& whitespace = " \t");
+//Postcondition: leading and trailing white space have been removed from the string and any additional spaces
+//between words have been removed from the string as well
+
+int main(int argc, const char * argv[])
 {
-	AddrBook yellowPages;
-	yellowPages.ReadFile(DB_LOCATION);
-	//Contact tempContact;
-	int menuAnswer = -1;
-	int subMenuAnswer = -1;
-	do
+	int command = 0;
+	AddrBook myAddrBook;
+
+	//open the file for reading
+	myAddrBook.ReadFile("address.csv");
+
+	//call the menu function and get response
+	command = menu();
+
+	//take appropriate action based on user response
+	while (command != 5)
 	{
-		menuAnswer = GetResponseFromMenu();
-		cout << endl;
-		/*
-			menu:
-			1. Add a new Contact to the AddressBook
-			Prompt for First Name
-			Prompt for Last Name
-			Prompt for Street Address
-			Prompt for City Address
-			Prompt for State Address
-			Prompt for Zip Address
-			Prompt for Phone Number
-			Prompt for Email Address
-			Prompt for Birthday
-			Prompt for Picture File
-			2. Find out how many Contacts are in the AddressBook
-			3. Print out all the Contacts in the AddressBook
-			(Print a counter in front of each contact - starting at 1)
-			4. Delete a Contact from the AddressBook
-			Prompt for the item number to delete (counting number starting at 1)
-			5. Exit the Program*/
-		switch (menuAnswer)
+		switch (command)
 		{
 		case 1:
-			yellowPages.AddContactFromCommandPrompt();
+			addNewContact(myAddrBook);
 			break;
 		case 2:
-			cout << "There are " << yellowPages.GetUsed() << " contacts in the AddressBook.\n";
+			printUsed(myAddrBook);
 			break;
+
 		case 3:
-			yellowPages.PrintAllContacts();
-			break;
-		case 4:
-			subMenuAnswer = GetContactToDeleteFromConsole(yellowPages);
-			if (!InRange(subMenuAnswer, 1, yellowPages.GetUsed()))
-				cout << "Invalid response. Please enter a number between 1 and " << yellowPages.GetUsed() << endl;
-			else
-				yellowPages.RemoveContactByIndex(subMenuAnswer - 1);
+		{
+			cout << "\n\tPrinting...\n";
+			delay();
+			myAddrBook.PrintAllContacts();
+			cout << "\tReturning to Main Menu...\n\n";
+			delay();
 			break;
 		}
-		cout << endl;
+		case 4:
+			removeContacts(myAddrBook);
+			break;
 
-	} while (menuAnswer != 5);
+		default:
+			cout << "\n\tInvalid entry, please try again.\n";
+			cout << "\tReturning to Main Menu...\n";
+			delay();
+			break;
+		}
 
-	yellowPages.WriteFile(DB_LOCATION);
+		command = menu();
+	}
 
-	cout << "\n\n";
-	//no need to pause.
-	return EXIT_SUCCESS;
+	//when program is exited, write the file before leaving
+	myAddrBook.WriteFile("address.csv");
+	delay();
+
+	return 0;
 }
 
+int menu(void)
+{
+	string reply;
+	int choice;
+
+	cout << "\t****************************************************************" << endl;
+	cout << "\t*                          MENU                                *" << endl;
+	cout << "\t*                                                              *" << endl;
+	cout << "\t*   1.  Add a new Contact to the Address Book                  *" << endl;
+	cout << "\t*   2.  Find out how many Contacts are in this AddressBook     *" << endl;
+	cout << "\t*   3.  Print out all the contacts in the AddressBook          *" << endl;
+	cout << "\t*   4.  Delete a Contact from the AddressBook                  *" << endl;
+	cout << "\t*   5.  Exit the Program                                       *" << endl;
+	cout << "\t*                                                              *" << endl;
+	cout << "\t****************************************************************" << endl;
+	cout << "\n\tPlease enter your selection: ";
+
+	getline(cin, reply);
+
+	//converts the number into an integer for processing
+	stringstream(reply) >> choice;
+
+	return choice;
+}
+
+void printUsed(AddrBook& myAddrBook)
+{
+	//Prints a message to the console window
+
+	cout << "\n";
+	cout << "\t****************************************************************\n";
+	cout << "\t*                                                              *\n";
+	cout << "\t*  Address Book contains " << myAddrBook.GetUsed() << " contact(s).                         *\n";
+	cout << "\t*                                                              *\n";
+	cout << "\t****************************************************************\n";
+
+	cout << "\n\tReturning to Main Menu....\n\n";
+	delay();
+}
+
+void addNewContact(AddrBook& myAddrBook)
+{
+
+	Name newName;
+	Address newAddress;
+	Contact newContact;
+	string answer;
+
+	cout << "\n";
+
+	//if the address book is full, alert the user
+	if (myAddrBook.GetUsed() >= MAX_ADDRBOOK_SIZE)
+	{
+		cout << "\t****************************************************************\n";
+		cout << "\t*                                                              *\n";
+		cout << "\t*   Address Book is full.                                      *\n";
+		cout << "\t*   Please remove 1 or more entries before adding any more.    *\n";
+		cout << "\t*                                                              *\n";
+		cout << "\t****************************************************************\n";
+		cout << "\n\tReturning to Main Menu....\n\n";
+		delay();
+		return;
+	}
 
 
+	cout << "\t****************************************************************\n";
+	cout << "\t*\n";
 
+	//Get all the contact user from the user, trim and reduce white space, set contact information for the new contact
+	cout << "\t*   Enter First Name: ";
+	getline(cin, answer);
+	answer = reduce(answer);
+	newName.SetFirstName(answer);
+	cout << "\t*\n";
 
+	cout << "\t*   Enter Last Name: ";
+	getline(cin, answer);
+	answer = reduce(answer);
+	newName.SetLastName(answer);
+	cout << "\t*\n";
+
+	cout << "\t*   Enter Street Address: ";
+	getline(cin, answer);
+	answer = reduce(answer);
+	newAddress.SetStreetAddress(answer);
+	cout << "\t*\n";
+
+	cout << "\t*   Enter City: ";
+	getline(cin, answer);
+	answer = reduce(answer);
+	newAddress.SetCity(answer);
+	cout << "\t*\n";
+
+	cout << "\t*   Enter State: ";
+	getline(cin, answer);
+	answer = reduce(answer);
+	newAddress.SetState(answer);
+	cout << "\t*\n";
+
+	cout << "\t*   Enter Zip: ";
+	getline(cin, answer);
+	answer = trim(answer);
+	newAddress.SetZip(answer);
+	cout << "\t*\n";
+
+	cout << "\t*   Enter Phone Number: ";
+	getline(cin, answer);
+	answer = trim(answer);
+	newContact.SetPhone(answer);
+	cout << "\t*\n";
+
+	cout << "\t*   Enter Email Address: ";
+	getline(cin, answer);
+	answer = trim(answer);
+	newContact.SetEmail(answer);
+	cout << "\t*\n";
+
+	cout << "\t*   Enter Birthday: ";
+	getline(cin, answer);
+	answer = trim(answer);
+	newContact.SetBirthday(answer);
+	cout << "\t*\n";
+
+	cout << "\t*   Enter Picture File: ";
+	getline(cin, answer);
+	answer = trim(answer);
+	newContact.SetPictureFile(answer);
+	cout << "\t*\n";
+
+	cout << "\t****************************************************************\n\n";
+
+	//update full name and address for the new contact
+	newContact.SetFullName(newName);
+	newContact.SetFullAddress(newAddress);
+
+	//add the contact to the address book
+	myAddrBook.AddContact(newContact);
+
+	//confirmation of contact added
+	cout << "\tContact has been added.\n";
+	cout << "\tReturning to Main Menu...\n\n";
+
+	delay();
+}
+
+void removeContacts(AddrBook& myAddrBook)
+{
+	string answer;
+	int choiceRemove = 0;
+
+	cout << "\n\tPrinting Contacts...\n";
+	delay();
+
+	//print the contacts so user has a reference of what he is removing
+	myAddrBook.PrintAllContacts();
+
+	//if user attempts to remove 0 entries from the address book
+	if (myAddrBook.GetUsed() == 0) {
+		cout << "\tPlease add a contact to the address book before proceeding.";
+		cout << "\n\tReturning to Main Menu....\n\n";
+		delay();
+		return;
+	}
+
+	//prompt for entry number
+	cout << "\tEnter the number of the entry you would like to delete: ";
+	getline(cin, answer);
+
+	//convert the string into an integer for processing
+	stringstream(answer) >> choiceRemove;
+
+	//call remove by index function, error processing is handled in the function
+	myAddrBook.RemoveContactByIndex(choiceRemove);
+
+	delay();
+}
+
+string reduce(const std::string& str, const std::string& fill, const std::string& whitespace)
+{
+	//function from http://stackoverflow.com/questions/1798112/removing-leading-and-trailing-spaces-from-a-string
+	// removes trailing and leading white spaces and any additional spaces the user might hit between words
+	// (ie. [  Scott       Miner   ] = [Scott Miner]
+
+	// trim first
+	auto result = trim(str, whitespace);
+
+	// replace sub ranges
+	auto beginSpace = result.find_first_of(whitespace);
+	while (beginSpace != std::string::npos)
+	{
+		const auto endSpace = result.find_first_not_of(whitespace, beginSpace);
+		const auto range = endSpace - beginSpace;
+
+		result.replace(beginSpace, range, fill);
+
+		const auto newStart = beginSpace + fill.length();
+		beginSpace = result.find_first_of(whitespace, newStart);
+	}
+
+	return result;
+}
+
+string trim(const string& str, const string& whitespace)
+{
+	//function from http://stackoverflow.com/questions/1798112/removing-leading-and-trailing-spaces-from-a-string
+	// removes trailing and leading white spaces
+	// ie. [   Scott Miner     ] = [Scott Miner]
+
+	const auto strBegin = str.find_first_not_of(whitespace);
+	if (strBegin == string::npos)
+		return ""; // no content
+
+	const auto strEnd = str.find_last_not_of(whitespace);
+	const auto strRange = strEnd - strBegin + 1;
+
+	return str.substr(strBegin, strRange);
+}
+
+void delay(void)
+{
+	long DELAY = 1500000000;
+
+	long x;
+
+	for (x = 0; x < DELAY; x++)
+	{
+		;
+	}
+}

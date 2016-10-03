@@ -1,10 +1,10 @@
 
 /*
- Name:                
- Course:              CSC161 - Section ???
- Program Name:        AddrBook Project ???
- Program Description: 
- Program Date:
+ Name:                Jesse Gibbons
+ Course:              CSC161 - Section 001
+ Program Name:        AddrBook Project 3
+ Program Description: Address book program that utilizes contact categories.
+ Program Date:		  September 29 2016
  Main Source
  Developer:		      Scott Miner
  Scott's Source:      http://stackoverflow.com/questions/1798112/removing-leading-and-trailing-spaces-from-a-string,

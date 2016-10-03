@@ -1,6 +1,5 @@
-
 /*
- Name:                Jesse Gibbons
+	Name: Jesse Gibbons
  Course:              CSC161 - Section 001
  Program Name:        AddrBook Project 3
  Program Description: Address book program that utilizes contact categories.
@@ -24,17 +23,14 @@
 					  5. Change address.csv to include the category name (not letter) for an 11th Field.
 					  6. Change to CategorizedContact not Contact
 					  7. Review the project #2 specs for compliance 
-					  */
+*/
 
 #include <iostream> //provides cout and cin
 #include <sstream>  //provides stringstream
 #include <string>
 using namespace std;
 #include "AddrBook.h"
-#include "Address.h"
-#include "Contact.h"
-#include "Name.h"
-
+#include "MyFuncs.h"
 using namespace AddrBookLib;
 
 //PROTOTYPES for functions used by this demonstration program:
@@ -75,7 +71,7 @@ int main(int argc, const char * argv[])
 
 	//take appropriate action based on user response
 	while (command != 5)
-	{
+{
 		switch (command)
 		{
 		case 1:
@@ -258,7 +254,7 @@ void addNewContact(AddrBook& myAddrBook)
 	cout << "\tReturning to Main Menu...\n\n";
 
 	delay();
-}
+		}
 
 void removeContacts(AddrBook& myAddrBook)
 {
@@ -312,7 +308,7 @@ string reduce(const std::string& str, const std::string& fill, const std::string
 
 		const auto newStart = beginSpace + fill.length();
 		beginSpace = result.find_first_of(whitespace, newStart);
-	}
+}
 
 	return result;
 }

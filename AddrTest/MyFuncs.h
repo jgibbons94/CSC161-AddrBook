@@ -23,19 +23,19 @@ namespace AddrBookLib
 
 	*/
 	//send strPrompt to the user, return result.
-	std::string Prompt(std::string strPrompt);
+	Field Prompt(Field fldPrompt);
 	//Get a field from the stream's current position to the delimeter, then ignore the delimeter.
-	bool GetField(std::ifstream & fileIn, string & outField, char delimeter = ',');
+	// bool GetField(std::ifstream & fileIn, string & outField, char delimeter = ',');
 	//check if min <= value <= max
-	inline bool InRange(int value, int min, int max) { return (value >= min && value <= max); }
+	 inline bool InRange(int value, int min, int max) { return (value >= min && value <= max); }
 	//Send the options to the user, retrieve the user's response in a standard result as the number of the chosen option.
 	//User can send a number (required for the project) or a case-insensitive letter, specified in parentheses in the option list.
-	int GetResponseFromMenu();
+	// int GetResponseFromMenu();
 	//Ask the user which contact to delete from the console.
-	int GetContactToDeleteFromConsole(const AddrBook & book);
+	// int GetContactToDeleteFromConsole(const AddrBook & book);
 	//clears whitespace from the console.
 	//use only before << or getline(). Plugs up the program if used in other places.
-	void ClearConsoleInput();
+	// void ClearConsoleInput();
 }
 
 #endif

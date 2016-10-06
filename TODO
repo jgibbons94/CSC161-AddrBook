@@ -29,7 +29,7 @@ Goals from this file will change - to + when completed
 	+AddrTest main console program.
 
 + Use the overloaded operator>> with the Fields for file input
-- Use the overload operator>> with the Fields for console input
++ Use the overload operator>> with the Fields for console input
 
 -Update AddrBook data structure:
 	- A bag collection of CategorizedContact objects that uses a static array as the underlying data structure (set to fixed size of 5)

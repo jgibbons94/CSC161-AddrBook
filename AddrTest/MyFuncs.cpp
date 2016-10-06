@@ -1,5 +1,6 @@
 //MyFuncs.cpp
 //Written by Jesse Gibbons
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -7,7 +8,7 @@ using namespace std;
 #include "AddrBook.h"
 using namespace AddrBookLib;
 
-
+/*
 std::string AddrBookLib::Prompt(std::string strPrompt)
 {
 	string response = "";
@@ -16,7 +17,8 @@ std::string AddrBookLib::Prompt(std::string strPrompt)
 	getline(cin, response);
 	return response;
 }
-
+*/
+/*
 bool AddrBookLib::GetField(std::ifstream & fileIn, string & outField, char delimeter)
 {
 	if (!fileIn)
@@ -28,7 +30,8 @@ bool AddrBookLib::GetField(std::ifstream & fileIn, string & outField, char delim
 		fileIn.ignore();
 	return true;
 }
-
+/**/
+/*
 int AddrBookLib::GetResponseFromMenu()
 {
 	int response = -1;
@@ -76,7 +79,8 @@ int AddrBookLib::GetResponseFromMenu()
 	}
 	return response;
 }
-
+/**/
+/*
 int AddrBookLib::GetContactToDeleteFromConsole(const AddrBook & book)
 {
 	int response = -1;
@@ -88,7 +92,8 @@ int AddrBookLib::GetContactToDeleteFromConsole(const AddrBook & book)
 	return response;
 }
 
-
+/**/
+/*
 void AddrBookLib::ClearConsoleInput()
 {
 	string str = "";
@@ -97,4 +102,14 @@ void AddrBookLib::ClearConsoleInput()
 	{
 		getline(cin, str);
 	}
+}
+
+/**/
+
+Field AddrBookLib::Prompt(Field fldPrompt)
+{
+	Field ret;
+	cout << fldPrompt;
+	cin >> ret;
+	return ret;
 }

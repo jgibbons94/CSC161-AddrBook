@@ -33,10 +33,14 @@ void Name::ConsoleInput()
 bool AddrBookLib::Name::ReadFromFile(std::ifstream & fileIn, char delimeter)
 {
 	bool retVal = true;
-	Field tmpField;
+	//Field tmpField;
+	fileIn >> firstName;
+	fileIn >> lastName;
+	/*
 	retVal = retVal && GetField(fileIn, tmpField, delimeter);
 	SetFirstName(tmpField);
 	retVal = retVal && GetField(fileIn, tmpField, delimeter);
 	SetLastName(tmpField);
-	return retVal;
+	*/
+	return retVal && !fileIn.fail();
 }

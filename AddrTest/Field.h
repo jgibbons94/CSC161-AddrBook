@@ -1,3 +1,5 @@
+//Contact.h
+//Written by Jesse Gibbons
 #ifndef FIELD_H
 #define FIELD_H
 #include <string>

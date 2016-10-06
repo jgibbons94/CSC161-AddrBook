@@ -39,9 +39,11 @@ bool AddrBookLib::CategorizedContact::ReadFromFile(std::ifstream & fileIn, char 
 {
 	bool retVal = true;
 	Field tmpField;
-
+	fileIn >> category;
+	/*
 	retVal &= GetField(fileIn, tmpField, delimeter);
 	SetCategory(tmpField);
+	*/
 	retVal &= Contact::ReadFromFile(fileIn, delimeter);
 	return retVal;
 }

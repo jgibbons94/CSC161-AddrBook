@@ -28,7 +28,8 @@ Goals from this file will change - to + when completed
 	+AddrBook data structure class and 
 	+AddrTest main console program.
 
--Use the overloaded operator>> with the Fields.
++ Use the overloaded operator>> with the Fields for file input
+- Use the overload operator>> with the Fields for console input
 
 -Update AddrBook data structure:
 	- A bag collection of CategorizedContact objects that uses a static array as the underlying data structure (set to fixed size of 5)
@@ -86,4 +87,6 @@ categoryNamefname2,lname2,street address2,city2,state2,zip2,phone2,email2,bday2,
 must incorporate Scott Miner's UI.
 
 Additional changes:
-- replace Scott's CPU-intense wait function with the C++11 sleep function in the thread library, make it sleep for half a second.
+- replace Scott's CPU-intense wait function with the C++11 sleep function in the thread library, make it sleep for two seconds.
+- Make unit tests to make sure everything works like it should.
+- clean up.

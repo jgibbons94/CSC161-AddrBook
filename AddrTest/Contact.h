@@ -18,6 +18,9 @@ namespace AddrBookLib
 		ToFileString member function formatted for file: string ToFileString();
 		ConsoleInput member function (extract from keyboard): void ConsoleInput();
 		Implemented with a unique macro guard
+
+		changes for project 2:
+		The Contact class should still utilize composition so that it has a Name object and Address object. Change the access mode of the data members to protected for all data members.
 	*/
 	class Contact
 	{
@@ -50,7 +53,7 @@ namespace AddrBookLib
 		void ConsoleInput();
 		bool ReadFromFile(std::ifstream & fileIn, char delimeter = ',');
 
-	private:
+	protected:
 		Name fullName;
 		Address fullAddress;
 		std::string phone;

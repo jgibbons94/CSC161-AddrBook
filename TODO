@@ -20,7 +20,16 @@ Goals from this file will change - to + when completed
 	+ InFile stream operator >> for extraction
 	+ Implemented with unique macro guard
 
--Change all references from string to field in the Name, Address, Contact class, CategorizedContact class, AddrBook data structure class and AddrTest main console program.
++Change all references from string to field in:
+	+the Name, 
+	+Address, 
+	+Contact class,
+	+CategorizedContact class,
+	+AddrBook data structure class and 
+	+AddrTest main console program.
+
+-Use the overloaded operator>> with the Fields.
+
 -Update AddrBook data structure:
 	- A bag collection of CategorizedContact objects that uses a static array as the underlying data structure (set to fixed size of 5)
 	- Required member functions:

@@ -7,7 +7,7 @@ using namespace std;
 #include "MyFuncs.h"
 using namespace AddrBookLib;
 
-AddrBookLib::Address::Address(std::string initialStreetAddress, std::string initialCity, std::string initialState, std::string initialZip)
+AddrBookLib::Address::Address(Field initialStreetAddress, Field initialCity, Field initialState, Field initialZip)
 {
 	streetAddress = initialStreetAddress;
 	city = initialCity;
@@ -15,12 +15,12 @@ AddrBookLib::Address::Address(std::string initialStreetAddress, std::string init
 	zip = initialZip;
 }
 
-std::string AddrBookLib::Address::ToString() const
+Field AddrBookLib::Address::ToString() const
 {
 	return streetAddress + '\n' + city + ", " + state + ' ' + zip;
 }
 
-std::string AddrBookLib::Address::ToFileString(char delimeter) const
+Field AddrBookLib::Address::ToFileString(char delimeter) const
 {
 	return streetAddress + delimeter + city + delimeter + state + delimeter + zip;
 }
@@ -38,7 +38,7 @@ bool AddrBookLib::Address::ReadFromFile(std::ifstream & fileIn, char delimeter)
 {
 	//get input in format: street address1,city1,state1,zip1,
 	bool retVal = true;
-	string tmpField;
+	Field tmpField;
 	retVal = retVal && GetField(fileIn, tmpField, delimeter);
 	SetStreetAddress(tmpField);
 	retVal = retVal && GetField(fileIn, tmpField, delimeter);

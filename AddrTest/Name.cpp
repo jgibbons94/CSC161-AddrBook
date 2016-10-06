@@ -8,18 +8,18 @@ using namespace std;
 #include "MyFuncs.h"
 using namespace AddrBookLib;
 
-Name::Name(string initialFirstName, string initialLastName)
+Name::Name(Field initialFirstName, Field initialLastName)
 {
 	firstName = initialFirstName;
 	lastName = initialLastName;
 }
 
-string Name::ToString() const
+Field Name::ToString() const
 {
 	return lastName + ", " + firstName;
 }
 
-string Name::ToFileString(char delimeter) const
+Field Name::ToFileString(char delimeter) const
 {
 	return firstName + delimeter + lastName;
 }
@@ -33,7 +33,7 @@ void Name::ConsoleInput()
 bool AddrBookLib::Name::ReadFromFile(std::ifstream & fileIn, char delimeter)
 {
 	bool retVal = true;
-	string tmpField;
+	Field tmpField;
 	retVal = retVal && GetField(fileIn, tmpField, delimeter);
 	SetFirstName(tmpField);
 	retVal = retVal && GetField(fileIn, tmpField, delimeter);

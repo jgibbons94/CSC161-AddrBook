@@ -51,10 +51,10 @@ void printUsed(AddrBook& myAddrBook);
 void removeContacts(AddrBook& myAddrBook);
 //Postcondition: If the entry is a valid entry, the entry is removed from the address book
 
-string trim(const std::string& str, const std::string& whitespace = " \t");
+Field trim(const Field& str, const Field& whitespace = " \t");
 //Postcondition: leading and trailing white space have been removed from the string
 
-string reduce(const std::string& str, const std::string& fill = " ", const std::string& whitespace = " \t");
+Field reduce(const Field& str, const Field& fill = " ", const Field& whitespace = " \t");
 //Postcondition: leading and trailing white space have been removed from the string and any additional spaces
 //between words have been removed from the string as well
 
@@ -113,7 +113,7 @@ int main(int argc, const char * argv[])
 
 int menu(void)
 {
-	string reply;
+	Field reply;
 	int choice;
 
 	cout << "\t****************************************************************" << endl;
@@ -157,7 +157,7 @@ void addNewContact(AddrBook& myAddrBook)
 	Name newName;
 	Address newAddress;
 	Contact newContact;
-	string answer;
+	Field answer;
 
 	cout << "\n";
 
@@ -258,7 +258,7 @@ void addNewContact(AddrBook& myAddrBook)
 
 void removeContacts(AddrBook& myAddrBook)
 {
-	string answer;
+	Field answer;
 	int choiceRemove = 0;
 
 	cout << "\n\tPrinting Contacts...\n";
@@ -283,12 +283,12 @@ void removeContacts(AddrBook& myAddrBook)
 	stringstream(answer) >> choiceRemove;
 
 	//call remove by index function, error processing is handled in the function
-	myAddrBook.RemoveContactByIndex(choiceRemove);
+	myAddrBook.RemoveContactByIndex(choiceRemove-1);
 
 	delay();
 }
 
-string reduce(const std::string& str, const std::string& fill, const std::string& whitespace)
+Field reduce(const Field& str, const Field& fill, const Field& whitespace)
 {
 	//function from http://stackoverflow.com/questions/1798112/removing-leading-and-trailing-spaces-from-a-string
 	// removes trailing and leading white spaces and any additional spaces the user might hit between words
@@ -299,7 +299,7 @@ string reduce(const std::string& str, const std::string& fill, const std::string
 
 	// replace sub ranges
 	auto beginSpace = result.find_first_of(whitespace);
-	while (beginSpace != std::string::npos)
+	while (beginSpace != Field::npos)
 	{
 		const auto endSpace = result.find_first_not_of(whitespace, beginSpace);
 		const auto range = endSpace - beginSpace;
@@ -313,7 +313,7 @@ string reduce(const std::string& str, const std::string& fill, const std::string
 	return result;
 }
 
-string trim(const string& str, const string& whitespace)
+Field trim(const Field& str, const Field& whitespace)
 {
 	//function from http://stackoverflow.com/questions/1798112/removing-leading-and-trailing-spaces-from-a-string
 	// removes trailing and leading white spaces

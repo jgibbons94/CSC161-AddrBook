@@ -35,8 +35,8 @@ namespace AddrBookLib
 		void PrintAllContacts() const;
 
 		// File I/O
-		void ReadFile(std::string fileName);
-		void WriteFile(std::string fileName) const;
+		void ReadFile(Field fileName);
+		void WriteFile(Field fileName) const;
 
 		//not necessarily required, but used in this program
 		void AddContactFromCommandPrompt();

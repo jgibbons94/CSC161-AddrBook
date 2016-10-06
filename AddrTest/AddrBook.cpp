@@ -67,13 +67,13 @@ void AddrBookLib::AddrBook::AddContactFromCommandPrompt()
 	AddContact(tmpContact);
 }
 
-void AddrBookLib::AddrBook::ReadFile(std::string fileName)
+void AddrBookLib::AddrBook::ReadFile(Field fileName)
 {
 	ifstream fileIn(fileName);
 	Contact tmpContact;
 	Name tmpName;
 	Address tmpAddress;
-	string tmpField;
+	Field tmpField;
 	char delim = ',';
 	if (!fileIn)
 	{
@@ -91,7 +91,7 @@ void AddrBookLib::AddrBook::ReadFile(std::string fileName)
 	return;
 }
 
-void AddrBookLib::AddrBook::WriteFile(std::string fileName) const
+void AddrBookLib::AddrBook::WriteFile(Field fileName) const
 {
 	ofstream outFile;
 	outFile.open(fileName);

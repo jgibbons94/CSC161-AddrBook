@@ -2,7 +2,7 @@
 //Written by Jesse Gibbons
 #ifndef NAME_H
 #define NAME_H
-#include <string>
+#include "Field.h"
 namespace AddrBookLib
 {
 	/*
@@ -20,25 +20,25 @@ namespace AddrBookLib
 	{
 	public:
 		//	constructor
-		Name(std::string initialFirstName = "", std::string initialLastName = "");
+		Name(Field initialFirstName = "", Field initialLastName = "");
 		//	get methods
-		std::string GetFirstName() const { return firstName; }
-		std::string GetLastName() const { return lastName; }
+		Field GetFirstName() const { return firstName; }
+		Field GetLastName() const { return lastName; }
 		//	set methods:
-		void SetFirstName(std::string newFirstName) { firstName = newFirstName; }
-		void SetLastName(std::string newLastName) { lastName = newLastName; }
+		void SetFirstName(Field newFirstName) { firstName = newFirstName; }
+		void SetLastName(Field newLastName) { lastName = newLastName; }
 
 		// member functions:
 		// out
-		std::string ToString() const;
-		std::string ToFileString(char delimeter = ',') const;
+		Field ToString() const;
+		Field ToFileString(char delimeter = ',') const;
 		//in
 		void ConsoleInput();
 		bool ReadFromFile(std::ifstream & fileIn, char delimeter = ',');
 
 	private:
-		std::string firstName;
-		std::string lastName;
+		Field firstName;
+		Field lastName;
 	};
 
 }

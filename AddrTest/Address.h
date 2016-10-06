@@ -2,7 +2,7 @@
 //Written by Jesse Gibbons
 #ifndef ADDRESS_H
 #define ADDRESS_H
-#include <string>
+#include"Field.h"
 namespace AddrBookLib
 {
 	/*
@@ -21,33 +21,33 @@ namespace AddrBookLib
 	public:
 
 		//constructor:
-		Address(std::string initialStreetAddress = "", std::string initialCity = "", std::string initialState = "", std::string initialZip = "");
+		Address(Field initialStreetAddress = "", Field initialCity = "", Field initialState = "", Field initialZip = "");
 
 		//Get methods:
-		std::string GetStreetAddress() const { return streetAddress; }
-		std::string GetCity() const { return city; }
-		std::string GetState() const { return state; }
-		std::string GetZip() const { return zip; }
+		Field GetStreetAddress() const { return streetAddress; }
+		Field GetCity() const { return city; }
+		Field GetState() const { return state; }
+		Field GetZip() const { return zip; }
 
 		//Set methods:
-		void SetStreetAddress(std::string newStreetAddress) { streetAddress = newStreetAddress; }
-		void SetCity(std::string newCity) { city = newCity; }
-		void SetState(std::string newState) { state = newState; }
-		void SetZip(std::string newZip) { zip = newZip; }
+		void SetStreetAddress(Field newStreetAddress) { streetAddress = newStreetAddress; }
+		void SetCity(Field newCity) { city = newCity; }
+		void SetState(Field newState) { state = newState; }
+		void SetZip(Field newZip) { zip = newZip; }
 
 		//Member functions:
 		//out
-		std::string ToString() const;
-		std::string ToFileString(char delimeter = ',') const;
+		Field ToString() const;
+		Field ToFileString(char delimeter = ',') const;
 		//in
 		void ConsoleInput();
 		bool ReadFromFile(std::ifstream & fileIn, char delimeter = ',');
 
 	private:
-		std::string streetAddress;
-		std::string city;
-		std::string state;
-		std::string zip;
+		Field streetAddress;
+		Field city;
+		Field state;
+		Field zip;
 	};
 
 }

@@ -1,16 +1,18 @@
 #include <iostream>
 using namespace std;
+#include "Field.h"
 #include "CategorizedContact.h"
 #include "MyFuncs.h"
+using namespace AddrBookLib;
 
-AddrBookLib::CategorizedContact::CategorizedContact(Contact initialContact, std::string initialCategory):Contact(initialContact)
+AddrBookLib::CategorizedContact::CategorizedContact(Contact initialContact, Field initialCategory):Contact(initialContact)
 {
 	category = initialCategory;
 }
 
-std::string AddrBookLib::CategorizedContact::ToString() const
+AddrBookLib::Field AddrBookLib::CategorizedContact::ToString() const
 {
-	string ret = "Category: " + category + '\n';
+	Field ret = "Category: " + category + '\n';
 	ret += "Name: " + fullName.ToString() + '\n';
 	ret += "Address: " + fullAddress.ToString() + '\n';
 	ret += "Phone: " + phone + '\n';
@@ -20,7 +22,7 @@ std::string AddrBookLib::CategorizedContact::ToString() const
 	return ret;
 }
 
-std::string AddrBookLib::CategorizedContact::ToFileString(char delimeter) const
+AddrBookLib::Field AddrBookLib::CategorizedContact::ToFileString(char delimeter) const
 {
 	return category + ',' + Contact::ToFileString(delimeter);
 }
@@ -36,7 +38,7 @@ void AddrBookLib::CategorizedContact::ConsoleInput()
 bool AddrBookLib::CategorizedContact::ReadFromFile(std::ifstream & fileIn, char delimeter)
 {
 	bool retVal = true;
-	string tmpField;
+	Field tmpField;
 
 	retVal &= GetField(fileIn, tmpField, delimeter);
 	SetCategory(tmpField);

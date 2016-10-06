@@ -6,7 +6,7 @@ using namespace std;
 #include "MyFuncs.h"
 using namespace AddrBookLib;
 
-AddrBookLib::Contact::Contact(Name initialName, Address initialAddress, std::string initialPhone, std::string initialEmail, std::string initialBirthday, std::string initialPictureFile)
+AddrBookLib::Contact::Contact(Name initialName, Address initialAddress, Field initialPhone, Field initialEmail, Field initialBirthday, Field initialPictureFile)
 {
 	fullName = initialName;
 	fullAddress = initialAddress;
@@ -16,7 +16,7 @@ AddrBookLib::Contact::Contact(Name initialName, Address initialAddress, std::str
 	pictureFile = initialPictureFile;
 }
 
-std::string AddrBookLib::Contact::ToString() const
+Field AddrBookLib::Contact::ToString() const
 {
 	return fullName.ToString() + '\n'
 		+ fullAddress.ToString() + '\n'
@@ -26,7 +26,7 @@ std::string AddrBookLib::Contact::ToString() const
 		+ pictureFile + '\n';
 }
 
-std::string AddrBookLib::Contact::ToFileString(char delimeter) const
+Field AddrBookLib::Contact::ToFileString(char delimeter) const
 {
 	return fullName.ToFileString(delimeter) + delimeter
 		+ fullAddress.ToFileString(delimeter) + delimeter
@@ -49,7 +49,7 @@ void AddrBookLib::Contact::ConsoleInput()
 bool AddrBookLib::Contact::ReadFromFile(std::ifstream & fileIn, char delimeter)
 {
 	bool retVal = true;
-	string tmpField;
+	Field tmpField;
 	//Using && skips the remainder of the function when retval is false. That is why it fails only once when the file has an incomplete final entry.
 	retVal = retVal && fullName.ReadFromFile(fileIn, delimeter);
 	retVal = retVal && fullAddress.ReadFromFile(fileIn, delimeter);

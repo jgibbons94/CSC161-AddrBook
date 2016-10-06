@@ -27,28 +27,28 @@ namespace AddrBookLib
 	public:
 
 		//constructor:
-		Contact(Name initialName = Name(), Address initialAddress = Address(), std::string initialPhone = "", std::string initialEmail = "", std::string initialBirthday = "", std::string initialPictureFile = "");
+		Contact(Name initialName = Name(), Address initialAddress = Address(), Field initialPhone = "", Field initialEmail = "", Field initialBirthday = "", Field initialPictureFile = "");
 
 		//Get methods:
 		Name GetFullName() const { return fullName; }
 		Address GetFullAddress() const { return fullAddress; }
-		std::string GetPhone() const { return phone; }
-		std::string GetEmail() const { return email; }
-		std::string GetBirthday() const { return birthday; }
-		std::string GetPictureFile() const { return pictureFile; }
+		Field GetPhone() const { return phone; }
+		Field GetEmail() const { return email; }
+		Field GetBirthday() const { return birthday; }
+		Field GetPictureFile() const { return pictureFile; }
 
 		//Set methods:
 		void SetFullName(Name newName) { fullName = newName; }
 		void SetFullAddress(Address newAddress) { fullAddress = newAddress; }
-		void SetPhone(std::string newPhone) { phone = newPhone; }
-		void SetEmail(std::string newEmail) { email = newEmail; }
-		void SetBirthday(std::string newBirthday) { birthday = newBirthday; }
-		void SetPictureFile(std::string newPicFile) { pictureFile = newPicFile; }
+		void SetPhone(Field newPhone) { phone = newPhone; }
+		void SetEmail(Field newEmail) { email = newEmail; }
+		void SetBirthday(Field newBirthday) { birthday = newBirthday; }
+		void SetPictureFile(Field newPicFile) { pictureFile = newPicFile; }
 
 		//Member functions:
 		//out
-		std::string ToString() const;
-		std::string ToFileString(char delimeter = ',') const;
+		Field ToString() const;
+		Field ToFileString(char delimeter = ',') const;
 		//in
 		void ConsoleInput();
 		bool ReadFromFile(std::ifstream & fileIn, char delimeter = ',');
@@ -56,10 +56,10 @@ namespace AddrBookLib
 	protected:
 		Name fullName;
 		Address fullAddress;
-		std::string phone;
-		std::string email;
-		std::string birthday;
-		std::string pictureFile;
+		Field phone;
+		Field email;
+		Field birthday;
+		Field pictureFile;
 	};
 
 }

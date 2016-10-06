@@ -11,3 +11,5 @@ AddrTest/x64/Debug/AddrTest.tlog/
 *.bak
 *.orig
 *.exe
+AddrTest/Debug/
+AddrTest/x64/

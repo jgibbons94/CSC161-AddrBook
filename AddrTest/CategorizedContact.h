@@ -10,23 +10,23 @@ namespace AddrBookLib
 	{
 	public:
 		//constructor:
-		CategorizedContact(Contact initialContact = Contact(), std::string initialCategory = "");
+		CategorizedContact(Contact initialContact = Contact(), Field initialCategory = "");
 
 		//Get methods
-		std::string GetCategory() const { return category; }
+		Field GetCategory() const { return category; }
 
 		//Set methods
-		void SetCategory(std::string newCategory) { category = newCategory; }
+		void SetCategory(Field newCategory) { category = newCategory; }
 
 		//Member functions:
 		//out
-		std::string ToString() const;
-		std::string ToFileString(char delimeter = ',') const;
+		Field ToString() const;
+		Field ToFileString(char delimeter = ',') const;
 		//in
 		void ConsoleInput();
 		bool ReadFromFile(std::ifstream & fileIn, char delimeter = ',');
 	private:
-		std::string category;
+		Field category;
 	};
 }
 

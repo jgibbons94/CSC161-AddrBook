@@ -114,6 +114,7 @@
     <ClInclude Include="Address.h" />
     <ClInclude Include="CategorizedContact.h" />
     <ClInclude Include="Contact.h" />
+    <ClInclude Include="Field.h" />
     <ClInclude Include="MyFuncs.h" />
     <ClInclude Include="Name.h" />
   </ItemGroup>
@@ -123,6 +124,7 @@
     <ClCompile Include="AddrTest.cpp" />
     <ClCompile Include="CategorizedContact.cpp" />
     <ClCompile Include="Contact.cpp" />
+    <ClCompile Include="Field.cpp" />
     <ClCompile Include="MyFuncs.cpp" />
     <ClCompile Include="Name.cpp" />
   </ItemGroup>

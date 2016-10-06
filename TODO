@@ -11,14 +11,14 @@ Goals from this file will change - to + when completed
 	+ ToFileString member function formatted for file: string ToFileString() const;
 	+ Implemented with a unique macro guard
 	
--Implement the Field class:
-	- files: Field.{h,cpp}
-	- Public single inheritance with string
-	- No data members
-	- Default constructor, constructor(const char*), constructor(string &)
-	- Input stream operator >> extraction
-	- InFile stream operator >> for extraction
-	- Implemented with unique macro guard
++Implement the Field class:
+	+ files: Field.{h,cpp}
+	+ Public single inheritance with string
+	+ No data members
+	+ Default constructor, constructor(const char*), constructor(string &)
+	+ Input stream operator >> extraction
+	+ InFile stream operator >> for extraction
+	+ Implemented with unique macro guard
 
 -Change all references from string to field in the Name, Address, Contact class, CategorizedContact class, AddrBook data structure class and AddrTest main console program.
 -Update AddrBook data structure:

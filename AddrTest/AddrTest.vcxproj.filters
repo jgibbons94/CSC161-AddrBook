@@ -30,6 +30,9 @@
     <ClInclude Include="MyFuncs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CategorizedContact.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Name.cpp">
@@ -48,6 +51,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MyFuncs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CategorizedContact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

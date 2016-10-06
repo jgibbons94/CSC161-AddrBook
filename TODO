@@ -1,15 +1,15 @@
 Goals from this file will change - to + when completed
 
--The Contact class should still uselize composition so that it has a Name object and Address object. Change the access mode of the data members to protected for all data members.
--Implement the CategorizedContact class:
-	- files: CagegorizedContact.{h,cpp}
-	- Publc Single Inheritance on Contact
-	- Data Member: Category as string
-	- Private data and public get/set functions
-	- Default constructors and constructors that take parameters (take default parameters)
-	- ToString member function formatted for output window: sring ToString() const;
-	- ToFileString member function formatted for file: string ToFileString() const;
-	- Implemented with a unique macro guard
++The Contact class should still uselize composition so that it has a Name object and Address object. Change the access mode of the data members to protected for all data members.
++Implement the CategorizedContact class:
+	+ files: CagegorizedContact.{h,cpp}
+	+ Publc Single Inheritance on Contact
+	+ Data Member: Category as string
+	+ Private data and public get/set functions
+	+ Default constructors and constructors that take parameters (take default parameters)
+	+ ToString member function formatted for output window: string ToString() const;
+	+ ToFileString member function formatted for file: string ToFileString() const;
+	+ Implemented with a unique macro guard
 	
 -Implement the Field class:
 	- files: Field.{h,cpp}

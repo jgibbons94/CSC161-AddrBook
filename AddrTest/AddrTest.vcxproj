@@ -112,6 +112,7 @@
   <ItemGroup>
     <ClInclude Include="AddrBook.h" />
     <ClInclude Include="Address.h" />
+    <ClInclude Include="CategorizedContact.h" />
     <ClInclude Include="Contact.h" />
     <ClInclude Include="MyFuncs.h" />
     <ClInclude Include="Name.h" />
@@ -120,6 +121,7 @@
     <ClCompile Include="AddrBook.cpp" />
     <ClCompile Include="Address.cpp" />
     <ClCompile Include="AddrTest.cpp" />
+    <ClCompile Include="CategorizedContact.cpp" />
     <ClCompile Include="Contact.cpp" />
     <ClCompile Include="MyFuncs.cpp" />
     <ClCompile Include="Name.cpp" />

@@ -8,12 +8,11 @@ namespace AddrBookLib
 	/*
 		Name class
 		File names: Name.(h and cpp)
-		Data members: firstName as string and lastName as string
+		Data members: firstName as Field and lastName as Field
 		Private data and public get and set member functions
 		Default constructors and constructors that take parameters
-		ToString member function formatted for output window: string ToString();
-		ToFileString member function formatted for file: string ToFileString();
-		<strike>ConsoleInput member function (extract from keyboard): void ConsoleInput();</strike>
+		ToString member function formatted for output window: Field ToString();
+		ToFileString member function formatted for file: Field ToFileString();
 		Implemented with a unique macro guard
 	*/
 	class Name
@@ -21,6 +20,7 @@ namespace AddrBookLib
 	public:
 		//	constructor
 		Name(const Field & initialFirstName = "", const Field & initialLastName = "");
+
 		//	get methods
 		Field GetFirstName() const { return firstName; }
 		Field GetLastName() const { return lastName; }
@@ -33,7 +33,6 @@ namespace AddrBookLib
 		Field ToString() const;
 		Field ToFileString(char delimeter = ',') const;
 		//in
-		void ConsoleInput();
 		bool ReadFromFile(std::ifstream & fileIn, char delimeter = ',');
 
 	private:

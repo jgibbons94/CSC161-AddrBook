@@ -8,12 +8,11 @@ namespace AddrBookLib
 	/*
 		Address class
 		File names: Address.(h and cpp)
-		Data members: streetAddress as string, city as string, state as string and zip as string
+		Data members: streetAddress as Field, city as Field, state as Field and zip as Field
 		Private data and public get and set member functions
 		Default constructors and constructors that take parameters
-		ToString member function formatted for output window: string ToString();
-		ToFileString member function formatted for file: string ToFileString();
-		ConsoleInput member function (extract from keyboard): void ConsoleInput();
+		ToString member function formatted for output window: Field ToString();
+		ToFileString member function formatted for file: Field ToFileString();
 		Implemented with a unique macro guard
 */
 	class Address
@@ -40,7 +39,6 @@ namespace AddrBookLib
 		Field ToString(const Field & prefix = "") const;
 		Field ToFileString(char delimeter = ',') const;
 		//in
-		void ConsoleInput();
 		bool ReadFromFile(std::ifstream & fileIn, char delimeter = ',');
 
 	private:

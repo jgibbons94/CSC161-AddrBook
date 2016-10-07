@@ -9,13 +9,13 @@ namespace AddrBookLib
 {
 	/*
 		Design and implement the AddrBook data structure class (collection class)
-		A bag collection of Contact objects that uses a static array as the underlying data structure (set to fixed size of 5).
+		A bag collection of CategorizedContact objects that uses a static array as the underlying data structure (set to fixed size of 5).
 		Required member functions:
 		void AddContact(Contact itemToAdd);
-		void RemoveContact(Contact itemToRemove);
-		int FindContact(Contact itemToFind);
-		void RemoveContactByIndex(int indexToRemove);
-		void PrintAllContacts();
+		void RemoveItem(Contact itemToRemove); -- implemented as RemoveContact
+		int FindItem(Contact itemToFind); -- implemented as FindContact
+		void RemoveByIndex(int indexToRemove);
+		void PrintAllItems(); -- implemented as PrintAllContacts
 		int GetUsed();
 		void ReadFile(string fileName);
 		void WriteFile(string fileName);
@@ -37,8 +37,6 @@ namespace AddrBookLib
 		//console I/O
 		void PrintAllContacts(const Field & prefix = "") const;
 		void PrintByCategory(const Field & category, const Field & prefix) const;
-		//not necessarily required, but used in this program
-		void AddContactFromCommandPrompt();
 
 		// File I/O
 		void ReadFile(const string & fileName);

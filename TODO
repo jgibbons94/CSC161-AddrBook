@@ -98,6 +98,6 @@ Additional changes:
 + Make unit tests to make sure everything works like it should.
 - clean up.
 	+ Remove commented-out functions.
-	- Remove unused functions
+	+ Remove unused functions
 	- ctrl+a ctrl + k + f on every file.
 	- evenly space the functions.

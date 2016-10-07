@@ -16,6 +16,7 @@ AddrBookLib::Contact::Contact(const Name & initialName, const Address & initialA
 	pictureFile = initialPictureFile;
 }
 
+//required but not used
 Field AddrBookLib::Contact::ToString(const Field & prefix) const
 {
 	return fullName.ToString() + '\n'
@@ -34,16 +35,6 @@ Field AddrBookLib::Contact::ToFileString(char delimeter) const
 		+ email + delimeter
 		+ birthday + delimeter
 		+ pictureFile + delimeter;
-}
-
-void AddrBookLib::Contact::ConsoleInput()
-{
-	fullName.ConsoleInput();
-	fullAddress.ConsoleInput();
-	phone = Prompt("Please enter " + fullName.GetFirstName() + "'s phone number: ");
-	email = Prompt("Please enter " + fullName.GetFirstName() + "'s email address: ");
-	birthday = Prompt("Please enter " + fullName.GetFirstName() + "'s birthday: ");
-	pictureFile = Prompt("Please enter the file location for " + fullName.GetFirstName() + "'s picture: ");
 }
 
 bool AddrBookLib::Contact::ReadFromFile(std::ifstream & fileIn, char delimeter)

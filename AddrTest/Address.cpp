@@ -25,14 +25,6 @@ Field AddrBookLib::Address::ToFileString(char delimeter) const
 	return streetAddress + delimeter + city + delimeter + state + delimeter + zip;
 }
 
-void AddrBookLib::Address::ConsoleInput()
-{
-	streetAddress = Prompt("Please enter a street address: ");
-	city = Prompt("Please enter a city: ");
-	state = Prompt("Please enter a state: ");
-	zip = Prompt("Please enter a zip code: ");
-}
-
 //return true on success, false otherwise.
 bool AddrBookLib::Address::ReadFromFile(std::ifstream & fileIn, char delimeter)
 {

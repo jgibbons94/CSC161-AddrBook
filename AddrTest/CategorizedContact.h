@@ -10,7 +10,7 @@ namespace AddrBookLib
 		CategprozedContact class
 		File names: CategorizedContact.(h and cpp)
 		Public Single Inheritance with Contact
-		Data member: category as string
+		Data member: category as Field
 		Private data and public get and set member functions
 		Default constructors and constructors that take parameters
 		ToString member function formatted for output window: string ToString();
@@ -34,7 +34,7 @@ namespace AddrBookLib
 		Field ToString(const Field& prefix = "") const;
 		Field ToFileString(char delimeter = ',') const;
 		//in
-		void ConsoleInput();
+		//void ConsoleInput();
 		bool ReadFromFile(std::ifstream & fileIn, char delimeter = ',');
 	private:
 		Field category;

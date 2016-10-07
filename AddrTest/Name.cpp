@@ -24,16 +24,10 @@ Field Name::ToFileString(char delimeter) const
 	return firstName + delimeter + lastName;
 }
 
-void Name::ConsoleInput()
-{
-	firstName = Prompt("Enter a first name: ");
-	lastName = Prompt("Enter " + firstName + "'s last name: ");
-}
 
 bool AddrBookLib::Name::ReadFromFile(std::ifstream & fileIn, char delimeter)
 {
 	bool retVal = true;
-	//Field tmpField;
 	fileIn >> firstName;
 	fileIn >> lastName;
 	return retVal && !fileIn.fail();

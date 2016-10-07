@@ -23,6 +23,7 @@ void AddrBookLib::AddrBook::AddContact(const CategorizedContact & itemToAdd)
 		contacts[used++] = itemToAdd;
 }
 
+/*required but not used.*/
 void AddrBookLib::AddrBook::RemoveContact(const CategorizedContact & itemToRemove)
 {
 	int index = FindContact(itemToRemove);
@@ -30,6 +31,7 @@ void AddrBookLib::AddrBook::RemoveContact(const CategorizedContact & itemToRemov
 		RemoveByIndex(index);
 }
 
+/*required but not used*/
 int AddrBookLib::AddrBook::FindContact(const CategorizedContact & itemToFind) const
 {
 	for (int i = 0; i < used; i++)
@@ -46,6 +48,7 @@ void AddrBookLib::AddrBook::RemoveByIndex(int indexToRemove)
 		contacts[indexToRemove] = contacts[--used];
 }
 
+/*required but not used*/
 CategorizedContact AddrBookLib::AddrBook::GetContact(int index) const
 {
 	return contacts[index];
@@ -66,18 +69,6 @@ void AddrBookLib::AddrBook::PrintByCategory(const Field & category, const Field 
 	for (int i = 0; i < used; i++)
 		if (contacts[i].GetCategory() == category)
 			cout << prefix << count++ << ")" << contacts[i].ToString(prefix) << endl;
-}
-
-void AddrBookLib::AddrBook::AddContactFromCommandPrompt()
-{
-	CategorizedContact tmpContact;
-	if (used >= MAX_ADDRBOOK_SIZE)
-	{
-		cout << "Address book full. Please delete a contact and try again.\n";
-		return;
-	}
-	tmpContact.ConsoleInput();
-	AddContact(tmpContact);
 }
 
 void AddrBookLib::AddrBook::ReadFile(const string & fileName)

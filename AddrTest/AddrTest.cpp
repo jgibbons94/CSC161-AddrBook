@@ -439,12 +439,3 @@ void delay(int milliseconds)
 
 	this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
 }
-
-//declared in AddrBook.h
-Field AddrBookLib::Prompt(const Field & fldPrompt)
-{
-	Field ret;
-	cout << fldPrompt;
-	cin >> ret;
-	return ret;
-}

@@ -23,8 +23,6 @@ namespace AddrBookLib
 
 	*/
 
-	//send fldPrompt to the user, return result.
-	Field Prompt(const Field & fldPrompt);
 
 	//check if min <= value <= max
 	 inline bool InRange(int value, int min, int max) { return (value >= min && value <= max); }

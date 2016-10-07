@@ -11,12 +11,11 @@ namespace AddrBookLib
 	/*
 		Contact class
 		File names: Contact.(h and cpp)
-		Data members: fullName as Name object, fullAddress as Address object, phone as string, email as string, birthday as string and pictureFile as string
+		Data members: fullName as Name object, fullAddress as Address object, phone as Field, email as Field, birthday as Field and pictureFile as Field
 		Private data and public get and set member functions
 		Default constructors and constructors that take parameters
-		ToString member function formatted for output window: string ToString();
-		ToFileString member function formatted for file: string ToFileString();
-		ConsoleInput member function (extract from keyboard): void ConsoleInput();
+		ToString member function formatted for output window: Field ToString();
+		ToFileString member function formatted for file: Field ToFileString();
 		Implemented with a unique macro guard
 	*/
 	class Contact
@@ -47,7 +46,6 @@ namespace AddrBookLib
 		Field ToString(const Field & prefix) const;
 		Field ToFileString(char delimeter = ',') const;
 		//in
-		void ConsoleInput();
 		bool ReadFromFile(std::ifstream & fileIn, char delimeter = ',');
 
 	protected:

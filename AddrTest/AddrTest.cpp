@@ -36,21 +36,41 @@ using namespace AddrBookLib;
 
 //PROTOTYPES for functions used by this demonstration program:
 
+//quick menu functions
+
 int menu(void);
 //Postcondition: An integer is returned representing the user's menu choice
 
-void delay(void);
-//Postcondition: The program has been delayed for the specified amount of time
+char MenuCategory(bool get = false);
+//parameter: get
+// set to true if the user wants to print all the contacts in a category
+// set to false (default) if the user wants to add a contact.
+//Postcondition: A field is returned representing the user's choice from a list of cagegories.
 
+//prompt 1
 void addNewContact(AddrBook& myAddrBook);
-//Precondition: getUsed() <= Capacity
+//Precondition: AddrBook.getUsed() <= Capacity
 //Postcondition: A new contact has been added into the bag
 
+//prompt 2
 void printUsed(AddrBook& myAddrBook);
 //Postcondition: The number of entries in the address book is printed to the console window
-
+//prompt 4
 void removeContacts(AddrBook& myAddrBook);
 //Postcondition: If the entry is a valid entry, the entry is removed from the address book
+
+Field CategoryFromChoice(char choice, const Field & fldDefault = "Other");
+//parameter: choice
+// A choice from MenuCategory()
+//parameter: fldDefault
+// The default return value if not from the menu
+//Postcondition: Returns a Field represented by the given choice
+
+
+//helpers
+
+void delay(void);
+//Postcondition: The program has been delayed for the specified amount of time
 
 Field trim(const Field& str, const Field& whitespace = " \t");
 //Postcondition: leading and trailing white space have been removed from the string
@@ -58,6 +78,9 @@ Field trim(const Field& str, const Field& whitespace = " \t");
 Field reduce(const Field& str, const Field& fill = " ", const Field& whitespace = " \t");
 //Postcondition: leading and trailing white space have been removed from the string and any additional spaces
 //between words have been removed from the string as well
+
+
+//implementations
 
 int main(int argc, const char * argv[])
 {
@@ -112,6 +135,7 @@ int main(int argc, const char * argv[])
 	return 0;
 }
 
+//quick menu functions
 int menu(void)
 {
 	Field reply;
@@ -137,7 +161,7 @@ int menu(void)
 	return choice;
 }
 
-Field CategoryMenu(const Field & fldDefault)
+char MenuCategory(bool get)
 {
 	string reply = "";
 	Field category = "";
@@ -157,45 +181,10 @@ Field CategoryMenu(const Field & fldDefault)
 
 	//converts the number into an integer for processing
 	stringstream(reply) >> choice;
-	switch (choice)
-	{
-	case 'a':
-	case 'A':
-		category = "Work";
-		break;
-	case 'b':
-	case 'B':
-		category = "Family";
-		break;
-	case 'c':
-	case 'C':
-		category = "Friends";
-		break;
-	case 'd':
-	case 'D':
-		category = "Other";
-		break;
-	default:
-		category = fldDefault;
-	}
-	return category;
+	return choice;
 }
 
-void printUsed(AddrBook& myAddrBook)
-{
-	//Prints a message to the console window
-
-	cout << "\n";
-	cout << "\t****************************************************************\n";
-	cout << "\t*                                                              *\n";
-	cout << "\t*  Address Book contains " << myAddrBook.GetUsed() << " contact(s).                         *\n";
-	cout << "\t*                                                              *\n";
-	cout << "\t****************************************************************\n";
-
-	cout << "\n\tReturning to Main Menu....\n\n";
-	delay();
-}
-
+//prompt 1
 void addNewContact(AddrBook& myAddrBook)
 {
 
@@ -222,12 +211,7 @@ void addNewContact(AddrBook& myAddrBook)
 
 
 
-	answer = CategoryMenu("Other");
-	while (answer == "")
-	{
-		cout << "\tPlease enter a response on the menu.\n\n";
-		answer = CategoryMenu("Other");
-	}
+	answer = CategoryFromChoice(MenuCategory(false));
 	newContact.SetCategory(answer);
 
 	cout << "\t****************************************************************\n";
@@ -310,6 +294,25 @@ void addNewContact(AddrBook& myAddrBook)
 	delay();
 }
 
+//prompt 2
+void printUsed(AddrBook& myAddrBook)
+{
+	//Prints a message to the console window
+
+	cout << "\n";
+	cout << "\t****************************************************************\n";
+	cout << "\t*                                                              *\n";
+	cout << "\t*  Address Book contains " << myAddrBook.GetUsed() << " contact(s).                         *\n";
+	cout << "\t*                                                              *\n";
+	cout << "\t****************************************************************\n";
+
+	cout << "\n\tReturning to Main Menu....\n\n";
+	delay();
+}
+
+//prompt 3
+
+//prompt 4
 void removeContacts(AddrBook& myAddrBook)
 {
 	Field answer;
@@ -340,6 +343,34 @@ void removeContacts(AddrBook& myAddrBook)
 	myAddrBook.RemoveByIndex(choiceRemove - 1);
 
 	delay();
+}
+
+//helpers
+Field CategoryFromChoice(char choice, const Field & fldDefault)
+{
+	Field category;
+	switch (choice)
+	{
+	case 'a':
+	case 'A':
+		category = "Work";
+		break;
+	case 'b':
+	case 'B':
+		category = "Family";
+		break;
+	case 'c':
+	case 'C':
+		category = "Friends";
+		break;
+	case 'd':
+	case 'D':
+		category = "Other";
+		break;
+	default:
+		category = fldDefault;
+	}
+	return category;
 }
 
 Field reduce(const Field& str, const Field& fill, const Field& whitespace)

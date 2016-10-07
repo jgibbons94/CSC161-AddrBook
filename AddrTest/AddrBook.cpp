@@ -17,20 +17,20 @@ AddrBook::AddrBook()
 	used = 0;
 }
 
-void AddrBookLib::AddrBook::AddItem(CategorizedContact itemToAdd)
+void AddrBookLib::AddrBook::AddContact(CategorizedContact itemToAdd)
 {
 	if (used < MAX_ADDRBOOK_SIZE)
 		contacts[used++] = itemToAdd;
 }
 
-void AddrBookLib::AddrBook::RemoveItem(CategorizedContact itemToRemove)
+void AddrBookLib::AddrBook::RemoveContact(CategorizedContact itemToRemove)
 {
-	int index = FindItem(itemToRemove);
+	int index = FindContact(itemToRemove);
 	if (index != -1)
 		RemoveByIndex(index);
 }
 
-int AddrBookLib::AddrBook::FindItem(CategorizedContact itemToFind) const
+int AddrBookLib::AddrBook::FindContact(CategorizedContact itemToFind) const
 {
 	for (int i = 0; i < used; i++)
 	{
@@ -46,17 +46,17 @@ void AddrBookLib::AddrBook::RemoveByIndex(int indexToRemove)
 		contacts[indexToRemove] = contacts[--used];
 }
 
-CategorizedContact AddrBookLib::AddrBook::GetItem(int index) const
+CategorizedContact AddrBookLib::AddrBook::GetContact(int index) const
 {
 	return contacts[index];
 }
 
-void AddrBookLib::AddrBook::PrintAllItems() const
+void AddrBookLib::AddrBook::PrintAllContacts() const
 {
 	for (int i = 0; i < used; i++)
 	{
 		cout << i + 1 << ") ";
-		cout << contacts[i].ToString() << endl;
+		cout << contacts[i].ToString() << endl << endl;
 	};
 }
 
@@ -65,7 +65,7 @@ void AddrBookLib::AddrBook::PrintByCategory(Field category) const
 	int count = 1;
 	for (int i = 0; i < used; i++)
 		if (contacts[i].GetCategory() == category)
-			cout << count++ << contacts[i].ToString();
+			cout << count++ << ") " << contacts[i].ToString() << endl;
 }
 
 void AddrBookLib::AddrBook::AddContactFromCommandPrompt()
@@ -77,7 +77,7 @@ void AddrBookLib::AddrBook::AddContactFromCommandPrompt()
 		return;
 	}
 	tmpContact.ConsoleInput();
-	AddItem(tmpContact);
+	AddContact(tmpContact);
 }
 
 void AddrBookLib::AddrBook::ReadFile(string fileName)
@@ -97,7 +97,7 @@ void AddrBookLib::AddrBook::ReadFile(string fileName)
 	{
 		//read format fname1,lname1,street address1,city1,state1,zip1,phone1,email1,bday1,picture file1,
 		if (tmpContact.ReadFromFile(fileIn, delim))
-			AddItem(tmpContact);
+			AddContact(tmpContact);
 		//if (fileIn.peek() == '\n') fileIn.ignore();
 	}
 	fileIn.close();

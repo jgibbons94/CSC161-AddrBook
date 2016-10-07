@@ -28,14 +28,14 @@ namespace AddrBookLib
 		// Get methods
 		int GetUsed() const { return used; }
 		// Member functions
-		void AddItem(CategorizedContact itemToAdd);
-		void RemoveItem(CategorizedContact itemToRemove);
-		int FindItem(CategorizedContact itemToFind) const;
+		void AddContact(CategorizedContact itemToAdd);
+		void RemoveContact(CategorizedContact itemToRemove);
+		int FindContact(CategorizedContact itemToFind) const;
 		void RemoveByIndex(int indexToRemove);
 
-		CategorizedContact GetItem(int index) const;
+		CategorizedContact GetContact(int index) const;
 		//console I/O
-		void PrintAllItems() const;
+		void PrintAllContacts() const;
 		void PrintByCategory(Field category) const;
 		//not necessarily required, but used in this program
 		void AddContactFromCommandPrompt();

@@ -112,7 +112,7 @@ int main(int argc, const char * argv[])
 			delay();
 			if (choice == 'e') // print all contacts
 			{
-				myAddrBook.PrintAllItems();
+				myAddrBook.PrintAllContacts();
 			}
 			else
 			{
@@ -296,7 +296,7 @@ void addNewContact(AddrBook& myAddrBook)
 	newContact.SetFullAddress(newAddress);
 
 	//add the contact to the address book
-	myAddrBook.AddItem(newContact);
+	myAddrBook.AddContact(newContact);
 
 	//confirmation of contact added
 	cout << "\tContact has been added.\n";
@@ -333,7 +333,7 @@ void removeContacts(AddrBook& myAddrBook)
 	delay();
 
 	//print the contacts so user has a reference of what he is removing
-	myAddrBook.PrintAllItems();
+	myAddrBook.PrintAllContacts();
 
 	//if user attempts to remove 0 entries from the address book
 	if (myAddrBook.GetUsed() == 0) {

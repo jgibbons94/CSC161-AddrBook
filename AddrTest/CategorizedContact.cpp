@@ -5,7 +5,7 @@ using namespace std;
 #include "AddrTest.h"
 using namespace AddrBookLib;
 
-AddrBookLib::CategorizedContact::CategorizedContact(const Contact & initialContact, const Field & initialCategory):Contact(initialContact)
+AddrBookLib::CategorizedContact::CategorizedContact(const Contact & initialContact, const Field & initialCategory) :Contact(initialContact)
 {
 	category = initialCategory;
 }

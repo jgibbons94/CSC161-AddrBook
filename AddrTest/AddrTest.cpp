@@ -4,8 +4,8 @@
  Program Name:        AddrBook Project 3
  Program Description: Address book program that utilizes contact categories.
  Program Date:		  September 29 2016
- Sources:             
- 
+ Sources:
+
    Main Source
    Developer:		      Scott Miner
    Scott's Source:      http://stackoverflow.com/questions/1798112/removing-leading-and-trailing-spaces-from-a-string,
@@ -16,17 +16,17 @@
 
 TODO in main
 for Project 2:		 1.  All strings that are Contact fields, need to be changed to Field class
- 				     2.  Remove all getline functions and use >> on the Field object
-	  			     3.  Change the remove - instead of printing the entire Contact object for each, print Last, First for each one.
-				     4.  Change the print to print by category using the same format as Scott setup with this new sub-menu:
-					    (a) Work
-					    (b) Family
-					    (c) Friends
-					    (d) Other
-					    (e) All Contacts
-				      5. Change address.csv to include the category name (not letter) for an 11th Field.
-				      6. Change to CategorizedContact not Contact
-				      7. Review the project #2 specs for compliance
+					 2.  Remove all getline functions and use >> on the Field object
+					 3.  Change the remove - instead of printing the entire Contact object for each, print Last, First for each one.
+					 4.  Change the print to print by category using the same format as Scott setup with this new sub-menu:
+						(a) Work
+						(b) Family
+						(c) Friends
+						(d) Other
+						(e) All Contacts
+					  5. Change address.csv to include the category name (not letter) for an 11th Field.
+					  6. Change to CategorizedContact not Contact
+					  7. Review the project #2 specs for compliance
 */
 
 #include <iostream> //provides cout and cin
@@ -190,7 +190,7 @@ char MenuCategory(bool get)
 	cout << "\t*   (b)  Family                                                *" << endl;
 	cout << "\t*   (c)  Friends                                               *" << endl;
 	cout << "\t*   (d)  Other                                                 *" << endl;
-	if(get)
+	if (get)
 		cout << "\t*   (e)  All Contacts                                          *" << endl;
 
 	cout << "\t*                                                              *" << endl;

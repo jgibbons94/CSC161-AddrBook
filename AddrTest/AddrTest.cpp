@@ -107,9 +107,17 @@ int main(int argc, const char * argv[])
 
 		case 3:
 		{
+			char choice = MenuCategory(true);
 			cout << "\n\tPrinting...\n";
 			delay();
-			myAddrBook.PrintAllItems();
+			if (choice == 'e') // print all contacts
+			{
+				myAddrBook.PrintAllItems();
+			}
+			else
+			{
+				myAddrBook.PrintByCategory(CategoryFromChoice(choice));
+			}
 			cout << "\tReturning to Main Menu...\n\n";
 			delay();
 			break;
@@ -174,6 +182,9 @@ char MenuCategory(bool get)
 	cout << "\t*   (b)  Family                                                *" << endl;
 	cout << "\t*   (c)  Friends                                               *" << endl;
 	cout << "\t*   (d)  Other                                                 *" << endl;
+	if(get)
+		cout << "\t*   (e)  All Contacts                                          *" << endl;
+
 	cout << "\t*                                                              *" << endl;
 	cout << "\t****************************************************************" << endl;
 	cout << "\n\tPlease enter your selection: ";

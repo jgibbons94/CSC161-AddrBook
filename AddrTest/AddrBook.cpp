@@ -62,9 +62,10 @@ void AddrBookLib::AddrBook::PrintAllItems() const
 
 void AddrBookLib::AddrBook::PrintByCategory(Field category) const
 {
+	int count = 1;
 	for (int i = 0; i < used; i++)
 		if (contacts[i].GetCategory() == category)
-			cout << contacts[i].ToString();
+			cout << count++ << contacts[i].ToString();
 }
 
 void AddrBookLib::AddrBook::AddContactFromCommandPrompt()

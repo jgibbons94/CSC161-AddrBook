@@ -84,9 +84,6 @@ void AddrBookLib::AddrBook::ReadFile(const string & fileName)
 {
 	ifstream fileIn(fileName);
 	CategorizedContact tmpContact;
-	//Name tmpName;
-	//Address tmpAddress;
-	//Field tmpField;
 	char delim = ',';
 	if (!fileIn)
 	{
@@ -98,7 +95,6 @@ void AddrBookLib::AddrBook::ReadFile(const string & fileName)
 		//read format fname1,lname1,street address1,city1,state1,zip1,phone1,email1,bday1,picture file1,
 		if (tmpContact.ReadFromFile(fileIn, delim))
 			AddContact(tmpContact);
-		//if (fileIn.peek() == '\n') fileIn.ignore();
 	}
 	fileIn.close();
 	return;

@@ -56,9 +56,6 @@
     <ClCompile Include="Field.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MyFuncs.1.txt">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
     <ClCompile Include="AddrTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

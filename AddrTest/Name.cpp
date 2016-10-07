@@ -36,11 +36,5 @@ bool AddrBookLib::Name::ReadFromFile(std::ifstream & fileIn, char delimeter)
 	//Field tmpField;
 	fileIn >> firstName;
 	fileIn >> lastName;
-	/*
-	retVal = retVal && GetField(fileIn, tmpField, delimeter);
-	SetFirstName(tmpField);
-	retVal = retVal && GetField(fileIn, tmpField, delimeter);
-	SetLastName(tmpField);
-	*/
 	return retVal && !fileIn.fail();
 }

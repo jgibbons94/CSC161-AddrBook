@@ -38,18 +38,9 @@ bool AddrBookLib::Address::ReadFromFile(std::ifstream & fileIn, char delimeter)
 {
 	//get input in format: street address1,city1,state1,zip1,
 	bool retVal = true;
-	//Field tmpField;
 	fileIn >> streetAddress;
 	fileIn >> city;
 	fileIn >> state;
 	fileIn >> zip;
-	/*retVal = retVal && GetField(fileIn, tmpField, delimeter);
-	SetStreetAddress(tmpField);
-	retVal = retVal && GetField(fileIn, tmpField, delimeter);
-	SetCity(tmpField);
-	retVal = retVal && GetField(fileIn, tmpField, delimeter);
-	SetState(tmpField);
-	retVal = retVal && GetField(fileIn, tmpField, delimeter);
-	SetZip(tmpField);*/
 	return retVal && !fileIn.fail();
 }

@@ -125,7 +125,6 @@
     <ClCompile Include="CategorizedContact.cpp" />
     <ClCompile Include="Contact.cpp" />
     <ClCompile Include="Field.cpp" />
-    <ClCompile Include="MyFuncs.1.txt" />
     <ClCompile Include="Name.cpp" />
   </ItemGroup>
   <ItemGroup>

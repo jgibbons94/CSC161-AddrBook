@@ -229,14 +229,15 @@ void addNewContact(AddrBook& myAddrBook)
 	}
 
 
-
+	//Have the user specify the new contact's category.
 	answer = CategoryFromChoice(MenuCategory(false));
 	newContact.SetCategory(answer);
 
 	cout << "\t****************************************************************\n";
 	cout << "\t*\n";
 	cout << "\t*\n";
-	//Get all the contact user from the user, trim and reduce white space, set contact information for the new contact
+
+	// Get all the contact user from the user, trim and reduce white space, set contact information for the new contact
 	cout << "\t*   Enter First Name: ";
 	cin >> answer;
 	answer = reduce(answer);
@@ -439,7 +440,7 @@ void delay(int milliseconds)
 	this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
 }
 
-
+//declared in AddrBook.h
 Field AddrBookLib::Prompt(const Field & fldPrompt)
 {
 	Field ret;

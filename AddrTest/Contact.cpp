@@ -16,10 +16,10 @@ AddrBookLib::Contact::Contact(Name initialName, Address initialAddress, Field in
 	pictureFile = initialPictureFile;
 }
 
-Field AddrBookLib::Contact::ToString() const
+Field AddrBookLib::Contact::ToString(const Field & prefix) const
 {
 	return fullName.ToString() + '\n'
-		+ fullAddress.ToString() + '\n'
+		+ fullAddress.ToString(prefix) + '\n'
 		+ phone + '\n'
 		+ email + '\n'
 		+ birthday + '\n'

@@ -35,8 +35,8 @@ namespace AddrBookLib
 
 		CategorizedContact GetContact(int index) const;
 		//console I/O
-		void PrintAllContacts() const;
-		void PrintByCategory(Field category) const;
+		void PrintAllContacts(const Field & prefix = "") const;
+		void PrintByCategory(Field category, const Field & prefix) const;
 		//not necessarily required, but used in this program
 		void AddContactFromCommandPrompt();
 

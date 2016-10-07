@@ -10,15 +10,15 @@ AddrBookLib::CategorizedContact::CategorizedContact(Contact initialContact, Fiel
 	category = initialCategory;
 }
 
-AddrBookLib::Field AddrBookLib::CategorizedContact::ToString() const
+AddrBookLib::Field AddrBookLib::CategorizedContact::ToString(const Field & prefix) const
 {
-	Field ret = "Category: " + category + '\n';
-	ret += "Name: " + fullName.ToString() + '\n';
-	ret += "Address: " + fullAddress.ToString() + '\n';
-	ret += "Phone: " + phone + '\n';
-	ret += "Email: " + email + '\n';
-	ret += "Birthday: " + birthday + '\n';
-	ret += "PictFile: " + pictureFile + '\n';
+	Field ret = prefix + "Category:\t" + category + '\n';
+	ret += prefix + prefix + "Name:\t" + fullName.ToString() + '\n';
+	ret += prefix + prefix + "Address:\t" + fullAddress.ToString(prefix + '\t') + '\n';
+	ret += prefix + prefix + "Phone:\t" + phone + '\n';
+	ret += prefix + prefix + "Email:\t" + email + '\n';
+	ret += prefix + prefix + "Birthday:\t" + birthday + '\n';
+	ret += prefix + prefix + "PictFile:\t" + pictureFile + '\n';
 	return ret;
 }
 

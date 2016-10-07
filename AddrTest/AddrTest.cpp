@@ -58,7 +58,8 @@ void addNewContact(AddrBook& myAddrBook);
 
 //prompt 2
 void printUsed(AddrBook& myAddrBook);
-//Postcondition: The number of entries in the address book is printed to the console window
+//Postcondition: The number of entries in the address book is printed to the console window+
+
 //prompt 4
 void removeContacts(AddrBook& myAddrBook);
 //Postcondition: If the entry is a valid entry, the entry is removed from the address book
@@ -115,15 +116,15 @@ int main(int argc, const char * argv[])
 		case 3:
 		{
 			char choice = MenuCategory(true);
-			cout << "\n\tPrinting...\n";
+			cout << "\n\tPrinting...\n\n";
 			delay();
 			if (choice == 'e') // print all contacts
 			{
-				myAddrBook.PrintAllContacts();
+				myAddrBook.PrintAllContacts("\t");
 			}
 			else
 			{
-				myAddrBook.PrintByCategory(CategoryFromChoice(choice));
+				myAddrBook.PrintByCategory(CategoryFromChoice(choice), "\t");
 			}
 			cout << "\tReturning to Main Menu...\n\n";
 			delay();

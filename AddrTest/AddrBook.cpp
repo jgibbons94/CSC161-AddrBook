@@ -51,21 +51,21 @@ CategorizedContact AddrBookLib::AddrBook::GetContact(int index) const
 	return contacts[index];
 }
 
-void AddrBookLib::AddrBook::PrintAllContacts() const
+void AddrBookLib::AddrBook::PrintAllContacts(const Field & prefix) const
 {
 	for (int i = 0; i < used; i++)
 	{
-		cout << i + 1 << ") ";
-		cout << contacts[i].ToString() << endl << endl;
+		cout << prefix << i + 1 << ") ";
+		cout << contacts[i].ToString(prefix) << endl << endl;
 	};
 }
 
-void AddrBookLib::AddrBook::PrintByCategory(Field category) const
+void AddrBookLib::AddrBook::PrintByCategory(Field category, const Field & prefix) const
 {
 	int count = 1;
 	for (int i = 0; i < used; i++)
 		if (contacts[i].GetCategory() == category)
-			cout << count++ << ") " << contacts[i].ToString() << endl;
+			cout << prefix << count++ << ")" << contacts[i].ToString(prefix) << endl;
 }
 
 void AddrBookLib::AddrBook::AddContactFromCommandPrompt()

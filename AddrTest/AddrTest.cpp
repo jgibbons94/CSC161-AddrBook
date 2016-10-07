@@ -5,30 +5,34 @@
  Program Description: Address book program that utilizes contact categories.
  Program Date:		  September 29 2016
  Sources:             
+ 
    Main Source
    Developer:		      Scott Miner
    Scott's Source:      http://stackoverflow.com/questions/1798112/removing-leading-and-trailing-spaces-from-a-string,
 					  Jones, B. L., Aitken, P., & Miller, D. (2014). Sames Teach Yourself C Programming In One Hour a Day (7th ed.). Indianapolis, IN: Sams Publishing.
 					  Forouzan, B. A., & Gilberg, R. F. (2007). Computer science: A structured programming approach using C. Boston, MA: Thomson Course Technology.
 
-   TODO in main
-   for Project 2:		 1.  All strings that are Contact fields, need to be changed to Field class
-	  				     2.  Remove all getline functions and use >> on the Field object
-		  			     3.  Change the remove - instead of printing the entire Contact object for each, print Last, First for each one.
-					     4.  Change the print to print by category using the same format as Scott setup with this new sub-menu:
-						    (a) Work
-						    (b) Family
-						    (c) Friends
-						    (d) Other
-						    (e) All Contacts
-					      5. Change address.csv to include the category name (not letter) for an 11th Field.
-					      6. Change to CategorizedContact not Contact
-					      7. Review the project #2 specs for compliance
+   New sources:       http://www.cplusplus.com/reference/thread/this_thread/sleep_for/
+
+TODO in main
+for Project 2:		 1.  All strings that are Contact fields, need to be changed to Field class
+ 				     2.  Remove all getline functions and use >> on the Field object
+	  			     3.  Change the remove - instead of printing the entire Contact object for each, print Last, First for each one.
+				     4.  Change the print to print by category using the same format as Scott setup with this new sub-menu:
+					    (a) Work
+					    (b) Family
+					    (c) Friends
+					    (d) Other
+					    (e) All Contacts
+				      5. Change address.csv to include the category name (not letter) for an 11th Field.
+				      6. Change to CategorizedContact not Contact
+				      7. Review the project #2 specs for compliance
 */
 
 #include <iostream> //provides cout and cin
 #include <sstream>  //provides stringstream
 #include <string>
+#include <thread>
 using namespace std;
 #include "AddrBook.h"
 #include "MyFuncs.h"
@@ -69,8 +73,11 @@ Field CategoryFromChoice(char choice, const Field & fldDefault = "Other");
 
 //helpers
 
-void delay(void);
-//Postcondition: The program has been delayed for the specified amount of time
+void delay(int milliseconds = 2000);
+//Postcondition: The program is delayed for the specified amount of time in milliseconds
+//param: milliseconds: the amount of time to delay
+//milliseconds default: 2000 milliseconds = 2 seconds
+
 
 Field trim(const Field& str, const Field& whitespace = " \t");
 //Postcondition: leading and trailing white space have been removed from the string
@@ -425,14 +432,8 @@ Field trim(const Field& str, const Field& whitespace)
 	return str.substr(strBegin, strRange);
 }
 
-void delay(void)
+void delay(int milliseconds)
 {
-	long DELAY = 1500000000;
 
-	long x;
-
-	for (x = 0; x < DELAY; x++)
-	{
-		;
-	}
+	this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
 }

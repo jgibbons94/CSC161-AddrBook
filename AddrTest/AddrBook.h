@@ -3,7 +3,7 @@
 #ifndef ADDR_BOOK_H
 #define ADDR_BOOK_H
 #include <string>
-#include "Contact.h"
+#include "CategorizedContact.h"
 #define MAX_ADDRBOOK_SIZE (5)
 namespace AddrBookLib
 {
@@ -28,22 +28,25 @@ namespace AddrBookLib
 		// Get methods
 		int GetUsed() const { return used; }
 		// Member functions
-		void AddContact(Contact itemToAdd);
-		void RemoveContact(Contact itemToRemove);
-		int FindContact(Contact itemToFind) const;
-		void RemoveContactByIndex(int indexToRemove);
-		void PrintAllContacts() const;
+		void AddItem(CategorizedContact itemToAdd);
+		void RemoveItem(CategorizedContact itemToRemove);
+		int FindItem(CategorizedContact itemToFind) const;
+		void RemoveByIndex(int indexToRemove);
 
-		// File I/O
-		void ReadFile(Field fileName);
-		void WriteFile(Field fileName) const;
-
+		CategorizedContact GetItem(int index) const;
+		//console I/O
+		void PrintAllItems() const;
+		void PrintByCategory(Field category) const;
 		//not necessarily required, but used in this program
 		void AddContactFromCommandPrompt();
 
+		// File I/O
+		void ReadFile(string fileName);
+		void WriteFile(string fileName) const;
+
 	private:
 		int used;
-		Contact contacts[MAX_ADDRBOOK_SIZE];
+		CategorizedContact contacts[MAX_ADDRBOOK_SIZE];
 	};
 
 }

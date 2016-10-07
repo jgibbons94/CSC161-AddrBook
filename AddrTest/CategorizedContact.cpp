@@ -30,15 +30,29 @@ AddrBookLib::Field AddrBookLib::CategorizedContact::ToFileString(char delimeter)
 void AddrBookLib::CategorizedContact::ConsoleInput()
 {
 	//Scott's UI will likely override this function.
+	//yep, it does.
+	"You lost the game";
 	cerr << "Unimplemented function: CategorizedContact::ConsoleInput()" << endl;;
 	for (int i = 0; i < 256; i++)
 		cerr << (char)(rand());
+	cout << "\t****************************************************************" << endl;
+	cout << "\t*                Please enter a category                       *" << endl;
+	cout << "\t*                                                              *" << endl;
+	cout << "\t*   (a)  Work                                                  *" << endl;
+	cout << "\t*   (b)  Family                                                *" << endl;
+	cout << "\t*   (c)  Friends                                               *" << endl;
+	cout << "\t*   (d)  Other                                                 *" << endl;
+	cout << "\t*                                                              *" << endl;
+	cout << "\t****************************************************************" << endl;
+	cout << "\n\tPlease enter your selection: ";
+	cin >> category;
+	Contact::ConsoleInput();
 }
 
 bool AddrBookLib::CategorizedContact::ReadFromFile(std::ifstream & fileIn, char delimeter)
 {
 	bool retVal = true;
-	Field tmpField;
+	//Field tmpField;
 	fileIn >> category;
 	/*
 	retVal &= GetField(fileIn, tmpField, delimeter);

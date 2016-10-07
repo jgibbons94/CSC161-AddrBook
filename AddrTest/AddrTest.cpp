@@ -4,25 +4,26 @@
  Program Name:        AddrBook Project 3
  Program Description: Address book program that utilizes contact categories.
  Program Date:		  September 29 2016
- Main Source
- Developer:		      Scott Miner
- Scott's Source:      http://stackoverflow.com/questions/1798112/removing-leading-and-trailing-spaces-from-a-string,
-                      Jones, B. L., Aitken, P., & Miller, D. (2014). Sames Teach Yourself C Programming In One Hour a Day (7th ed.). Indianapolis, IN: Sams Publishing.
-                      Forouzan, B. A., & Gilberg, R. F. (2007). Computer science: A structured programming approach using C. Boston, MA: Thomson Course Technology.
+ Sources:             
+   Main Source
+   Developer:		      Scott Miner
+   Scott's Source:      http://stackoverflow.com/questions/1798112/removing-leading-and-trailing-spaces-from-a-string,
+					  Jones, B. L., Aitken, P., & Miller, D. (2014). Sames Teach Yourself C Programming In One Hour a Day (7th ed.). Indianapolis, IN: Sams Publishing.
+					  Forouzan, B. A., & Gilberg, R. F. (2007). Computer science: A structured programming approach using C. Boston, MA: Thomson Course Technology.
 
- TODO in main
- for Project 2:		 1.  All strings that are Contact fields, need to be changed to Field class
-					 2.  Remove all getline functions and use >> on the Field object
-					 3.  Change the remove - instead of printing the entire Contact object for each, print Last, First for each one.
-					 4.  Change the print to print by category using the same format as Scott setup with this new sub-menu:
-					    (a) Work
-						(b) Family
-						(c) Friends
-						(d) Other
-						(e) All Contacts	
-					  5. Change address.csv to include the category name (not letter) for an 11th Field.
-					  6. Change to CategorizedContact not Contact
-					  7. Review the project #2 specs for compliance 
+   TODO in main
+   for Project 2:		 1.  All strings that are Contact fields, need to be changed to Field class
+	  				     2.  Remove all getline functions and use >> on the Field object
+		  			     3.  Change the remove - instead of printing the entire Contact object for each, print Last, First for each one.
+					     4.  Change the print to print by category using the same format as Scott setup with this new sub-menu:
+						    (a) Work
+						    (b) Family
+						    (c) Friends
+						    (d) Other
+						    (e) All Contacts
+					      5. Change address.csv to include the category name (not letter) for an 11th Field.
+					      6. Change to CategorizedContact not Contact
+					      7. Review the project #2 specs for compliance
 */
 
 #include <iostream> //provides cout and cin
@@ -71,7 +72,7 @@ int main(int argc, const char * argv[])
 
 	//take appropriate action based on user response
 	while (command != 5)
-{
+	{
 		switch (command)
 		{
 		case 1:
@@ -85,7 +86,7 @@ int main(int argc, const char * argv[])
 		{
 			cout << "\n\tPrinting...\n";
 			delay();
-			myAddrBook.PrintAllContacts();
+			myAddrBook.PrintAllItems();
 			cout << "\tReturning to Main Menu...\n\n";
 			delay();
 			break;
@@ -136,6 +137,50 @@ int menu(void)
 	return choice;
 }
 
+Field CategoryMenu(const Field & fldDefault)
+{
+	string reply = "";
+	Field category = "";
+	char choice = '\0';
+
+	cout << "\t****************************************************************" << endl;
+	cout << "\t*                Please enter a category                       *" << endl;
+	cout << "\t*                                                              *" << endl;
+	cout << "\t*   (a)  Work                                                  *" << endl;
+	cout << "\t*   (b)  Family                                                *" << endl;
+	cout << "\t*   (c)  Friends                                               *" << endl;
+	cout << "\t*   (d)  Other                                                 *" << endl;
+	cout << "\t*                                                              *" << endl;
+	cout << "\t****************************************************************" << endl;
+	cout << "\n\tPlease enter your selection: ";
+	getline(cin, reply);
+
+	//converts the number into an integer for processing
+	stringstream(reply) >> choice;
+	switch (choice)
+	{
+	case 'a':
+	case 'A':
+		category = "Work";
+		break;
+	case 'b':
+	case 'B':
+		category = "Family";
+		break;
+	case 'c':
+	case 'C':
+		category = "Friends";
+		break;
+	case 'd':
+	case 'D':
+		category = "Other";
+		break;
+	default:
+		category = fldDefault;
+	}
+	return category;
+}
+
 void printUsed(AddrBook& myAddrBook)
 {
 	//Prints a message to the console window
@@ -156,7 +201,7 @@ void addNewContact(AddrBook& myAddrBook)
 
 	Name newName;
 	Address newAddress;
-	Contact newContact;
+	CategorizedContact newContact;
 	Field answer;
 
 	cout << "\n";
@@ -176,66 +221,75 @@ void addNewContact(AddrBook& myAddrBook)
 	}
 
 
+
+	answer = CategoryMenu("Other");
+	while (answer == "")
+	{
+		cout << "\tPlease enter a response on the menu.\n\n";
+		answer = CategoryMenu("Other");
+	}
+	newContact.SetCategory(answer);
+
 	cout << "\t****************************************************************\n";
 	cout << "\t*\n";
-
+	cout << "\t*\n";
 	//Get all the contact user from the user, trim and reduce white space, set contact information for the new contact
 	cout << "\t*   Enter First Name: ";
-	getline(cin, answer);
+	cin >> answer;
 	answer = reduce(answer);
 	newName.SetFirstName(answer);
 	cout << "\t*\n";
 
 	cout << "\t*   Enter Last Name: ";
-	getline(cin, answer);
+	cin >> answer;
 	answer = reduce(answer);
 	newName.SetLastName(answer);
 	cout << "\t*\n";
 
 	cout << "\t*   Enter Street Address: ";
-	getline(cin, answer);
+	cin >> answer;
 	answer = reduce(answer);
 	newAddress.SetStreetAddress(answer);
 	cout << "\t*\n";
 
 	cout << "\t*   Enter City: ";
-	getline(cin, answer);
+	cin >> answer;
 	answer = reduce(answer);
 	newAddress.SetCity(answer);
 	cout << "\t*\n";
 
 	cout << "\t*   Enter State: ";
-	getline(cin, answer);
+	cin >> answer;
 	answer = reduce(answer);
 	newAddress.SetState(answer);
 	cout << "\t*\n";
 
 	cout << "\t*   Enter Zip: ";
-	getline(cin, answer);
+	cin >> answer;
 	answer = trim(answer);
 	newAddress.SetZip(answer);
 	cout << "\t*\n";
 
 	cout << "\t*   Enter Phone Number: ";
-	getline(cin, answer);
+	cin >> answer;
 	answer = trim(answer);
 	newContact.SetPhone(answer);
 	cout << "\t*\n";
 
 	cout << "\t*   Enter Email Address: ";
-	getline(cin, answer);
+	cin >> answer;
 	answer = trim(answer);
 	newContact.SetEmail(answer);
 	cout << "\t*\n";
 
 	cout << "\t*   Enter Birthday: ";
-	getline(cin, answer);
+	cin >> answer;
 	answer = trim(answer);
 	newContact.SetBirthday(answer);
 	cout << "\t*\n";
 
 	cout << "\t*   Enter Picture File: ";
-	getline(cin, answer);
+	cin >> answer;
 	answer = trim(answer);
 	newContact.SetPictureFile(answer);
 	cout << "\t*\n";
@@ -247,14 +301,14 @@ void addNewContact(AddrBook& myAddrBook)
 	newContact.SetFullAddress(newAddress);
 
 	//add the contact to the address book
-	myAddrBook.AddContact(newContact);
+	myAddrBook.AddItem(newContact);
 
 	//confirmation of contact added
 	cout << "\tContact has been added.\n";
 	cout << "\tReturning to Main Menu...\n\n";
 
 	delay();
-		}
+}
 
 void removeContacts(AddrBook& myAddrBook)
 {
@@ -265,7 +319,7 @@ void removeContacts(AddrBook& myAddrBook)
 	delay();
 
 	//print the contacts so user has a reference of what he is removing
-	myAddrBook.PrintAllContacts();
+	myAddrBook.PrintAllItems();
 
 	//if user attempts to remove 0 entries from the address book
 	if (myAddrBook.GetUsed() == 0) {
@@ -283,7 +337,7 @@ void removeContacts(AddrBook& myAddrBook)
 	stringstream(answer) >> choiceRemove;
 
 	//call remove by index function, error processing is handled in the function
-	myAddrBook.RemoveContactByIndex(choiceRemove-1);
+	myAddrBook.RemoveByIndex(choiceRemove - 1);
 
 	delay();
 }
@@ -308,7 +362,7 @@ Field reduce(const Field& str, const Field& fill, const Field& whitespace)
 
 		const auto newStart = beginSpace + fill.length();
 		beginSpace = result.find_first_of(whitespace, newStart);
-}
+	}
 
 	return result;
 }

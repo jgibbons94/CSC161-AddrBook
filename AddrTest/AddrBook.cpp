@@ -17,20 +17,20 @@ AddrBook::AddrBook()
 	used = 0;
 }
 
-void AddrBookLib::AddrBook::AddContact(Contact itemToAdd)
+void AddrBookLib::AddrBook::AddItem(CategorizedContact itemToAdd)
 {
 	if (used < MAX_ADDRBOOK_SIZE)
 		contacts[used++] = itemToAdd;
 }
 
-void AddrBookLib::AddrBook::RemoveContact(Contact itemToRemove)
+void AddrBookLib::AddrBook::RemoveItem(CategorizedContact itemToRemove)
 {
-	int index = FindContact(itemToRemove);
+	int index = FindItem(itemToRemove);
 	if (index != -1)
-		RemoveContactByIndex(index);
+		RemoveByIndex(index);
 }
 
-int AddrBookLib::AddrBook::FindContact(Contact itemToFind) const
+int AddrBookLib::AddrBook::FindItem(CategorizedContact itemToFind) const
 {
 	for (int i = 0; i < used; i++)
 	{
@@ -40,13 +40,18 @@ int AddrBookLib::AddrBook::FindContact(Contact itemToFind) const
 	return -1;
 }
 
-void AddrBookLib::AddrBook::RemoveContactByIndex(int indexToRemove)
+void AddrBookLib::AddrBook::RemoveByIndex(int indexToRemove)
 {
 	if (used > 0 && InRange(indexToRemove, 0, used - 1))
 		contacts[indexToRemove] = contacts[--used];
 }
 
-void AddrBookLib::AddrBook::PrintAllContacts() const
+CategorizedContact AddrBookLib::AddrBook::GetItem(int index) const
+{
+	return contacts[index];
+}
+
+void AddrBookLib::AddrBook::PrintAllItems() const
 {
 	for (int i = 0; i < used; i++)
 	{
@@ -55,22 +60,29 @@ void AddrBookLib::AddrBook::PrintAllContacts() const
 	};
 }
 
+void AddrBookLib::AddrBook::PrintByCategory(Field category) const
+{
+	for (int i = 0; i < used; i++)
+		if (contacts[i].GetCategory() == category)
+			cout << contacts[i].ToString();
+}
+
 void AddrBookLib::AddrBook::AddContactFromCommandPrompt()
 {
-	Contact tmpContact;
+	CategorizedContact tmpContact;
 	if (used >= MAX_ADDRBOOK_SIZE)
 	{
 		cout << "Address book full. Please delete a contact and try again.\n";
 		return;
 	}
 	tmpContact.ConsoleInput();
-	AddContact(tmpContact);
+	AddItem(tmpContact);
 }
 
-void AddrBookLib::AddrBook::ReadFile(Field fileName)
+void AddrBookLib::AddrBook::ReadFile(string fileName)
 {
 	ifstream fileIn(fileName);
-	Contact tmpContact;
+	CategorizedContact tmpContact;
 	//Name tmpName;
 	//Address tmpAddress;
 	//Field tmpField;
@@ -84,14 +96,14 @@ void AddrBookLib::AddrBook::ReadFile(Field fileName)
 	{
 		//read format fname1,lname1,street address1,city1,state1,zip1,phone1,email1,bday1,picture file1,
 		if (tmpContact.ReadFromFile(fileIn, delim))
-			AddContact(tmpContact);
+			AddItem(tmpContact);
 		//if (fileIn.peek() == '\n') fileIn.ignore();
 	}
 	fileIn.close();
 	return;
 }
 
-void AddrBookLib::AddrBook::WriteFile(Field fileName) const
+void AddrBookLib::AddrBook::WriteFile(string fileName) const
 {
 	ofstream outFile;
 	outFile.open(fileName);

@@ -10,13 +10,13 @@ namespace AddrBookLib
 	{
 	public:
 		//constructor:
-		CategorizedContact(Contact initialContact = Contact(), Field initialCategory = "");
+		CategorizedContact(const Contact & initialContact = Contact(), const Field & initialCategory = "");
 
 		//Get methods
 		Field GetCategory() const { return category; }
 
 		//Set methods
-		void SetCategory(Field newCategory) { category = newCategory; }
+		void SetCategory(const Field & newCategory) { category = newCategory; }
 
 		//Member functions:
 		//out

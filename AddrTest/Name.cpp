@@ -8,7 +8,7 @@ using namespace std;
 #include "MyFuncs.h"
 using namespace AddrBookLib;
 
-Name::Name(Field initialFirstName, Field initialLastName)
+Name::Name(const Field &  initialFirstName, const Field & initialLastName)
 {
 	firstName = initialFirstName;
 	lastName = initialLastName;

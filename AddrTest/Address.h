@@ -21,7 +21,7 @@ namespace AddrBookLib
 	public:
 
 		//constructor:
-		Address(Field initialStreetAddress = "", Field initialCity = "", Field initialState = "", Field initialZip = "");
+		Address(const Field & initialStreetAddress = "", const Field & initialCity = "", const Field & initialState = "", const Field & initialZip = "");
 
 		//Get methods:
 		Field GetStreetAddress() const { return streetAddress; }
@@ -30,10 +30,10 @@ namespace AddrBookLib
 		Field GetZip() const { return zip; }
 
 		//Set methods:
-		void SetStreetAddress(Field newStreetAddress) { streetAddress = newStreetAddress; }
-		void SetCity(Field newCity) { city = newCity; }
-		void SetState(Field newState) { state = newState; }
-		void SetZip(Field newZip) { zip = newZip; }
+		void SetStreetAddress(const Field & newStreetAddress) { streetAddress = newStreetAddress; }
+		void SetCity(const Field & newCity) { city = newCity; }
+		void SetState(const Field & newState) { state = newState; }
+		void SetZip(const Field & newZip) { zip = newZip; }
 
 		//Member functions:
 		//out

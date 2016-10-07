@@ -23,7 +23,7 @@ namespace AddrBookLib
 
 	*/
 	//send strPrompt to the user, return result.
-	Field Prompt(Field fldPrompt);
+	Field Prompt(const Field & fldPrompt);
 	//Get a field from the stream's current position to the delimeter, then ignore the delimeter.
 	// bool GetField(std::ifstream & fileIn, string & outField, char delimeter = ',');
 	//check if min <= value <= max

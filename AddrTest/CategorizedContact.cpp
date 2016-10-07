@@ -5,7 +5,7 @@ using namespace std;
 #include "MyFuncs.h"
 using namespace AddrBookLib;
 
-AddrBookLib::CategorizedContact::CategorizedContact(Contact initialContact, Field initialCategory):Contact(initialContact)
+AddrBookLib::CategorizedContact::CategorizedContact(const Contact & initialContact, const Field & initialCategory):Contact(initialContact)
 {
 	category = initialCategory;
 }
@@ -13,10 +13,10 @@ AddrBookLib::CategorizedContact::CategorizedContact(Contact initialContact, Fiel
 AddrBookLib::Field AddrBookLib::CategorizedContact::ToString(const Field & prefix) const
 {
 	Field ret = prefix + "Category:\t" + category + '\n';
-	ret += prefix + prefix + "Name:\t" + fullName.ToString() + '\n';
+	ret += prefix + prefix + "Name:\t\t" + fullName.ToString() + '\n';
 	ret += prefix + prefix + "Address:\t" + fullAddress.ToString(prefix + '\t') + '\n';
-	ret += prefix + prefix + "Phone:\t" + phone + '\n';
-	ret += prefix + prefix + "Email:\t" + email + '\n';
+	ret += prefix + prefix + "Phone:\t\t" + phone + '\n';
+	ret += prefix + prefix + "Email:\t\t" + email + '\n';
 	ret += prefix + prefix + "Birthday:\t" + birthday + '\n';
 	ret += prefix + prefix + "PictFile:\t" + pictureFile + '\n';
 	return ret;

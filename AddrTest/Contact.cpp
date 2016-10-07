@@ -6,7 +6,7 @@ using namespace std;
 #include "MyFuncs.h"
 using namespace AddrBookLib;
 
-AddrBookLib::Contact::Contact(Name initialName, Address initialAddress, Field initialPhone, Field initialEmail, Field initialBirthday, Field initialPictureFile)
+AddrBookLib::Contact::Contact(const Name & initialName, const Address & initialAddress, const Field & initialPhone, const Field & initialEmail, const Field & initialBirthday, const Field & initialPictureFile)
 {
 	fullName = initialName;
 	fullAddress = initialAddress;

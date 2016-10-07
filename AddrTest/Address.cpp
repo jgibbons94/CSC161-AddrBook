@@ -7,7 +7,7 @@ using namespace std;
 #include "MyFuncs.h"
 using namespace AddrBookLib;
 
-AddrBookLib::Address::Address(Field initialStreetAddress, Field initialCity, Field initialState, Field initialZip)
+AddrBookLib::Address::Address(const Field & initialStreetAddress, const Field & initialCity, const Field & initialState, const Field & initialZip)
 {
 	streetAddress = initialStreetAddress;
 	city = initialCity;

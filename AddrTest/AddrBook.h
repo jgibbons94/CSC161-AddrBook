@@ -28,21 +28,21 @@ namespace AddrBookLib
 		// Get methods
 		int GetUsed() const { return used; }
 		// Member functions
-		void AddContact(CategorizedContact itemToAdd);
-		void RemoveContact(CategorizedContact itemToRemove);
-		int FindContact(CategorizedContact itemToFind) const;
+		void AddContact(const CategorizedContact & itemToAdd);
+		void RemoveContact(const CategorizedContact & itemToRemove);
+		int FindContact(const CategorizedContact & itemToFind) const;
 		void RemoveByIndex(int indexToRemove);
 
 		CategorizedContact GetContact(int index) const;
 		//console I/O
 		void PrintAllContacts(const Field & prefix = "") const;
-		void PrintByCategory(Field category, const Field & prefix) const;
+		void PrintByCategory(const Field & category, const Field & prefix) const;
 		//not necessarily required, but used in this program
 		void AddContactFromCommandPrompt();
 
 		// File I/O
-		void ReadFile(string fileName);
-		void WriteFile(string fileName) const;
+		void ReadFile(const string & fileName);
+		void WriteFile(const string & fileName) const;
 
 	private:
 		int used;

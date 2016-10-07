@@ -20,13 +20,13 @@ namespace AddrBookLib
 	{
 	public:
 		//	constructor
-		Name(Field initialFirstName = "", Field initialLastName = "");
+		Name(const Field & initialFirstName = "", const Field & initialLastName = "");
 		//	get methods
 		Field GetFirstName() const { return firstName; }
 		Field GetLastName() const { return lastName; }
 		//	set methods:
-		void SetFirstName(Field newFirstName) { firstName = newFirstName; }
-		void SetLastName(Field newLastName) { lastName = newLastName; }
+		void SetFirstName(const Field & newFirstName) { firstName = newFirstName; }
+		void SetLastName(const Field & newLastName) { lastName = newLastName; }
 
 		// member functions:
 		// out

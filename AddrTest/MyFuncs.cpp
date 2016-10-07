@@ -106,7 +106,7 @@ void AddrBookLib::ClearConsoleInput()
 
 /**/
 
-Field AddrBookLib::Prompt(Field fldPrompt)
+Field AddrBookLib::Prompt(const Field & fldPrompt)
 {
 	Field ret;
 	cout << fldPrompt;

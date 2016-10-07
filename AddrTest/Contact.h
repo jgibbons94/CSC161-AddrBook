@@ -27,7 +27,7 @@ namespace AddrBookLib
 	public:
 
 		//constructor:
-		Contact(Name initialName = Name(), Address initialAddress = Address(), Field initialPhone = "", Field initialEmail = "", Field initialBirthday = "", Field initialPictureFile = "");
+		Contact(const Name & initialName = Name(), const Address & initialAddress = Address(), const Field & initialPhone = "", const Field & initialEmail = "", const Field & initialBirthday = "", const Field & initialPictureFile = "");
 
 		//Get methods:
 		Name GetFullName() const { return fullName; }
@@ -38,12 +38,12 @@ namespace AddrBookLib
 		Field GetPictureFile() const { return pictureFile; }
 
 		//Set methods:
-		void SetFullName(Name newName) { fullName = newName; }
-		void SetFullAddress(Address newAddress) { fullAddress = newAddress; }
-		void SetPhone(Field newPhone) { phone = newPhone; }
-		void SetEmail(Field newEmail) { email = newEmail; }
-		void SetBirthday(Field newBirthday) { birthday = newBirthday; }
-		void SetPictureFile(Field newPicFile) { pictureFile = newPicFile; }
+		void SetFullName(const Name & newName) { fullName = newName; }
+		void SetFullAddress(const Address & newAddress) { fullAddress = newAddress; }
+		void SetPhone(const Field & newPhone) { phone = newPhone; }
+		void SetEmail(const Field & newEmail) { email = newEmail; }
+		void SetBirthday(const Field & newBirthday) { birthday = newBirthday; }
+		void SetPictureFile(const Field & newPicFile) { pictureFile = newPicFile; }
 
 		//Member functions:
 		//out

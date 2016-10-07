@@ -17,20 +17,20 @@ AddrBook::AddrBook()
 	used = 0;
 }
 
-void AddrBookLib::AddrBook::AddContact(CategorizedContact itemToAdd)
+void AddrBookLib::AddrBook::AddContact(const CategorizedContact & itemToAdd)
 {
 	if (used < MAX_ADDRBOOK_SIZE)
 		contacts[used++] = itemToAdd;
 }
 
-void AddrBookLib::AddrBook::RemoveContact(CategorizedContact itemToRemove)
+void AddrBookLib::AddrBook::RemoveContact(const CategorizedContact & itemToRemove)
 {
 	int index = FindContact(itemToRemove);
 	if (index != -1)
 		RemoveByIndex(index);
 }
 
-int AddrBookLib::AddrBook::FindContact(CategorizedContact itemToFind) const
+int AddrBookLib::AddrBook::FindContact(const CategorizedContact & itemToFind) const
 {
 	for (int i = 0; i < used; i++)
 	{
@@ -60,7 +60,7 @@ void AddrBookLib::AddrBook::PrintAllContacts(const Field & prefix) const
 	};
 }
 
-void AddrBookLib::AddrBook::PrintByCategory(Field category, const Field & prefix) const
+void AddrBookLib::AddrBook::PrintByCategory(const Field & category, const Field & prefix) const
 {
 	int count = 1;
 	for (int i = 0; i < used; i++)
@@ -80,7 +80,7 @@ void AddrBookLib::AddrBook::AddContactFromCommandPrompt()
 	AddContact(tmpContact);
 }
 
-void AddrBookLib::AddrBook::ReadFile(string fileName)
+void AddrBookLib::AddrBook::ReadFile(const string & fileName)
 {
 	ifstream fileIn(fileName);
 	CategorizedContact tmpContact;
@@ -104,7 +104,7 @@ void AddrBookLib::AddrBook::ReadFile(string fileName)
 	return;
 }
 
-void AddrBookLib::AddrBook::WriteFile(string fileName) const
+void AddrBookLib::AddrBook::WriteFile(const string & fileName) const
 {
 	ofstream outFile;
 	outFile.open(fileName);

@@ -4,7 +4,7 @@
 using namespace std;
 
 #include "Address.h"
-#include "MyFuncs.h"
+#include "AddrTest.h"
 using namespace AddrBookLib;
 
 AddrBookLib::Address::Address(const Field & initialStreetAddress, const Field & initialCity, const Field & initialState, const Field & initialZip)

@@ -2,7 +2,7 @@
 using namespace std;
 #include "Field.h"
 #include "CategorizedContact.h"
-#include "MyFuncs.h"
+#include "AddrTest.h"
 using namespace AddrBookLib;
 
 AddrBookLib::CategorizedContact::CategorizedContact(const Contact & initialContact, const Field & initialCategory):Contact(initialContact)

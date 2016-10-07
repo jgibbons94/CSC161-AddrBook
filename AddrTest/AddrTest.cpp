@@ -35,7 +35,7 @@ for Project 2:		 1.  All strings that are Contact fields, need to be changed to 
 #include <thread>
 using namespace std;
 #include "AddrBook.h"
-#include "MyFuncs.h"
+#include "AddrTest.h"
 using namespace AddrBookLib;
 
 //PROTOTYPES for functions used by this demonstration program:
@@ -437,4 +437,13 @@ void delay(int milliseconds)
 {
 
 	this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
+}
+
+
+Field AddrBookLib::Prompt(const Field & fldPrompt)
+{
+	Field ret;
+	cout << fldPrompt;
+	cin >> ret;
+	return ret;
 }

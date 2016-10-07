@@ -3,7 +3,7 @@
 #include <fstream>
 using namespace std;
 #include "Contact.h"
-#include "MyFuncs.h"
+#include "AddrTest.h"
 using namespace AddrBookLib;
 
 AddrBookLib::Contact::Contact(const Name & initialName, const Address & initialAddress, const Field & initialPhone, const Field & initialEmail, const Field & initialBirthday, const Field & initialPictureFile)

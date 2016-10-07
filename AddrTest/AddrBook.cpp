@@ -9,7 +9,7 @@ using namespace std;
 #include "Contact.h"
 #include "Name.h"
 #include "Address.h"
-#include "MyFuncs.h"
+#include "AddrTest.h"
 using namespace AddrBookLib;
 
 AddrBook::AddrBook()

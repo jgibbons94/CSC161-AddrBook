@@ -5,7 +5,7 @@
 #include <fstream>
 using namespace std;
 #include "Name.h"
-#include "MyFuncs.h"
+#include "AddrTest.h"
 using namespace AddrBookLib;
 
 Name::Name(const Field &  initialFirstName, const Field & initialLastName)

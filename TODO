@@ -91,7 +91,7 @@ Additional changes:
 + replace Scott's CPU-intense wait function with the C++11 sleep function in the thread library, make it sleep for two seconds.
 + Make the print() not so clunky.
 + Use const references for setters.
-- Rename MyFuncs.h to AddrTest.h
++ Rename MyFuncs.h to AddrTest.h
 - Merge MyFuncs.cpp into AddrTest.cpp
 - Use const type & for constructors.
 - Make sure all class declarations (headers) have descriptions for the defined class.

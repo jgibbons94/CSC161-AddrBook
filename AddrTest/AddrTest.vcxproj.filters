@@ -27,13 +27,13 @@
     <ClInclude Include="AddrBook.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyFuncs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CategorizedContact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Field.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AddrTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -50,16 +50,16 @@
     <ClCompile Include="AddrBook.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AddrTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MyFuncs.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CategorizedContact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Field.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyFuncs.1.txt">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AddrTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -6,6 +6,17 @@
 #include "Contact.h"
 namespace AddrBookLib
 {
+	/*
+		CategprozedContact class
+		File names: CategorizedContact.(h and cpp)
+		Public Single Inheritance with Contact
+		Data member: category as string
+		Private data and public get and set member functions
+		Default constructors and constructors that take parameters
+		ToString member function formatted for output window: string ToString();
+		ToFileString member function formatted for file: string ToFileString();
+		Implemented with a unique macro guard
+	*/
 	class CategorizedContact :public Contact
 	{
 	public:

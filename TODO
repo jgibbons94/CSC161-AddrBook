@@ -92,8 +92,8 @@ Additional changes:
 + Make the print() not so clunky.
 + Use const references for setters.
 + Rename MyFuncs.h to AddrTest.h
-- Merge MyFuncs.cpp into AddrTest.cpp
-- Use const type & for constructors.
-- Make sure all class declarations (headers) have descriptions for the defined class.
-- Make unit tests to make sure everything works like it should.
++ Merge MyFuncs.cpp into AddrTest.cpp
++ Use const type & for constructors.
++ Make sure all class declarations (headers) have descriptions for the defined class.
++ Make unit tests to make sure everything works like it should.
 - clean up.

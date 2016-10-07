@@ -96,8 +96,9 @@ Additional changes:
 + Use const type & for constructors.
 + Make sure all class declarations (headers) have descriptions for the defined class.
 + Make unit tests to make sure everything works like it should.
-- clean up.
++ clean up.
 	+ Remove commented-out functions.
 	+ Remove unused functions
-	- ctrl+a ctrl + k + f on every file.
-	- evenly space the functions.
+	+ ctrl+a ctrl + k + f on every file.
+	+ evenly space the functions.
+	+ add precondition and postcondition comments below whatever function they reference.

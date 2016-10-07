@@ -23,15 +23,20 @@ namespace AddrBookLib
 
 		//	get methods
 		Field GetFirstName() const { return firstName; }
+		
 		Field GetLastName() const { return lastName; }
+		
 		//	set methods:
 		void SetFirstName(const Field & newFirstName) { firstName = newFirstName; }
+		
 		void SetLastName(const Field & newLastName) { lastName = newLastName; }
 
 		// member functions:
 		// out
 		Field ToString() const;
+		
 		Field ToFileString(char delimeter = ',') const;
+
 		//in
 		bool ReadFromFile(std::ifstream & fileIn, char delimeter = ',');
 

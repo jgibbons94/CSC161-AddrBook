@@ -19,10 +19,19 @@ namespace AddrBookLib
 	class Field : public std::string
 	{
 	public:
+
 		Field(const char* str = "");
+
 		Field(const std::string & str);
+
 	};
+
 	std::istream & operator >> (std::istream & is, Field & field);
+	//precondition: is is a valid istream
+	//postcondition: the value in field is written to is
+
 	std::ifstream & operator >> (std::ifstream & ifs, Field & field);
+	//precondition: ifs is a valid ifstream
+	//postcondition: the value in field is written to ifs
 }
 #endif

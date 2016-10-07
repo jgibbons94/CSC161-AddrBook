@@ -24,7 +24,6 @@ Field Name::ToFileString(char delimeter) const
 	return firstName + delimeter + lastName;
 }
 
-
 bool AddrBookLib::Name::ReadFromFile(std::ifstream & fileIn, char delimeter)
 {
 	bool retVal = true;

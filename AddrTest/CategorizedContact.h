@@ -34,8 +34,12 @@ namespace AddrBookLib
 		Field ToString(const Field& prefix = "") const;
 		Field ToFileString(char delimeter = ',') const;
 		//in
-		//void ConsoleInput();
 		bool ReadFromFile(std::ifstream & fileIn, char delimeter = ',');
+		// precondition: fileIn is a valid ifstream
+		// postcondition: the fields of this contact object are read from a file.
+		// returns false if the ifstream is not valid by the end of the function
+		// returns true otherwise
+
 	private:
 		Field category;
 	};

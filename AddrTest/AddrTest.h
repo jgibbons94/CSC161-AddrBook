@@ -7,8 +7,9 @@
 #include "AddrBook.h"
 namespace AddrBookLib
 {
-	//check if min <= value <= max
 	inline bool InRange(int value, int min, int max) { return (value >= min && value <= max); }
+	//check if min <= value <= max
+
 }
 
 #endif

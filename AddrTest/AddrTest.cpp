@@ -205,7 +205,7 @@ char MenuCategory(bool get)
 	cout << "\t*                                                              *" << endl;
 	cout << "\t****************************************************************" << endl;
 	cout << "\n\tPlease enter your selection: ";
-	getline(cin, reply);
+	cin >> reply;
 
 	//converts the number into an integer for processing
 	stringstream(reply) >> choice;
@@ -363,7 +363,7 @@ void removeContacts(AddrBook& myAddrBook)
 
 	//prompt for entry number
 	cout << "\tEnter the number of the entry you would like to delete: ";
-	getline(cin, answer);
+	cin >> answer;
 
 	//convert the string into an integer for processing
 	stringstream(answer) >> choiceRemove;

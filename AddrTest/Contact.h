@@ -44,7 +44,7 @@ namespace AddrBookLib
 		//Member functions:
 
 		//out
-		Field ToString(const Field & prefix) const;
+		Field ToString() const;
 		Field ToFileString(char delimeter = ',') const;
 
 		//in

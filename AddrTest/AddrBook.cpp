@@ -36,7 +36,7 @@ int AddrBookLib::AddrBook::FindContact(const CategorizedContact & itemToFind) co
 {
 	for (int i = 0; i < used; i++)
 	{
-		if (itemToFind.ToString() == contacts[used].ToString())
+		if (itemToFind.ToString() == contacts[i].ToString())
 			return i;
 	}
 	return -1;
@@ -54,21 +54,21 @@ CategorizedContact AddrBookLib::AddrBook::GetContact(int index) const
 	return contacts[index];
 }
 
-void AddrBookLib::AddrBook::PrintAllContacts(const Field & prefix) const
+void AddrBookLib::AddrBook::PrintAllContacts() const
 {
 	for (int i = 0; i < used; i++)
 	{
-		cout << prefix << i + 1 << ") ";
-		cout << contacts[i].ToString(prefix) << endl << endl;
+		cout << '\t'<<(i + 1) << ")\n";
+		cout << contacts[i].ToString() << endl << endl;
 	};
 }
 
-void AddrBookLib::AddrBook::PrintByCategory(const Field & category, const Field & prefix) const
+void AddrBookLib::AddrBook::PrintByCategory(const Field & category) const
 {
 	int count = 1;
 	for (int i = 0; i < used; i++)
 		if (contacts[i].GetCategory() == category)
-			cout << prefix << count++ << ")" << contacts[i].ToString(prefix) << endl;
+			cout << '\t'<< count++ << ")\n" << contacts[i].ToString() << endl;
 }
 
 void AddrBookLib::AddrBook::ReadFile(const string & fileName)

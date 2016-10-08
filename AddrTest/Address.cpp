@@ -15,9 +15,9 @@ AddrBookLib::Address::Address(const Field & initialStreetAddress, const Field & 
 	zip = initialZip;
 }
 
-Field AddrBookLib::Address::ToString(const Field & prefix) const
+Field AddrBookLib::Address::ToString() const
 {
-	return streetAddress + '\n' + prefix + "\t\t" + city + ", " + state + ' ' + zip;
+	return streetAddress + "\n\t\t\t" + city + ", " + state + ' ' + zip;
 }
 
 Field AddrBookLib::Address::ToFileString(char delimeter) const

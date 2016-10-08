@@ -17,10 +17,10 @@ AddrBookLib::Contact::Contact(const Name & initialName, const Address & initialA
 }
 
 //required but not used
-Field AddrBookLib::Contact::ToString(const Field & prefix) const
+Field AddrBookLib::Contact::ToString() const
 {
 	return fullName.ToString() + '\n'
-		+ fullAddress.ToString(prefix) + '\n'
+		+ fullAddress.ToString() + '\n'
 		+ phone + '\n'
 		+ email + '\n'
 		+ birthday + '\n'

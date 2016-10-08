@@ -26,33 +26,33 @@ namespace AddrBookLib
 
 		//constructor
 		AddrBook();
-		
+
 		// no Set methods
-		
+
 		// Get methods
-		
+
 		int GetUsed() const { return used; }
-		
+
 		// Member functions
-		
+
 		void AddContact(const CategorizedContact & itemToAdd);
-		
+
 		void RemoveContact(const CategorizedContact & itemToRemove);
-		
+
 		int FindContact(const CategorizedContact & itemToFind) const;
-		
+
 		void RemoveByIndex(int indexToRemove);
 
 		CategorizedContact GetContact(int index) const;
-		
+
 		//console I/O
-		
-		void PrintAllContacts(const Field & prefix = "") const;
-		
-		void PrintByCategory(const Field & category, const Field & prefix) const;
+
+		void PrintAllContacts() const;
+
+		void PrintByCategory(const Field & category) const;
 
 		// File I/O
-		
+
 		void ReadFile(const string & fileName);
 
 		void WriteFile(const string & fileName) const;

@@ -35,9 +35,9 @@ namespace AddrBookLib
 		void SetZip(const Field & newZip) { zip = newZip; }
 
 		//Member functions:
-		
+
 		//out
-		Field ToString(const Field & prefix = "") const;
+		Field ToString() const;
 		Field ToFileString(char delimeter = ',') const;
 
 		//in

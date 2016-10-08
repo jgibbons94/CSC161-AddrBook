@@ -28,7 +28,7 @@ for Project 2:		 1.  All strings that are Contact fields, need to be changed to 
 					  6. Change to CategorizedContact not Contact
 					  7. Review the project #2 specs for compliance
 */
-
+#define NO_TESTS
 #include <iostream> //provides cout and cin
 #include <sstream>  //provides stringstream
 #include <string>
@@ -37,6 +37,10 @@ using namespace std;
 #include "AddrBook.h"
 #include "AddrTest.h"
 using namespace AddrBookLib;
+#ifndef NO_TESTS
+#include "Tests.h"
+using namespace test;
+#endif
 
 //PROTOTYPES for functions used by this demonstration program:
 
@@ -92,6 +96,10 @@ Field reduce(const Field& str, const Field& fill = " ", const Field& whitespace 
 
 int main(int argc, const char * argv[])
 {
+#ifndef NO_TESTS
+	TestAll();
+	delay(12000);
+#else
 	int command = 0;
 	AddrBook myAddrBook;
 
@@ -120,11 +128,11 @@ int main(int argc, const char * argv[])
 			delay();
 			if (choice == 'e') // print all contacts
 			{
-				myAddrBook.PrintAllContacts("\t");
+				myAddrBook.PrintAllContacts();
 			}
 			else
 			{
-				myAddrBook.PrintByCategory(CategoryFromChoice(choice), "\t");
+				myAddrBook.PrintByCategory(CategoryFromChoice(choice));
 			}
 			cout << "\tReturning to Main Menu...\n\n";
 			delay();
@@ -149,6 +157,7 @@ int main(int argc, const char * argv[])
 	delay();
 
 	return 0;
+#endif
 }
 
 //quick menu functions
@@ -182,7 +191,7 @@ char MenuCategory(bool get)
 	string reply = "";
 	Field category = "";
 	char choice = '\0';
-
+	cout << endl;
 	cout << "\t****************************************************************" << endl;
 	cout << "\t*                Please enter a category                       *" << endl;
 	cout << "\t*                                                              *" << endl;

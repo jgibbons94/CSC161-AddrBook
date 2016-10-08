@@ -102,3 +102,4 @@ Additional changes:
 	+ ctrl+a ctrl + k + f on every file.
 	+ evenly space the functions.
 	+ add precondition and postcondition comments below whatever function they reference.
++ build tests

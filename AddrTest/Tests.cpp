@@ -30,6 +30,9 @@ void test::TestAll()
 
 void test::TestAddrBook()
 {
+	TestAddrBook_CopyConstructor();
+	TestAddrBook_Destructor();
+	TestAddrBook_Assignment();
 	TestAddrBook_AddContact();
 	TestAddrBook_RemoveContact();
 	TestAddrBook_FindItem();
@@ -38,6 +41,38 @@ void test::TestAddrBook()
 	TestAddrBook_GetContact();
 	TestAddrBook_ReadFile();
 	TestAddrBook_WriteFile();
+}
+
+void test::TestAddrBook_CopyConstructor()
+{
+	AddrBook book1;
+	AddrBook book2(book1);
+	assert(book1.content != book2.content);
+}
+
+void test::TestAddrBook_Destructor()
+{
+	AddrBook * book = new AddrBook();
+	CategorizedContact * contacts = book->content;
+	delete book;
+	bool successful = false;
+	try
+	{
+		CategorizedContact contact = contacts[0];
+		cerr << "Did not properly delete book->contacts." << endl;
+	}
+	catch (...)
+	{
+		successful = true;
+	}
+	assert(successful);
+}
+
+void test::TestAddrBook_Assignment()
+{
+	AddrBook book1;
+	AddrBook book2 = book1;
+	assert(book1.content != book2.content);
 }
 
 void test::TestAddrBook_AddContact()

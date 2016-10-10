@@ -11,6 +11,9 @@ namespace test
 
 	// AddrBook class
 	void TestAddrBook();
+	void TestAddrBook_CopyConstructor();
+	void TestAddrBook_Destructor();
+	void TestAddrBook_Assignment();
 	void TestAddrBook_AddContact();
 	void TestAddrBook_RemoveContact();
 	void TestAddrBook_FindItem();

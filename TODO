@@ -1,10 +1,13 @@
-- Update the AddrBook Collection class to use a dynamic array as the underlying data structure storing CategorizedContact objects from the CategorizedContact class.
-	- Modify the add member function so that it grows the dynamic array in size when needed - no need to handle the shrinking of the array though, it generally isn't done because of efficiency and performance.
-	- Implement and Test the Copy Constructor
-	- Implement and Test the Destructor
-	- Implement and Test the Assignment operator
-	- Implement Alloc private member function to do all allocation of memory
-	- Implement Free private member function to do all deallocation of memory
++ Update the AddrBook Collection class to use a dynamic array as the underlying data structure storing CategorizedContact objects from the CategorizedContact class.
+	+ Modify the add member function so that it gro	ws the dynamic array in size when needed - no need to handle the shrinking of the array though, it generally isn't done because of efficiency and performance.
+	+ Implement the Copy Constructor
+	+ Implement the Destructor
+	+ Implement the Assignment operator
+	+ Implement Alloc private member function to do all allocation of memory
+	+ Implement Free private member function to do all deallocation of memory
+	+ Test the Copy Constructor
+	+ Test the Destructor
+	+ Test the Assignment operator
 Name, Address, Contact and CategorizedContact class modifications - operators
 	- All operators need to be written to not be redundant and reuse. Look at having child operators call parent operators. Look at having operators call their opposite counterpart (== and !=, < and >=). Look at putting operators together (if > and == are done, then >= is done too and have it call the other two operators).
 	- Name class:
@@ -58,7 +61,10 @@ Name, Address, Contact and CategorizedContact class modifications - operators
 	- Update unit tests
 		- ToString() should check for alignment of colons
 		- ToString() should check for included information
-		- Figure out how to unit test alloc() and free(). Maybe use try{}catch(){}?
+		+ Figure out how to unit test alloc() and free(). Maybe use try{}catch(){}?
+		- Change unit tests to use the overloaded operators.
+		- Divide the unit tests into different files in the tests folder (to keep the tests separated from the code).
+		- Set up a compiler mode that runs the unit tests so they can be separated from main().
 	- Fix whatever was wrong with project 2
 	- clean up
 		- Make sure all source say I wrote them

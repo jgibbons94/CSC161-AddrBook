@@ -28,7 +28,7 @@ for Project 2:		 1.  All strings that are Contact fields, need to be changed to 
 					  6. Change to CategorizedContact not Contact
 					  7. Review the project #2 specs for compliance
 */
-#define NO_TESTS
+//#define NO_TESTS
 #include <iostream> //provides cout and cin
 #include <sstream>  //provides stringstream
 #include <string>
@@ -222,8 +222,9 @@ void addNewContact(AddrBook& myAddrBook)
 	Field answer;
 
 	cout << "\n";
-
+	/*
 	//if the address book is full, alert the user
+	//but the address book shouldn't ever be full again!
 	if (myAddrBook.GetUsed() >= MAX_ADDRBOOK_SIZE)
 	{
 		cout << "\t****************************************************************\n";
@@ -235,7 +236,7 @@ void addNewContact(AddrBook& myAddrBook)
 		cout << "\n\tReturning to Main Menu....\n\n";
 		delay();
 		return;
-	}
+	}*/
 
 
 	//Have the user specify the new contact's category.

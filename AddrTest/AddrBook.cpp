@@ -1,8 +1,10 @@
 //AddrBook.cpp
 //Written by Jesse Gibbons
+#define _SCL_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <algorithm>
 using namespace std;
 
 #include "AddrBook.h"
@@ -12,15 +14,36 @@ using namespace std;
 #include "AddrTest.h"
 using namespace AddrBookLib;
 
-AddrBook::AddrBook()
+AddrBook::AddrBook(int initialSize)
 {
 	used = 0;
+	size = 0;
+	content = NULL;
+	alloc(initialSize);
+}
+
+AddrBookLib::AddrBook::AddrBook(const AddrBook & oldAddrBook)
+{
+	/*
+	//in case it is full, add 1 to size to make the first addContact() easier.
+	size = oldAddrBook.size + 1;
+	used = oldAddrBook.used;
+	content = new CategorizedContact[size];
+	copy(oldAddrBook.content, oldAddrBook.content + oldAddrBook.size, content);
+	*/
+	*this = oldAddrBook;
+}
+
+AddrBookLib::AddrBook::~AddrBook()
+{
+	free();
 }
 
 void AddrBookLib::AddrBook::AddContact(const CategorizedContact & itemToAdd)
 {
-	if (used < MAX_ADDRBOOK_SIZE)
-		contacts[used++] = itemToAdd;
+	if (used >= size)
+		alloc(2);
+		content[used++] = itemToAdd;
 }
 
 /*required but not used.*/
@@ -36,7 +59,7 @@ int AddrBookLib::AddrBook::FindContact(const CategorizedContact & itemToFind) co
 {
 	for (int i = 0; i < used; i++)
 	{
-		if (itemToFind.ToString() == contacts[i].ToString())
+		if (itemToFind.ToString() == content[i].ToString())
 			return i;
 	}
 	return -1;
@@ -45,13 +68,13 @@ int AddrBookLib::AddrBook::FindContact(const CategorizedContact & itemToFind) co
 void AddrBookLib::AddrBook::RemoveByIndex(int indexToRemove)
 {
 	if (used > 0 && InRange(indexToRemove, 0, used - 1))
-		contacts[indexToRemove] = contacts[--used];
+		content[indexToRemove] = content[--used];
 }
 
 /*required but not used*/
 CategorizedContact AddrBookLib::AddrBook::GetContact(int index) const
 {
-	return contacts[index];
+	return content[index];
 }
 
 void AddrBookLib::AddrBook::PrintAllContacts() const
@@ -59,7 +82,7 @@ void AddrBookLib::AddrBook::PrintAllContacts() const
 	for (int i = 0; i < used; i++)
 	{
 		cout << '\t'<<(i + 1) << ")\n";
-		cout << contacts[i].ToString() << endl << endl;
+		cout << content[i].ToString() << endl << endl;
 	};
 }
 
@@ -67,8 +90,8 @@ void AddrBookLib::AddrBook::PrintByCategory(const Field & category) const
 {
 	int count = 1;
 	for (int i = 0; i < used; i++)
-		if (contacts[i].GetCategory() == category)
-			cout << '\t'<< count++ << ")\n" << contacts[i].ToString() << endl;
+		if (content[i].GetCategory() == category)
+			cout << '\t'<< count++ << ")\n" << content[i].ToString() << endl;
 }
 
 void AddrBookLib::AddrBook::ReadFile(const string & fileName)
@@ -83,7 +106,7 @@ void AddrBookLib::AddrBook::ReadFile(const string & fileName)
 	}
 	while (!fileIn.fail())
 	{
-		//read format fname1,lname1,street address1,city1,state1,zip1,phone1,email1,bday1,picture file1,
+		// read format fname1,lname1,street address1,city1,state1,zip1,phone1,email1,bday1,picture file1,
 		if (tmpContact.ReadFromFile(fileIn, delim))
 			AddContact(tmpContact);
 	}
@@ -98,17 +121,43 @@ void AddrBookLib::AddrBook::WriteFile(const string & fileName) const
 	if (!outFile)
 	{
 		cerr << "Error opening file for writing." << endl << endl;
-		system("pause");
 		return;
 	}
 
-	//write to file
+	// write to file
 
 	for (int i = 0; i < used; i++)
 	{
-		outFile << contacts[i].ToFileString() << endl;
+		outFile << content[i].ToFileString() << endl;
 	}
 
 	outFile.close();
 
+}
+
+AddrBook & AddrBookLib::AddrBook::operator=(const AddrBook & newAddrBook)
+{
+	// In case it is full, add 1 to size to make the first addContact() easier.
+	// Do it anyway if it isn't full!
+	size = newAddrBook.size + 1;
+	used = newAddrBook.used;
+	content = new CategorizedContact[size];
+	copy(newAddrBook.content, newAddrBook.content + newAddrBook.size, content);
+	return *this;
+}
+
+void AddrBookLib::AddrBook::alloc(int sizeIncrease)
+{
+	CategorizedContact * tmpContent = new CategorizedContact[size + sizeIncrease];
+	if(content != NULL)
+	copy(content, content + size, tmpContent);
+	free();
+	size += sizeIncrease;
+	content = tmpContent;
+}
+
+void AddrBookLib::AddrBook::free()
+{
+	delete[] content;
+	content = 0;
 }

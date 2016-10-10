@@ -4,7 +4,10 @@
 #define ADDR_BOOK_H
 #include <string>
 #include "CategorizedContact.h"
-#define MAX_ADDRBOOK_SIZE (5)
+#ifndef NO_TESTS
+#include "Tests.h"
+#endif // !NO_TESTS
+
 namespace AddrBookLib
 {
 	/*
@@ -25,8 +28,11 @@ namespace AddrBookLib
 	public:
 
 		//constructor
-		AddrBook();
-
+		AddrBook(int initialSize = 2);
+		AddrBook(const AddrBook & oldAddrBook);
+		~AddrBook();
+		
+		
 		// no Set methods
 
 		// Get methods
@@ -57,9 +63,27 @@ namespace AddrBookLib
 
 		void WriteFile(const string & fileName) const;
 
+		//operator overlooads
+		AddrBook & operator=(const AddrBook & newAddrBook);
+
 	private:
+		//the content of the container
+		CategorizedContact * content;
+		//the number of content used;
 		int used;
-		CategorizedContact contacts[MAX_ADDRBOOK_SIZE];
+		//the allocated size of content.
+		int size;
+		//increase the size of content using a slow 1:1 copy
+		void alloc(int sizeIncrease);
+		//release the current content and set it to the safe NULL value
+		void free();
+
+		//friend functions
+		#ifndef NO_TESTS
+		friend void test::TestAddrBook_CopyConstructor();
+		friend void test::TestAddrBook_Destructor();
+		friend void test::TestAddrBook_Assignment();
+#endif
 	};
 
 }

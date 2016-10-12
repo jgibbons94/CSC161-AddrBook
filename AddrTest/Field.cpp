@@ -11,17 +11,45 @@ AddrBookLib::Field::Field(const std::string & str) : string(str)
 {
 }
 
-std::istream & AddrBookLib::operator >> (std::istream & is, Field & field)
+AddrBookLib::Field AddrBookLib::Field::ToUpper() const
 {
-	if (is.peek() == '\n')
-		is.ignore();
-	return getline(is, field);
+	Field value(data());
+	for (int i = 0; i < value.size();i++)
+	{
+		value[i] = toupper(value[i]);
+	}
+	return value;
 }
 
-std::ifstream & AddrBookLib::operator >> (std::ifstream & ifs, Field & field)
+AddrBookLib::Field AddrBookLib::Field::ToLower() const
+{
+	Field value(data());
+	for (int i = 0; i < value.size();i++)
+	{
+		value[i] = tolower(value[i]);
+	}
+	return value;
+}
+
+std::istream & AddrBookLib::operator >> (std::istream & is, Field & field)
+{
+	if (&is == _Ptr_cin)
+	{
+		if (is.peek() == '\n')
+			is.ignore();
+		getline(is, field);
+		return is;
+	}
+	if (is.peek() == '\n')
+		is.ignore();
+	getline(is, field, ',');
+	return is;
+}
+
+/*std::ifstream & AddrBookLib::operator >> (std::ifstream & ifs, Field & field)
 {
 	if (ifs.peek() == '\n')
 		ifs.ignore();
 	getline(ifs, field, ',');
 	return ifs;
-}
+}*/

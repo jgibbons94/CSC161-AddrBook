@@ -24,14 +24,16 @@ namespace AddrBookLib
 
 		Field(const std::string & str);
 
+		//helper functions
+		Field ToUpper() const;
+		Field ToLower() const;
+
 	};
 
 	std::istream & operator >> (std::istream & is, Field & field);
-	//precondition: is is a valid istream
-	//postcondition: the value in field is written to is
-
-	std::ifstream & operator >> (std::ifstream & ifs, Field & field);
-	//precondition: ifs is a valid ifstream
-	//postcondition: the value in field is written to ifs
+	//precondition: is is cin and valid
+	//postcondition: Field is extracted from user input.
+	//general precondition: is is a valid istream
+	//postcondition: the value in field is extracted from is
 }
 #endif

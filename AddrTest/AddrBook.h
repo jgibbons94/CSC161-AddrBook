@@ -5,7 +5,7 @@
 #include <string>
 #include "CategorizedContact.h"
 #ifndef NO_TESTS
-#include "Tests.h"
+#include "AddrBookTests.h"
 #endif // !NO_TESTS
 
 namespace AddrBookLib
@@ -82,7 +82,8 @@ namespace AddrBookLib
 		#ifndef NO_TESTS
 		friend void test::TestAddrBook_CopyConstructor();
 		friend void test::TestAddrBook_Destructor();
-		friend void test::TestAddrBook_Assignment();
+		friend void test::TestAddrBook_Assignment0();
+		friend void test::TestAddrBook_Assignment1();
 #endif
 	};
 

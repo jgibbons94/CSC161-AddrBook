@@ -5,6 +5,7 @@
 #include <fstream>
 using namespace std;
 #include "Name.h"
+#include "Field.h"
 #include "AddrTest.h"
 using namespace AddrBookLib;
 
@@ -31,3 +32,65 @@ bool AddrBookLib::Name::ReadFromFile(std::ifstream & fileIn, char delimeter)
 	fileIn >> lastName;
 	return retVal && !fileIn.fail();
 }
+
+bool AddrBookLib::operator==(const Name & a, const Name & b)
+{
+	return (a.firstName == b.firstName) && (a.lastName == b.lastName);
+}
+
+bool AddrBookLib::operator!=(const Name & a, const Name & b)
+{
+	return !(a == b);
+}
+
+bool AddrBookLib::operator>(const Name & a, const Name & b)
+{
+	Field fieldA = a.lastName.ToUpper() + " " + a.firstName.ToUpper();
+	Field fieldB = b.lastName.ToUpper() + " " + b.firstName.ToUpper();
+	return (a.lastName > b.lastName);
+}
+
+bool AddrBookLib::operator>=(const Name & a, const Name & b)
+{
+	return (a > b) || (a == b);
+}
+
+bool AddrBookLib::operator<(const Name & a, const Name & b)
+{
+	return !(a >= b);
+}
+
+bool AddrBookLib::operator<=(const Name & a, const Name & b)
+{
+	return !(a > b);
+}
+
+istream & AddrBookLib::operator >> (istream & is, Name & name)
+{
+	// TODO: insert return statement here
+	if (&is == _Ptr_cin)
+	{
+		cout << "Please enter a first name: " << endl;
+		is >> name.firstName;
+		cout << "Pleae enter a last name: " << endl;
+		is >> name.lastName;
+		return is;
+	}
+	is >> name.lastName;
+	is >> name.firstName;
+	return is;
+}
+
+std::ostream & AddrBookLib::operator<<(ostream & os, const Name & name)
+{
+	// TODO: insert return statement here
+	if (&os == _Ptr_cout)
+	{
+		os << name.firstName << " " << name.lastName;
+		return os;
+	}
+	os << name.lastName << ',' << name.firstName << ',';
+	return os;
+}
+
+

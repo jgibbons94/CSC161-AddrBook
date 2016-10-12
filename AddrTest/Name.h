@@ -40,10 +40,27 @@ namespace AddrBookLib
 		//in
 		bool ReadFromFile(std::ifstream & fileIn, char delimeter = ',');
 
+		//operator overloads
+		friend bool operator==(const Name & a, const Name & b);
+		friend bool operator!=(const Name & a, const Name & b);
+		friend bool operator>(const Name & a, const Name & b);
+		friend bool operator>=(const Name & a, const Name & b);
+		friend bool operator<(const Name & a, const Name & b);
+		friend bool operator<=(const Name & a, const Name & b);
+		friend istream& operator>>(istream & is, Name & name);
+		friend ostream& operator<<(ostream& os, const Name& name);
 	private:
 		Field firstName;
 		Field lastName;
 	};
 
+	bool operator==(const Name & a, const Name & b);
+	bool operator!=(const Name & a, const Name & b);
+	bool operator>(const Name & a, const Name & b);
+	bool operator>=(const Name & a, const Name & b);
+	bool operator<(const Name & a, const Name & b);
+	bool operator<=(const Name & a, const Name & b);
+	std::istream& operator >> (istream & is, Name & name);
+	std::ostream& operator << (ostream & os, const Name & name);
 }
 #endif

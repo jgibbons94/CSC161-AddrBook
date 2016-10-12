@@ -47,20 +47,29 @@ void test::TestName()
 
 void test::TestName_Constructor0()
 {
-	Name name;
-	assert((name.GetFirstName() == "") && (name.GetLastName() == ""));
+	Name name1;
+	Name name2;
+	name2.SetFirstName("");
+	name2.SetFirstName("");
+	assert(name1==name2);
 }
 
 void test::TestName_Constructor1()
 {
-	Name name("foo");
-	assert((name.GetFirstName() == "foo") && (name.GetLastName() == ""));
+	Name name1("foo");
+	Name name2;
+	name2.SetFirstName("foo");
+	name2.SetLastName("");
+	assert(name1==name2);
 }
 
 void test::TestName_Constructor2()
 {
-	Name name("foo", "bar");
-	assert((name.GetFirstName() == "foo") && (name.GetLastName() == "bar"));
+	Name name1("foo", "bar");
+	Name name2;
+	name2.SetFirstName("foo");
+	name2.SetLastName("bar");
+	assert(name1==name2);
 }
 
 void test::TestName_GetFirstName()
@@ -192,90 +201,108 @@ void test::TestName_FromIstream()
 
 void test::TestName_equality0()
 {
-	cerr << "Unimplemented test: TestName_equality0()" << endl;
+	Name a("Alice", "Andersen"), b("Blake", "Buster");
+	assert(!(a == b));
 }
 
 void test::TestName_equality1()
 {
-	cerr << "Unimplemented test: TestName_equality1()" << endl;
+	Name a("Blake", "Buster"), b("Blake", "Buster");
+	assert(a == b);
 }
 
 void test::TestName_equality2()
 {
-	cerr << "Unimplemented test: TestName_equality2()" << endl;
+	Name a("Catherine", "Coolidge"), b("Blake", "Buster");
+	assert(!(a == b));
 }
 
 void test::TestName_inequality0()
 {
-	cerr << "Unimplemented test: TestName_inequality0()" << endl;
+	Name a("Alice", "Andersen"), b("Blake", "Buster");
+	assert(a != b);
 }
 
 void test::TestName_inequality1()
 {
-	cerr << "Unimplemented test: TestName_inequality1()" << endl;
+	Name a("Blake", "Buster"), b("Blake", "Buster");
+	assert(!(a != b));
 }
 
 void test::TestName_inequality2()
 {
-	cerr << "Unimplemented test: TestName_inequality2()" << endl;
+	Name a("Catherine", "Coolidge"), b("Blake", "Buster");
+	assert(a != b);
 }
 
 void test::TestName_gt0()
 {
-	cerr << "Unimplemented test: TestName_gt0()" << endl;
+	Name a("Alice", "Andersen"), b("Blake", "Buster");
+	assert(!(a > b));
 }
 
 void test::TestName_gt1()
 {
-	cerr << "Unimplemented test: TestName_gt1()" << endl;
+	Name a("Blake", "Buster"), b("Blake", "Buster");
+	assert(!(a > b));
 }
 
 void test::TestName_gt2()
 {
-	cerr << "Unimplemented test: TestName_gt2()" << endl;
+	Name a("Catherine", "Coolidge"), b("Blake", "Buster");
+	assert(a > b);
 }
 
 void test::TestName_gte0()
 {
-	cerr << "Unimplemented test: TestName_gte0()" << endl;
+	Name a("Alice", "Andersen"), b("Blake", "Buster");
+	assert(!(a >= b));
 }
 
 void test::TestName_gte1()
 {
-	cerr << "Unimplemented test: TestName_gte1()" << endl;
+	Name a("Blake", "Buster"), b("Blake", "Buster");
+	assert(a >= b);
 }
 
 void test::TestName_gte2()
 {
-	cerr << "Unimplemented test: TestName_gte2()" << endl;
+	Name a("Catherine", "Coolidge"), b("Blake", "Buster");
+	assert(a >= b);
 }
 
 void test::TestName_lt0()
 {
-	cerr << "Unimplemented test: TestName_lt0()" << endl;
+	Name a("Alice", "Andersen"), b("Blake", "Buster");
+	assert(a < b);
 }
 
 void test::TestName_lt1()
 {
-	cerr << "Unimplemented test: TestName_lt1()" << endl;
+	Name a("Blake", "Buster"), b("Blake", "Buster");
+	assert(!(a < b));
 }
 
 void test::TestName_lt2()
 {
-	cerr << "Unimplemented test: TestName_lt2()" << endl;
+	Name a("Catherine", "Coolidge"), b("Blake", "Buster");
+	assert(!(a < b));
 }
 
 void test::TestName_lte0()
 {
-	cerr << "Unimplemented test: TestName_lte0()" << endl;
+	Name a("Alice", "Andersen"), b("Blake", "Buster");
+	assert((a <= b));
 }
 
 void test::TestName_lte1()
 {
-	cerr << "Unimplemented test: TestName_lte1()" << endl;
+	Name a("Blake", "Buster"), b("Blake", "Buster");
+	assert(a <= b);
 }
 
 void test::TestName_lte2()
 {
-	cerr << "Unimplemented test: TestName_lte2()" << endl;
+	Name a("Catherine", "Coolidge"), b("Blake", "Buster");
+	assert(!(a <= b));
 }

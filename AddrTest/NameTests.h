@@ -19,6 +19,10 @@ namespace test
 	void TestName_ToOstream();
 	void TestName_FromCin();
 	void TestName_FromIstream();
+	//comparison tests:
+	//0: A <  B
+	//1: A == B
+	//2: A  > B
 	void TestName_equality0();
 	void TestName_equality1();
 	void TestName_equality2();

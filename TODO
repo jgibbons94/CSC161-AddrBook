@@ -10,10 +10,10 @@
 	+ Test the Assignment operator
 Name, Address, Contact and CategorizedContact class modifications - operators
 	- All operators need to be written to not be redundant and reuse. Look at having child operators call parent operators. Look at having operators call their opposite counterpart (== and !=, < and >=). Look at putting operators together (if > and == are done, then >= is done too and have it call the other two operators).
-	- Name class:
-		- Overload the logical operators (<, >, <=, >=, ==, !=) so that it compares LastName, FirstName
-		- Overload the insertion operator (<<) for both ostream and ofstream
-		- overload the extraction operator (>>) for both istream and ifstream
+	+ Name class:
+		+ Overload the logical operators (<, >, <=, >=, ==, !=) so that it compares LastName, FirstName
+		+ Overload the insertion operator (<<) for both ostream and ofstream
+		+ overload the extraction operator (>>) for both istream and ifstream
 	- Address class:
 		- Overload the insertion operator (<<) for both ostream and ofstream
 		- overload the extraction operator (>>) for both istream and ifstream
@@ -63,7 +63,7 @@ Name, Address, Contact and CategorizedContact class modifications - operators
 		- ToString() should check for included information
 		+ Figure out how to unit test alloc() and free(). Maybe use try{}catch(){}?
 		- Change unit tests to use the overloaded operators.
-		- Divide the unit tests into different files in the tests folder (to keep the tests separated from the code).
+		+ Divide the unit tests into different files in the tests folder (to keep the tests separated from the code).
 		- Set up a compiler mode that runs the unit tests so they can be separated from main().
 	- Fix whatever was wrong with project 2
 	- clean up
@@ -71,3 +71,4 @@ Name, Address, Contact and CategorizedContact class modifications - operators
 		- Make sure all headers have class descriptions.
 		- Make sure to comment parts of code.
 		- Make sure naming is consistent.
+		

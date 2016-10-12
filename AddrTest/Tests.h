@@ -10,6 +10,7 @@ namespace test
 	// main() calls these tests and exits if NO_TESTS is not defined.
 
 	void TestAll();
+
 	inline void ReportMissingTest(std::string functionName)
 	{
 		std::cerr << "Test not yet implemented: " << functionName << "()" << endl;

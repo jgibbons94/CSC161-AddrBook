@@ -111,22 +111,34 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AddrBook.h" />
+    <ClInclude Include="AddrBookTests.h" />
     <ClInclude Include="Address.h" />
+    <ClInclude Include="AddressTests.h" />
     <ClInclude Include="CategorizedContact.h" />
+    <ClInclude Include="CategorizedContactTests.h" />
     <ClInclude Include="Contact.h" />
+    <ClInclude Include="ContactTests.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="AddrTest.h" />
+    <ClInclude Include="FieldTests.h" />
     <ClInclude Include="Name.h" />
+    <ClInclude Include="NameTests.h" />
     <ClInclude Include="Tests.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AddrBook.cpp" />
+    <ClCompile Include="AddrBookTests.cpp" />
     <ClCompile Include="Address.cpp" />
+    <ClCompile Include="AddressTests.cpp" />
     <ClCompile Include="AddrTest.cpp" />
     <ClCompile Include="CategorizedContact.cpp" />
+    <ClCompile Include="CategorizedContactTests.cpp" />
     <ClCompile Include="Contact.cpp" />
+    <ClCompile Include="ContactTests.cpp" />
     <ClCompile Include="Field.cpp" />
+    <ClCompile Include="FieldTests.cpp" />
     <ClCompile Include="Name.cpp" />
+    <ClCompile Include="NameTests.cpp" />
     <ClCompile Include="Tests.cpp" />
   </ItemGroup>
   <ItemGroup>

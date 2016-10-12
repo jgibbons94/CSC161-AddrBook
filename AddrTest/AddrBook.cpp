@@ -139,6 +139,8 @@ AddrBook & AddrBookLib::AddrBook::operator=(const AddrBook & newAddrBook)
 {
 	// In case it is full, add 1 to size to make the first addContact() easier.
 	// Do it anyway if it isn't full!
+	if (this == &newAddrBook) return *this;
+	free();
 	size = newAddrBook.size + 1;
 	used = newAddrBook.used;
 	content = new CategorizedContact[size];

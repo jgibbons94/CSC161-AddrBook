@@ -3,6 +3,7 @@
 #ifndef ADDRESS_H
 #define ADDRESS_H
 #include"Field.h"
+#include <iostream>
 namespace AddrBookLib
 {
 	/*
@@ -46,6 +47,8 @@ namespace AddrBookLib
 		// postcondition: the fields of this contact object are read from a file.
 		// returns false if the ifstream is not valid by the end of the function
 		// returns true otherwise
+		friend ostream& operator<<(ostream& os, const Address& addr);
+		friend istream& operator>>(istream& is, Address& addr);
 
 	private:
 		Field streetAddress;

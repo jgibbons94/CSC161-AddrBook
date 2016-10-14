@@ -1,5 +1,8 @@
 #include <cassert>
+#include <iostream>
+#include <sstream>
 using namespace std;
+#include "Tests.h"
 #include "AddressTests.h"
 #include "Address.h"
 using namespace AddrBookLib;
@@ -21,6 +24,10 @@ void test::TestAddress()
 	TestAddress_ToString();
 	TestAddress_ToFileString();
 	TestAddress_ToFileString1();
+	TestAddress_ToCout();
+	TestAddress_ToOstream();
+	TestAddress_FromCin();
+	TestAddress_FromIstream();
 }
 
 void test::TestAddress_Constructor0()
@@ -108,8 +115,9 @@ void test::TestAddress_SetZip()
 void test::TestAddress_ToString()
 {
 	Address addr("1", "2", "3", "4");
+	Field expectedField = "\tAddress :\t1\n\t       \t2, 3 4";
 	Field fld = addr.ToString();
-	assert(fld == "1\n\t\t\t2, 3 4");
+	assert(fld == expectedField);
 }
 
 void test::TestAddress_ToFileString()
@@ -124,4 +132,85 @@ void test::TestAddress_ToFileString1()
 	Address addr("1", "2", "3", "4");
 	Field fld = addr.ToFileString(' ');
 	assert(fld == "1 2 3 4");
+}
+
+void test::TestAddress_ToCout()
+{
+	//setup
+	//In theory we should be able to change cout by changing _Ptr_cout.
+	//Keep a temporary pointer to the old cout.
+	ostream* tmpCout = _Ptr_cout;
+	//set the current pointer to a new ostringStream
+	ostringstream * strOut = new ostringstream();
+	_Ptr_cout = strOut;
+	//set up what we will test
+	Field actual;
+	Field expected = "Address :\tNumber 4 Privet Drive\n       \tLittle Winging, England UK-50968\n";
+	Address addr("Number 4 Privet Drive","Little Winging","England","UK-50968");
+	//act
+	//*strOut should look like std::cout.
+	*strOut << addr;
+	actual = strOut->str();
+	//cleanup
+	delete strOut;
+	strOut = 0;
+	_Ptr_cout = tmpCout;
+	//assert
+	assert(expected == actual);
+}
+
+void test::TestAddress_ToOstream()
+{	//setup
+
+	ostringstream out;
+	//set up what we will test
+	Field actual;
+	Field expected = "Number 4 Privet Drive,Little Winging,England,UK-50968,";
+	Address addr("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	//act
+	out << addr;
+	actual = out.str();
+	//assert
+	assert(expected == actual);
+}
+
+void test::TestAddress_FromCin()
+{
+
+	//setup
+	istream* tmpCin = _Ptr_cin;
+
+	//set the current pointer to a new ostringStream
+	istringstream * strIn = new istringstream("Number 4 Privet Drive\nLittle Winging\nEngland\nUK-50968");
+	_Ptr_cin = strIn;
+
+
+
+	//set up what we will test
+	Address expected("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Address actual;
+	//act
+
+	//*strOut should look like std::cout.
+
+	*strIn >> actual;
+	//cleanup
+	delete strIn;
+	strIn = 0;
+	_Ptr_cin = tmpCin;
+
+
+	//assert
+	assert(expected == actual);
+}
+
+void test::TestAddress_FromIstream()
+{
+	//setup
+	istringstream in("Number 4 Privet Drive,Little Winging,England,UK-50968");
+	Address expected("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Address actual;
+	//act
+	in >> actual;
+	//assert(expected == actual);
 }

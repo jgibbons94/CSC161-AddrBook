@@ -43,6 +43,8 @@ namespace AddrBookLib
 
 		//in
 		bool ReadFromFile(std::ifstream & fileIn, char delimeter = ',');
+
+		friend bool operator==(const Address& addr1, const Address& addr2);
 		// precondition: fileIn is a valid ifstream
 		// postcondition: the fields of this contact object are read from a file.
 		// returns false if the ifstream is not valid by the end of the function

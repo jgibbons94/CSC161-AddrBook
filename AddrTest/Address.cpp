@@ -17,7 +17,7 @@ AddrBookLib::Address::Address(const Field & initialStreetAddress, const Field & 
 
 Field AddrBookLib::Address::ToString() const
 {
-	return "Address:\t" + streetAddress + "\n       \t" + city + ", " + state + ' ' + zip;
+	return "\tAddress :\t" + streetAddress + "\n\t       \t" + city + ", " + state + ' ' + zip;
 }
 
 Field AddrBookLib::Address::ToFileString(char delimeter) const
@@ -37,14 +37,22 @@ bool AddrBookLib::Address::ReadFromFile(std::ifstream & fileIn, char delimeter)
 	return retVal && !fileIn.fail();
 }
 
+bool AddrBookLib::operator==(const Address & addr1, const Address & addr2)
+{
+	return (addr1.streetAddress == addr2.streetAddress)
+		&& (addr1.city == addr2.city)
+		&& (addr1.state == addr2.state)
+		&& (addr1.zip == addr2.zip);
+}
+
 ostream & AddrBookLib::operator<<(ostream & os, const Address & addr)
 {
 	if (&os == _Ptr_cout)
 	{
-		cout << "Address:" << addr.streetAddress << endl << addr.city << ", " << addr.state << " " << addr.zip << endl;
+		os << "Address :\t" << addr.streetAddress << "\n       \t" << addr.city << ", " << addr.state << " " << addr.zip << endl;
 		return os;
 	}
-	cout << addr.streetAddress << ',' << addr.city << ',' << addr.state << ',' << 'zip' << ',';
+	os << addr.streetAddress << ',' << addr.city << ',' << addr.state << ',' << addr.zip << ',';
 	return os;
 }
 

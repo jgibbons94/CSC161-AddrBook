@@ -16,7 +16,7 @@ AddrBookLib::Field AddrBookLib::CategorizedContact::ToString() const
 {
 	Field ret  = "\t Category:\t" + category + '\n';
 	      ret += "\t    Name :\t" + fullName.ToString() + '\n';
-	      ret += "\t Address :\t" + fullAddress.ToString() + '\n';
+	      ret += fullAddress.ToString() + '\n';
 	      ret += "\t   Phone :\t" + phone + '\n';
           ret += "\t   Email :\t" + email + '\n';
           ret += "\tBirthday :\t" + birthday + '\n';

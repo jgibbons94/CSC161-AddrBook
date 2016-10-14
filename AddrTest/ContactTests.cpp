@@ -176,7 +176,8 @@ void test::TestContact_ToString()
 {
 	Contact contact(Name("1", "2"), Address("3", "4", "5", "6"), "7", "8", "9", "10");
 	Field fld = contact.ToString();
-	assert(fld == "2, 1\n3\n\t\t\t4, 5 6\n7\n8\n9\n10\n");
+	Field expected = "2, 1\n\tAddress :\t3\n\t       \t4, 5 6\n7\n8\n9\n10\n";
+	assert(fld == expected);
 }
 
 void test::TestContact_ToFileString()

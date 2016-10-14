@@ -3,7 +3,7 @@ using namespace std;
 
 #include "CategorizedContact.h"
 using namespace AddrBookLib;
-
+#include "Tests.h"
 #include "CategorizedContactTests.h"
 
 void test::TestCategorizedContact()
@@ -70,8 +70,9 @@ void test::TestCategorizedContact_ToString()
 {
 	CategorizedContact contact(Contact(Name("Julie", "Schneider"), Address("13300 W 6th Ave.", "Lakewood", "Colorado", "80228"), "303 - 914 - 6247", "julie.schneider@rrcc.edu", "Feb. 3", "julie.jpg"), "family");
 	Field fld = contact.ToString();
-	Field expectedField = "\t Category:\tfamily\n\t    Name :\tSchneider, Julie\n\t Address :\t13300 W 6th Ave.\n\t\t\tLakewood, Colorado 80228\n\t   Phone :\t303 - 914 - 6247\n\t   Email :\tjulie.schneider@rrcc.edu\n\tBirthday :\tFeb. 3\n\tPictFile :\tjulie.jpg\n";
+	Field expectedField = "\t Category:\tfamily\n\t    Name :\tSchneider, Julie\n\tAddress :\t13300 W 6th Ave.\n\t       \tLakewood, Colorado 80228\n\t   Phone :\t303 - 914 - 6247\n\t   Email :\tjulie.schneider@rrcc.edu\n\tBirthday :\tFeb. 3\n\tPictFile :\tjulie.jpg\n";
 	assert(fld == expectedField);
+	//test::ReportMissingTest("TestCategorizedContact_ToString");
 }
 
 void test::TestCategorizedContact_ToFileString()

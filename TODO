@@ -77,7 +77,7 @@ Name, Address, Contact and CategorizedContact class modifications - operators
 		5. Exit the Program
 	- Update unit tests
 		- ToString() should check for alignment of colons
-		- ToString() should check for included information
+		- ToString() should check for included information(i.e. "Address: ")
 		+ Figure out how to unit test alloc() and free(). Maybe use try{}catch(){}?
 		- Change unit tests to use the overloaded operators.
 		+ Divide the unit tests into different files in the tests folder (to keep the tests separated from the code).

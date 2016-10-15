@@ -24,12 +24,12 @@ AddrBookLib::Field AddrBookLib::CategorizedContact::ToFileString(char delimeter)
 	return category + delimeter + Contact::ToFileString(delimeter);
 }
 
-bool AddrBookLib::CategorizedContact::ReadFromFile(std::ifstream & fileIn, char delimeter)
+void AddrBookLib::CategorizedContact::ReadFromFile(std::ifstream & fileIn)
 {
-	bool retVal = true;
+	//bool retVal = true;
 	fileIn >> category;
-	retVal &= Contact::ReadFromFile(fileIn, delimeter);
-	return retVal;
+	Contact::ReadFromFile(fileIn);
+	//return retVal;
 }
 
 istream & AddrBookLib::operator >> (istream & is, CategorizedContact & contact)

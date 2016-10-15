@@ -26,15 +26,15 @@ Field AddrBookLib::Address::ToFileString(char delimeter) const
 }
 
 //return true on success, false otherwise.
-bool AddrBookLib::Address::ReadFromFile(std::ifstream & fileIn, char delimeter)
+void AddrBookLib::Address::ReadFromFile(std::istream & fileIn)
 {
 	//get input in format: street address1,city1,state1,zip1,
-	bool retVal = true;
+	//bool retVal = true;
 	fileIn >> streetAddress;
 	fileIn >> city;
 	fileIn >> state;
 	fileIn >> zip;
-	return retVal && !fileIn.fail();
+	//return retVal && !fileIn.fail();
 }
 
 bool AddrBookLib::operator==(const Address & addr1, const Address & addr2)

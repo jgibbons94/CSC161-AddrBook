@@ -191,7 +191,7 @@ void test::TestCategorizedContact_FromCin()
 void test::TestCategorizedContact_FromIstream()
 {
 	//setup
-	istringstream in("Other,Potter,Harry,Number 4 Privet Drive,Little Winging,England,UK-50968,555-427-7907,Harry@rowling.jk,July 31 1980,/dev/null,");
+	istringstream in("Other,Harry,Potter,Number 4 Privet Drive,Little Winging,England,UK-50968,555-427-7907,Harry@rowling.jk,July 31 1980,/dev/null,");
 	Name name("Harry", "Potter");
 	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
 	Contact contact(name, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");

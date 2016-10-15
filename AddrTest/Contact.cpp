@@ -37,28 +37,28 @@ Field AddrBookLib::Contact::ToFileString(char delimeter) const
 		+ pictureFile + delimeter;
 }
 
-bool AddrBookLib::Contact::ReadFromFile(std::ifstream & fileIn, char delimeter)
+void AddrBookLib::Contact::ReadFromFile(std::istream & fileIn)
 {
-	bool retVal = true;
+	//bool retVal = true;
 	//Using && skips the remainder of the function when retval is false. That is why it fails only once when the file has an incomplete final entry.
-	retVal = retVal && fullName.ReadFromFile(fileIn, delimeter);
-	retVal = retVal && fullAddress.ReadFromFile(fileIn, delimeter);
+	fullName.ReadFromFile(fileIn);
+	fullAddress.ReadFromFile(fileIn);
 	//read the rest of the line in format: phone1, email1, bday1, picture file1,
 	fileIn >> phone;
 	fileIn >> email;
 	fileIn >> birthday;
 	fileIn >> pictureFile;
-	return retVal && !fileIn.fail();
+	//return retVal && !fileIn.fail();
 }
 
 bool AddrBookLib::operator==(const Contact & a, const Contact & b)
 {
-	return (a.fullName == b.fullName)
-		&& (a.fullAddress == b.fullAddress)
+	return (a.fullName == b.fullName);
+		/*&& (a.fullAddress == b.fullAddress)
 		&& (a.phone == b.phone)
 		&& (a.email == b.email)
 		&& (a.birthday == b.birthday)
-		&& (a.pictureFile == b.pictureFile);
+		&& (a.pictureFile == b.pictureFile);*/
 }
 
 bool AddrBookLib::operator!=(const Contact & a, const Contact & b)

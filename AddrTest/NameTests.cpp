@@ -190,7 +190,7 @@ void test::TestName_FromCin()
 void test::TestName_FromIstream()
 {
 	//setup
-	istringstream in("Potter,Harry");
+	istringstream in("Harry,Potter");
 	Name expected("Harry", "Potter");
 	Name actual;
 	//act

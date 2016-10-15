@@ -59,7 +59,7 @@ int AddrBookLib::AddrBook::FindContact(const CategorizedContact & itemToFind) co
 {
 	for (int i = 0; i < used; i++)
 	{
-		if (itemToFind.ToString() == content[i].ToString())
+		if (itemToFind == content[i])
 			return i;
 	}
 	return -1;
@@ -102,12 +102,14 @@ void AddrBookLib::AddrBook::ReadFile(const string & fileName)
 	if (!fileIn)
 	{
 		cerr << "Error opening file " << fileName << " to read." << endl << endl;
+		fileIn.close();
 		return;
 	}
 	while (!fileIn.fail())
 	{
 		// read format fname1,lname1,street address1,city1,state1,zip1,phone1,email1,bday1,picture file1,
-		if (tmpContact.ReadFromFile(fileIn, delim))
+		//if (tmpContact.ReadFromFile(fileIn, delim))
+		fileIn >> tmpContact;
 			AddContact(tmpContact);
 	}
 	fileIn.close();

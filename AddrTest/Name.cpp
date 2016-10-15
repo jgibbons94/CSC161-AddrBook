@@ -25,12 +25,12 @@ Field Name::ToFileString(char delimeter) const
 	return firstName + delimeter + lastName+delimeter;
 }
 
-bool AddrBookLib::Name::ReadFromFile(std::ifstream & fileIn, char delimeter)
+void AddrBookLib::Name::ReadFromFile(std::istream & fileIn)
 {
-	bool retVal = true;
+	//bool retVal = true;
 	fileIn >> firstName;
 	fileIn >> lastName;
-	return retVal && !fileIn.fail();
+	//return retVal && !fileIn.fail();
 }
 
 bool AddrBookLib::operator==(const Name & a, const Name & b)
@@ -76,8 +76,8 @@ istream & AddrBookLib::operator >> (istream & is, Name & name)
 		is >> name.lastName;
 		return is;
 	}
-	is >> name.lastName;
 	is >> name.firstName;
+	is >> name.lastName;
 	return is;
 }
 

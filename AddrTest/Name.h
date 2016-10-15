@@ -38,7 +38,7 @@ namespace AddrBookLib
 		Field ToFileString(char delimeter = ',') const;
 
 		//in
-		bool ReadFromFile(std::ifstream & fileIn, char delimeter = ',');
+		void ReadFromFile(std::istream & in);
 
 		//operator overloads
 		friend bool operator==(const Name & a, const Name & b);

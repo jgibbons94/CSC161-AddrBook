@@ -312,7 +312,7 @@ void test::TestContact_FromCin()
 void test::TestContact_FromIstream()
 {
 	//setup
-	istringstream in("Potter,Harry,Number 4 Privet Drive,Little Winging,England,UK-50968,555-427-7907,Harry@rowling.jk,July 31 1980,/dev/null,");
+	istringstream in("Harry,Potter,Number 4 Privet Drive,Little Winging,England,UK-50968,555-427-7907,Harry@rowling.jk,July 31 1980,/dev/null,");
 	Name nExpected("Harry", "Potter");
 	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
 	Contact expected(nExpected, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");

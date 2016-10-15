@@ -42,7 +42,7 @@ namespace AddrBookLib
 		Field ToFileString(char delimeter = ',') const;
 
 		//in
-		bool ReadFromFile(std::ifstream & fileIn, char delimeter = ',');
+		void ReadFromFile(std::istream & fileIn);
 
 		friend bool operator==(const Address& addr1, const Address& addr2);
 		// precondition: fileIn is a valid ifstream

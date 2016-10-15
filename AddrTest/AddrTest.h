@@ -9,7 +9,7 @@ namespace AddrBookLib
 {
 	inline bool InRange(int value, int min, int max) { return (value >= min && value <= max); }
 	//check if min <= value <= max
-
+	Field GetCategoryFromUser(bool get = false, std::istream & in = std::cin);
 }
 
 #endif

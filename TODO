@@ -21,13 +21,13 @@ Name, Address, Contact and CategorizedContact class modifications - operators
 		+ Overload the logical operators (<, >, <=, >=, ==, !=) so that these operators call on the Name class logical operators
 		+ Overload the insertion operator (<<) for both ostream and ofstream
 		+ overload the extraction operator (>>) for both istream and ifstream
-	- CategorizedContact class:
-		- Overload the insertion operator (<<) for both ostream and ofstream
-		- overload the extraction operator (>>) for both istream and ifstream
+	+ CategorizedContact class:
+		+ Overload the insertion operator (<<) for both ostream and ofstream
+		+ overload the extraction operator (>>) for both istream and ifstream1
 	- Correct the toString() and output operators:
-		- Category class should display as a Category, example:
+		+ Category class should display as a Category, example:
 			Category: Family
-		- name class should display to cout as a name, example:
+		+ Name class should display to cout as a name, example:
 			Name: Schneider, Julie
 		+ Address class should display to cout as an address, example:
 					Address: 13300 W. 6th Ave.
@@ -75,6 +75,7 @@ Name, Address, Contact and CategorizedContact class modifications - operators
 		4. Delete an item from the AddressBook
 			Prompt for the item number to delete (counting number starting at 1)
 		5. Exit the Program
+	- Add a class that formats a menu. Perhaps it can inherit from ostringstream or ostream? Or perhaps it has some other way to do it. Either way, it must make the output to the user look good.
 	- Update unit tests
 		- ToString() should check for alignment of colons
 		- ToString() should check for included information(i.e. "Address: ")

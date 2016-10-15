@@ -49,7 +49,7 @@ using namespace test;
 int menu(void);
 //Postcondition: An integer is returned representing the user's menu choice
 
-char MenuCategory(bool get = false);
+char MenuCategory(bool get = false, istream& is=cin);
 //parameter: get
 // set to true if the user wants to print all the contacts in a category
 // set to false (default) if the user wants to add a contact.
@@ -98,7 +98,7 @@ int main(int argc, const char * argv[])
 {
 #ifndef NO_TESTS
 	TestAll();
-	delay(12000);
+	delay(24000);
 #else
 	int command = 0;
 	AddrBook myAddrBook;
@@ -185,7 +185,7 @@ int menu(void)
 	return choice;
 }
 
-char MenuCategory(bool get)
+char MenuCategory(bool get, istream& is)
 {
 	string reply = "";
 	Field category = "";
@@ -204,7 +204,7 @@ char MenuCategory(bool get)
 	cout << "\t*                                                              *" << endl;
 	cout << "\t****************************************************************" << endl;
 	cout << "\n\tPlease enter your selection: ";
-	cin >> reply;
+	is >> reply;
 
 	//converts the number into an integer for processing
 	stringstream(reply) >> choice;
@@ -447,4 +447,9 @@ void delay(int milliseconds)
 {
 
 	this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
+}
+
+Field AddrBookLib::GetCategoryFromUser(bool get, std::istream & in)
+{
+	return CategoryFromChoice(MenuCategory(get, in));
 }

@@ -56,14 +56,14 @@ namespace AddrBookLib
 
 
 		//operator overloads
-		friend bool operator==(const Name & a, const Name & b);
-		friend bool operator!=(const Name & a, const Name & b);
-		friend bool operator>(const Name & a, const Name & b);
-		friend bool operator>=(const Name & a, const Name & b);
-		friend bool operator<(const Name & a, const Name & b);
-		friend bool operator<=(const Name & a, const Name & b);
-		friend istream& operator >> (istream & is, Name & name);
-		friend ostream& operator<<(ostream& os, const Name& name);
+		friend bool operator==(const Contact & a, const Contact & b);
+		friend bool operator!=(const Contact & a, const Contact & b);
+		friend bool operator>(const Contact & a, const Contact & b);
+		friend bool operator>=(const Contact & a, const Contact & b);
+		friend bool operator<(const Contact & a, const Contact & b);
+		friend bool operator<=(const Contact & a, const Contact & b);
+		friend istream& operator>> (istream & is, Contact & contact);
+		friend ostream& operator<<(ostream& os, const Contact & contact);
 
 	protected:
 		Name fullName;

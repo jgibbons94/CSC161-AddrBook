@@ -1,8 +1,9 @@
 //Field.cpp
 //Created by Jesse Gibbons
-#include "Field.h"
 #include <fstream>
 using namespace std;
+#include "Field.h"
+#include "AddrTest.h"
 AddrBookLib::Field::Field(const char * str) : string(str)
 {
 }
@@ -33,7 +34,7 @@ AddrBookLib::Field AddrBookLib::Field::ToLower() const
 
 std::istream & AddrBookLib::operator >> (std::istream & is, Field & field)
 {
-	if (&is == _Ptr_cin)
+	if (IsStandardIstream(&is))
 	{
 		if (is.peek() == '\n')
 			is.ignore();

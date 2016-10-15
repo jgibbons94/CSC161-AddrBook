@@ -90,7 +90,7 @@ istream & AddrBookLib::operator >> (istream & is, Contact & contact)
 {
 	is >> contact.fullName;
 	is >> contact.fullAddress;
-	if (&is == _Ptr_cin)
+	if (IsStandardIstream(&is))
 	{
 		cout << "Please enter a phone number: " << endl;
 		is >> contact.phone;
@@ -111,7 +111,7 @@ istream & AddrBookLib::operator >> (istream & is, Contact & contact)
 
 ostream & AddrBookLib::operator<<(ostream & os, const Contact & contact)
 {
-	if (&os == _Ptr_cout)
+	if (IsStandardOstream(&os))
 	{
 		os << contact.ToString();
 		/*os << "    " << contact.fullName;

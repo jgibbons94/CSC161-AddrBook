@@ -34,7 +34,7 @@ void AddrBookLib::CategorizedContact::ReadFromFile(std::ifstream & fileIn)
 
 istream & AddrBookLib::operator >> (istream & is, CategorizedContact & contact)
 {
-	if (&is == _Ptr_cin)
+	if (IsStandardIstream(&is))
 
 		contact.category = GetCategoryFromUser(false, is);
 
@@ -47,7 +47,7 @@ istream & AddrBookLib::operator >> (istream & is, CategorizedContact & contact)
 
 ostream & AddrBookLib::operator<<(ostream & os, const CategorizedContact & contact)
 {
-	if (&os == _Ptr_cout)
+	if (IsStandardOstream(&os))
 	{
 		/*os<< "Category:\t" << contact.category << endl;
 		os << (Contact)(contact);*/

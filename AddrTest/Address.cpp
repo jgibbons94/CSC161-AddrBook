@@ -47,7 +47,7 @@ bool AddrBookLib::operator==(const Address & addr1, const Address & addr2)
 
 ostream & AddrBookLib::operator<<(ostream & os, const Address & addr)
 {
-	if (&os == _Ptr_cout)
+	if (IsStandardOstream(&os))
 	{
 		//os << "Address:\t" << addr.streetAddress << "\n         \t" << addr.city << ", " << addr.state << " " << addr.zip << endl;
 		os << addr.ToString();
@@ -60,7 +60,7 @@ ostream & AddrBookLib::operator<<(ostream & os, const Address & addr)
 
 istream & AddrBookLib::operator >> (istream & is, Address & addr)
 {
-	if (&is == _Ptr_cin)
+	if (IsStandardIstream(&is))
 	{
 		cout << "Please enter a street address: " << endl;
 		is >> addr.streetAddress;

@@ -24,7 +24,7 @@ Name, Address, Contact and CategorizedContact class modifications - operators
 	- CategorizedContact class:
 		- Overload the insertion operator (<<) for both ostream and ofstream
 		- overload the extraction operator (>>) for both istream and ifstream
-	-Correct the toString() and output operators:
+	- Correct the toString() and output operators:
 		- Category class should display as a Category, example:
 			Category: Family
 		- name class should display to cout as a name, example:
@@ -32,13 +32,13 @@ Name, Address, Contact and CategorizedContact class modifications - operators
 		+ Address class should display to cout as an address, example:
 					Address: 13300 W. 6th Ave.
 							 Lakewood, CO 80228
-		- Phone field should display to cout as a Phone number, example:
+		+ Phone field should display to cout as a Phone number, example:
 					Phone: 303-914-6247
-		- Email field should display to cout as a Phone number, example:
+		+ Email field should display to cout as a Phone number, example:
 					Email: julie.schneider@rrcc.edu
-		- Birthday field should display to cout as a Phone number, example:
+		+ Birthday field should display to cout as a Phone number, example:
 					Birthday: Feb. 3
-		- Picture file field should display to cout as a Phone number, example:
+		+ Picture file field should display to cout as a Phone number, example:
 					PictFile: julie.jpg
 
 	- Your program needs to connect to address.csv and populate the AddrBook data structure based upon the following format of the address.csv file

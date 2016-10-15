@@ -127,7 +127,7 @@ void test::TestName_ToCout()
 	_Ptr_cout = strOut;
 	//set up what we will test
 	Field actual;
-	Field expected = "Harry Potter";
+	Field expected = "Name:\tPotter, Harry\n";
 	Name aName("Harry", "Potter");
 	//act
 	//*strOut should look like std::cout.
@@ -147,7 +147,7 @@ void test::TestName_ToOstream()
 	ostringstream out;
 	//set up what we will test
 	Field actual;
-	Field expected = "Potter,Harry,";
+	Field expected = "Harry,Potter,";
 	Name aName("Harry", "Potter");
 	//act
 	out << aName;

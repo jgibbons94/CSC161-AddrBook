@@ -86,10 +86,10 @@ std::ostream & AddrBookLib::operator<<(ostream & os, const Name & name)
 	// TODO: insert return statement here
 	if (&os == _Ptr_cout)
 	{
-		os << name.firstName << " " << name.lastName;
+		os <<"Name:\t" << name.lastName << ", " << name.firstName<<endl;
 		return os;
 	}
-	os << name.lastName << ',' << name.firstName << ',';
+	os << name.firstName << ',' << name.lastName << ',';
 	return os;
 }
 

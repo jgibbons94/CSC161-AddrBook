@@ -111,13 +111,16 @@ istream & AddrBookLib::operator >> (istream & is, Contact & contact)
 
 ostream & AddrBookLib::operator<<(ostream & os, const Contact & contact)
 {
-	cout << contact.fullName;
-	cout << contact.fullAddress;
 	if (&os == _Ptr_cout)
 	{
-		cout << "\tPhone number :\t" << contact.phone << endl;
-		cout << "\tEmail Address :\t" << contact.email << endl;
-		cout << "\tBirthday :\t" << contact.birthday << endl;
-		cout << "\tPicture :\t" << contact.pictureFile << endl;
+		os << "    " << contact.fullName;
+		os << " " << contact.fullAddress;
+		os <<"  "<< "Number:\t" << contact.phone << endl;
+		os <<"   "<<"Email:\t" << contact.email << endl;
+		os << "Birthday:\t" << contact.birthday << endl;
+		os << "PictFile:\t" << contact.pictureFile << endl;
+		return os;
 	}
+	os << contact.fullName << contact.fullAddress << contact.phone << ',' << contact.email << ',' << contact.birthday << ',' << contact.pictureFile << ',';
+	return os;
 }

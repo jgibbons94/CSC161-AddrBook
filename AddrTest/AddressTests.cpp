@@ -145,7 +145,7 @@ void test::TestAddress_ToCout()
 	_Ptr_cout = strOut;
 	//set up what we will test
 	Field actual;
-	Field expected = "Address :\tNumber 4 Privet Drive\n       \tLittle Winging, England UK-50968\n";
+	Field expected = "Address:\tNumber 4 Privet Drive\n         \tLittle Winging, England UK-50968\n";
 	Address addr("Number 4 Privet Drive","Little Winging","England","UK-50968");
 	//act
 	//*strOut should look like std::cout.

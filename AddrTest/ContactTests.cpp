@@ -1,4 +1,6 @@
 #include <cassert>
+#include <iostream>
+#include <sstream>
 using namespace std;
 
 #include "Contact.h"
@@ -7,28 +9,55 @@ using namespace AddrBookLib;
 #include "ContactTests.h"
 void test::TestContact()
 {
-	TestContact_Constructor0();
-	TestContact_Constructor1();
-	TestContact_Constructor2();
-	TestContact_Constructor3();
-	TestContact_Constructor4();
-	TestContact_Constructor5();
-	TestContact_Constructor6();
-	TestContact_GetFullName();
-	TestContact_SetFullName();
-	TestContact_GetFullAddress();
-	TestContact_SetFullAddress();
-	TestContact_GetPhone();
-	TestContact_SetPhone();
-	TestContact_GetEmail();
-	TestContact_SetEmail();
-	TestContact_GetBirthday();
-	TestContact_SetBirthday();
-	TestContact_GetPictureFile();
-	TestContact_SetPictureFile();
-	TestContact_ToString();
-	TestContact_ToFileString();
-	TestContact_ToFileString1();
+	 TestContact_Constructor0();
+	 TestContact_Constructor1();
+	 TestContact_Constructor2();
+	 TestContact_Constructor3();
+	 TestContact_Constructor4();
+	 TestContact_Constructor5();
+	 TestContact_Constructor6();
+	 TestContact_GetFullName();
+	 TestContact_SetFullName();
+	 TestContact_GetFullAddress();
+	 TestContact_SetFullAddress();
+	 TestContact_GetPhone();
+	 TestContact_SetPhone();
+	 TestContact_GetEmail();
+	 TestContact_SetEmail();
+	 TestContact_GetBirthday();
+	 TestContact_SetBirthday();
+	 TestContact_GetPictureFile();
+	 TestContact_SetPictureFile();
+	 TestContact_ToString();
+	 TestContact_ToFileString();
+	 TestContact_ToFileString1();
+	 TestContact_ToCout();
+	 TestContact_ToOstream();
+	 TestContact_FromCin();
+	 TestContact_FromIstream();
+	//comparison tests:
+	//0: A <  B
+	//1: A == B
+	//2: A  > B
+	 TestContact_equality0();
+	 TestContact_equality1();
+	 TestContact_equality2();
+	 TestContact_inequality0();
+	 TestContact_inequality1();
+	 TestContact_inequality2();
+	 TestContact_gt0();
+	 TestContact_gt1();
+	 TestContact_gt2();
+	 TestContact_gte0();
+	 TestContact_gte1();
+	 TestContact_gte2();
+	 TestContact_lt0();
+	 TestContact_lt1();
+	 TestContact_lt2();
+	 TestContact_lte0();
+	 TestContact_lte1();
+	 TestContact_lte2();
+
 }
 
 void test::TestContact_Constructor0()
@@ -193,4 +222,265 @@ void test::TestContact_ToFileString1()
 	Contact contact(Name("1", "2"), Address("3", "4", "5", "6"), "7", "8", "9", "10");
 	Field fld = contact.ToFileString('\t');
 	assert(fld == "1\t2\t3\t4\t5\t6\t7\t8\t9\t10\t");
+}
+
+void test::TestContact_ToCout()
+{
+	//setup
+	//In theory we should be able to change cout by changing _Ptr_cout.
+	//Keep a temporary pointer to the old cout.
+	ostream* tmpCout = _Ptr_cout;
+	//set the current pointer to a new ostringStream
+	ostringstream * strOut = new ostringstream();
+	_Ptr_cout = strOut;
+	//set up what we will test
+	Field actual;
+	Name name("Harry", "Potter");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact contact(name, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	Field expected =  "    Name:\tPotter, Harry\n";
+	      expected += " Address:\tNumber 4 Privet Drive\n";
+	      expected += "         \tLittle Winging, England UK-50968\n";
+ 	      expected += "  Number:\t555-427-7907\n";
+ 	      expected += "   Email:\tHarry@rowling.jk\n";
+ 	      expected += "Birthday:\tJuly 31 1980\n";
+	      expected += "PictFile:\t/dev/null\n";
+
+	//act
+	//*strOut should look like std::cout.
+	*strOut << contact;
+	actual = strOut->str();
+	//cleanup
+	delete strOut;
+	strOut = 0;
+	_Ptr_cout = tmpCout;
+	//assert
+	assert(expected == actual);
+}
+
+void test::TestContact_ToOstream()
+{	//setup
+
+	ostringstream out;
+	//set up what we will test
+	Field actual;
+	Field expected = "Harry,Potter,Number 4 Privet Drive,Little Winging,England,UK-50968,555-427-7907,Harry@rowling.jk,July 31 1980,/dev/null,";
+	Name name("Harry", "Potter");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact contact(name, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	//act
+	out << contact;
+	actual = out.str();
+	//assert
+	assert(expected == actual);
+}
+
+void test::TestContact_FromCin()
+{
+
+	//setup
+	istream* tmpCin = _Ptr_cin;
+
+	//set the current pointer to a new ostringStream
+	istringstream * strIn = new istringstream("Harry\nPotter\nNumber 4 Privet Drive\nLittle Winging\nEngland\nUK-50968\n555-427-7907\nHarry@rowling.jk\nJuly 31 1980\n/dev/null\n");
+	_Ptr_cin = strIn;
+
+
+
+	//set up what we will test
+	Name nExpected("Harry", "Potter");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact expected(nExpected, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	Contact actual;
+	//act
+
+	//*strOut should look like std::cout.
+
+	*strIn >> actual;
+	//cleanup
+	delete strIn;
+	strIn = 0;
+	_Ptr_cin = tmpCin;
+
+
+	//assert
+	assert(expected == actual);
+
+}
+
+void test::TestContact_FromIstream()
+{
+	//setup
+	istringstream in("Potter,Harry,Number 4 Privet Drive,Little Winging,England,UK-50968,555-427-7907,Harry@rowling.jk,July 31 1980,/dev/null,");
+	Name nExpected("Harry", "Potter");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact expected(nExpected, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+
+	Contact actual;
+	//act
+	in >> actual;
+	//assert
+	assert(expected == actual);
+}
+
+void test::TestContact_equality0()
+{
+	Name na("Alice", "Andersen"), nb("Blake", "Buster");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	assert(!(a == b));
+}
+
+void test::TestContact_equality1()
+{
+	Name na("Blake", "Buster"), nb("Blake", "Buster");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	assert(a == b);
+}
+
+void test::TestContact_equality2()
+{
+	Name na("Catherine", "Coolidge"), nb("Blake", "Buster");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	assert(!(a == b));
+}
+
+void test::TestContact_inequality0()
+{
+	Name na("Alice", "Andersen"), nb("Blake", "Buster");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	assert(a != b);
+}
+
+void test::TestContact_inequality1()
+{
+	Name na("Blake", "Buster"), nb("Blake", "Buster");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	assert(!(a != b));
+}
+
+void test::TestContact_inequality2()
+{
+	Name na("Catherine", "Coolidge"), nb("Blake", "Buster");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	assert(a != b);
+}
+
+void test::TestContact_gt0()
+{
+	Name na("Alice", "Andersen"), nb("Blake", "Buster");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	assert(!(a > b));
+}
+
+void test::TestContact_gt1()
+{
+	Name na("Blake", "Buster"), nb("Blake", "Buster");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	assert(!(a > b));
+}
+
+void test::TestContact_gt2()
+{
+	Name na("Catherine", "Coolidge"), nb("Blake", "Buster");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	assert(a > b);
+}
+
+void test::TestContact_gte0()
+{
+	Name na("Alice", "Andersen"), nb("Blake", "Buster");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	assert(!(a >= b));
+}
+
+void test::TestContact_gte1()
+{
+	Name na("Blake", "Buster"), nb("Blake", "Buster");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	assert(a >= b);
+}
+
+void test::TestContact_gte2()
+{
+	Name na("Catherine", "Coolidge"), nb("Blake", "Buster");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	assert(a >= b);
+}
+
+void test::TestContact_lt0()
+{
+	Name na("Alice", "Andersen"), nb("Blake", "Buster");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	assert(a < b);
+}
+
+void test::TestContact_lt1()
+{
+	Name na("Blake", "Buster"), nb("Blake", "Buster");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	assert(!(a < b));
+}
+
+void test::TestContact_lt2()
+{
+	Name na("Catherine", "Coolidge"), nb("Blake", "Buster");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	assert(!(a < b));
+}
+
+void test::TestContact_lte0()
+{
+	Name na("Alice", "Andersen"), nb("Blake", "Buster");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	assert((a <= b));
+}
+
+void test::TestContact_lte1()
+{
+	Name na("Blake", "Buster"), nb("Blake", "Buster");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	assert(a <= b);
+}
+
+void test::TestContact_lte2()
+{
+	Name na("Catherine", "Coolidge"), nb("Blake", "Buster");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	assert(!(a <= b));
 }

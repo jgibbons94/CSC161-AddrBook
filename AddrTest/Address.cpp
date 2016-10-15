@@ -49,7 +49,7 @@ ostream & AddrBookLib::operator<<(ostream & os, const Address & addr)
 {
 	if (&os == _Ptr_cout)
 	{
-		os << "Address :\t" << addr.streetAddress << "\n       \t" << addr.city << ", " << addr.state << " " << addr.zip << endl;
+		os << "Address:\t" << addr.streetAddress << "\n         \t" << addr.city << ", " << addr.state << " " << addr.zip << endl;
 		return os;
 	}
 	os << addr.streetAddress << ',' << addr.city << ',' << addr.state << ',' << addr.zip << ',';

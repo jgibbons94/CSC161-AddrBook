@@ -50,3 +50,74 @@ bool AddrBookLib::Contact::ReadFromFile(std::ifstream & fileIn, char delimeter)
 	fileIn >> pictureFile;
 	return retVal && !fileIn.fail();
 }
+
+bool AddrBookLib::operator==(const Contact & a, const Contact & b)
+{
+	return (a.fullName == b.fullName)
+		&& (a.fullAddress == b.fullAddress)
+		&& (a.phone == b.phone)
+		&& (a.email == b.email)
+		&& (a.birthday == b.birthday)
+		&& (a.pictureFile == b.pictureFile);
+}
+
+bool AddrBookLib::operator!=(const Contact & a, const Contact & b)
+{
+	return !(a == b);
+}
+
+bool AddrBookLib::operator>(const Contact & a, const Contact & b)
+{
+	return (a.fullName > b.fullName);
+}
+
+bool AddrBookLib::operator>=(const Contact & a, const Contact & b)
+{
+	return (a > b) || (a == b);
+}
+
+bool AddrBookLib::operator<(const Contact & a, const Contact & b)
+{
+	return (b > a);
+}
+
+bool AddrBookLib::operator<=(const Contact & a, const Contact & b)
+{
+	return (a < b) || (a == b);
+}
+
+istream & AddrBookLib::operator >> (istream & is, Contact & contact)
+{
+	is >> contact.fullName;
+	is >> contact.fullAddress;
+	if (&is == _Ptr_cin)
+	{
+		cout << "Please enter a phone number: " << endl;
+		is >> contact.phone;
+		cout << "Please enter an email address: " << endl;
+		is >> contact.email;
+		cout << "Please enter a birthday: " << endl;
+		is >> contact.birthday;
+		cout << "Please enter a picture file: " << endl;
+		is >> contact.pictureFile;
+		return is;
+	}
+	is >> contact.phone;
+	is >> contact.email;
+	is >> contact.birthday;
+	is >> contact.pictureFile;
+	return is;
+}
+
+ostream & AddrBookLib::operator<<(ostream & os, const Contact & contact)
+{
+	cout << contact.fullName;
+	cout << contact.fullAddress;
+	if (&os == _Ptr_cout)
+	{
+		cout << "\tPhone number :\t" << contact.phone << endl;
+		cout << "\tEmail Address :\t" << contact.email << endl;
+		cout << "\tBirthday :\t" << contact.birthday << endl;
+		cout << "\tPicture :\t" << contact.pictureFile << endl;
+	}
+}

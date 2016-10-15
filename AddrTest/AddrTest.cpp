@@ -449,7 +449,7 @@ void delay(int milliseconds)
 	this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
 }
 
-Field AddrBookLib::GetCategoryFromUser(bool get, std::istream & in)
+Field AddrBookLib::GetCategoryFromUser(bool get, Field fldDefault, std::istream & in)
 {
 	return CategoryFromChoice(MenuCategory(get, in));
 }

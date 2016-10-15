@@ -72,9 +72,6 @@ istream & AddrBookLib::operator >> (istream & is, Address & addr)
 		is >> addr.zip;
 		return is;
 	}
-	is >> addr.streetAddress;
-	is >> addr.city;
-	is >> addr.state;
-	is >> addr.zip;
+	addr.ReadFromFile(is);
 	return is;
 }

@@ -88,10 +88,10 @@ bool AddrBookLib::operator<=(const Contact & a, const Contact & b)
 
 istream & AddrBookLib::operator >> (istream & is, Contact & contact)
 {
-	is >> contact.fullName;
-	is >> contact.fullAddress;
 	if (IsStandardIstream(&is))
 	{
+		is >> contact.fullName;
+		is >> contact.fullAddress;
 		cout << "Please enter a phone number: " << endl;
 		is >> contact.phone;
 		cout << "Please enter an email address: " << endl;
@@ -102,10 +102,7 @@ istream & AddrBookLib::operator >> (istream & is, Contact & contact)
 		is >> contact.pictureFile;
 		return is;
 	}
-	is >> contact.phone;
-	is >> contact.email;
-	is >> contact.birthday;
-	is >> contact.pictureFile;
+	contact.ReadFromFile(is);
 	return is;
 }
 

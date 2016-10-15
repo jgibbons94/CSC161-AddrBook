@@ -24,7 +24,7 @@ AddrBookLib::Field AddrBookLib::CategorizedContact::ToFileString(char delimeter)
 	return category + delimeter + Contact::ToFileString(delimeter);
 }
 
-void AddrBookLib::CategorizedContact::ReadFromFile(std::ifstream & fileIn)
+void AddrBookLib::CategorizedContact::ReadFromFile(std::istream & fileIn)
 {
 	//bool retVal = true;
 	fileIn >> category;
@@ -35,14 +35,16 @@ void AddrBookLib::CategorizedContact::ReadFromFile(std::ifstream & fileIn)
 istream & AddrBookLib::operator >> (istream & is, CategorizedContact & contact)
 {
 	if (IsStandardIstream(&is))
+	{
+		contact.category = GetCategoryFromUser(false, "Other",is);
 
-		contact.category = GetCategoryFromUser(false, is);
-
-	else
-		is >> contact.category;
 		Contact * c = &contact;
 		is >> *c;
 		return is;
+	}
+	contact.ReadFromFile(is);
+	return is;
+	//is >> contact.category;
 }
 
 ostream & AddrBookLib::operator<<(ostream & os, const CategorizedContact & contact)

@@ -177,8 +177,7 @@ int menu(void)
 	cout << "\t*                                                              *" << endl;
 	cout << "\t****************************************************************" << endl;
 	cout << "\n\tPlease enter your selection: ";
-
-	getline(cin, reply);
+	cin >> reply;
 
 	//converts the number into an integer for processing
 	stringstream(reply) >> choice;

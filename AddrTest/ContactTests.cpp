@@ -205,7 +205,7 @@ void test::TestContact_ToString()
 {
 	Contact contact(Name("1", "2"), Address("3", "4", "5", "6"), "7", "8", "9", "10");
 	Field actual = contact.ToString();
-	Field expected = "    Name:\t2, 1\n Address:\t3\n         \t4, 5 6\n   Phone:\t7\n   Email:\t8\nBirthday:\t9\nPictFile:\t10\n";
+	Field expected = "\t    Name:\t2, 1\n\t Address:\t3\n\t         \t4, 5 6\n\t   Phone:\t7\n\t   Email:\t8\n\tBirthday:\t9\n\tPictFile:\t10\n";
 	assert(expected == actual);
 }
 
@@ -239,13 +239,13 @@ void test::TestContact_ToCout()
 	Name name("Harry", "Potter");
 	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
 	Contact contact(name, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-	Field expected =  "    Name:\tPotter, Harry\n";
-	      expected += " Address:\tNumber 4 Privet Drive\n";
-	      expected += "         \tLittle Winging, England UK-50968\n";
- 	      expected += "   Phone:\t555-427-7907\n";
- 	      expected += "   Email:\tHarry@rowling.jk\n";
- 	      expected += "Birthday:\tJuly 31 1980\n";
-	      expected += "PictFile:\t/dev/null\n";
+	Field expected =  "\t    Name:\tPotter, Harry\n";
+	      expected += "\t Address:\tNumber 4 Privet Drive\n";
+	      expected += "\t         \tLittle Winging, England UK-50968\n";
+ 	      expected += "\t   Phone:\t555-427-7907\n";
+ 	      expected += "\t   Email:\tHarry@rowling.jk\n";
+ 	      expected += "\tBirthday:\tJuly 31 1980\n";
+	      expected += "\tPictFile:\t/dev/null\n";
 
 	//act
 	//*strOut should look like std::cout.

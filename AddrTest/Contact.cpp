@@ -19,12 +19,12 @@ AddrBookLib::Contact::Contact(const Name & initialName, const Address & initialA
 //required but not used
 Field AddrBookLib::Contact::ToString() const
 {
-	return "    "+fullName.ToString()
-		+ " "+fullAddress.ToString()
-		+ "   Phone:\t"+phone + '\n'
-		+ "   Email:\t"+ email + '\n'
-		+ "Birthday:\t"+birthday + '\n'
-		+ "PictFile:\t"+pictureFile + '\n';
+	return fullName.ToString()
+		+ fullAddress.ToString()
+		+ "\t   Phone:\t"+phone + '\n'
+		+ "\t   Email:\t"+ email + '\n'
+		+ "\tBirthday:\t"+birthday + '\n'
+		+ "\tPictFile:\t"+pictureFile + '\n';
 }
 
 Field AddrBookLib::Contact::ToFileString(char delimeter) const
@@ -92,13 +92,13 @@ istream & AddrBookLib::operator >> (istream & is, Contact & contact)
 	{
 		is >> contact.fullName;
 		is >> contact.fullAddress;
-		cout << "Please enter a phone number: " << endl;
+		cout << "\tPlease enter a phone number: " << endl;
 		is >> contact.phone;
-		cout << "Please enter an email address: " << endl;
+		cout << "\tPlease enter an email address: " << endl;
 		is >> contact.email;
-		cout << "Please enter a birthday: " << endl;
+		cout << "\tPlease enter a birthday: " << endl;
 		is >> contact.birthday;
-		cout << "Please enter a picture file: " << endl;
+		cout << "\tPlease enter a picture file: " << endl;
 		is >> contact.pictureFile;
 		return is;
 	}

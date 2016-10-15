@@ -17,7 +17,7 @@ AddrBookLib::Address::Address(const Field & initialStreetAddress, const Field & 
 
 Field AddrBookLib::Address::ToString() const
 {
-	return "Address:\t" + streetAddress + "\n         \t" + city + ", " + state + ' ' + zip+'\n';
+	return "\t Address:\t" + streetAddress + "\n\t         \t" + city + ", " + state + ' ' + zip+'\n';
 }
 
 Field AddrBookLib::Address::ToFileString(char delimeter) const
@@ -62,13 +62,13 @@ istream & AddrBookLib::operator >> (istream & is, Address & addr)
 {
 	if (IsStandardIstream(&is))
 	{
-		cout << "Please enter a street address: " << endl;
+		cout << "\tPlease enter a street address: " << endl;
 		is >> addr.streetAddress;
-		cout << "Please enter a city: " << endl;
+		cout << "\tPlease enter a city: " << endl;
 		is >> addr.city;
-		cout << "Please enter a state: " << endl;
+		cout << "\tPlease enter a state: " << endl;
 		is >> addr.state;
-		cout << "Please enter a zip code: " << endl;
+		cout << "\tPlease enter a zip code: " << endl;
 		is >> addr.zip;
 		return is;
 	}

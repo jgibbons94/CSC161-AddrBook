@@ -17,7 +17,7 @@ Name::Name(const Field &  initialFirstName, const Field & initialLastName)
 
 Field Name::ToString() const
 {
-	return "Name:\t"+lastName + ", " + firstName+'\n';
+	return "\t    Name:\t"+lastName + ", " + firstName+'\n';
 }
 
 Field Name::ToFileString(char delimeter) const
@@ -70,9 +70,9 @@ istream & AddrBookLib::operator>> (istream & is, Name & name)
 	// TODO: insert return statement here
 	if (IsStandardIstream(&is))
 	{
-		cout << "Please enter a first name: " << endl;
+		cout << "\tPlease enter a first name: " << endl;
 		is >> name.firstName;
-		cout << "Pleae enter a last name: " << endl;
+		cout << "\tPlease enter a last name: " << endl;
 		is >> name.lastName;
 		return is;
 	}

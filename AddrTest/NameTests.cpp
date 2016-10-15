@@ -101,7 +101,7 @@ void test::TestName_SetLastName()
 void test::TestName_ToString()
 {
 	Name name("foo", "bar");
-	assert(name.ToString() == "Name:\tbar, foo\n");
+	assert(name.ToString() == "\t    Name:\tbar, foo\n");
 }
 
 void test::TestName_ToFileString()
@@ -127,7 +127,7 @@ void test::TestName_ToCout()
 	_Ptr_cout = strOut;
 	//set up what we will test
 	Field actual;
-	Field expected = "Name:\tPotter, Harry\n";
+	Field expected = "\t    Name:\tPotter, Harry\n";
 	Name aName("Harry", "Potter");
 	//act
 	//*strOut should look like std::cout.

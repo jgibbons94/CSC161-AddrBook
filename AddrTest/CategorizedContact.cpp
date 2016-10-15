@@ -14,7 +14,7 @@ AddrBookLib::CategorizedContact::CategorizedContact(const Contact & initialConta
 
 AddrBookLib::Field AddrBookLib::CategorizedContact::ToString() const
 {
-	Field ret  = "Category:\t" + category + '\n';
+	Field ret  = "\tCategory:\t" + category + '\n';
 	ret += Contact::ToString();
 	return ret;
 }

@@ -28,7 +28,7 @@ for Project 2:		 1.  All strings that are Contact fields, need to be changed to 
 					  6. Change to CategorizedContact not Contact
 					  7. Review the project #2 specs for compliance
 */
-#define NO_TESTS
+//#define NO_TESTS
 #include <iostream> //provides cout and cin
 #include <sstream>  //provides stringstream
 #include <string>
@@ -98,7 +98,7 @@ int main(int argc, const char * argv[])
 {
 #ifndef NO_TESTS
 	TestAll();
-	delay(24000);
+	Delay(24000);
 #else
 	int command = 0;
 	AddrBook myAddrBook;
@@ -416,7 +416,7 @@ Field AddrBookLib::GetCategoryFromUser(bool get, Field fldDefault, std::istream 
 
 	cout << "\t*                                                              *" << endl;
 	cout << "\t****************************************************************" << endl;
-	cout << "\nPlease enter your selection: " << endl;
+	cout << "\n\tPlease enter your selection: " << endl;
 	is >> reply;
 
 	//converts the number into an integer for processing

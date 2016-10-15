@@ -115,7 +115,7 @@ void test::TestAddress_SetZip()
 void test::TestAddress_ToString()
 {
 	Address addr("1", "2", "3", "4");
-	Field expected = "Address:\t1\n         \t2, 3 4\n";
+	Field expected = "\t Address:\t1\n\t         \t2, 3 4\n";
 	Field actual = addr.ToString();
 	assert(expected == actual);
 }
@@ -147,7 +147,7 @@ void test::TestAddress_ToCout()
 	_Ptr_cout = strOut;
 	//set up what we will test
 	Field actual;
-	Field expected = "Address:\tNumber 4 Privet Drive\n         \tLittle Winging, England UK-50968\n";
+	Field expected = "\t Address:\tNumber 4 Privet Drive\n\t         \tLittle Winging, England UK-50968\n";
 	Address addr("Number 4 Privet Drive","Little Winging","England","UK-50968");
 	//act
 	//*strOut should look like std::cout.

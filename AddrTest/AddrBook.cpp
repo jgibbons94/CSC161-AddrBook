@@ -83,6 +83,9 @@ void AddrBookLib::AddrBook::PrintAllContacts() const
 	{
 		cout << '\t'<<(i + 1) << ")\n";
 		cout << content[i].ToString() << endl << endl;
+		//wait half a second between displaying contacts
+		//adjustable if this is too fast or slow.
+		Delay(500);
 	};
 }
 
@@ -91,7 +94,11 @@ void AddrBookLib::AddrBook::PrintByCategory(const Field & category) const
 	int count = 1;
 	for (int i = 0; i < used; i++)
 		if (content[i].GetCategory() == category)
-			cout << '\t'<< count++ << ")\n" << content[i].ToString() << endl;
+		{
+			cout << '\t' << count++ << ")\n" << content[i].ToString() << endl;
+			//Unless the user is Data from STNG, we need a slight delay between printing functions.
+			Delay(500);
+		}
 }
 
 void AddrBookLib::AddrBook::ReadFile(const string & fileName)

@@ -28,7 +28,7 @@ for Project 2:		 1.  All strings that are Contact fields, need to be changed to 
 					  6. Change to CategorizedContact not Contact
 					  7. Review the project #2 specs for compliance
 */
-//#define NO_TESTS
+#define NO_TESTS
 #include <iostream> //provides cout and cin
 #include <sstream>  //provides stringstream
 #include <string>
@@ -49,7 +49,7 @@ using namespace test;
 int menu(void);
 //Postcondition: An integer is returned representing the user's menu choice
 
-char MenuCategory(bool get = false, istream& is=cin);
+//char MenuCategory(bool get = false, istream& is=cin);
 //parameter: get
 // set to true if the user wants to print all the contacts in a category
 // set to false (default) if the user wants to add a contact.
@@ -68,7 +68,7 @@ void printUsed(AddrBook& myAddrBook);
 void removeContacts(AddrBook& myAddrBook);
 //Postcondition: If the entry is a valid entry, the entry is removed from the address book
 
-Field CategoryFromChoice(char choice, const Field & fldDefault = "Other");
+//Field CategoryFromChoice(char choice, const Field & fldDefault = "Other");
 //parameter: choice
 // A choice from MenuCategory()
 //parameter: fldDefault
@@ -78,7 +78,7 @@ Field CategoryFromChoice(char choice, const Field & fldDefault = "Other");
 
 //helpers
 
-void delay(int milliseconds = 2000);
+//void delay(int milliseconds = 2000);
 //Postcondition: The program is delayed for the specified amount of time in milliseconds
 //param: milliseconds: the amount of time to delay
 //milliseconds default: 2000 milliseconds = 2 seconds
@@ -123,19 +123,20 @@ int main(int argc, const char * argv[])
 
 		case 3:
 		{
-			char choice = MenuCategory(true);
+			Field choice = GetCategoryFromUser(true, "All");
+			//char choice = MenuCategory(true);
 			cout << "\n\tPrinting...\n\n";
-			delay();
-			if (choice == 'e') // print all contacts
+			Delay();
+			if (choice == "All") // print all contacts
 			{
 				myAddrBook.PrintAllContacts();
 			}
 			else
 			{
-				myAddrBook.PrintByCategory(CategoryFromChoice(choice));
+				myAddrBook.PrintByCategory(choice);
 			}
 			cout << "\tReturning to Main Menu...\n\n";
-			delay();
+			Delay();
 			break;
 		}
 		case 4:
@@ -145,7 +146,7 @@ int main(int argc, const char * argv[])
 		default:
 			cout << "\n\tInvalid entry, please try again.\n";
 			cout << "\tReturning to Main Menu...\n";
-			delay();
+			Delay();
 			break;
 		}
 
@@ -154,7 +155,7 @@ int main(int argc, const char * argv[])
 
 	//when program is exited, write the file before leaving
 	myAddrBook.WriteFile("address.csv");
-	delay();
+	Delay();
 
 	return 0;
 #endif
@@ -185,31 +186,7 @@ int menu(void)
 	return choice;
 }
 
-char MenuCategory(bool get, istream& is)
-{
-	Field reply = "";
-	Field category = "";
-	char choice = '\0';
-	cout << endl;
-	cout << "\t****************************************************************" << endl;
-	cout << "\t*                Please enter a category                       *" << endl;
-	cout << "\t*                                                              *" << endl;
-	cout << "\t*   (a)  Work                                                  *" << endl;
-	cout << "\t*   (b)  Family                                                *" << endl;
-	cout << "\t*   (c)  Friends                                               *" << endl;
-	cout << "\t*   (d)  Other                                                 *" << endl;
-	if (get)
-		cout << "\t*   (e)  All Contacts                                          *" << endl;
 
-	cout << "\t*                                                              *" << endl;
-	cout << "\t****************************************************************" << endl;
-	cout << "\n\tPlease enter your selection: ";
-	is >> reply;
-
-	//converts the number into an integer for processing
-	stringstream(reply) >> choice;
-	return choice;
-}
 
 //prompt 1
 void addNewContact(AddrBook& myAddrBook)
@@ -236,10 +213,10 @@ void addNewContact(AddrBook& myAddrBook)
 		delay();
 		return;
 	}*/
-
-
+	cin >> newContact;
+	/*
 	//Have the user specify the new contact's category.
-	answer = CategoryFromChoice(MenuCategory(false));
+	answer = AddrBookLib::GetCategoryFromUser(false);
 	newContact.SetCategory(answer);
 
 	cout << "\t****************************************************************\n";
@@ -312,7 +289,7 @@ void addNewContact(AddrBook& myAddrBook)
 	//update full name and address for the new contact
 	newContact.SetFullName(newName);
 	newContact.SetFullAddress(newAddress);
-
+	*/
 	//add the contact to the address book
 	myAddrBook.AddContact(newContact);
 
@@ -320,7 +297,7 @@ void addNewContact(AddrBook& myAddrBook)
 	cout << "\tContact has been added.\n";
 	cout << "\tReturning to Main Menu...\n\n";
 
-	delay();
+	Delay();
 }
 
 //prompt 2
@@ -336,7 +313,7 @@ void printUsed(AddrBook& myAddrBook)
 	cout << "\t****************************************************************\n";
 
 	cout << "\n\tReturning to Main Menu....\n\n";
-	delay();
+	Delay();
 }
 
 //prompt 3
@@ -348,7 +325,7 @@ void removeContacts(AddrBook& myAddrBook)
 	int choiceRemove = 0;
 
 	cout << "\n\tPrinting Contacts...\n";
-	delay();
+	Delay();
 
 	//print the contacts so user has a reference of what he is removing
 	myAddrBook.PrintAllContacts();
@@ -357,7 +334,7 @@ void removeContacts(AddrBook& myAddrBook)
 	if (myAddrBook.GetUsed() == 0) {
 		cout << "\tPlease add a contact to the address book before proceeding.";
 		cout << "\n\tReturning to Main Menu....\n\n";
-		delay();
+		Delay();
 		return;
 	}
 
@@ -371,35 +348,7 @@ void removeContacts(AddrBook& myAddrBook)
 	//call remove by index function, error processing is handled in the function
 	myAddrBook.RemoveByIndex(choiceRemove - 1);
 
-	delay();
-}
-
-//helpers
-Field CategoryFromChoice(char choice, const Field & fldDefault)
-{
-	Field category;
-	switch (choice)
-	{
-	case 'a':
-	case 'A':
-		category = "Work";
-		break;
-	case 'b':
-	case 'B':
-		category = "Family";
-		break;
-	case 'c':
-	case 'C':
-		category = "Friends";
-		break;
-	case 'd':
-	case 'D':
-		category = "Other";
-		break;
-	default:
-		category = fldDefault;
-	}
-	return category;
+	Delay();
 }
 
 Field reduce(const Field& str, const Field& fill, const Field& whitespace)
@@ -443,13 +392,56 @@ Field trim(const Field& str, const Field& whitespace)
 	return str.substr(strBegin, strRange);
 }
 
-void delay(int milliseconds)
+void AddrBookLib::Delay(int milliseconds)
 {
 
 	this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
 }
 
-Field AddrBookLib::GetCategoryFromUser(bool get, Field fldDefault, std::istream & in)
+Field AddrBookLib::GetCategoryFromUser(bool get, Field fldDefault, std::istream & is)
 {
-	return CategoryFromChoice(MenuCategory(get, in));
+	Field reply = "";
+	Field category = "";
+	char choice = '\0';
+	cout << endl;
+	cout << "\t****************************************************************" << endl;
+	cout << "\t*                Please enter a category                       *" << endl;
+	cout << "\t*                                                              *" << endl;
+	cout << "\t*   (a)  Work                                                  *" << endl;
+	cout << "\t*   (b)  Family                                                *" << endl;
+	cout << "\t*   (c)  Friends                                               *" << endl;
+	cout << "\t*   (d)  Other                                                 *" << endl;
+	if (get)
+		cout << "\t*   (e)  All Contacts                                          *" << endl;
+
+	cout << "\t*                                                              *" << endl;
+	cout << "\t****************************************************************" << endl;
+	cout << "\nPlease enter your selection: " << endl;
+	is >> reply;
+
+	//converts the number into an integer for processing
+	stringstream(reply) >> choice;
+
+	switch (choice)
+	{
+	case 'a':
+	case 'A':
+		category = "Work";
+		break;
+	case 'b':
+	case 'B':
+		category = "Family";
+		break;
+	case 'c':
+	case 'C':
+		category = "Friends";
+		break;
+	case 'd':
+	case 'D':
+		category = "Other";
+		break;
+	default:
+		category = fldDefault;
+	}
+	return category;
 }

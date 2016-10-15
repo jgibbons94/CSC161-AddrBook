@@ -13,5 +13,15 @@ namespace test
 	void TestCategorizedContact_ToString();
 	void TestCategorizedContact_ToFileString();
 	void TestCategorizedContact_ToFileString1();
+
+	//operator<<
+
+	void TestCategorizedContact_ToCout();
+	void TestCategorizedContact_ToOstream();
+
+	//operator>>
+
+	void TestCategorizedContact_FromCin();
+	void TestCategorizedContact_FromIstream();
 }
 #endif

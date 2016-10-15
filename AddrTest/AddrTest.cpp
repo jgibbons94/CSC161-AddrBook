@@ -187,7 +187,7 @@ int menu(void)
 
 char MenuCategory(bool get, istream& is)
 {
-	string reply = "";
+	Field reply = "";
 	Field category = "";
 	char choice = '\0';
 	cout << endl;

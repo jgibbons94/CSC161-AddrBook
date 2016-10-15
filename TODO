@@ -14,13 +14,13 @@ Name, Address, Contact and CategorizedContact class modifications - operators
 		+ Overload the logical operators (<, >, <=, >=, ==, !=) so that it compares LastName, FirstName
 		+ Overload the insertion operator (<<) for both ostream and ofstream
 		+ overload the extraction operator (>>) for both istream and ifstream
-	- Address class:
+	+ Address class:
 		+ Overload the insertion operator (<<) for both ostream and ofstream
 		+ overload the extraction operator (>>) for both istream and ifstream
-	- Contact class:
-		- Overload the logical operators (<, >, <=, >=, ==, !=) so that these operators call on the Name class logical operators
-		- Overload the insertion operator (<<) for both ostream and ofstream
-		- overload the extraction operator (>>) for both istream and ifstream
+	+ Contact class:
+		+ Overload the logical operators (<, >, <=, >=, ==, !=) so that these operators call on the Name class logical operators
+		+ Overload the insertion operator (<<) for both ostream and ofstream
+		+ overload the extraction operator (>>) for both istream and ifstream
 	- CategorizedContact class:
 		- Overload the insertion operator (<<) for both ostream and ofstream
 		- overload the extraction operator (>>) for both istream and ifstream

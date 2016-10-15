@@ -101,19 +101,19 @@ void test::TestName_SetLastName()
 void test::TestName_ToString()
 {
 	Name name("foo", "bar");
-	assert(name.ToString() == "bar, foo");
+	assert(name.ToString() == "Name:\tbar, foo\n");
 }
 
 void test::TestName_ToFileString()
 {
 	Name name("foo", "bar");
-	assert(name.ToFileString() == "foo,bar");
+	assert(name.ToFileString() == "foo,bar,");
 }
 
 void test::TestName_ToFileString1()
 {
 	Name name("foo", "bar");
-	assert(name.ToFileString(' ') == "foo bar");
+	assert(name.ToFileString(' ') == "foo bar ");
 }
 
 void test::TestName_ToCout()

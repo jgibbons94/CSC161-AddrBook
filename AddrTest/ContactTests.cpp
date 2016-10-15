@@ -204,16 +204,17 @@ void test::TestContact_SetPictureFile()
 void test::TestContact_ToString()
 {
 	Contact contact(Name("1", "2"), Address("3", "4", "5", "6"), "7", "8", "9", "10");
-	Field fld = contact.ToString();
-	Field expected = "2, 1\n\tAddress :\t3\n\t       \t4, 5 6\n7\n8\n9\n10\n";
-	assert(fld == expected);
+	Field actual = contact.ToString();
+	Field expected = "    Name:\t2, 1\n Address:\t3\n         \t4, 5 6\n   Phone:\t7\n   Email:\t8\nBirthday:\t9\nPictFile:\t10\n";
+	assert(expected == actual);
 }
 
 void test::TestContact_ToFileString()
 {
+	Field expected = "1,2,3,4,5,6,7,8,9,10,";
 	Contact contact(Name("1", "2"), Address("3", "4", "5", "6"), "7", "8", "9", "10");
-	Field fld = contact.ToFileString();
-	assert(fld == "1,2,3,4,5,6,7,8,9,10,");
+	Field actual = contact.ToFileString();
+	assert(expected == actual);
 }
 
 void test::TestContact_ToFileString1()
@@ -241,7 +242,7 @@ void test::TestContact_ToCout()
 	Field expected =  "    Name:\tPotter, Harry\n";
 	      expected += " Address:\tNumber 4 Privet Drive\n";
 	      expected += "         \tLittle Winging, England UK-50968\n";
- 	      expected += "  Number:\t555-427-7907\n";
+ 	      expected += "   Phone:\t555-427-7907\n";
  	      expected += "   Email:\tHarry@rowling.jk\n";
  	      expected += "Birthday:\tJuly 31 1980\n";
 	      expected += "PictFile:\t/dev/null\n";

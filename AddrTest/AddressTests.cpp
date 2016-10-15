@@ -115,23 +115,25 @@ void test::TestAddress_SetZip()
 void test::TestAddress_ToString()
 {
 	Address addr("1", "2", "3", "4");
-	Field expectedField = "\tAddress :\t1\n\t       \t2, 3 4";
-	Field fld = addr.ToString();
-	assert(fld == expectedField);
+	Field expected = "Address:\t1\n         \t2, 3 4\n";
+	Field actual = addr.ToString();
+	assert(expected == actual);
 }
 
 void test::TestAddress_ToFileString()
 {
+	Field expected = "1,2,3,4,";
 	Address addr("1", "2", "3", "4");
-	Field fld = addr.ToFileString();
-	assert(fld == "1,2,3,4");
+	Field actual = addr.ToFileString();
+	assert(expected==actual);
 }
 
 void test::TestAddress_ToFileString1()
 {
+	Field expected = "1 2 3 4 ";
 	Address addr("1", "2", "3", "4");
-	Field fld = addr.ToFileString(' ');
-	assert(fld == "1 2 3 4");
+	Field actual = addr.ToFileString(' ');
+	assert(expected == actual);
 }
 
 void test::TestAddress_ToCout()

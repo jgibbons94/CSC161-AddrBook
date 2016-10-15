@@ -17,12 +17,12 @@ Name::Name(const Field &  initialFirstName, const Field & initialLastName)
 
 Field Name::ToString() const
 {
-	return lastName + ", " + firstName;
+	return "Name:\t"+lastName + ", " + firstName+'\n';
 }
 
 Field Name::ToFileString(char delimeter) const
 {
-	return firstName + delimeter + lastName;
+	return firstName + delimeter + lastName+delimeter;
 }
 
 bool AddrBookLib::Name::ReadFromFile(std::ifstream & fileIn, char delimeter)
@@ -86,10 +86,12 @@ std::ostream & AddrBookLib::operator<<(ostream & os, const Name & name)
 	// TODO: insert return statement here
 	if (&os == _Ptr_cout)
 	{
-		os <<"Name:\t" << name.lastName << ", " << name.firstName<<endl;
+		os << name.ToString();
+		//os <<"Name:\t" << name.lastName << ", " << name.firstName<<endl;
 		return os;
 	}
-	os << name.firstName << ',' << name.lastName << ',';
+	os << name.ToFileString();
+	//os << name.firstName << ',' << name.lastName << ',';
 	return os;
 }
 

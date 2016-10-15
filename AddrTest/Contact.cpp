@@ -19,18 +19,18 @@ AddrBookLib::Contact::Contact(const Name & initialName, const Address & initialA
 //required but not used
 Field AddrBookLib::Contact::ToString() const
 {
-	return fullName.ToString() + '\n'
-		+ fullAddress.ToString() + '\n'
-		+ phone + '\n'
-		+ email + '\n'
-		+ birthday + '\n'
-		+ pictureFile + '\n';
+	return "    "+fullName.ToString()
+		+ " "+fullAddress.ToString()
+		+ "   Phone:\t"+phone + '\n'
+		+ "   Email:\t"+ email + '\n'
+		+ "Birthday:\t"+birthday + '\n'
+		+ "PictFile:\t"+pictureFile + '\n';
 }
 
 Field AddrBookLib::Contact::ToFileString(char delimeter) const
 {
-	return fullName.ToFileString(delimeter) + delimeter
-		+ fullAddress.ToFileString(delimeter) + delimeter
+	return fullName.ToFileString(delimeter)
+		+ fullAddress.ToFileString(delimeter)
 		+ phone + delimeter
 		+ email + delimeter
 		+ birthday + delimeter
@@ -113,14 +113,16 @@ ostream & AddrBookLib::operator<<(ostream & os, const Contact & contact)
 {
 	if (&os == _Ptr_cout)
 	{
-		os << "    " << contact.fullName;
+		os << contact.ToString();
+		/*os << "    " << contact.fullName;
 		os << " " << contact.fullAddress;
 		os <<"  "<< "Number:\t" << contact.phone << endl;
 		os <<"   "<<"Email:\t" << contact.email << endl;
 		os << "Birthday:\t" << contact.birthday << endl;
-		os << "PictFile:\t" << contact.pictureFile << endl;
+		os << "PictFile:\t" << contact.pictureFile << endl;*/
 		return os;
 	}
-	os << contact.fullName << contact.fullAddress << contact.phone << ',' << contact.email << ',' << contact.birthday << ',' << contact.pictureFile << ',';
+	//os << contact.fullName << contact.fullAddress << contact.phone << ',' << contact.email << ',' << contact.birthday << ',' << contact.pictureFile << ',';
+	os << contact.ToFileString();
 	return os;
 }

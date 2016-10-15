@@ -17,12 +17,12 @@ AddrBookLib::Address::Address(const Field & initialStreetAddress, const Field & 
 
 Field AddrBookLib::Address::ToString() const
 {
-	return "\tAddress :\t" + streetAddress + "\n\t       \t" + city + ", " + state + ' ' + zip;
+	return "Address:\t" + streetAddress + "\n         \t" + city + ", " + state + ' ' + zip+'\n';
 }
 
 Field AddrBookLib::Address::ToFileString(char delimeter) const
 {
-	return streetAddress + delimeter + city + delimeter + state + delimeter + zip;
+	return streetAddress + delimeter + city + delimeter + state + delimeter + zip+delimeter;
 }
 
 //return true on success, false otherwise.
@@ -49,10 +49,12 @@ ostream & AddrBookLib::operator<<(ostream & os, const Address & addr)
 {
 	if (&os == _Ptr_cout)
 	{
-		os << "Address:\t" << addr.streetAddress << "\n         \t" << addr.city << ", " << addr.state << " " << addr.zip << endl;
+		//os << "Address:\t" << addr.streetAddress << "\n         \t" << addr.city << ", " << addr.state << " " << addr.zip << endl;
+		os << addr.ToString();
 		return os;
 	}
-	os << addr.streetAddress << ',' << addr.city << ',' << addr.state << ',' << addr.zip << ',';
+	//os << addr.streetAddress << ',' << addr.city << ',' << addr.state << ',' << addr.zip << ',';
+	os << addr.ToFileString();
 	return os;
 }
 

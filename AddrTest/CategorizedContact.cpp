@@ -14,13 +14,8 @@ AddrBookLib::CategorizedContact::CategorizedContact(const Contact & initialConta
 
 AddrBookLib::Field AddrBookLib::CategorizedContact::ToString() const
 {
-	Field ret  = "\t Category:\t" + category + '\n';
-	      ret += "\t    Name :\t" + fullName.ToString() + '\n';
-	      ret += fullAddress.ToString() + '\n';
-	      ret += "\t   Phone :\t" + phone + '\n';
-          ret += "\t   Email :\t" + email + '\n';
-          ret += "\tBirthday :\t" + birthday + '\n';
-          ret += "\tPictFile :\t" + pictureFile + '\n';
+	Field ret  = "Category:\t" + category + '\n';
+	ret += Contact::ToString();
 	return ret;
 }
 
@@ -54,10 +49,12 @@ ostream & AddrBookLib::operator<<(ostream & os, const CategorizedContact & conta
 {
 	if (&os == _Ptr_cout)
 	{
-		os<< "Category:\t" << contact.category << endl;
-		os << (Contact)(contact);
+		/*os<< "Category:\t" << contact.category << endl;
+		os << (Contact)(contact);*/
+		os << contact.ToString();
 		return os;
 	}
-	os <<	contact.category << ',' << (Contact)(contact);
+	os << contact.ToFileString();
+	//os <<	contact.category << ',' << (Contact)(contact);
 	return os;
 }

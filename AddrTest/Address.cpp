@@ -45,6 +45,11 @@ bool AddrBookLib::operator==(const Address & addr1, const Address & addr2)
 		&& (addr1.zip == addr2.zip);
 }
 
+bool AddrBookLib::operator!=(const Address & addr1, const Address & addr2)
+{
+	return !(addr1 == addr2);
+}
+
 ostream & AddrBookLib::operator<<(ostream & os, const Address & addr)
 {
 	if (IsStandardOstream(&os))

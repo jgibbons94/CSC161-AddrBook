@@ -1,32 +1,32 @@
 /*
-	Name: Jesse Gibbons
- Course:              CSC161 - Section 001
- Program Name:        AddrBook Project 3
- Program Description: Address book program that utilizes contact categories.
- Program Date:		  September 29 2016
- Sources:
+	Name:					Jesse Gibbons
+	Course:					CSC161 - Section 001
+	Program Name:			AddrBook Project 3
+	Program Description:	Address book program that utilizes contact categories.
+	Program Date:			September 29 2016
+	Sources:
 
-   Main Source
-   Developer:		      Scott Miner
-   Scott's Source:      http://stackoverflow.com/questions/1798112/removing-leading-and-trailing-spaces-from-a-string,
-					  Jones, B. L., Aitken, P., & Miller, D. (2014). Sames Teach Yourself C Programming In One Hour a Day (7th ed.). Indianapolis, IN: Sams Publishing.
-					  Forouzan, B. A., & Gilberg, R. F. (2007). Computer science: A structured programming approach using C. Boston, MA: Thomson Course Technology.
+	Main Source
+	Developer:				Scott Miner
+	Scott's Source:			http://stackoverflow.com/questions/1798112/removing-leading-and-trailing-spaces-from-a-string,
+							Jones, B. L., Aitken, P., & Miller, D. (2014). Sames Teach Yourself C Programming In One Hour a Day (7th ed.). Indianapolis, IN: Sams Publishing.
+							Forouzan, B. A., & Gilberg, R. F. (2007). Computer science: A structured programming approach using C. Boston, MA: Thomson Course Technology.
 
-   New sources:       http://www.cplusplus.com/reference/thread/this_thread/sleep_for/
+   New sources:				http://www.cplusplus.com/reference/thread/this_thread/sleep_for/
 
 TODO in main
-for Project 2:		 1.  All strings that are Contact fields, need to be changed to Field class
-					 2.  Remove all getline functions and use >> on the Field object
-					 3.  Change the remove - instead of printing the entire Contact object for each, print Last, First for each one.
-					 4.  Change the print to print by category using the same format as Scott setup with this new sub-menu:
-						(a) Work
-						(b) Family
-						(c) Friends
-						(d) Other
-						(e) All Contacts
-					  5. Change address.csv to include the category name (not letter) for an 11th Field.
-					  6. Change to CategorizedContact not Contact
-					  7. Review the project #2 specs for compliance
+for Project 2:				1.  All strings that are Contact fields, need to be changed to Field class
+							2.  Remove all getline functions and use >> on the Field object
+							3.  Change the remove - instead of printing the entire Contact object for each, print Last, First for each one.
+							 4.  Change the print to print by category using the same format as Scott setup with this new sub-menu:
+								(a) Work
+								(b) Family
+								(c) Friends
+								(d) Other
+								(e) All Contacts
+							  5. Change address.csv to include the category name (not letter) for an 11th Field.
+							  6. Change to CategorizedContact not Contact
+							  7. Review the project #2 specs for compliance
 */
 //#define RUN_TESTS
 #include <iostream> //provides cout and cin

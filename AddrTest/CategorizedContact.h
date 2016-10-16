@@ -16,6 +16,8 @@ namespace AddrBookLib
 		ToString member function formatted for output window: string ToString();
 		ToFileString member function formatted for file: string ToFileString();
 		Implemented with a unique macro guard
+		Overloaded insertion operator (ostream <<)
+		Overloaded extraction operator (istream >>)
 	*/
 	class CategorizedContact :public Contact
 	{

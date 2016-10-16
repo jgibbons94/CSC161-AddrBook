@@ -1,3 +1,6 @@
+//CategorizedContactTests.cpp
+//Created by Jesse Gibbons
+
 #include <cassert>
 #include <iostream>
 #include <sstream>

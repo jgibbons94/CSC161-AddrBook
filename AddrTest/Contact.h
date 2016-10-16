@@ -17,6 +17,9 @@ namespace AddrBookLib
 		ToString member function formatted for output window: Field ToString();
 		ToFileString member function formatted for file: Field ToFileString();
 		Implemented with a unique macro guard
+		Overloaded logical operators
+		Overloaded insertion operator (ostream <<)
+		Overloaded extraction operator (istream >>)
 	*/
 	class Contact
 	{

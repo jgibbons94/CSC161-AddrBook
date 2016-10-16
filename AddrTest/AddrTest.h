@@ -1,4 +1,4 @@
-//MyFuncs.h
+//AddrTest.h
 //Written by Jesse Gibbons
 #ifndef MY_FUNCS_H
 #define MY_FUNCS_H

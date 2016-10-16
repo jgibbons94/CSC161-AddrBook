@@ -12,4 +12,6 @@ AddrTest/x64/Debug/AddrTest.tlog/
 *.orig
 *.exe
 AddrTest/Debug/
+AddrTest/Release/
+AddrTest/TESTS/
 AddrTest/x64/

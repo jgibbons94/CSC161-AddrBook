@@ -28,7 +28,7 @@ for Project 2:		 1.  All strings that are Contact fields, need to be changed to 
 					  6. Change to CategorizedContact not Contact
 					  7. Review the project #2 specs for compliance
 */
-//#define NO_TESTS
+//#define RUN_TESTS
 #include <iostream> //provides cout and cin
 #include <sstream>  //provides stringstream
 #include <string>
@@ -37,7 +37,7 @@ using namespace std;
 #include "AddrBook.h"
 #include "AddrTest.h"
 using namespace AddrBookLib;
-#ifndef NO_TESTS
+#ifdef RUN_TESTS
 #include "Tests.h"
 using namespace test;
 #endif
@@ -96,7 +96,7 @@ Field reduce(const Field& str, const Field& fill = " ", const Field& whitespace 
 
 int main(int argc, const char * argv[])
 {
-#ifndef NO_TESTS
+#ifdef RUN_TESTS
 	TestAll();
 	Delay(24000);
 #else

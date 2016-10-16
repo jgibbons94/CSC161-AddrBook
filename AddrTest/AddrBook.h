@@ -4,9 +4,9 @@
 #define ADDR_BOOK_H
 #include <string>
 #include "CategorizedContact.h"
-#ifndef NO_TESTS
+#ifdef RUN_TESTS
 #include "AddrBookTests.h"
-#endif // !NO_TESTS
+#endif // RUN_TESTS
 
 namespace AddrBookLib
 {
@@ -79,7 +79,7 @@ namespace AddrBookLib
 		void free();
 
 		//friend functions
-		#ifndef NO_TESTS
+		#ifdef RUN_TESTS
 		friend void test::TestAddrBook_CopyConstructor();
 		friend void test::TestAddrBook_Destructor();
 		friend void test::TestAddrBook_Assignment0();

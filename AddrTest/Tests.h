@@ -7,7 +7,7 @@
 namespace test
 {
 	// behind the scenes rigorous tests
-	// main() calls these tests and exits if NO_TESTS is not defined.
+	// main() calls these tests and exits if RUN_TESTS is not defined.
 
 	void TestAll();
 

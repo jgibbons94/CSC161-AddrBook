@@ -171,7 +171,9 @@
     <ClCompile Include="AddrBookTests.cpp" />
     <ClCompile Include="Address.cpp" />
     <ClCompile Include="AddressTests.cpp" />
-    <ClCompile Include="AddrTest.cpp" />
+    <ClCompile Include="AddrTest.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='TESTS|x64'">RUN_TESTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
     <ClCompile Include="CategorizedContact.cpp" />
     <ClCompile Include="CategorizedContactTests.cpp" />
     <ClCompile Include="Contact.cpp" />

@@ -117,6 +117,7 @@ void AddrBookLib::AddrBook::ReadFile(const string & fileName)
 		// read format fname1,lname1,street address1,city1,state1,zip1,phone1,email1,bday1,picture file1,
 		//if (tmpContact.ReadFromFile(fileIn, delim))
 		fileIn >> tmpContact;
+		if (!fileIn.fail())
 			AddContact(tmpContact);
 	}
 	fileIn.close();

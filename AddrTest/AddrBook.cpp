@@ -24,13 +24,6 @@ AddrBook::AddrBook(int initialSize)
 
 AddrBookLib::AddrBook::AddrBook(const AddrBook & oldAddrBook)
 {
-	/*
-	//in case it is full, add 1 to size to make the first addContact() easier.
-	size = oldAddrBook.size + 1;
-	used = oldAddrBook.used;
-	content = new CategorizedContact[size];
-	copy(oldAddrBook.content, oldAddrBook.content + oldAddrBook.size, content);
-	*/
 	*this = oldAddrBook;
 }
 
@@ -46,7 +39,6 @@ void AddrBookLib::AddrBook::AddContact(const CategorizedContact & itemToAdd)
 		content[used++] = itemToAdd;
 }
 
-/*required but not used.*/
 void AddrBookLib::AddrBook::RemoveContact(const CategorizedContact & itemToRemove)
 {
 	int index = FindContact(itemToRemove);
@@ -54,7 +46,6 @@ void AddrBookLib::AddrBook::RemoveContact(const CategorizedContact & itemToRemov
 		RemoveByIndex(index);
 }
 
-/*required but not used*/
 int AddrBookLib::AddrBook::FindContact(const CategorizedContact & itemToFind) const
 {
 	for (int i = 0; i < used; i++)
@@ -71,7 +62,6 @@ void AddrBookLib::AddrBook::RemoveByIndex(int indexToRemove)
 		content[indexToRemove] = content[--used];
 }
 
-/*required but not used*/
 CategorizedContact AddrBookLib::AddrBook::GetContact(int index) const
 {
 	return content[index];
@@ -114,8 +104,7 @@ void AddrBookLib::AddrBook::ReadFile(const string & fileName)
 	}
 	while (!fileIn.fail())
 	{
-		// read format fname1,lname1,street address1,city1,state1,zip1,phone1,email1,bday1,picture file1,
-		//if (tmpContact.ReadFromFile(fileIn, delim))
+		//read format fname1,lname1,street address1,city1,state1,zip1,phone1,email1,bday1,picture file1,
 		fileIn >> tmpContact;
 		if (!fileIn.fail())
 			AddContact(tmpContact);

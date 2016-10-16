@@ -87,7 +87,6 @@ void test::TestCategorizedContact_ToString()
 	Field actual = contact.ToString();
 	Field expected = "\tCategory:\tfamily\n\t    Name:\tSchneider, Julie\n\t Address:\t13300 W 6th Ave.\n\t         \tLakewood, Colorado 80228\n\t   Phone:\t303 - 914 - 6247\n\t   Email:\tjulie.schneider@rrcc.edu\n\tBirthday:\tFeb. 3\n\tPictFile:\tjulie.jpg\n";
 	assert(actual == expected);
-	//test::ReportMissingTest("TestCategorizedContact_ToString");
 }
 
 void test::TestCategorizedContact_ToFileString()

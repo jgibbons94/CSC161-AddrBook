@@ -46,11 +46,3 @@ std::istream & AddrBookLib::operator >> (std::istream & is, Field & field)
 	getline(is, field, ',');
 	return is;
 }
-
-/*std::ifstream & AddrBookLib::operator >> (std::ifstream & ifs, Field & field)
-{
-	if (ifs.peek() == '\n')
-		ifs.ignore();
-	getline(ifs, field, ',');
-	return ifs;
-}*/

@@ -29,12 +29,10 @@ Field AddrBookLib::Address::ToFileString(char delimeter) const
 void AddrBookLib::Address::ReadFromFile(std::istream & fileIn)
 {
 	//get input in format: street address1,city1,state1,zip1,
-	//bool retVal = true;
 	fileIn >> streetAddress;
 	fileIn >> city;
 	fileIn >> state;
 	fileIn >> zip;
-	//return retVal && !fileIn.fail();
 }
 
 bool AddrBookLib::operator==(const Address & addr1, const Address & addr2)
@@ -54,11 +52,9 @@ ostream & AddrBookLib::operator<<(ostream & os, const Address & addr)
 {
 	if (IsStandardOstream(&os))
 	{
-		//os << "Address:\t" << addr.streetAddress << "\n         \t" << addr.city << ", " << addr.state << " " << addr.zip << endl;
 		os << addr.ToString();
 		return os;
 	}
-	//os << addr.streetAddress << ',' << addr.city << ',' << addr.state << ',' << addr.zip << ',';
 	os << addr.ToFileString();
 	return os;
 }

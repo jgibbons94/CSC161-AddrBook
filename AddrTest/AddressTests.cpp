@@ -217,5 +217,5 @@ void test::TestAddress_FromIstream()
 	Address actual;
 	//act
 	in >> actual;
-	//assert(expected == actual);
+	assert(expected == actual);
 }

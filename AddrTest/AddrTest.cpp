@@ -28,7 +28,6 @@ for Project 2:				1.  All strings that are Contact fields, need to be changed to
 							  6. Change to CategorizedContact not Contact
 							  7. Review the project #2 specs for compliance
 */
-//#define RUN_TESTS
 #include <iostream> //provides cout and cin
 #include <sstream>  //provides stringstream
 #include <string>
@@ -68,20 +67,10 @@ void printUsed(AddrBook& myAddrBook);
 void removeContacts(AddrBook& myAddrBook);
 //Postcondition: If the entry is a valid entry, the entry is removed from the address book
 
-//Field CategoryFromChoice(char choice, const Field & fldDefault = "Other");
-//parameter: choice
-// A choice from MenuCategory()
-//parameter: fldDefault
-// The default return value if not from the menu
-//Postcondition: Returns a Field represented by the given choice
 
 
 //helpers
 
-//void delay(int milliseconds = 2000);
-//Postcondition: The program is delayed for the specified amount of time in milliseconds
-//param: milliseconds: the amount of time to delay
-//milliseconds default: 2000 milliseconds = 2 seconds
 
 
 Field trim(const Field& str, const Field& whitespace = " \t");
@@ -124,7 +113,6 @@ int main(int argc, const char * argv[])
 		case 3:
 		{
 			Field choice = GetCategoryFromUser(true, "All");
-			//char choice = MenuCategory(true);
 			cout << "\n\tPrinting...\n\n";
 			Delay();
 			if (choice == "All") // print all contacts
@@ -198,98 +186,9 @@ void addNewContact(AddrBook& myAddrBook)
 	Field answer;
 
 	cout << "\n";
-	/*
-	//if the address book is full, alert the user
-	//but the address book shouldn't ever be full again!
-	if (myAddrBook.GetUsed() >= MAX_ADDRBOOK_SIZE)
-	{
-		cout << "\t****************************************************************\n";
-		cout << "\t*                                                              *\n";
-		cout << "\t*   Address Book is full.                                      *\n";
-		cout << "\t*   Please remove 1 or more entries before adding any more.    *\n";
-		cout << "\t*                                                              *\n";
-		cout << "\t****************************************************************\n";
-		cout << "\n\tReturning to Main Menu....\n\n";
-		delay();
-		return;
-	}*/
+
 	cin >> newContact;
-	/*
-	//Have the user specify the new contact's category.
-	answer = AddrBookLib::GetCategoryFromUser(false);
-	newContact.SetCategory(answer);
 
-	cout << "\t****************************************************************\n";
-	cout << "\t*\n";
-	cout << "\t*\n";
-
-	// Get all the contact user from the user, trim and reduce white space, set contact information for the new contact
-	cout << "\t*   Enter First Name: ";
-	cin >> answer;
-	answer = reduce(answer);
-	newName.SetFirstName(answer);
-	cout << "\t*\n";
-
-	cout << "\t*   Enter Last Name: ";
-	cin >> answer;
-	answer = reduce(answer);
-	newName.SetLastName(answer);
-	cout << "\t*\n";
-
-	cout << "\t*   Enter Street Address: ";
-	cin >> answer;
-	answer = reduce(answer);
-	newAddress.SetStreetAddress(answer);
-	cout << "\t*\n";
-
-	cout << "\t*   Enter City: ";
-	cin >> answer;
-	answer = reduce(answer);
-	newAddress.SetCity(answer);
-	cout << "\t*\n";
-
-	cout << "\t*   Enter State: ";
-	cin >> answer;
-	answer = reduce(answer);
-	newAddress.SetState(answer);
-	cout << "\t*\n";
-
-	cout << "\t*   Enter Zip: ";
-	cin >> answer;
-	answer = trim(answer);
-	newAddress.SetZip(answer);
-	cout << "\t*\n";
-
-	cout << "\t*   Enter Phone Number: ";
-	cin >> answer;
-	answer = trim(answer);
-	newContact.SetPhone(answer);
-	cout << "\t*\n";
-
-	cout << "\t*   Enter Email Address: ";
-	cin >> answer;
-	answer = trim(answer);
-	newContact.SetEmail(answer);
-	cout << "\t*\n";
-
-	cout << "\t*   Enter Birthday: ";
-	cin >> answer;
-	answer = trim(answer);
-	newContact.SetBirthday(answer);
-	cout << "\t*\n";
-
-	cout << "\t*   Enter Picture File: ";
-	cin >> answer;
-	answer = trim(answer);
-	newContact.SetPictureFile(answer);
-	cout << "\t*\n";
-
-	cout << "\t****************************************************************\n\n";
-
-	//update full name and address for the new contact
-	newContact.SetFullName(newName);
-	newContact.SetFullAddress(newAddress);
-	*/
 	//add the contact to the address book
 	myAddrBook.AddContact(newContact);
 

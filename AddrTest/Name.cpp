@@ -27,10 +27,8 @@ Field Name::ToFileString(char delimeter) const
 
 void AddrBookLib::Name::ReadFromFile(std::istream & fileIn)
 {
-	//bool retVal = true;
 	fileIn >> firstName;
 	fileIn >> lastName;
-	//return retVal && !fileIn.fail();
 }
 
 bool AddrBookLib::operator==(const Name & a, const Name & b)
@@ -67,7 +65,6 @@ bool AddrBookLib::operator<=(const Name & a, const Name & b)
 
 istream & AddrBookLib::operator>> (istream & is, Name & name)
 {
-	// TODO: insert return statement here
 	if (IsStandardIstream(&is))
 	{
 		cout << "\tPlease enter a first name: ";
@@ -83,16 +80,11 @@ istream & AddrBookLib::operator>> (istream & is, Name & name)
 
 std::ostream & AddrBookLib::operator<<(ostream & os, const Name & name)
 {
-	// TODO: insert return statement here
 	if (IsStandardOstream(&os))
 	{
 		os << name.ToString();
-		//os <<"Name:\t" << name.lastName << ", " << name.firstName<<endl;
 		return os;
 	}
 	os << name.ToFileString();
-	//os << name.firstName << ',' << name.lastName << ',';
 	return os;
 }
-
-

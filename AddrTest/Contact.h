@@ -65,7 +65,7 @@ namespace AddrBookLib
 		friend bool operator>=(const Contact & a, const Contact & b);
 		friend bool operator<(const Contact & a, const Contact & b);
 		friend bool operator<=(const Contact & a, const Contact & b);
-		friend istream& operator>> (istream & is, Contact & contact);
+		friend istream& operator >> (istream & is, Contact & contact);
 		friend ostream& operator<<(ostream& os, const Contact & contact);
 
 	protected:

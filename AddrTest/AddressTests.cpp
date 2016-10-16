@@ -128,7 +128,7 @@ void test::TestAddress_ToFileString()
 	Field expected = "1,2,3,4,";
 	Address addr("1", "2", "3", "4");
 	Field actual = addr.ToFileString();
-	assert(expected==actual);
+	assert(expected == actual);
 }
 
 void test::TestAddress_ToFileString1()
@@ -151,7 +151,7 @@ void test::TestAddress_ToCout()
 	//set up what we will test
 	Field actual;
 	Field expected = "\t Address:\tNumber 4 Privet Drive\n\t         \tLittle Winging, England UK-50968\n";
-	Address addr("Number 4 Privet Drive","Little Winging","England","UK-50968");
+	Address addr("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
 	//act
 	//*strOut should look like std::cout.
 	*strOut << addr;

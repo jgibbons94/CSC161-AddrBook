@@ -30,8 +30,8 @@ namespace AddrBookLib
 		AddrBook(int initialSize = 2);
 		AddrBook(const AddrBook & oldAddrBook);
 		~AddrBook();
-		
-		
+
+
 		// no Set methods
 
 		// Get methods

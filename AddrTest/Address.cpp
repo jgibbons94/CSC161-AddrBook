@@ -17,12 +17,12 @@ AddrBookLib::Address::Address(const Field & initialStreetAddress, const Field & 
 
 Field AddrBookLib::Address::ToString() const
 {
-	return "\t Address:\t" + streetAddress + "\n\t         \t" + city + ", " + state + ' ' + zip+'\n';
+	return "\t Address:\t" + streetAddress + "\n\t         \t" + city + ", " + state + ' ' + zip + '\n';
 }
 
 Field AddrBookLib::Address::ToFileString(char delimeter) const
 {
-	return streetAddress + delimeter + city + delimeter + state + delimeter + zip+delimeter;
+	return streetAddress + delimeter + city + delimeter + state + delimeter + zip + delimeter;
 }
 
 //return true on success, false otherwise.

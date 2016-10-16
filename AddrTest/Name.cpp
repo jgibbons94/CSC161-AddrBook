@@ -17,12 +17,12 @@ Name::Name(const Field &  initialFirstName, const Field & initialLastName)
 
 Field Name::ToString() const
 {
-	return "\t    Name:\t"+lastName + ", " + firstName+'\n';
+	return "\t    Name:\t" + lastName + ", " + firstName + '\n';
 }
 
 Field Name::ToFileString(char delimeter) const
 {
-	return firstName + delimeter + lastName+delimeter;
+	return firstName + delimeter + lastName + delimeter;
 }
 
 void AddrBookLib::Name::ReadFromFile(std::istream & fileIn)
@@ -63,7 +63,7 @@ bool AddrBookLib::operator<=(const Name & a, const Name & b)
 	return !(a > b);
 }
 
-istream & AddrBookLib::operator>> (istream & is, Name & name)
+istream & AddrBookLib::operator >> (istream & is, Name & name)
 {
 	if (IsStandardIstream(&is))
 	{

@@ -12,21 +12,21 @@
 							Jones, B. L., Aitken, P., & Miller, D. (2014). Sames Teach Yourself C Programming In One Hour a Day (7th ed.). Indianapolis, IN: Sams Publishing.
 							Forouzan, B. A., & Gilberg, R. F. (2007). Computer science: A structured programming approach using C. Boston, MA: Thomson Course Technology.
 
-   New sources:				http://www.cplusplus.com/reference/thread/this_thread/sleep_for/
+	New sources:				http://www.cplusplus.com/reference/thread/this_thread/sleep_for/
 
-TODO in main
-for Project 2:				1.  All strings that are Contact fields, need to be changed to Field class
-							2.  Remove all getline functions and use >> on the Field object
-							3.  Change the remove - instead of printing the entire Contact object for each, print Last, First for each one.
-							 4.  Change the print to print by category using the same format as Scott setup with this new sub-menu:
-								(a) Work
-								(b) Family
-								(c) Friends
-								(d) Other
-								(e) All Contacts
-							  5. Change address.csv to include the category name (not letter) for an 11th Field.
-							  6. Change to CategorizedContact not Contact
-							  7. Review the project #2 specs for compliance
+	TODO in main
+	for Project 2:				1.  All strings that are Contact fields, need to be changed to Field class
+								2.  Remove all getline functions and use >> on the Field object
+								3.  Change the remove - instead of printing the entire Contact object for each, print Last, First for each one.
+								4.  Change the print to print by category using the same format as Scott setup with this new sub-menu:
+									(a) Work
+									(b) Family
+									(c) Friends
+									(d) Other
+									(e) All Contacts
+								5. Change address.csv to include the category name (not letter) for an 11th Field.
+								6. Change to CategorizedContact not Contact
+								7. Review the project #2 specs for compliance
 */
 #include <iostream> //provides cout and cin
 #include <sstream>  //provides stringstream

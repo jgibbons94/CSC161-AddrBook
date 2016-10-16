@@ -36,7 +36,7 @@ void AddrBookLib::AddrBook::AddContact(const CategorizedContact & itemToAdd)
 {
 	if (used >= size)
 		alloc(2);
-		content[used++] = itemToAdd;
+	content[used++] = itemToAdd;
 }
 
 void AddrBookLib::AddrBook::RemoveContact(const CategorizedContact & itemToRemove)
@@ -71,7 +71,7 @@ void AddrBookLib::AddrBook::PrintAllContacts() const
 {
 	for (int i = 0; i < used; i++)
 	{
-		cout << '\t'<<(i + 1) << ")\n";
+		cout << '\t' << (i + 1) << ")\n";
 		cout << content[i].ToString() << endl << endl;
 		//wait half a second between displaying contacts
 		//adjustable if this is too fast or slow.
@@ -150,8 +150,8 @@ AddrBook & AddrBookLib::AddrBook::operator=(const AddrBook & newAddrBook)
 void AddrBookLib::AddrBook::alloc(int sizeIncrease)
 {
 	CategorizedContact * tmpContent = new CategorizedContact[size + sizeIncrease];
-	if(content != NULL)
-	copy(content, content + size, tmpContent);
+	if (content != NULL)
+		copy(content, content + size, tmpContent);
 	free();
 	size += sizeIncrease;
 	content = tmpContent;

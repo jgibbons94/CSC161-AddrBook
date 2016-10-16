@@ -14,7 +14,7 @@ AddrBookLib::CategorizedContact::CategorizedContact(const Contact & initialConta
 
 AddrBookLib::Field AddrBookLib::CategorizedContact::ToString() const
 {
-	Field ret  = "\tCategory:\t" + category + '\n';
+	Field ret = "\tCategory:\t" + category + '\n';
 	ret += Contact::ToString();
 	return ret;
 }
@@ -34,7 +34,7 @@ istream & AddrBookLib::operator >> (istream & is, CategorizedContact & contact)
 {
 	if (IsStandardIstream(&is))
 	{
-		contact.category = GetCategoryFromUser(false, "Other",is);
+		contact.category = GetCategoryFromUser(false, "Other", is);
 
 		Contact * c = &contact;
 		is >> *c;

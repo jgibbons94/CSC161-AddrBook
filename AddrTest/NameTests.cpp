@@ -53,7 +53,7 @@ void test::TestName_Constructor0()
 	Name name2;
 	name2.SetFirstName("");
 	name2.SetFirstName("");
-	assert(name1==name2);
+	assert(name1 == name2);
 }
 
 void test::TestName_Constructor1()
@@ -62,7 +62,7 @@ void test::TestName_Constructor1()
 	Name name2;
 	name2.SetFirstName("foo");
 	name2.SetLastName("");
-	assert(name1==name2);
+	assert(name1 == name2);
 }
 
 void test::TestName_Constructor2()
@@ -71,7 +71,7 @@ void test::TestName_Constructor2()
 	Name name2;
 	name2.SetFirstName("foo");
 	name2.SetLastName("bar");
-	assert(name1==name2);
+	assert(name1 == name2);
 }
 
 void test::TestName_GetFirstName()

@@ -41,7 +41,7 @@ namespace AddrBookLib
 		// postcondition: the fields of this contact object are read from a file.
 		// returns false if the ifstream is not valid by the end of the function
 		// returns true otherwise
-		friend istream& operator>> (istream& is, CategorizedContact& contact);
+		friend istream& operator >> (istream& is, CategorizedContact& contact);
 		friend ostream& operator<< (ostream& os, const CategorizedContact& contact);
 
 	private:

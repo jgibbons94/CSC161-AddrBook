@@ -103,7 +103,7 @@ void test::TestCategorizedContact_ToFileString1()
 }
 
 void test::TestCategorizedContact_ToCout()
-{	
+{
 	//setup
 	//In theory we should be able to change cout by changing _Ptr_cout.
 	//Keep a temporary pointer to the old cout.
@@ -142,7 +142,7 @@ void test::TestCategorizedContact_ToOstream()
 {
 	//setup
 	ostringstream out;
-	
+
 	//set up what we will test
 	Field actual;
 	Field expected = "Other,Harry,Potter,Number 4 Privet Drive,Little Winging,England,UK-50968,555-427-7907,Harry@rowling.jk,July 31 1980,/dev/null,";

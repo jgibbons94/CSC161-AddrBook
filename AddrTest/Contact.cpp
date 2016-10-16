@@ -20,10 +20,10 @@ Field AddrBookLib::Contact::ToString() const
 {
 	return fullName.ToString()
 		+ fullAddress.ToString()
-		+ "\t   Phone:\t"+phone + '\n'
-		+ "\t   Email:\t"+ email + '\n'
-		+ "\tBirthday:\t"+birthday + '\n'
-		+ "\tPictFile:\t"+pictureFile + '\n';
+		+ "\t   Phone:\t" + phone + '\n'
+		+ "\t   Email:\t" + email + '\n'
+		+ "\tBirthday:\t" + birthday + '\n'
+		+ "\tPictFile:\t" + pictureFile + '\n';
 }
 
 Field AddrBookLib::Contact::ToFileString(char delimeter) const

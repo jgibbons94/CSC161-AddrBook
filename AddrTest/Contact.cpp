@@ -92,13 +92,13 @@ istream & AddrBookLib::operator >> (istream & is, Contact & contact)
 	{
 		is >> contact.fullName;
 		is >> contact.fullAddress;
-		cout << "\tPlease enter a phone number: " << endl;
+		cout << "\tPlease enter a phone number: ";
 		is >> contact.phone;
-		cout << "\tPlease enter an email address: " << endl;
+		cout << "\tPlease enter an email address: ";
 		is >> contact.email;
-		cout << "\tPlease enter a birthday: " << endl;
+		cout << "\tPlease enter a birthday: ";
 		is >> contact.birthday;
-		cout << "\tPlease enter a picture file: " << endl;
+		cout << "\tPlease enter a picture file: ";
 		is >> contact.pictureFile;
 		return is;
 	}

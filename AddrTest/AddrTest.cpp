@@ -416,7 +416,7 @@ Field AddrBookLib::GetCategoryFromUser(bool get, Field fldDefault, std::istream 
 
 	cout << "\t*                                                              *" << endl;
 	cout << "\t****************************************************************" << endl;
-	cout << "\n\tPlease enter your selection: " << endl;
+	cout << "\n\tPlease enter your selection: ";
 	is >> reply;
 
 	//converts the number into an integer for processing

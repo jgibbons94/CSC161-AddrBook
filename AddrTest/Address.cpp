@@ -62,13 +62,13 @@ istream & AddrBookLib::operator >> (istream & is, Address & addr)
 {
 	if (IsStandardIstream(&is))
 	{
-		cout << "\tPlease enter a street address: " << endl;
+		cout << "\tPlease enter a street address: ";
 		is >> addr.streetAddress;
-		cout << "\tPlease enter a city: " << endl;
+		cout << "\tPlease enter a city: ";
 		is >> addr.city;
-		cout << "\tPlease enter a state: " << endl;
+		cout << "\tPlease enter a state: ";
 		is >> addr.state;
-		cout << "\tPlease enter a zip code: " << endl;
+		cout << "\tPlease enter a zip code: ";
 		is >> addr.zip;
 		return is;
 	}

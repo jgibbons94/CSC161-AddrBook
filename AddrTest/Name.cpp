@@ -70,9 +70,9 @@ istream & AddrBookLib::operator>> (istream & is, Name & name)
 	// TODO: insert return statement here
 	if (IsStandardIstream(&is))
 	{
-		cout << "\tPlease enter a first name: " << endl;
+		cout << "\tPlease enter a first name: ";
 		is >> name.firstName;
-		cout << "\tPlease enter a last name: " << endl;
+		cout << "\tPlease enter a last name: ";
 		is >> name.lastName;
 		return is;
 	}

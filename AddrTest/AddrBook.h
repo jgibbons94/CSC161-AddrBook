@@ -4,10 +4,9 @@
 #define ADDR_BOOK_H
 #include <string>
 #include "CategorizedContact.h"
-#ifdef RUN_TESTS
+#ifdef ADDRBOOK_TEST_FRIENDS
 #include "AddrBookTests.h"
-#endif // RUN_TESTS
-
+#endif
 namespace AddrBookLib
 {
 	/*
@@ -79,7 +78,9 @@ namespace AddrBookLib
 		void free();
 
 		//friend functions
-		#ifdef RUN_TESTS
+#ifdef ADDRBOOK_TEST_FRIENDS
+		//Tests to make sure memory management works.
+		//Requires access to private members.
 		friend void test::TestAddrBook_CopyConstructor();
 		friend void test::TestAddrBook_Destructor();
 		friend void test::TestAddrBook_Assignment0();

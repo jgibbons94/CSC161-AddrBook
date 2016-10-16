@@ -4,6 +4,11 @@ using namespace std;
 
 #include "AddrBookTests.h"
 
+//We don't need AddrBook to include AddrTests unless we are compiling the friend functions.
+#ifndef ADDRBOOK_TEST_FRIENDS
+#define ADDRBOOK_TEST_FRIENDS
+#endif
+
 #include "AddrBook.h"
 #include "Contact.h"
 using namespace AddrBookLib;

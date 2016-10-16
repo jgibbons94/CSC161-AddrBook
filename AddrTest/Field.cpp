@@ -15,7 +15,7 @@ AddrBookLib::Field::Field(const std::string & str) : string(str)
 AddrBookLib::Field AddrBookLib::Field::ToUpper() const
 {
 	Field value(data());
-	for (int i = 0; i < value.size();i++)
+	for (size_t i = 0; i < value.size();i++)
 	{
 		value[i] = toupper(value[i]);
 	}
@@ -25,7 +25,7 @@ AddrBookLib::Field AddrBookLib::Field::ToUpper() const
 AddrBookLib::Field AddrBookLib::Field::ToLower() const
 {
 	Field value(data());
-	for (int i = 0; i < value.size();i++)
+	for (size_t i = 0; i < value.size();i++)
 	{
 		value[i] = tolower(value[i]);
 	}

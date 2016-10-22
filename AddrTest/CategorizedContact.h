@@ -37,12 +37,10 @@ namespace AddrBookLib
 		Field ToFileString(char delimeter = ',') const;
 		//in
 		void ReadFromFile(std::istream & fileIn);
-		// precondition: fileIn is a valid ifstream
-		// postcondition: the fields of this contact object are read from a file.
-		// returns false if the ifstream is not valid by the end of the function
-		// returns true otherwise
-		friend istream& operator >> (istream& is, CategorizedContact& contact);
-		friend ostream& operator<< (ostream& os, const CategorizedContact& contact);
+
+		// In the following, logic is applied to check if the streams are standard c++ streams defined in <iostream>
+		friend istream& operator>>(istream& is, CategorizedContact& contact);
+		friend ostream& operator<<(ostream& os, const CategorizedContact& contact);
 
 	private:
 		Field category;

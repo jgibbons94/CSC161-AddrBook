@@ -65,7 +65,9 @@ namespace AddrBookLib
 		friend bool operator>=(const Contact & a, const Contact & b);
 		friend bool operator<(const Contact & a, const Contact & b);
 		friend bool operator<=(const Contact & a, const Contact & b);
-		friend istream& operator >> (istream & is, Contact & contact);
+
+		// In the following, logic is applied to check if the streams are standard c++ streams defined in <iostream>
+		friend istream& operator>>(istream & is, Contact & contact);
 		friend ostream& operator<<(ostream& os, const Contact & contact);
 
 	protected:

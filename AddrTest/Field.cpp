@@ -32,7 +32,7 @@ AddrBookLib::Field AddrBookLib::Field::ToLower() const
 	return value;
 }
 
-std::istream & AddrBookLib::operator >> (std::istream & is, Field & field)
+std::istream & AddrBookLib::operator>>(std::istream & is, Field & field)
 {
 	if (IsStandardIstream(&is))
 	{

@@ -49,12 +49,10 @@ namespace AddrBookLib
 
 		friend bool operator==(const Address& addr1, const Address& addr2);
 		friend bool operator!=(const Address& addr1, const Address& addr2);
-		// precondition: fileIn is a valid ifstream
-		// postcondition: the fields of this contact object are read from a file.
-		// returns false if the ifstream is not valid by the end of the function
-		// returns true otherwise
+
+		// In the following, logic is applied to check if the streams are standard c++ streams defined in <iostream>
 		friend ostream& operator<<(ostream& os, const Address& addr);
-		friend istream& operator >> (istream& is, Address& addr);
+		friend istream& operator>>(istream& is, Address& addr);
 
 	private:
 		Field streetAddress;

@@ -50,6 +50,8 @@ namespace AddrBookLib
 		friend bool operator>=(const Name & a, const Name & b);
 		friend bool operator<(const Name & a, const Name & b);
 		friend bool operator<=(const Name & a, const Name & b);
+		
+		// In the following, logic is applied to check if the streams are standard c++ streams defined in <iostream>
 		friend istream& operator >> (istream & is, Name & name);
 		friend ostream& operator<<(ostream& os, const Name& name);
 	private:

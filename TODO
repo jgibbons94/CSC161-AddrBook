@@ -81,6 +81,8 @@ Name, Address, Contact and CategorizedContact class modifications - operators
 		+ Divide the unit tests into different files in the tests folder (to keep the tests separated from the code).
 		+ Set up a compiler mode that runs the unit tests
 	+ Fix whatever was wrong with project 2
+	+ Changed AddrBook copy constructor to be independent of AddrBook assignment operator.
+	+ Fixed a false assumption in the assignment operator test.
 	- clean up
 		+ Make sure all source say I wrote them
 		+ Make sure all headers have class descriptions.

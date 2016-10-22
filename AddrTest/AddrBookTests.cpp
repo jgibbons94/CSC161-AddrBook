@@ -67,14 +67,24 @@ void test::TestAddrBook_Assignment0()
 void test::TestAddrBook_Assignment1()
 {
 	AddrBook book1;
+	CategorizedContact contact0;
+	contact0.SetCategory("Category");
+	book1.AddContact(contact0);
 	CategorizedContact* contacts = book1.content;
 	AddrBook book2;
 	bool test = false;
 	book1 = book2;
 	try
 	{
-		CategorizedContact contact = contacts[0];
-		cerr << "Did not properly delete book1.contacts during assignment operator." << endl;
+		//operator= calls free() almost immediately before it calls alloc().
+		//There is a chance the address of contacts does not change when this happens.
+		//if book1 deleted its contacts and was set to empty book2, contact0 should not be anything like contact1
+		//It follows that if contact0.GetCategory() == contact1.GetCategory(), then there is a memory leak.
+		CategorizedContact contact1 = contacts[0];
+		if (contact0.GetCategory() == contact1.GetCategory())
+			cerr << "Did not properly delete book1.contacts during assignment operator." << endl;
+		else
+			test = true;
 	}
 	catch (...)
 	{

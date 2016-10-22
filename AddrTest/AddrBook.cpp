@@ -24,7 +24,12 @@ AddrBook::AddrBook(int initialSize)
 
 AddrBookLib::AddrBook::AddrBook(const AddrBook & oldAddrBook)
 {
-	*this = oldAddrBook;
+	size = oldAddrBook.size;
+	if (oldAddrBook.size == oldAddrBook.used || oldAddrBook.size == 0)
+		size++;
+	used = oldAddrBook.used;
+	content = new CategorizedContact[size];
+	copy(oldAddrBook.content, oldAddrBook.content + oldAddrBook.size, content);
 }
 
 AddrBookLib::AddrBook::~AddrBook()
@@ -140,7 +145,9 @@ AddrBook & AddrBookLib::AddrBook::operator=(const AddrBook & newAddrBook)
 	// Do it anyway if it isn't full!
 	if (this == &newAddrBook) return *this;
 	free();
-	size = newAddrBook.size + 1;
+	size = newAddrBook.size;
+	if (newAddrBook.size == newAddrBook.used)
+		size++;
 	used = newAddrBook.used;
 	content = new CategorizedContact[size];
 	copy(newAddrBook.content, newAddrBook.content + newAddrBook.size, content);

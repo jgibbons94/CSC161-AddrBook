@@ -10,6 +10,7 @@ using namespace std;
 using namespace AddrBookLib;
 
 #include "NameTests.h"
+#include "ComparisonTests.h"
 
 void test::TestName()
 {
@@ -27,24 +28,27 @@ void test::TestName()
 	TestName_ToOstream();
 	TestName_FromCin();
 	TestName_FromIstream();
-	TestName_equality0();
-	TestName_equality1();
-	TestName_equality2();
-	TestName_inequality0();
-	TestName_inequality1();
-	TestName_inequality2();
-	TestName_gt0();
-	TestName_gt1();
-	TestName_gt2();
-	TestName_gte0();
-	TestName_gte1();
-	TestName_gte2();
-	TestName_lt0();
-	TestName_lt1();
-	TestName_lt2();
-	TestName_lte0();
-	TestName_lte1();
-	TestName_lte2();
+	TestName_AllComparison();
+
+
+	//TestName_equality0();
+	//TestName_equality1();
+	//TestName_equality2();
+	//TestName_inequality0();
+	//TestName_inequality1();
+	//TestName_inequality2();
+	//TestName_gt0();
+	//TestName_gt1();
+	//TestName_gt2();
+	//TestName_gte0();
+	//TestName_gte1();
+	//TestName_gte2();
+	//TestName_lt0();
+	//TestName_lt1();
+	//TestName_lt2();
+	//TestName_lte0();
+	//TestName_lte1();
+	//TestName_lte2();
 }
 
 void test::TestName_Constructor0()
@@ -201,110 +205,117 @@ void test::TestName_FromIstream()
 	assert(expected == actual);
 }
 
-void test::TestName_equality0()
+void test::TestName_AllComparison()
 {
-	Name a("Alice", "Andersen"), b("Blake", "Buster");
-	assert(!(a == b));
+	Name a("Alice", "Andersen"), b("Blake", "Buster"), c("Catherine", "Coolidge");
+	RunAllInEqTests(a, b, c);
 }
 
-void test::TestName_equality1()
-{
-	Name a("Blake", "Buster"), b("Blake", "Buster");
-	assert(a == b);
-}
-
-void test::TestName_equality2()
-{
-	Name a("Catherine", "Coolidge"), b("Blake", "Buster");
-	assert(!(a == b));
-}
-
-void test::TestName_inequality0()
-{
-	Name a("Alice", "Andersen"), b("Blake", "Buster");
-	assert(a != b);
-}
-
-void test::TestName_inequality1()
-{
-	Name a("Blake", "Buster"), b("Blake", "Buster");
-	assert(!(a != b));
-}
-
-void test::TestName_inequality2()
-{
-	Name a("Catherine", "Coolidge"), b("Blake", "Buster");
-	assert(a != b);
-}
-
-void test::TestName_gt0()
-{
-	Name a("Alice", "Andersen"), b("Blake", "Buster");
-	assert(!(a > b));
-}
-
-void test::TestName_gt1()
-{
-	Name a("Blake", "Buster"), b("Blake", "Buster");
-	assert(!(a > b));
-}
-
-void test::TestName_gt2()
-{
-	Name a("Catherine", "Coolidge"), b("Blake", "Buster");
-	assert(a > b);
-}
-
-void test::TestName_gte0()
-{
-	Name a("Alice", "Andersen"), b("Blake", "Buster");
-	assert(!(a >= b));
-}
-
-void test::TestName_gte1()
-{
-	Name a("Blake", "Buster"), b("Blake", "Buster");
-	assert(a >= b);
-}
-
-void test::TestName_gte2()
-{
-	Name a("Catherine", "Coolidge"), b("Blake", "Buster");
-	assert(a >= b);
-}
-
-void test::TestName_lt0()
-{
-	Name a("Alice", "Andersen"), b("Blake", "Buster");
-	assert(a < b);
-}
-
-void test::TestName_lt1()
-{
-	Name a("Blake", "Buster"), b("Blake", "Buster");
-	assert(!(a < b));
-}
-
-void test::TestName_lt2()
-{
-	Name a("Catherine", "Coolidge"), b("Blake", "Buster");
-	assert(!(a < b));
-}
-
-void test::TestName_lte0()
-{
-	Name a("Alice", "Andersen"), b("Blake", "Buster");
-	assert((a <= b));
-}
-
-void test::TestName_lte1()
-{
-	Name a("Blake", "Buster"), b("Blake", "Buster");
-	assert(a <= b);
-}
-
-void test::TestName_lte2()
-{
-	Name a("Catherine", "Coolidge"), b("Blake", "Buster");
-	assert(!(a <= b));
-}
+//void test::TestName_equality0()
+//{
+//	Name a("Alice", "Andersen"), b("Blake", "Buster");
+//	assert(!(a == b));
+//}
+//
+//void test::TestName_equality1()
+//{
+//	Name a("Blake", "Buster"), b("Blake", "Buster");
+//	assert(a == b);
+//}
+//
+//void test::TestName_equality2()
+//{
+//	Name a("Catherine", "Coolidge"), b("Blake", "Buster");
+//	assert(!(a == b));
+//}
+//
+//void test::TestName_inequality0()
+//{
+//	Name a("Alice", "Andersen"), b("Blake", "Buster");
+//	assert(a != b);
+//}
+//
+//void test::TestName_inequality1()
+//{
+//	Name a("Blake", "Buster"), b("Blake", "Buster");
+//	assert(!(a != b));
+//}
+//
+//void test::TestName_inequality2()
+//{
+//	Name a("Catherine", "Coolidge"), b("Blake", "Buster");
+//	assert(a != b);
+//}
+//
+//void test::TestName_gt0()
+//{
+//	Name a("Alice", "Andersen"), b("Blake", "Buster");
+//	assert(!(a > b));
+//}
+//
+//void test::TestName_gt1()
+//{
+//	Name a("Blake", "Buster"), b("Blake", "Buster");
+//	assert(!(a > b));
+//}
+//
+//void test::TestName_gt2()
+//{
+//	Name a("Catherine", "Coolidge"), b("Blake", "Buster");
+//	assert(a > b);
+//}
+//
+//void test::TestName_gte0()
+//{
+//	Name a("Alice", "Andersen"), b("Blake", "Buster");
+//	assert(!(a >= b));
+//}
+//
+//void test::TestName_gte1()
+//{
+//	Name a("Blake", "Buster"), b("Blake", "Buster");
+//	assert(a >= b);
+//}
+//
+//void test::TestName_gte2()
+//{
+//	Name a("Catherine", "Coolidge"), b("Blake", "Buster");
+//	assert(a >= b);
+//}
+//
+//void test::TestName_lt0()
+//{
+//	Name a("Alice", "Andersen"), b("Blake", "Buster");
+//	assert(a < b);
+//}
+//
+//void test::TestName_lt1()
+//{
+//	Name a("Blake", "Buster"), b("Blake", "Buster");
+//	assert(!(a < b));
+//}
+//
+//void test::TestName_lt2()
+//{
+//	Name a("Catherine", "Coolidge"), b("Blake", "Buster");
+//	assert(!(a < b));
+//}
+//
+//void test::TestName_lte0()
+//{
+//	Name a("Alice", "Andersen"), b("Blake", "Buster");
+//	assert((a <= b));
+//}
+//
+//void test::TestName_lte1()
+//{
+//	Name a("Blake", "Buster"), b("Blake", "Buster");
+//	assert(a <= b);
+//}
+//
+//void test::TestName_lte2()
+//{
+//	Name a("Catherine", "Coolidge"), b("Blake", "Buster");
+//	assert(!(a <= b));
+//}
+//

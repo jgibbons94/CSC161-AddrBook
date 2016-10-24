@@ -19,6 +19,8 @@ namespace test
 	void TestName_ToOstream();
 	void TestName_FromCin();
 	void TestName_FromIstream();
+	void TestName_AllComparison();
+	/*
 	//comparison tests:
 	//0: A <  B
 	//1: A == B
@@ -41,5 +43,6 @@ namespace test
 	void TestName_lte0();
 	void TestName_lte1();
 	void TestName_lte2();
+	*/
 }
 #endif

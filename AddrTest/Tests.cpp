@@ -13,6 +13,7 @@ using namespace std;
 #include "ContactTests.h"
 #include "CategorizedContactTests.h"
 #include "AddrBookTests.h"
+#include "ComparisonTests.h"
 using namespace test;
 
 #include "Field.h"
@@ -25,6 +26,10 @@ using namespace AddrBookLib;
 
 void test::TestAll()
 {
+	//make sure template tests work
+	TestTemplateInEqTests();
+
+
 	TestField();
 	TestName();
 	TestAddress();

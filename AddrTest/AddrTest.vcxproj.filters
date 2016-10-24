@@ -63,6 +63,9 @@
     <ClInclude Include="ContactTests.h">
       <Filter>Header Files\Tests</Filter>
     </ClInclude>
+    <ClInclude Include="ComparisonTests.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Name.cpp">
@@ -105,6 +108,9 @@
       <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="NameTests.cpp">
+      <Filter>Source Files\Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="ComparisonTests.cpp">
       <Filter>Source Files\Tests</Filter>
     </ClCompile>
   </ItemGroup>

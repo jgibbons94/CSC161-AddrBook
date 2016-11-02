@@ -31,27 +31,30 @@ namespace test
 	void TestContact_ToOstream();
 	void TestContact_FromCin();
 	void TestContact_FromIstream();
-	//comparison tests:
-	//0: A <  B
-	//1: A == B
-	//2: A  > B
-	void TestContact_equality0();
-	void TestContact_equality1();
-	void TestContact_equality2();
-	void TestContact_inequality0();
-	void TestContact_inequality1();
-	void TestContact_inequality2();
-	void TestContact_gt0();
-	void TestContact_gt1();
-	void TestContact_gt2();
-	void TestContact_gte0();
-	void TestContact_gte1();
-	void TestContact_gte2();
-	void TestContact_lt0();
-	void TestContact_lt1();
-	void TestContact_lt2();
-	void TestContact_lte0();
-	void TestContact_lte1();
-	void TestContact_lte2();
+	void TestContact_AllComparison();
+	
+	////comparison tests:
+	////0: A <  B
+	////1: A == B
+	////2: A  > B
+	//void TestContact_equality0();
+	//void TestContact_equality1();
+	//void TestContact_equality2();
+	//void TestContact_inequality0();
+	//void TestContact_inequality1();
+	//void TestContact_inequality2();
+	//void TestContact_gt0();
+	//void TestContact_gt1();
+	//void TestContact_gt2();
+	//void TestContact_gte0();
+	//void TestContact_gte1();
+	//void TestContact_gte2();
+	//void TestContact_lt0();
+	//void TestContact_lt1();
+	//void TestContact_lt2();
+	//void TestContact_lte0();
+	//void TestContact_lte1();
+	//void TestContact_lte2();
+
 }
 #endif

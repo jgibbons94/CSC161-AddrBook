@@ -23,5 +23,7 @@ namespace test
 
 	void TestCategorizedContact_FromCin();
 	void TestCategorizedContact_FromIstream();
+
+	void TestCategorizedContact_AllComparison();
 }
 #endif

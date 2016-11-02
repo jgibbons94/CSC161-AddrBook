@@ -10,6 +10,7 @@ using namespace std;
 using namespace AddrBookLib;
 #include "Tests.h"
 #include "CategorizedContactTests.h"
+#include "ComparisonTests.h"
 
 void test::TestCategorizedContact()
 {
@@ -31,6 +32,8 @@ void test::TestCategorizedContact()
 
 	TestCategorizedContact_FromCin();
 	TestCategorizedContact_FromIstream();
+
+	TestCategorizedContact_AllComparison();
 }
 
 void test::TestCategorizedContact_Constructor0()
@@ -203,4 +206,17 @@ void test::TestCategorizedContact_FromIstream()
 	in >> actual;
 	//assert
 	assert(expected == actual);
+}
+
+void test::TestCategorizedContact_AllComparison()
+{
+	Name na("Alice", "Andersen"), nb("Blake", "Buster"), nc("Catherine", "Coolidge");
+	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
+	Contact ca(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null"),
+		cb(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null"),
+		cc(nc, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+	CategorizedContact a(ca, "family"),
+		b(cb, "family"),
+		c(cc, "family");
+	RunAllInEqTests(a, b, c);
 }

@@ -37,5 +37,8 @@ namespace test
 
 	void TestAddress_FromCin();
 	void TestAddress_FromIstream();
+
+
+	void TestAddress_AllComparison();
 }
 #endif

@@ -9,6 +9,8 @@ using namespace std;
 #include "AddressTests.h"
 #include "Address.h"
 using namespace AddrBookLib;
+#include "ComparisonTests.h"
+
 void test::TestAddress()
 {
 	TestAddress_Constructor0();
@@ -31,6 +33,7 @@ void test::TestAddress()
 	TestAddress_ToOstream();
 	TestAddress_FromCin();
 	TestAddress_FromIstream();
+	TestAddress_AllComparison();
 }
 
 void test::TestAddress_Constructor0()
@@ -218,4 +221,12 @@ void test::TestAddress_FromIstream()
 	//act
 	in >> actual;
 	assert(expected == actual);
+}
+
+void test::TestAddress_AllComparison()
+{
+	Address a("321 Kaboom pkwy", "Middleton", "Nowhere", "00666"),
+		b("8910 herewecome st","here","there","12321"),
+		c("The Burrow", "somewhere","England","UK-7678346");
+	RunAllEqTests(a,b,c);
 }

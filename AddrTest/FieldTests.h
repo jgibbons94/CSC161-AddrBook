@@ -10,5 +10,6 @@ namespace test
 	void TestField_ConstructrCharPtr();
 	void TestField_Shift_Istream();
 	void TestField_Shift_Ifstream();
+	void TestField_AllComparison();
 }
 #endif

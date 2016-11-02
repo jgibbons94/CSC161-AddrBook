@@ -12,6 +12,7 @@ using namespace std;
 using namespace AddrBookLib;
 
 #include "FieldTests.h"
+#include "ComparisonTests.h"
 void test::TestField()
 {
 	TestField_Constructor0();
@@ -19,6 +20,7 @@ void test::TestField()
 	TestField_ConstructrCharPtr();
 	TestField_Shift_Istream();
 	TestField_Shift_Ifstream();
+	TestField_AllComparison();
 }
 
 void test::TestField_Constructor0()
@@ -75,4 +77,12 @@ void test::TestField_Shift_Ifstream()
 	remove("test.csv");
 	assert(fld == "item1");
 
+}
+
+void test::TestField_AllComparison()
+{
+	Field a("Alice"),
+		b("Bob"),
+		c("Catherine");
+	RunAllInEqTests(a, b, c);
 }

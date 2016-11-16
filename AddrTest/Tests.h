@@ -13,7 +13,7 @@ namespace test
 
 	inline void ReportMissingTest(std::string functionName)
 	{
-		std::cerr << "Test not yet implemented: " << functionName << "()" << endl;
+		std::cerr << "Test not yet implemented: " << functionName << "()" << std::endl;
 	}
 
 }

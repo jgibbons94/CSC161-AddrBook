@@ -58,14 +58,5 @@ namespace AddrBookLib
 		Field firstName;
 		Field lastName;
 	};
-
-	bool operator==(const Name & a, const Name & b);
-	bool operator!=(const Name & a, const Name & b);
-	bool operator>(const Name & a, const Name & b);
-	bool operator>=(const Name & a, const Name & b);
-	bool operator<(const Name & a, const Name & b);
-	bool operator<=(const Name & a, const Name & b);
-	std::istream& operator>>(istream & is, Name & name);
-	std::ostream& operator<<(ostream & os, const Name & name);
 }
 #endif

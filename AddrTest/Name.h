@@ -58,5 +58,6 @@ namespace AddrBookLib
 		Field firstName;
 		Field lastName;
 	};
+
 }
 #endif

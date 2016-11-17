@@ -19,8 +19,10 @@ AddrBook::AddrBook(int initialSize)
 	used = 0;
 	size = 0;
 	content = NULL;
-	if(initialSize>0)	alloc(initialSize);
-	else alloc(1);
+	if (initialSize < 1)
+		alloc(1);
+	else
+		alloc(initialSize);
 }
 
 AddrBookLib::AddrBook::AddrBook(const AddrBook & oldAddrBook)
@@ -167,6 +169,9 @@ void AddrBookLib::AddrBook::alloc(int sizeIncrease)
 
 void AddrBookLib::AddrBook::free()
 {
-	if(content!=nullptr)delete[] content;
-	content = nullptr;
+	if (content != nullptr)
+	{
+		delete[] content;
+		content = nullptr;
+	}
 }

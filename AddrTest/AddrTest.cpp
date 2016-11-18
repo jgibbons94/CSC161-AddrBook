@@ -13,6 +13,9 @@
 							Forouzan, B. A., & Gilberg, R. F. (2007). Computer science: A structured programming approach using C. Boston, MA: Thomson Course Technology.
 
 	New sources:				http://www.cplusplus.com/reference/thread/this_thread/sleep_for/
+								http://web.mst.edu/~nmjxv3/articles/templates.html
+								C++ Primer Plus, 6th edition (Developer's library) by Steven Prata, Kindle edition
+
 
 	TODO in main
 	for Project 2:				1.  All strings that are Contact fields, need to be changed to Field class

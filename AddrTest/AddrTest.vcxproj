@@ -166,6 +166,7 @@
     <ClInclude Include="LinkedListTests.h" />
     <ClInclude Include="Name.h" />
     <ClInclude Include="NameTests.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="NodeTests.h" />
     <ClInclude Include="Tests.h" />
   </ItemGroup>

@@ -1,42 +1,54 @@
 #ifndef NODE_TESTS_H
 #define NODE_TESTS_H
+#include <cassert>
+#include <iostream>
 #include "Tests.h"
+
+#ifndef NODE_TEST_FRIENDS
+#define NODE_TEST_FRIENDS
+#endif
+
+#include "Node.h"
+
 namespace test
 {
 	template<class T>
 	void TestNode(T sample);
 
 	template<class T>
-	void TestNodeConstructor();
+	void TestNode_Constructor(T sample);
 
 	template<class T>
-	void TestNodeNext();
+	void TestNode_Next();
 
 	template<class T>
-	void TestNodeValue(T sample);
+	void TestNode_Value(T sample);
 
 	template<class T>
 	void TestNode(T sample)
 	{
-		TestNodeConstructor<T>();
-		TestNodeValue<T>(sample);
-		TestNodeNext<T>();
+		TestNode_Constructor<T>(sample);
+		TestNode_Value<T>(sample);
+		TestNode_Next<T>();
 	}
 
 	template<class T>
-	void TestNodeConstructor()
+	void TestNode_Constructor(T sample)
 	{
-		ReportMissingTest("TestNodeConstructor<T>");
+		//set up
+		AddrBookLib::Node<T> myNode(sample);
+		//test
+		assert(myNode.content == sample);
 	}
 
 	template<class T>
-	void TestNodeNext()
+	void TestNode_Next()
 	{
 		ReportMissingTest("TestNodeNext<T>");
 	}
 
 	template<class T>
-	void TestNodeValue(T sample)
+	void TestNode_Value(T sample)
 	{
 		ReportMissingTest("TestNodeValue<T>");
 	}

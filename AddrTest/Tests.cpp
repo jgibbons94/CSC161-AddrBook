@@ -37,8 +37,8 @@ void test::TestAll()
 	TestAddress();
 	TestContact();
 	TestCategorizedContact();
-	TestNode<int>(3);
-	TestNode<std::string>("This is a test string");
+	TestNode<int>(3,100);
+	TestNode<std::string>("This is a test string", "This is a second string.");
 	TestLinkedList<int>();
 	TestLinkedList<string>();
 	TestLinkedList<CategorizedContact>();

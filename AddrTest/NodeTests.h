@@ -13,23 +13,23 @@
 namespace test
 {
 	template<class T>
-	void TestNode(T sample);
+	void TestNode(T sample1, T sample2);
 
 	template<class T>
 	void TestNode_Constructor(T sample);
 
 	template<class T>
-	void TestNode_Next();
+	void TestNode_Next(T first, T next);
 
 	template<class T>
-	void TestNode_Value(T sample);
+	void TestNode_Value(T firstValue, T nextValue);
 
 	template<class T>
-	void TestNode(T sample)
+	void TestNode(T sample1, T sample2)
 	{
-		TestNode_Constructor<T>(sample);
-		TestNode_Value<T>(sample);
-		TestNode_Next<T>();
+		TestNode_Constructor<T>(sample1);
+		TestNode_Value<T>(sample1, sample2);
+		TestNode_Next<T>(sample1, sample2);
 	}
 
 	template<class T>
@@ -37,20 +37,32 @@ namespace test
 	{
 		//set up
 		AddrBookLib::Node<T> myNode(sample);
-		//test
+		//act
+		//assert
 		assert(myNode.content == sample);
 	}
 
 	template<class T>
-	void TestNode_Next()
+	void TestNode_Next(T first, T next)
 	{
-		ReportMissingTest("TestNodeNext<T>");
+		//setup
+		AddrBookLib::Node<T> firstNode(first);
+		AddrBookLib::Node<T> nextNode(next);
+		//act
+		firstNode.next = &nextNode;
+		//assert
+		assert(firstNode.next->content==next);
 	}
 
 	template<class T>
-	void TestNode_Value(T sample)
+	void TestNode_Value(T firstValue, T nextValue)
 	{
-		ReportMissingTest("TestNodeValue<T>");
+		//setup
+		AddrBookLib::Node<T> myNode(firstValue);
+		//act
+		myNode.content = nextValue;
+		//assert
+		assert(myNode.content == nextValue);
 	}
 }
 #endif

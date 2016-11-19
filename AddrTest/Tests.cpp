@@ -15,7 +15,7 @@ using namespace std;
 #include "AddrBookTests.h"
 #include "ComparisonTests.h"
 #include "NodeTests.h"
-#include "LinkedListTests.h"
+#include "LinkListTests.h"
 using namespace test;
 
 #include "Field.h"
@@ -39,8 +39,8 @@ void test::TestAll()
 	TestCategorizedContact();
 	TestNode<int>(3,100);
 	TestNode<std::string>("This is a test string", "This is a second string.");
-	TestLinkedList<int>();
-	TestLinkedList<string>();
-	TestLinkedList<CategorizedContact>();
+	TestLinkList<int>();
+	TestLinkList<string>();
+	TestLinkList<CategorizedContact>();
 	TestAddrBook();
 }

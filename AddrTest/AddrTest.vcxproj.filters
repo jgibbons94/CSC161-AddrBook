@@ -69,11 +69,14 @@
     <ClInclude Include="NodeTests.h">
       <Filter>Header Files\Tests</Filter>
     </ClInclude>
-    <ClInclude Include="LinkedListTests.h">
-      <Filter>Header Files\Tests</Filter>
-    </ClInclude>
     <ClInclude Include="Node.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkListTests.h">
+      <Filter>Header Files\Tests</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

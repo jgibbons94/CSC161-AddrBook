@@ -163,7 +163,8 @@
     <ClInclude Include="Field.h" />
     <ClInclude Include="AddrTest.h" />
     <ClInclude Include="FieldTests.h" />
-    <ClInclude Include="LinkedListTests.h" />
+    <ClInclude Include="LinkListTests.h" />
+    <ClInclude Include="LinkList.h" />
     <ClInclude Include="Name.h" />
     <ClInclude Include="NameTests.h" />
     <ClInclude Include="Node.h" />

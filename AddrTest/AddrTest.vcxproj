@@ -151,8 +151,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AddrBook.h" />
-    <ClInclude Include="AddrBookTests.h" />
     <ClInclude Include="Address.h" />
     <ClInclude Include="AddressTests.h" />
     <ClInclude Include="CategorizedContact.h" />
@@ -172,8 +170,6 @@
     <ClInclude Include="Tests.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AddrBook.cpp" />
-    <ClCompile Include="AddrBookTests.cpp" />
     <ClCompile Include="Address.cpp" />
     <ClCompile Include="AddressTests.cpp" />
     <ClCompile Include="AddrTest.cpp">

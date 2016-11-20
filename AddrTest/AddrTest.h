@@ -4,7 +4,7 @@
 #define MY_FUNCS_H
 #include <string>
 #include <fstream>
-#include "AddrBook.h"
+//#include "AddrBook.h"
 namespace AddrBookLib
 {
 	//check if min <= value <= max

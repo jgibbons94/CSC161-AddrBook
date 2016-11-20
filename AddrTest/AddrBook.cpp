@@ -1,3 +1,4 @@
+/*
 //AddrBook.cpp
 //Written by Jesse Gibbons
 #define _SCL_SECURE_NO_WARNINGS
@@ -175,3 +176,4 @@ void AddrBookLib::AddrBook::free()
 		content = nullptr;
 	}
 }
+*/

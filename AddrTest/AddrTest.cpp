@@ -15,6 +15,7 @@
 	New sources:				http://www.cplusplus.com/reference/thread/this_thread/sleep_for/
 								http://web.mst.edu/~nmjxv3/articles/templates.html
 								C++ Primer Plus, 6th edition (Developer's library) by Steven Prata, Kindle edition
+								http://www.windows-tech.info/17/51bc6313e18ef525.php
 
 
 	TODO in main
@@ -36,7 +37,7 @@
 #include <string>
 #include <thread>
 using namespace std;
-#include "AddrBook.h"
+#include "LinkList.h"
 #include "AddrTest.h"
 using namespace AddrBookLib;
 #ifdef RUN_TESTS
@@ -47,6 +48,8 @@ using namespace test;
 //PROTOTYPES for functions used by this demonstration program:
 
 //quick menu functions
+
+int main(int argc, const char * argv[]);
 
 int menu(void);
 //Postcondition: An integer is returned representing the user's menu choice
@@ -120,11 +123,19 @@ int main(int argc, const char * argv[])
 			Delay();
 			if (choice == "All") // print all contacts
 			{
-				myAddrBook.PrintAllContacts();
+				myAddrBook.PrintAll();
 			}
 			else
 			{
-				myAddrBook.PrintByCategory(choice);
+				int j = 0;
+				for (AddrBook::Iterator i = myAddrBook.Begin(); i; i.Next())
+				{
+					CategorizedContact contact = *i;
+					if (contact.GetCategory() == choice)
+					{
+						cout << j++ << " : " << contact;
+					}
+				}
 			}
 			cout << "\tReturning to Main Menu...\n\n";
 			Delay();
@@ -193,7 +204,7 @@ void addNewContact(AddrBook& myAddrBook)
 	cin >> newContact;
 
 	//add the contact to the address book
-	myAddrBook.AddContact(newContact);
+	myAddrBook.Add(newContact);
 
 	//confirmation of contact added
 	cout << "\tContact has been added.\n";
@@ -210,7 +221,7 @@ void printUsed(AddrBook& myAddrBook)
 	cout << "\n";
 	cout << "\t****************************************************************\n";
 	cout << "\t*                                                              *\n";
-	cout << "\t*  Address Book contains " << myAddrBook.GetUsed() << " contact(s).                         *\n";
+	cout << "\t*  Address Book contains " << myAddrBook.CountItems() << " contact(s).                         *\n";
 	cout << "\t*                                                              *\n";
 	cout << "\t****************************************************************\n";
 
@@ -230,10 +241,10 @@ void removeContacts(AddrBook& myAddrBook)
 	Delay();
 
 	//print the contacts so user has a reference of what he is removing
-	myAddrBook.PrintAllContacts();
+	myAddrBook.PrintAll();
 
 	//if user attempts to remove 0 entries from the address book
-	if (myAddrBook.GetUsed() == 0) {
+	if (myAddrBook.CountItems() == 0) {
 		cout << "\tPlease add a contact to the address book before proceeding.";
 		cout << "\n\tReturning to Main Menu....\n\n";
 		Delay();
@@ -248,7 +259,7 @@ void removeContacts(AddrBook& myAddrBook)
 	stringstream(answer) >> choiceRemove;
 
 	//call remove by index function, error processing is handled in the function
-	myAddrBook.RemoveByIndex(choiceRemove - 1);
+	myAddrBook.RemoveByItemNumber(choiceRemove - 1);
 
 	Delay();
 }

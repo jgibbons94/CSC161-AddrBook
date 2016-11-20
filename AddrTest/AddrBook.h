@@ -1,3 +1,4 @@
+/*
 //AddrBook.h
 //Written by Jesse Gibbons
 #ifndef ADDR_BOOK_H
@@ -21,7 +22,7 @@ namespace AddrBookLib
 		int GetUsed();
 		void ReadFile(string fileName);
 		void WriteFile(string fileName);
-	*/
+	*//*
 	class AddrBook
 	{
 	public:
@@ -90,3 +91,4 @@ namespace AddrBookLib
 
 }
 #endif
+*/

@@ -163,10 +163,12 @@
     <ClInclude Include="FieldTests.h" />
     <ClInclude Include="LinkListTests.h" />
     <ClInclude Include="LinkList.h" />
+    <ClInclude Include="LinkList_IteratorTests.h" />
     <ClInclude Include="Name.h" />
     <ClInclude Include="NameTests.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="NodeTests.h" />
+    <ClInclude Include="RandomGenerators.h" />
     <ClInclude Include="Tests.h" />
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +186,7 @@
     <ClCompile Include="FieldTests.cpp" />
     <ClCompile Include="Name.cpp" />
     <ClCompile Include="NameTests.cpp" />
+    <ClCompile Include="RandomGenerators.cpp" />
     <ClCompile Include="Tests.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -28,6 +28,7 @@ using namespace AddrBookLib;
 
 void test::TestAll()
 {
+	AnnounceTests("All");
 	//make sure template tests work
 	TestTemplateInEqTests();
 

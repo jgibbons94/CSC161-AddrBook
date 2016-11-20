@@ -13,11 +13,104 @@ namespace test
 	void TestLinkList_Constructor0_0();
 	template<class T>
 	void TestLinkList_Constructor0_1();
+	template<class T>
+	void TestLinkList_ConstructorFirst();
+	template<class T>
+	void TestLinkList_ConstructorLast();
+	template<class T>
+	void TestLinkList_ConstructorAsc();
+	template<class T>
+	void TestLinkList_ConstructorDesc();
+	template<class T>
+	void TestLinkList_CopyConstructor(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+	template<class T>
+	void TestLinkList_CopyConstructor_leaks(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+	template<class T>
+	void TestLinkList_Assignment(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+	template<class T>
+	void TestLinkList_Assignment_leaks(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+
+#ifdef YES_WE_NEED_TO_SEPARATE_THESE
+	
+	template<class T>
+	void TestLinkList_Begin();
+	template<class T>
+	void TestLinkList_CountItems();
+	template<class T>
+	void TestLinkList_IsEmpty();
+	template<class T>
+	void TestLinkList_Add();
+	template<class T>
+	void TestLinkList_RemoveByItemNumber();
+	template<class T>
+	void TestLinkList_RemoveByItem();
+	template<class T>
+	void TestLinkList_Deconstructor();
+
+	template<class T>
+	void TestLinkList_ReadFile();
+	template<class T>
+	void TestLinkList_WriteFile();
+	template<class T>
+	void TestLinkList_PrintAll();
+
+	//private functions
+	template<class T>
+	void TestLinkList_AllocNode();
+	template<class T>
+	void TestLinkList_FindNode();
+	template<class T>
+	void TestLinkList_HasOnlyOneElement();
+	template<class T>
+	void TestLinkList_AddAsc();
+	template<class T>
+	void TestLinkList_AddDesc();
+	template<class T>
+	void TestLinkList_AddEnd();
+	template<class T>
+	void TestLinkList_AddBeginning();
+	template<class T>
+	void TestLinkList_InsertValueAfterSpecifiedNode();
+	template<class T>
+	void TestLinkList_Concat();
+	template<class T>
+	void TestLinkList_RemoveFirst();
+	template<class T>
+	void TestLinkList_RemoveNode();
+	template<class T>
+	void TestLinkList_FreeNode();
+	template<class T>
+	void TestLinkList_FreeNode_leaks();
+	template<class T>
+	void TestLinkList_FreeAllNodes();
+	template<class T>
+	void TestLinkList_FreeAllNodes_leaks();
+#endif
+	//link list iterator tests
+	template<class T>
+	void TestLinkList_Iterator_NextWithNull();
+	template<class T>
+	void TestLinkList_Iterator_NextNull(GeneratorCallback<T> randomGenerator);
+
+	template<class T>
+	void TestLinkList_Iterator_NextNotNull(GeneratorCallback<T> randomGenerator);
+	template<class T>
+	void TestLinkList_Iterator_Dereference(GeneratorCallback<T> randomGenerator);
+	template<class T>
+	void TestLinkList_Iterator_boolNull();
+	template<class T>
+	void TestLinkList_Iterator_boolNotNull(GeneratorCallback<T> randomGenerator);
+	template<class T>
+	void TestLinkList_Iterator_notNull();
+	template<class T>
+	void TestLinkList_Iterator_notNotNull(GeneratorCallback<T> randomGenerator);
+	template<class T>
+	void TestLinkList_Iterator_Constructor(GeneratorCallback<T> randomGenerator);
 }
 #endif
 namespace AddrBookLib
 {
-//	template<class T> LinkList;
+	//	template<class T> LinkList;
 	template<class T>
 	class LinkList
 	{
@@ -64,7 +157,17 @@ namespace AddrBookLib
 			Node<T>* value;
 
 			friend class LinkList<T>;
-
+#ifdef LINK_LIST_TEST_FRIENDS
+			friend void test::TestLinkList_Iterator_NextWithNull<T>();
+			friend void test::TestLinkList_Iterator_NextNull<T>(GeneratorCallback<T> randomGenerator);
+			friend void test::TestLinkList_Iterator_NextNotNull<T>(GeneratorCallback<T> randomGenerator);
+			friend void test::TestLinkList_Iterator_Dereference<T>(GeneratorCallback<T> randomGenerator);
+			friend void test::TestLinkList_Iterator_boolNull<T>();
+			friend void test::TestLinkList_Iterator_boolNotNull<T>(GeneratorCallback<T> randomGenerator);
+			friend void test::TestLinkList_Iterator_notNull<T>();
+			friend void test::TestLinkList_Iterator_notNotNull<T>(GeneratorCallback<T> randomGenerator);
+			friend void test::TestLinkList_Iterator_Constructor<T>(GeneratorCallback<T> randomGenerator);
+#endif
 		};
 		Iterator Begin() const;
 		size_t CountItems() const;
@@ -122,8 +225,16 @@ namespace AddrBookLib
 
 
 #ifdef LINK_LIST_TEST_FRIENDS
-			friend void test::TestLinkList_Constructor0_0<T>();
-			friend void test::TestLinkList_Constructor0_1<T>();
+		friend void test::TestLinkList_Constructor0_0<T>();
+		friend void test::TestLinkList_Constructor0_1<T>();
+		friend void test::TestLinkList_ConstructorFirst<T>();
+		friend void test::TestLinkList_ConstructorLast<T>();
+		friend void test::TestLinkList_ConstructorAsc<T>();
+		friend void test::TestLinkList_ConstructorDesc<T>();
+		friend void test::TestLinkList_CopyConstructor<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_CopyConstructor_leaks<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_Assignment(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_Assignment_leaks(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 #endif
 
 	};
@@ -171,11 +282,11 @@ namespace AddrBookLib
 			AddDesc(dataIn);
 			break;
 		case LAST:
-//		case QUEUE:
+			//		case QUEUE:
 			AddEnd(dataIn);
 			break;
 		case FIRST:
-//		case STACK:
+			//		case STACK:
 		default:
 			AddBeginning(dataIn);
 			break;
@@ -324,7 +435,7 @@ namespace AddrBookLib
 	template<class T>
 	inline Node<T>* LinkList<T>::FindNode(crefT dataIn) const
 	{
-		
+
 		ptrTNode cursor = nullptr;
 		if (this->IsEmpty())
 			return nullptr;
@@ -507,6 +618,8 @@ namespace AddrBookLib
 	template<class T>
 	inline bool LinkList<T>::Iterator::Next()
 	{
+		if (this->value == nullptr)
+			return false;
 		this->value = this->value->next;
 		return this->value != nullptr;
 	}

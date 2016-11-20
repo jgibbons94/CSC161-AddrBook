@@ -10,7 +10,10 @@ namespace test
 	// main() calls these tests and exits if RUN_TESTS is not defined.
 
 	void TestAll();
-
+	inline void AnnounceTests(std::string functionName)
+	{
+		std::cout << std::endl << "Beginning the " << functionName << " Test " << std::endl;
+	}
 	inline void ReportMissingTest(std::string functionName)
 	{
 		std::cerr << "Test not yet implemented: " << functionName << "()" << std::endl;

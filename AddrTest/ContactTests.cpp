@@ -11,6 +11,7 @@ using namespace AddrBookLib;
 
 #include "ContactTests.h"
 #include "ComparisonTests.h"
+#include "Tests.h"
 
 
 void test::TestContact()
@@ -42,33 +43,12 @@ void test::TestContact()
 	TestContact_FromCin();
 	TestContact_FromIstream();
 	TestContact_AllComparison();
-	////comparison tests:
-	////0: A <  B
-	////1: A == B
-	////2: A  > B
-	//TestContact_equality0();
-	//TestContact_equality1();
-	//TestContact_equality2();
-	//TestContact_inequality0();
-	//TestContact_inequality1();
-	//TestContact_inequality2();
-	//TestContact_gt0();
-	//TestContact_gt1();
-	//TestContact_gt2();
-	//TestContact_gte0();
-	//TestContact_gte1();
-	//TestContact_gte2();
-	//TestContact_lt0();
-	//TestContact_lt1();
-	//TestContact_lt2();
-	//TestContact_lte0();
-	//TestContact_lte1();
-	//TestContact_lte2();
 
 }
 
 void test::TestContact_Constructor0()
 {
+	AnnounceTests("Contact Constructor 0");
 	Contact contact;
 	assert(
 		(contact.GetFullName().GetFirstName() == "") && (contact.GetFullName().GetLastName() == "")
@@ -78,6 +58,7 @@ void test::TestContact_Constructor0()
 
 void test::TestContact_Constructor1()
 {
+	AnnounceTests("Contact Constructor 1");
 	Contact contact(Name("1", "2"));
 	assert(
 		(contact.GetFullName().GetFirstName() == "1") && (contact.GetFullName().GetLastName() == "2")
@@ -87,6 +68,7 @@ void test::TestContact_Constructor1()
 
 void test::TestContact_Constructor2()
 {
+	AnnounceTests("Contact Constructor 2");
 	Contact contact(Name("1", "2"), Address("3", "4", "5", "6"));
 	assert(
 		(contact.GetFullName().GetFirstName() == "1") && (contact.GetFullName().GetLastName() == "2")
@@ -96,6 +78,7 @@ void test::TestContact_Constructor2()
 
 void test::TestContact_Constructor3()
 {
+	AnnounceTests("Contact Constructor 3");
 	Contact contact(Name("1", "2"), Address("3", "4", "5", "6"), "7");
 	assert(
 		(contact.GetFullName().GetFirstName() == "1") && (contact.GetFullName().GetLastName() == "2")
@@ -105,6 +88,7 @@ void test::TestContact_Constructor3()
 
 void test::TestContact_Constructor4()
 {
+	AnnounceTests("Contact Constructor 4");
 	Contact contact(Name("1", "2"), Address("3", "4", "5", "6"), "7", "8");
 	assert(
 		(contact.GetFullName().GetFirstName() == "1") && (contact.GetFullName().GetLastName() == "2")
@@ -114,6 +98,7 @@ void test::TestContact_Constructor4()
 
 void test::TestContact_Constructor5()
 {
+	AnnounceTests("Contact Constructor 5");
 	Contact contact(Name("1", "2"), Address("3", "4", "5", "6"), "7", "8", "9");
 	assert(
 		(contact.GetFullName().GetFirstName() == "1") && (contact.GetFullName().GetLastName() == "2")
@@ -123,6 +108,7 @@ void test::TestContact_Constructor5()
 
 void test::TestContact_Constructor6()
 {
+	AnnounceTests("Contact Constructor 6");
 	Contact contact(Name("1", "2"), Address("3", "4", "5", "6"), "7", "8", "9", "10");
 	assert(
 		(contact.GetFullName().GetFirstName() == "1") && (contact.GetFullName().GetLastName() == "2")
@@ -132,12 +118,14 @@ void test::TestContact_Constructor6()
 
 void test::TestContact_GetFullName()
 {
+	AnnounceTests("Contact Get Full Name");
 	Contact contact(Name("hello", "world"));
 	assert((contact.GetFullName().GetFirstName() == "hello") && (contact.GetFullName().GetLastName() == "world"));
 }
 
 void test::TestContact_SetFullName()
 {
+	AnnounceTests("Contact Set Full Name");
 	Contact contact;
 	contact.SetFullName(Name("hello", "world"));
 	assert((contact.GetFullName().GetFirstName() == "hello") && (contact.GetFullName().GetLastName() == "world"));
@@ -145,12 +133,14 @@ void test::TestContact_SetFullName()
 
 void test::TestContact_GetFullAddress()
 {
+	AnnounceTests("Contact Get Full Address");
 	Contact contact(Name(), Address("1", "2", "3", "4"));
 	assert((contact.GetFullAddress().GetStreetAddress() == "1") && (contact.GetFullAddress().GetCity() == "2") && (contact.GetFullAddress().GetState() == "3") && (contact.GetFullAddress().GetZip() == "4"));
 }
 
 void test::TestContact_SetFullAddress()
 {
+	AnnounceTests("Contact Set Full Address");
 	Contact contact;
 	contact.SetFullAddress(Address("1", "2", "3", "4"));
 	assert((contact.GetFullAddress().GetStreetAddress() == "1") && (contact.GetFullAddress().GetCity() == "2") && (contact.GetFullAddress().GetState() == "3") && (contact.GetFullAddress().GetZip() == "4"));
@@ -158,12 +148,14 @@ void test::TestContact_SetFullAddress()
 
 void test::TestContact_GetPhone()
 {
+	AnnounceTests("Contact Get Phone");
 	Contact contact(Name(), Address(), "phone");
 	assert(contact.GetPhone() == "phone");
 }
 
 void test::TestContact_SetPhone()
 {
+	AnnounceTests("Contact Set Phone");
 	Contact contact;
 	contact.SetPhone("phone");
 	assert(contact.GetPhone() == "phone");
@@ -171,12 +163,14 @@ void test::TestContact_SetPhone()
 
 void test::TestContact_GetEmail()
 {
+	AnnounceTests("Contact Get Email");
 	Contact contact(Name(), Address(), "", "email");
 	assert(contact.GetEmail() == "email");
 }
 
 void test::TestContact_SetEmail()
 {
+	AnnounceTests("Contact Set Email");
 	Contact contact;
 	contact.SetEmail("email");
 	assert(contact.GetEmail() == "email");
@@ -184,12 +178,14 @@ void test::TestContact_SetEmail()
 
 void test::TestContact_GetBirthday()
 {
+	AnnounceTests("Contact Get Birthday");
 	Contact contact(Name(), Address(), "", "", "Birthday");
 	assert(contact.GetBirthday() == "Birthday");
 }
 
 void test::TestContact_SetBirthday()
 {
+	AnnounceTests("Contact Set Birthday");
 	Contact contact;
 	contact.SetBirthday("birthday");
 	assert(contact.GetBirthday() == "birthday");
@@ -197,12 +193,14 @@ void test::TestContact_SetBirthday()
 
 void test::TestContact_GetPictureFile()
 {
+	AnnounceTests("Contact Get Picture File");
 	Contact contact(Name(), Address(), "", "", "", "picture");
 	assert(contact.GetPictureFile() == "picture");
 }
 
 void test::TestContact_SetPictureFile()
 {
+	AnnounceTests("Contact Set Picture File");
 	Contact contact;
 	contact.SetPictureFile("/dev/null");
 	assert(contact.GetPictureFile() == "/dev/null");
@@ -210,6 +208,7 @@ void test::TestContact_SetPictureFile()
 
 void test::TestContact_ToString()
 {
+	AnnounceTests("Contact To String");
 	Contact contact(Name("1", "2"), Address("3", "4", "5", "6"), "7", "8", "9", "10");
 	Field actual = contact.ToString();
 	Field expected = "\t    Name:\t2, 1\n\t Address:\t3\n\t         \t4, 5 6\n\t   Phone:\t7\n\t   Email:\t8\n\tBirthday:\t9\n\tPictFile:\t10\n";
@@ -218,6 +217,7 @@ void test::TestContact_ToString()
 
 void test::TestContact_ToFileString()
 {
+	AnnounceTests("Contact To File String");
 	Field expected = "1,2,3,4,5,6,7,8,9,10,";
 	Contact contact(Name("1", "2"), Address("3", "4", "5", "6"), "7", "8", "9", "10");
 	Field actual = contact.ToFileString();
@@ -226,6 +226,7 @@ void test::TestContact_ToFileString()
 
 void test::TestContact_ToFileString1()
 {
+	AnnounceTests("Contact To File String 1");
 
 	Contact contact(Name("1", "2"), Address("3", "4", "5", "6"), "7", "8", "9", "10");
 	Field fld = contact.ToFileString('\t');
@@ -234,6 +235,8 @@ void test::TestContact_ToFileString1()
 
 void test::TestContact_ToCout()
 {
+
+	AnnounceTests("Contact To Cout");
 	//setup
 	//In theory we should be able to change cout by changing _Ptr_cout.
 	//Keep a temporary pointer to the old cout.
@@ -267,7 +270,10 @@ void test::TestContact_ToCout()
 }
 
 void test::TestContact_ToOstream()
-{	//setup
+{
+	AnnounceTests("Contact To Ostream");
+
+	//setup
 
 	ostringstream out;
 	//set up what we will test
@@ -318,6 +324,7 @@ void test::TestContact_FromCin()
 
 void test::TestContact_FromIstream()
 {
+	AnnounceTests("Contact From Istream");
 	//setup
 	istringstream in("Harry,Potter,Number 4 Privet Drive,Little Winging,England,UK-50968,555-427-7907,Harry@rowling.jk,July 31 1980,/dev/null,");
 	Name nExpected("Harry", "Potter");
@@ -333,6 +340,7 @@ void test::TestContact_FromIstream()
 
 void test::TestContact_AllComparison()
 {
+	AnnounceTests("Contact Comparison");
 	Name na("Alice", "Andersen"), nb("Blake", "Buster"), nc("Catherine", "Coolidge");
 	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
 	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null"),
@@ -341,164 +349,3 @@ void test::TestContact_AllComparison()
 	RunAllInEqTests(a, b, c);
 }
 
-//void test::TestContact_equality0()
-//{
-//	Name na("Alice", "Andersen"), nb("Blake", "Buster");
-//	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
-//	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	assert(!(a == b));
-//}
-//
-//void test::TestContact_equality1()
-//{
-//	Name na("Blake", "Buster"), nb("Blake", "Buster");
-//	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
-//	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	assert(a == b);
-//}
-//
-//void test::TestContact_equality2()
-//{
-//	Name na("Catherine", "Coolidge"), nb("Blake", "Buster");
-//	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
-//	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	assert(!(a == b));
-//}
-//
-//void test::TestContact_inequality0()
-//{
-//	Name na("Alice", "Andersen"), nb("Blake", "Buster");
-//	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
-//	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	assert(a != b);
-//}
-//
-//void test::TestContact_inequality1()
-//{
-//	Name na("Blake", "Buster"), nb("Blake", "Buster");
-//	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
-//	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	assert(!(a != b));
-//}
-//
-//void test::TestContact_inequality2()
-//{
-//	Name na("Catherine", "Coolidge"), nb("Blake", "Buster");
-//	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
-//	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	assert(a != b);
-//}
-//
-//void test::TestContact_gt0()
-//{
-//	Name na("Alice", "Andersen"), nb("Blake", "Buster");
-//	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
-//	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	assert(!(a > b));
-//}
-//
-//void test::TestContact_gt1()
-//{
-//	Name na("Blake", "Buster"), nb("Blake", "Buster");
-//	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
-//	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	assert(!(a > b));
-//}
-//
-//void test::TestContact_gt2()
-//{
-//	Name na("Catherine", "Coolidge"), nb("Blake", "Buster");
-//	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
-//	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	assert(a > b);
-//}
-//
-//void test::TestContact_gte0()
-//{
-//	Name na("Alice", "Andersen"), nb("Blake", "Buster");
-//	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
-//	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	assert(!(a >= b));
-//}
-//
-//void test::TestContact_gte1()
-//{
-//	Name na("Blake", "Buster"), nb("Blake", "Buster");
-//	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
-//	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	assert(a >= b);
-//}
-//
-//void test::TestContact_gte2()
-//{
-//	Name na("Catherine", "Coolidge"), nb("Blake", "Buster");
-//	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
-//	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	assert(a >= b);
-//}
-//
-//void test::TestContact_lt0()
-//{
-//	Name na("Alice", "Andersen"), nb("Blake", "Buster");
-//	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
-//	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	assert(a < b);
-//}
-//
-//void test::TestContact_lt1()
-//{
-//	Name na("Blake", "Buster"), nb("Blake", "Buster");
-//	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
-//	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	assert(!(a < b));
-//}
-//
-//void test::TestContact_lt2()
-//{
-//	Name na("Catherine", "Coolidge"), nb("Blake", "Buster");
-//	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
-//	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	assert(!(a < b));
-//}
-//
-//void test::TestContact_lte0()
-//{
-//	Name na("Alice", "Andersen"), nb("Blake", "Buster");
-//	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
-//	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	assert((a <= b));
-//}
-//
-//void test::TestContact_lte1()
-//{
-//	Name na("Blake", "Buster"), nb("Blake", "Buster");
-//	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
-//	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	assert(a <= b);
-//}
-//
-//void test::TestContact_lte2()
-//{
-//	Name na("Catherine", "Coolidge"), nb("Blake", "Buster");
-//	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
-//	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	Contact b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
-//	assert(!(a <= b));
-//}

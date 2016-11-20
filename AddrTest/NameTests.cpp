@@ -9,11 +9,14 @@ using namespace std;
 #include "Name.h"
 using namespace AddrBookLib;
 
+#include "Tests.h"
 #include "NameTests.h"
 #include "ComparisonTests.h"
 
 void test::TestName()
 {
+
+	AnnounceTests("Name");
 	TestName_Constructor0();
 	TestName_Constructor1();
 	TestName_Constructor2();
@@ -53,6 +56,7 @@ void test::TestName()
 
 void test::TestName_Constructor0()
 {
+	AnnounceTests("Name constructor 0");
 	Name name1;
 	Name name2;
 	name2.SetFirstName("");
@@ -62,6 +66,7 @@ void test::TestName_Constructor0()
 
 void test::TestName_Constructor1()
 {
+	AnnounceTests("Name constructor 1");
 	Name name1("foo");
 	Name name2;
 	name2.SetFirstName("foo");
@@ -71,6 +76,7 @@ void test::TestName_Constructor1()
 
 void test::TestName_Constructor2()
 {
+	AnnounceTests("Name Constructor 2");
 	Name name1("foo", "bar");
 	Name name2;
 	name2.SetFirstName("foo");
@@ -80,12 +86,14 @@ void test::TestName_Constructor2()
 
 void test::TestName_GetFirstName()
 {
+	AnnounceTests("Name Get First Name");
 	Name name("foo");
 	assert((name.GetFirstName() == "foo"));
 }
 
 void test::TestName_SetFirstName()
 {
+	AnnounceTests("Name Set First Name");
 	Name name;
 	name.SetFirstName("foo");
 	assert(name.GetFirstName() == "foo");
@@ -93,12 +101,14 @@ void test::TestName_SetFirstName()
 
 void test::TestName_GetLastName()
 {
+	AnnounceTests("Name Get Last Name");
 	Name name("", "bar");
 	assert((name.GetLastName() == "bar"));
 }
 
 void test::TestName_SetLastName()
 {
+	AnnounceTests("Name Set Last Name");
 	Name name;
 	name.SetLastName("bar");
 	assert(name.GetLastName() == "bar");
@@ -106,24 +116,28 @@ void test::TestName_SetLastName()
 
 void test::TestName_ToString()
 {
+	AnnounceTests("Name To String");
 	Name name("foo", "bar");
 	assert(name.ToString() == "\t    Name:\tbar, foo\n");
 }
 
 void test::TestName_ToFileString()
 {
+	AnnounceTests("Name To File String");
 	Name name("foo", "bar");
 	assert(name.ToFileString() == "foo,bar,");
 }
 
 void test::TestName_ToFileString1()
 {
+	AnnounceTests("Name To File String 1");
 	Name name("foo", "bar");
 	assert(name.ToFileString(' ') == "foo bar ");
 }
 
 void test::TestName_ToCout()
 {
+	AnnounceTests("Name To Cout");
 	//setup
 	//In theory we should be able to change cout by changing _Ptr_cout.
 	//Keep a temporary pointer to the old cout.
@@ -148,7 +162,10 @@ void test::TestName_ToCout()
 }
 
 void test::TestName_ToOstream()
-{	//setup
+{	
+
+	AnnounceTests("Name To Ostream");
+	//setup
 
 	ostringstream out;
 	//set up what we will test
@@ -164,6 +181,7 @@ void test::TestName_ToOstream()
 
 void test::TestName_FromCin()
 {
+	AnnounceTests("Name From Cin");
 
 	//setup
 	istream* tmpCin = _Ptr_cin;
@@ -195,6 +213,7 @@ void test::TestName_FromCin()
 
 void test::TestName_FromIstream()
 {
+	AnnounceTests("Name From Cin");
 	//setup
 	istringstream in("Harry,Potter");
 	Name expected("Harry", "Potter");
@@ -207,6 +226,7 @@ void test::TestName_FromIstream()
 
 void test::TestName_AllComparison()
 {
+	AnnounceTests("Name comparisons");
 	Name a("Alice", "Andersen"), b("Blake", "Buster"), c("Catherine", "Coolidge");
 	RunAllInEqTests(a, b, c);
 }

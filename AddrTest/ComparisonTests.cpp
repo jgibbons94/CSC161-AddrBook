@@ -1,7 +1,8 @@
 #include "ComparisonTests.h"
-
+#include "Tests.h"
 void test::TestTemplateInEqTests()
 {
+	AnnounceTests("Template Inequality Tests");
 	RunAllInEqTests(1, 2, 3);
 	RunAllInEqTests(1u, 2u, 3u);
 	RunAllInEqTests(1l, 2l, 3l);

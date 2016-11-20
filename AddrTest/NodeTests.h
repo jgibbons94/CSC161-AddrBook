@@ -27,6 +27,7 @@ namespace test
 	template<class T>
 	void TestNode(T sample1, T sample2)
 	{
+		AnnounceTests("Node<T>");
 		TestNode_Constructor<T>(sample1);
 		TestNode_Value<T>(sample1, sample2);
 		TestNode_Next<T>(sample1, sample2);
@@ -35,6 +36,7 @@ namespace test
 	template<class T>
 	void TestNode_Constructor(T sample)
 	{
+		AnnounceTests("Node<T> Constructor");
 		//set up
 		AddrBookLib::Node<T> myNode(sample);
 		//act
@@ -45,6 +47,7 @@ namespace test
 	template<class T>
 	void TestNode_Next(T first, T next)
 	{
+		AnnounceTests("Node<T> Next");
 		//setup
 		AddrBookLib::Node<T> firstNode(first);
 		AddrBookLib::Node<T> nextNode(next);
@@ -57,6 +60,7 @@ namespace test
 	template<class T>
 	void TestNode_Value(T firstValue, T nextValue)
 	{
+		AnnounceTests("Node<T> Value");
 		//setup
 		AddrBookLib::Node<T> myNode(firstValue);
 		//act

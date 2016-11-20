@@ -40,21 +40,21 @@ std::string test::GenerateLowRandomString()
 {
 	seed();
 	std::string lowStrings[] = { "Apple","Acrophobia","Arachnophobia","Aphid","Aardvark","Basilisk","Before","Beyond","Batman","Banana", "Boomerang""Cow","Crane","Clinton","Cookie" };
-	return lowStrings[rand() % sizeof(lowStrings)];
+	return lowStrings[rand() % (sizeof(lowStrings)/ sizeof(lowStrings[0]))];
 }
 
 std::string test::GenerateMediumRandomString()
 {
 	seed();
-	std::string lowStrings[] = { "Monkey","Microphone","Mickey","Mouse","Marvin","Nancy","Nothing","Nathan","Noob","Necromancer","Octopus","Octogon","Orange" };
-	return lowStrings[rand() % sizeof(lowStrings)];
+	std::string mediumStrings[] = { "Monkey","Microphone","Mickey","Mouse","Marvin","Nancy","Nothing","Nathan","Noob","Necromancer","Octopus","Octogon","Orange" };
+	return mediumStrings[rand() % (sizeof(mediumStrings) / sizeof(mediumStrings[0]))];
 }
 
 std::string test::GenerateHighRandomString()
 {
 	seed();
-	std::string lowStrings[] = { "Monkey","Microphone","Mickey","Mouse","Marvin","Nancy","Nothing","Nathan","Noob","Necromancer","Octopus","Octogon","Orange" };
-	return lowStrings[rand() % sizeof(lowStrings)];
+	std::string highStrings[] = { "Xylophone","Xylophone","Xylophagus","Xenos","X-ray","Yoda","Yes","Yellow","Yearly","Zebra","Zen","Zelda","Zoom", "Zoo" };
+	return highStrings[rand() % (sizeof(highStrings) / sizeof(highStrings[0]))];
 }
 
 AddrBookLib::CategorizedContact test::GenerateLowRandomCategorizedContact()

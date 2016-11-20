@@ -3,6 +3,7 @@
 #ifndef CATEGORIZED_CONTACT_H
 #define CATEGORIZED_CONTACT_H
 #include <string>
+#include <iostream>
 #include "Contact.h"
 namespace AddrBookLib
 {
@@ -39,8 +40,8 @@ namespace AddrBookLib
 		void ReadFromFile(std::istream & fileIn);
 
 		// In the following, logic is applied to check if the streams are standard c++ streams defined in <iostream>
-		friend istream& operator>>(istream& is, CategorizedContact& contact);
-		friend ostream& operator<<(ostream& os, const CategorizedContact& contact);
+		friend std::istream& operator>>(std::istream& is, CategorizedContact& contact);
+		friend std::ostream& operator<<(std::ostream& os, const CategorizedContact& contact);
 
 	private:
 		Field category;

@@ -39,8 +39,8 @@ void test::TestAll()
 	TestCategorizedContact();
 	TestNode<int>(3,100);
 	TestNode<std::string>("This is a test string", "This is a second string.");
-	TestLinkList<int>();
-	TestLinkList<string>();
-	TestLinkList<CategorizedContact>();
+	TestLinkList<int>(GenerateLowRandomNumber,GenerateMediumRandomNumber,GenerateHighRandomNumber);
+	TestLinkList<string>(GenerateLowRandomString,GenerateMediumRandomString,GenerateHighRandomString);
+	TestLinkList<CategorizedContact>(GenerateLowRandomCategorizedContact,GenerateMediumRandomCategorizedContact,GenerateHighRandomCategorizedContact);
 //	TestAddrBook();
 }

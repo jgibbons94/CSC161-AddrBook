@@ -3,6 +3,7 @@
 #ifndef CONTACT_H
 #define CONTACT_H
 #include <string>
+#include <iostream>
 #include <fstream>
 #include "Name.h"
 #include "Address.h"
@@ -67,8 +68,8 @@ namespace AddrBookLib
 		friend bool operator<=(const Contact & a, const Contact & b);
 
 		// In the following, logic is applied to check if the streams are standard c++ streams defined in <iostream>
-		friend istream& operator>>(istream & is, Contact & contact);
-		friend ostream& operator<<(ostream& os, const Contact & contact);
+		friend std::istream& operator>>(std::istream & is, Contact & contact);
+		friend std::ostream& operator<<(std::ostream& os, const Contact & contact);
 
 	protected:
 		Name fullName;

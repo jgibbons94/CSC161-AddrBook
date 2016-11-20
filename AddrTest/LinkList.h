@@ -10,7 +10,9 @@
 namespace test
 {
 	template<class T>
-	void TestLinkList_Constructor();
+	void TestLinkList_Constructor0_0();
+	template<class T>
+	void TestLinkList_Constructor0_1();
 }
 #endif
 namespace AddrBookLib
@@ -38,6 +40,7 @@ namespace AddrBookLib
 		LinkList(const LinkList<T> & oldLinkList);
 		LinkList<T> & operator=(const LinkList<T> & oldLinkList);
 		//R
+		//Iterator is a helper class, so I'm nesting it in the LinkList class.
 		class Iterator
 		{
 		public:
@@ -119,7 +122,8 @@ namespace AddrBookLib
 
 
 #ifdef LINK_LIST_TEST_FRIENDS
-		friend void test::TestLinkList_Constructor<T>();
+			friend void test::TestLinkList_Constructor0_0<T>();
+			friend void test::TestLinkList_Constructor0_1<T>();
 #endif
 
 	};

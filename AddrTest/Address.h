@@ -2,8 +2,8 @@
 //Written by Jesse Gibbons
 #ifndef ADDRESS_H
 #define ADDRESS_H
-#include"Field.h"
 #include <iostream>
+#include"Field.h"
 namespace AddrBookLib
 {
 	/*
@@ -51,8 +51,8 @@ namespace AddrBookLib
 		friend bool operator!=(const Address& addr1, const Address& addr2);
 
 		// In the following, logic is applied to check if the streams are standard c++ streams defined in <iostream>
-		friend ostream& operator<<(ostream& os, const Address& addr);
-		friend istream& operator>>(istream& is, Address& addr);
+		friend std::ostream& operator<<(std::ostream& os, const Address& addr);
+		friend std::istream& operator>>(std::istream& is, Address& addr);
 
 	private:
 		Field streetAddress;

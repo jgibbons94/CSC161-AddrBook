@@ -1,5 +1,6 @@
 #ifndef LINK_LIST_H
 #define LINK_LIST_H
+#include <cassert>
 #include <iostream>
 #include <fstream>
 #include "Node.h"
@@ -14,6 +15,7 @@ namespace test
 #endif
 namespace AddrBookLib
 {
+//	template<class T> LinkList;
 	template<class T>
 	class LinkList
 	{
@@ -32,7 +34,7 @@ namespace AddrBookLib
 		//CRUD - Create, Read, Update, Delete
 
 		//C
-		LinkList(LinkListInsertOrder initialInsertOrder = LinkListInsertOrder::FIRST);
+		LinkList(LinkListInsertOrder initialInsertOrder = LinkListInsertOrder::LAST);
 		LinkList(const LinkList<T> & oldLinkList);
 		LinkList<T> & operator=(const LinkList<T> & oldLinkList);
 		//R
@@ -55,8 +57,8 @@ namespace AddrBookLib
 			//might not be necessary with operator bool.
 			bool operator!() const;
 		private:
-			Iterator(const Node<T> & value);
-			Node<T> * value;
+			Iterator(Node<T> * initialValue);
+			Node<T>* value;
 
 			friend class LinkList<T>;
 
@@ -122,7 +124,7 @@ namespace AddrBookLib
 
 	};
 
-	typedef LinkList<CategorizedContact> _AddrBook;
+	typedef LinkList<CategorizedContact> AddrBook;
 	template<class T>
 	inline LinkList<T>::LinkList(LinkListInsertOrder initialInsertOrder)
 	{
@@ -165,11 +167,11 @@ namespace AddrBookLib
 			AddDesc(dataIn);
 			break;
 		case LAST:
-		case QUEUE:
+//		case QUEUE:
 			AddEnd(dataIn);
 			break;
 		case FIRST:
-		case STACK:
+//		case STACK:
 		default:
 			AddBeginning(dataIn);
 			break;
@@ -187,9 +189,9 @@ namespace AddrBookLib
 		//0 <= itemNumber < size
 
 		//negative cardinal numbers make no sense.
-		if (itemnumber < 0)
+		if (itemNumber < 0)
 			return;
-		if (itemnumber == 0)
+		if (itemNumber == 0)
 		{
 			RemoveFirst();
 			return;
@@ -208,7 +210,7 @@ namespace AddrBookLib
 			this->RemoveNode(cursor);
 	}
 	template<class T>
-	inline void LinkList<T>::RemoveByItem(const T& dataToRemove)
+	inline void LinkList<T>::RemoveByItem(crefT dataToRemove)
 	{
 		ptrTNode cursor = nullptr;
 		if (this->IsEmpty())
@@ -228,6 +230,13 @@ namespace AddrBookLib
 			}
 		}
 	}
+
+	template<class T>
+	typename LinkList<T>::Iterator LinkList<T>::Begin() const
+	{
+		return Iterator(this->first);
+	}
+
 	template<class T>
 	inline size_t LinkList<T>::CountItems() const
 	{
@@ -287,7 +296,7 @@ namespace AddrBookLib
 	{
 		for (ptrTNode i = first; i != nullptr; i = i->next)
 		{
-			outFile << i->content << std::endl;
+			os << i->content << std::endl;
 		}
 	}
 	template<class T>
@@ -354,7 +363,7 @@ namespace AddrBookLib
 		ptrTNode tmpNode = nullptr;
 		if (previousNode->next == nullptr)
 			return;
-		tmpNode = prevNode->next;
+		tmpNode = previousNode->next;
 		previousNode->next = tmpNode->next;
 		FreeNode(tmpNode);
 
@@ -364,7 +373,7 @@ namespace AddrBookLib
 	template<class T>
 	inline Node<T>* LinkList<T>::AllocNode(crefT dataIn)
 	{
-		ptrTNode myNewNode = new Node(dataIn);
+		ptrTNode myNewNode = new Node<T>(dataIn);
 		return myNewNode;
 	}
 	template<class T>
@@ -395,7 +404,7 @@ namespace AddrBookLib
 	inline void LinkList<T>::AddAsc(crefT value)
 	{
 		ptrTNode cursor = nullptr;
-		if (this->isEmpty())
+		if (this->IsEmpty())
 		{
 			AddBeginning(value);
 			return;
@@ -421,7 +430,7 @@ namespace AddrBookLib
 		ptrTNode cursor = nullptr;
 		if (this->first = nullptr)
 		{
-			AddFirst(value);
+			this->AddBeginning(value);
 			return;
 		}
 		//stop before cursor is nullptr
@@ -445,12 +454,12 @@ namespace AddrBookLib
 		ptrTNode valueNode = nullptr;
 		if (this->IsEmpty())
 		{
-			addBeginning(value);
+			AddBeginning(value);
 			return;
 		}
 		valueNode = AllocNode(value);
-		this->last->next = valuenode;
-		this->last = valuenode;
+		this->last->next = valueNode;
+		this->last = valueNode;
 
 	}
 	template<class T>
@@ -469,7 +478,7 @@ namespace AddrBookLib
 	{
 		ptrTNode valueNode = nullptr;
 		//valuenode and beforenode must not be null for this to work.
-		assert(beforeNode != nullptr);//<--this is a macro that might be empty. Better play it safe.
+		//assert(beforeNode != nullptr);//<--this is a macro that might be empty. Better play it safe.
 		if (beforeNode == nullptr)
 		{
 			std::cerr << "LinkList<T>::InsertValueAfterSpecifiedNode received a null pointer. Please tell the programmer fix it." << std::endl;
@@ -484,6 +493,33 @@ namespace AddrBookLib
 		valueNode->next = beforeNode->next;
 		beforeNode->next = valueNode;
 
+	}
+	template<class T>
+	inline const T & LinkList<T>::Iterator::operator*() const
+	{
+		assert(this->value != nullptr);
+		return this->value->content;
+	}
+	template<class T>
+	inline bool LinkList<T>::Iterator::Next()
+	{
+		this->value = this->value->next;
+		return this->value != nullptr;
+	}
+	template<class T>
+	inline LinkList<T>::Iterator::operator bool() const
+	{
+		return this->value != nullptr;
+	}
+	template<class T>
+	inline bool LinkList<T>::Iterator::operator!() const
+	{
+		return this->value == nullptr;
+	}
+	template<class T>
+	inline LinkList<T>::Iterator::Iterator(Node<T>* initialValue)
+	{
+		value = initialValue;
 	}
 }
 

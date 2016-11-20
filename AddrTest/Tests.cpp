@@ -42,5 +42,5 @@ void test::TestAll()
 	TestLinkList<int>();
 	TestLinkList<string>();
 	TestLinkList<CategorizedContact>();
-	TestAddrBook();
+//	TestAddrBook();
 }

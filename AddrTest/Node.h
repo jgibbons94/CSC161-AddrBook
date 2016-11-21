@@ -66,12 +66,22 @@ namespace AddrBookLib
 	template<class T>
 	class LinkList;
 
-	//#include "NodeTests.h"
+
+
+	/*
+		Node Template Class - Item for LinkList collection
+		A Node has a data object and a link to the next Node.
+		The Node class needs constructors (default and a constructor that will set the data)
+		The Node class is NOT dynamic
+		Make sure the class is a template and there is NO references to Name, Address, Contact, CategorizedContact
+		The Node class is a helper class to LinkList and is only utilized in LinkList.
+	*/
 	template<class T>
 	class Node
 	{
 	private:
-		Node(T initialContent) { content = initialContent; }
+		Node() { next = nullptr; }
+		Node(T initialContent) { content = initialContent; next = nullptr; }
 		T content;
 		Node<T>* next;
 
@@ -103,11 +113,11 @@ namespace AddrBookLib
 		friend void test::TestLinkList_FreeAllNodes<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 		friend void test::TestLinkList_FreeAllNodes_leaks<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 #endif
-
-
-#ifdef LINK_LIST_TEST_FRIENDS
-#endif
-			friend class LinkList<T>;
+		/*
+			Bonus Points Opportunities:
+			5 Points - Create the Node class so that it using private data members and then have it be a friend class to LinkList
+		*/
+		friend class LinkList<T>;
 
 	};
 }

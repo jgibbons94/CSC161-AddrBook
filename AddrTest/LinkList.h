@@ -96,7 +96,33 @@ namespace test
 #endif
 namespace AddrBookLib
 {
-	//	template<class T> LinkList;
+	/*
+		LinkList Template Class - New Data Structure instead of AddrBook
+		A LinkList is a collection data structure that is dynamic, storing Nodes.
+		Only Node pointers will be created in LinkList - NO Node objects
+		A LinkList has a first Node pointer and a last Node pointer
+		Public Members
+			Default Constructor
+			Copy Constructor
+			Assignment Operator
+			Destructor
+			Add(Type dataIn)
+			RemoveByItemNumber(int itemNumber)
+			RemoveByItem(Type dataToRemove)
+			CountItems()
+			ReadFile(string fileName)
+			WriteFile(string fileName)
+			PrintAll()
+		Private Members
+			Node* FindNode(Type dataIn)
+			Node* FindPreviousNode(Type dataIn)
+			RemoveFirst()
+			RemoveNode(Node*)
+			Node* AllocNode(Type dataIn)
+			FreeAllNodes()
+		Make sure all the member functions move links NOT data around when adding, removing.
+		Make sure the class is a template and there is NO references to Name, Address, Contact, CategorizedContact
+	*/
 	template<class T>
 	class LinkList
 	{
@@ -185,6 +211,12 @@ namespace AddrBookLib
 		ptrTNode FindPreviousNode(crefT dataIn) const;
 		bool HasOnlyOneElement() const;
 		//U
+		
+		/*
+			Bonus Points Opportunities:
+			5 Points - Handle ascending and descending by implementing addAscending and addDescending
+			The addAscending and addDescending member functions add they don't sort. You do NOT sort your list after you add at the end, you add the node in the correct position and move links around so that no sorting is necessary. Be sure to make your links work.
+		*/
 
 		//add in increasing order
 		void AddAsc(crefT value);
@@ -243,7 +275,9 @@ namespace AddrBookLib
 #endif
 
 	};
-
+	//This saves me the trouble of refactoring everything.
+	//It's just like how std::ostream is defined as basic_ostream<char>
+	//This way we can also have a wostream defined as basic_osteram<wchar>
 	typedef LinkList<CategorizedContact> AddrBook;
 	template<class T>
 	inline LinkList<T>::LinkList(LinkListInsertOrder initialInsertOrder)

@@ -30,62 +30,46 @@ namespace test
 	template<class T>
 	void TestLinkList_Assignment_leaks(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 
-#ifdef YES_WE_NEED_TO_SEPARATE_THESE
-	
 	template<class T>
-	void TestLinkList_Begin();
+	void TestLinkList_RemoveByItemNumber(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 	template<class T>
-	void TestLinkList_CountItems();
+	void TestLinkList_RemoveByItem(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 	template<class T>
-	void TestLinkList_IsEmpty();
-	template<class T>
-	void TestLinkList_Add();
-	template<class T>
-	void TestLinkList_RemoveByItemNumber();
-	template<class T>
-	void TestLinkList_RemoveByItem();
-	template<class T>
-	void TestLinkList_Deconstructor();
+	void TestLinkList_Deconstructor(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+
+
 
 	template<class T>
-	void TestLinkList_ReadFile();
+	void TestLinkList_AllocNode(GeneratorCallback<T> randomGenerator);
 	template<class T>
-	void TestLinkList_WriteFile();
+	void TestLinkList_FindNode(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 	template<class T>
-	void TestLinkList_PrintAll();
+	void TestLinkList_HasOnlyOneElement(GeneratorCallback<T> randomGenerator);
+	template<class T>
+	void TestLinkList_AddAsc(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+	template<class T>
+	void TestLinkList_AddDesc(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+	template<class T>
+	void TestLinkList_AddEnd(GeneratorCallback<T> randomGenerator);
+	template<class T>
+	void TestLinkList_AddBeginning(GeneratorCallback<T> randomGenerator);
+	template<class T>
+	void TestLinkList_InsertValueAfterSpecifiedNode(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+	template<class T>
+	void TestLinkList_Concat(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+	template<class T>
+	void TestLinkList_RemoveFirst(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+	template<class T>
+	void TestLinkList_RemoveNode(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+	template<class T>
+	void TestLinkList_FreeNode(GeneratorCallback<T> RandomGenerator);
+	template<class T>
+	void TestLinkList_FreeAllNodes(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+	template<class T>
+	void TestLinkList_FreeAllNodes_leaks(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 
-	//private functions
-	template<class T>
-	void TestLinkList_AllocNode();
-	template<class T>
-	void TestLinkList_FindNode();
-	template<class T>
-	void TestLinkList_HasOnlyOneElement();
-	template<class T>
-	void TestLinkList_AddAsc();
-	template<class T>
-	void TestLinkList_AddDesc();
-	template<class T>
-	void TestLinkList_AddEnd();
-	template<class T>
-	void TestLinkList_AddBeginning();
-	template<class T>
-	void TestLinkList_InsertValueAfterSpecifiedNode();
-	template<class T>
-	void TestLinkList_Concat();
-	template<class T>
-	void TestLinkList_RemoveFirst();
-	template<class T>
-	void TestLinkList_RemoveNode();
-	template<class T>
-	void TestLinkList_FreeNode();
-	template<class T>
-	void TestLinkList_FreeNode_leaks();
-	template<class T>
-	void TestLinkList_FreeAllNodes();
-	template<class T>
-	void TestLinkList_FreeAllNodes_leaks();
-#endif
+
+
 	//link list iterator tests
 	template<class T>
 	void TestLinkList_Iterator_NextWithNull();
@@ -233,8 +217,27 @@ namespace AddrBookLib
 		friend void test::TestLinkList_ConstructorDesc<T>();
 		friend void test::TestLinkList_CopyConstructor<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 		friend void test::TestLinkList_CopyConstructor_leaks<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
-		friend void test::TestLinkList_Assignment(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
-		friend void test::TestLinkList_Assignment_leaks(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_Assignment<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_Assignment_leaks<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_RemoveByItemNumber<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_RemoveByItem<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_Deconstructor<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+
+		//private tests.
+		friend void test::TestLinkList_AllocNode<T>(GeneratorCallback<T> RandomGenerator);
+		friend void test::TestLinkList_FindNode<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_HasOnlyOneElement<T>(GeneratorCallback<T> randomGenerator);
+		friend void test::TestLinkList_AddAsc<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_AddDesc<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_AddEnd<T>(GeneratorCallback<T> randomGenerator);
+		friend void test::TestLinkList_AddBeginning<T>(GeneratorCallback<T> randomGenerator);
+		friend void test::TestLinkList_InsertValueAfterSpecifiedNode<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_Concat<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_RemoveFirst<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_RemoveNode<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_FreeNode<T>(GeneratorCallback<T> RandomGenerator);
+		friend void test::TestLinkList_FreeAllNodes<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_FreeAllNodes_leaks<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 #endif
 
 	};
@@ -409,9 +412,10 @@ namespace AddrBookLib
 	template<class T>
 	inline void LinkList<T>::PrintAll(std::ostream & os) const
 	{
+		int counter = 1;
 		for (ptrTNode i = first; i != nullptr; i = i->next)
 		{
-			os << i->content << std::endl;
+			os << counter++ << ": " << i->content << std::endl;
 		}
 	}
 	template<class T>
@@ -439,10 +443,10 @@ namespace AddrBookLib
 		ptrTNode cursor = nullptr;
 		if (this->IsEmpty())
 			return nullptr;
-		for (cursor = this->first;cursor != nullptr;cursor cursor->next)
+		for (cursor = this->first;cursor != nullptr;cursor = cursor->next)
 			if (cursor->content == dataIn)
 				return cursor;
-		return null;
+		return nullptr;
 	}
 	template<class T>
 	inline Node<T>* LinkList<T>::FindPreviousNode(crefT dataIn) const
@@ -496,6 +500,7 @@ namespace AddrBookLib
 	{
 		if (nodeToDelete != nullptr)
 			delete nodeToDelete;
+		nodeToDelete = nullptr;
 	}
 	template<class T>
 	inline void LinkList<T>::FreeAllNodes()
@@ -543,7 +548,7 @@ namespace AddrBookLib
 	inline void LinkList<T>::AddDesc(crefT value)
 	{
 		ptrTNode cursor = nullptr;
-		if (this->first = nullptr)
+		if (this->IsEmpty())
 		{
 			this->AddBeginning(value);
 			return;

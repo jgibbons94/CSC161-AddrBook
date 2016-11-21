@@ -12,7 +12,7 @@ namespace test
 	void TestAll();
 	inline void AnnounceTests(std::string functionName)
 	{
-		std::cout << std::endl << "Beginning the " << functionName << " Test " << std::endl;
+		//std::cout << std::endl << "Beginning the " << functionName << " Test " << std::endl;
 	}
 	inline void ReportMissingTest(std::string functionName)
 	{

@@ -11,6 +11,7 @@
 #include "RandomGenerators.h"
 namespace test
 {
+
 	template<class T>
 	void TestLinkList(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 
@@ -57,6 +58,7 @@ namespace test
 	void TestLinkList_PrintAll(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 
 	//private functions
+
 	template<class T>
 	void TestLinkList_AllocNode(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 	template<class T>
@@ -68,9 +70,9 @@ namespace test
 	template<class T>
 	void TestLinkList_AddDesc(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 	template<class T>
-	void TestLinkList_AddEnd(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+	void TestLinkList_AddEnd(GeneratorCallback<T> randomGenerator);
 	template<class T>
-	void TestLinkList_AddBeginning(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+	void TestLinkList_AddBeginning(GeneratorCallback<T> randomGenerator);
 	template<class T>
 	void TestLinkList_InsertValueAfterSpecifiedNode(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 	template<class T>
@@ -80,15 +82,14 @@ namespace test
 	template<class T>
 	void TestLinkList_RemoveNode(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 	template<class T>
-	void TestLinkList_FreeNode(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
-	template<class T>
-	void TestLinkList_FreeNode_leaks(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+	void TestLinkList_FreeNode(GeneratorCallback<T> RandomGenerator);
 	template<class T>
 	void TestLinkList_FreeAllNodes(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 	template<class T>
 	void TestLinkList_FreeAllNodes_leaks(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 
 
+	//helper
 
 	template<class T>
 	void TestLinkList(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
@@ -115,19 +116,18 @@ namespace test
 		TestLinkList_WriteFile<T>(low, medium, high);
 		TestLinkList_PrintAll<T>(low, medium, high);
 		//private functions
-		TestLinkList_AllocNode<T>(low, medium, high);
+		TestLinkList_AllocNode<T>(high);
 		TestLinkList_FindNode<T>(low, medium, high);
 		TestLinkList_HasOnlyOneElement<T>(low);
 		TestLinkList_AddAsc<T>(low, medium, high);
 		TestLinkList_AddDesc<T>(low, medium, high);
-		TestLinkList_AddEnd<T>(low, medium, high);
-		TestLinkList_AddBeginning<T>(low, medium, high);
+		TestLinkList_AddEnd<T>(medium);
+		TestLinkList_AddBeginning<T>(medium);
 		TestLinkList_InsertValueAfterSpecifiedNode<T>(low, medium, high);
 		TestLinkList_Concat<T>(low, medium, high);
 		TestLinkList_RemoveFirst<T>(low, medium, high);
 		TestLinkList_RemoveNode<T>(low, medium, high);
-		TestLinkList_FreeNode<T>(low, medium, high);
-		TestLinkList_FreeNode_leaks<T>(low, medium, high);
+		TestLinkList_FreeNode<T>(high);
 		TestLinkList_FreeAllNodes<T>(low, medium, high);
 		TestLinkList_FreeAllNodes_leaks<T>(low, medium, high);
 
@@ -424,27 +424,86 @@ namespace test
 	template<class T>
 	void TestLinkList_RemoveByItemNumber(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
 	{
-		AnnounceTests("LinkLIst<T> Add() function");
+		AnnounceTests("Link List remove by number test");
 		//setup
 		LinkList<T> list;
-		bool emptyBefore = list.IsEmpty();
+		for (int i = 0; i < 10;i++)
+		{
+			list.Add(low());
+		}
+		T removeValue = medium();
+		for (int i = 0; i < 10; i++)
+		{
+			list.Add(high());
+		}
 		//act
-		list.Add(low());
-		bool emptyAfter = list.IsEmpty();
+		list.RemoveByItemNumber(10);
+		auto actualLocation = list.FindNode(removeValue);
 		//assert
-		assert(emptyBefore == true && emptyAfter == false);
+		assert(actualLocation == nullptr);
 	}
 
 	template<class T>
 	void TestLinkList_RemoveByItem(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
 	{
-		ReportMissingTest("TestLinkList_RemoveByItem");
+		AnnounceTests("Link List remove by item test");
+		//setup
+		LinkList<T> list;
+		for (int i = 0; i < 10;i++)
+		{
+			list.Add(low());
+		}
+		T removeValue = medium();
+		for (int i = 0; i < 10; i++)
+		{
+			list.Add(high());
+		}
+		//act
+		list.RemoveByItem(removeValue);
+		auto actualLocation = list.FindNode(removeValue);
+		//assert
+		assert(actualLocation == nullptr);
 	}
 
 	template<class T>
 	void TestLinkList_Deconstructor(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
 	{
-		ReportMissingTest("TestLinkList_Deconstructor");
+		AnnounceTests("LinkList<T>  destructor");
+		//setup
+		bool passed1 = false, passed2 = true, passed3 = false;
+		LinkList<T>* a = new LinkList<T>();
+		Node<T>* kept;
+		for (int i = 0; i < 10; i++)
+		{
+			a->Add(low());
+		}
+		for (int i = 0; i < 10; i++)
+		{
+			a->Add(medium());
+		}
+		kept = a->last;
+		T keptExpected = kept->content;
+		for (int i = 0; i < 10; i++)
+		{
+			a->Add(high());
+		}
+
+		//act
+		delete a;
+		try
+		{
+			T t = kept->content;
+			if (t == keptExpected)
+				cerr << "Memory leak alert in deconstructor." << endl;
+			else
+				passed1 = true;
+		}
+		catch (...)
+		{
+			passed1 = true;
+		}
+		assert(passed1 == true);
+
 	}
 
 	template<class T>
@@ -546,98 +605,320 @@ namespace test
 	template<class T>
 	void TestLinkList_PrintAll(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
 	{
-		ReportMissingTest("TestLinkList_PrintAll");
+		AnnounceTests("LinkList Print All");
+		//prepare
+		ostringstream printTo, checkStream;
+
+		ostream* tmpCout = _Ptr_cout;
+		//set the current pointer to a new ostringStream
+		_Ptr_cout = &checkStream;
+		string expected, actual;
+		int counter = 1;
+		bool passed = true;
+		LinkList<T> a;
+		//act
+		for (int i = 0; i < 10; i++)
+		{
+			T value = low();
+			a.Add(value);
+			checkStream << counter++ << ": " << value << endl;
+		}
+		for (int i = 0; i < 10; i++)
+		{
+			T value = medium();
+			a.Add(value);
+			checkStream << counter++ << ": " << value << endl;
+		}
+		for (int i = 0; i < 10; i++)
+		{
+			T value = high();
+			a.Add(value);
+			checkStream << counter++ << ": " << value << endl;
+		}
+		expected = checkStream.str();
+		_Ptr_cout = &printTo;
+		a.PrintAll(printTo);
+
+		actual = printTo.str();
+
+		//assert
+		assert(actual == expected);
+		_Ptr_cout = tmpCout;
+
 	}
 
 	template<class T>
-	void TestLinkList_AllocNode(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
+	void TestLinkList_AllocNode(GeneratorCallback<T> randomGenerator)
 	{
-		ReportMissingTest("TestLinkList_AllocNode");
+		LinkList<T> list;
+		T expectedContent = randomGenerator();
+		Node<T> * myNode = list.AllocNode(expectedContent);
+		assert(myNode->content == expectedContent);
+		if (myNode != nullptr)
+			delete myNode;
 	}
 
 	template<class T>
 	void TestLinkList_FindNode(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
 	{
-		ReportMissingTest("TestLinkList_FindNode");
+		LinkList<T> list;
+		T valueToFind = medium();
+		Node<T>* found = nullptr;
+		for (int i = 0; i < 10; i++)
+			list.Add(low());
+		list.Add(valueToFind);
+		for (int i = 0; i < 10; i++)
+			list.Add(high());
+		found = list.FindNode(valueToFind);
+		assert(found->content == valueToFind);
+
 	}
 
 	template<class T>
 	void TestLinkList_HasOnlyOneElement(GeneratorCallback<T> randomGenerator)
 	{
-		ReportMissingTest("TestLinkList_HasOnlyOneElement");
+		LinkList<T> list;
+		T singleElement = randomGenerator();
+		list.Add(singleElement);
+		bool hasOnlyOneElement = list.HasOnlyOneElement();
+		assert(hasOnlyOneElement == true);
+
 	}
 
 	template<class T>
 	void TestLinkList_AddAsc(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
 	{
-		ReportMissingTest("TestLinkList_AddAsc");
+		T previous = low(), current = low();
+		bool pass = true;
+		LinkList<T> list;
+		for (int i = 0; i < 10; i++)
+			list.AddAsc(low());
+		for (int i = 0; i < 10; i++)
+			list.AddAsc(medium());
+		for (int i = 0; i < 10; i++)
+			list.AddAsc(high());
+		LinkList<T>::Iterator it = list.Begin();
+		previous = *it;
+		for (it.Next(); it; it.Next())
+		{
+			current = *it;
+			if (current < previous)
+				pass = false;
+		}
+		assert(pass == true);
 	}
 
 	template<class T>
 	void TestLinkList_AddDesc(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
 	{
-		ReportMissingTest("TestLinkList_AddDesc");
+		T previous = low(), current = low();
+		bool pass = true;
+		LinkList<T> list;
+		for (int i = 0; i < 10; i++)
+			list.AddDesc(low());
+		for (int i = 0; i < 10; i++)
+			list.AddDesc(medium());
+		for (int i = 0; i < 10; i++)
+			list.AddDesc(high());
+		LinkList<T>::Iterator it = list.Begin();
+		previous = *it;
+
+		for (it.Next(); it; it.Next())
+		{
+			current = *it;
+			if (current > previous)
+				pass = false;
+		}
+		assert(pass == true);
 	}
 
 	template<class T>
-	void TestLinkList_AddEnd(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
+	void TestLinkList_AddEnd(GeneratorCallback<T> randomGenerator)
 	{
-		ReportMissingTest("TestLinkList_AddEnd");
+		LinkList<T> list;
+		T expected = randomGenerator();
+		for (int i = 0; i < 10; i++)
+			list.Add(randomGenerator());
+		list.AddEnd(expected);
+		Node<T>* myNode = list.last;
+		assert(myNode->content == expected);
 	}
 
 	template<class T>
-	void TestLinkList_AddBeginning(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
+	void TestLinkList_AddBeginning(GeneratorCallback<T> randomGenerator)
 	{
-		ReportMissingTest("TestLinkList_AddBeginning");
+		LinkList<T> list;
+		T expected = randomGenerator();
+		for (int i = 0; i < 10; i++)
+			list.Add(randomGenerator());
+		list.AddBeginning(expected);
+		Node<T>* myNode = list.first;
+		assert(myNode->content == expected);
 	}
 
 	template<class T>
 	void TestLinkList_InsertValueAfterSpecifiedNode(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
 	{
-		ReportMissingTest("TestLinkList_InsertValueAfterSpecifiedNode");
+		LinkList<T> list;
+		Node<T>* before = nullptr;
+		T myValue = medium();
+		for (int i = 0; i < 10; i++)
+			list.Add(low());
+		for (int i = 0; i < 10; i++)
+			list.Add(medium());
+		for (int i = 0; i < 10; i++)
+			list.Add(high());
+		before = list.first;
+
+		list.InsertValueAfterSpecifiedNode(myValue, before);
+		LinkList<T>::Iterator it = list.Begin();
+		it.Next();
+
+		assert(*it == myValue);
 	}
 
 	template<class T>
 	void TestLinkList_Concat(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
 	{
-		ReportMissingTest("TestLinkList_Concat");
+		LinkList<T> list1, list2;
+		for (int i = 0; i < 10; i++)
+			list1.Add(low());
+		for (int i = 0; i < 10; i++)
+			list1.Add(medium());
+		for (int i = 0; i < 10; i++)
+			list1.Add(high());
+		size_t list1Size = list1.CountItems();
+
+		for (int i = 0; i < 10; i++)
+			list2.Add(low());
+		for (int i = 0; i < 10; i++)
+			list2.Add(medium());
+		for (int i = 0; i < 10; i++)
+			list2.Add(high());
+		size_t list2Size = list2.CountItems();
+
+		list2.Concat(list1);
+		size_t list2NewSize = list2.CountItems();
+		assert(list2NewSize == (list1Size + list2Size));
 	}
 
 	template<class T>
 	void TestLinkList_RemoveFirst(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
 	{
-		ReportMissingTest("TestLinkList_RemoveFirst");
+		LinkList<T> list;
+		T first = low();
+		T second = medium();
+		list.Add(first);
+		list.Add(second);
+		for (int i = 0; i < 10; i++)
+			list.Add(low());
+		for (int i = 0; i < 10; i++)
+			list.Add(medium());
+		for (int i = 0; i < 10; i++)
+			list.Add(high());
+		list.RemoveFirst();
+		LinkList<T>::Iterator newFirst = list.Begin();
+		assert(*newFirst == second);
 	}
 
 	template<class T>
 	void TestLinkList_RemoveNode(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
 	{
-		ReportMissingTest("TestLinkList_RemoveNode");
+		LinkList<T> list;
+		T first = low();
+		T second = medium();
+		T third = high();
+		list.Add(first);
+		list.Add(second);
+		list.Add(third);
+		for (int i = 0; i < 10; i++)
+			list.Add(low());
+		for (int i = 0; i < 10; i++)
+			list.Add(medium());
+		for (int i = 0; i < 10; i++)
+			list.Add(high());
+		Node<T> * nodeBeforeNodeToRemove = list.first;
+		list.RemoveNode(nodeBeforeNodeToRemove);
+		LinkList<T>::Iterator newSecond = list.Begin();
+		newSecond.Next();
+		assert(*newSecond == third);
 	}
 
 	template<class T>
-	void TestLinkList_FreeNode(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
+	void TestLinkList_FreeNode(GeneratorCallback<T> RandomGenerator)
 	{
-		ReportMissingTest("TestLinkList_FreeNode");
-	}
-
-	template<class T>
-	void TestLinkList_FreeNode_leaks(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
-	{
-		ReportMissingTest("TestLinkList_FreeNode_leaks");
+		T keptExpected = RandomGenerator();
+		T keptActual = keptExpected;
+		Node<T> * myNode = new Node<T>(keptExpected);
+		LinkList<T> list;
+		bool pass = false;
+		list.FreeNode(myNode);
+		try
+		{
+			keptActual = myNode->content;
+			if (keptActual == keptExpected)
+				cerr << "Memory leak alert in copy constructor." << endl;
+			else
+				pass = true;
+		}
+		catch (...)
+		{
+			pass = true;
+		}
+		assert(pass == true);
 	}
 
 	template<class T>
 	void TestLinkList_FreeAllNodes(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
 	{
-		ReportMissingTest("TestLinkList_FreeAllNodes");
+		LinkList<T> list;
+		size_t listSize = 0;
+		for (int i = 0; i < 10; i++)
+			list.Add(low());
+		for (int i = 0; i < 10; i++)
+			list.Add(medium());
+		for (int i = 0; i < 10; i++)
+			list.Add(high());
+		list.FreeAllNodes();
+		listSize = list.CountItems();
+		assert(listSize == 0);
+
 	}
 
 	template<class T>
 	void TestLinkList_FreeAllNodes_leaks(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
 	{
-		ReportMissingTest("TestLinkList_FreeAllNodes_leaks");
+		Node<T>* keptExpected = nullptr;
+		Node<T>* keptActual = nullptr;
+		Node<T> * myNode = nullptr;
+		LinkList<T> list;
+		for (int i = 0; i < 10; i++)
+			list.Add(low());
+		list.Add(low());
+		myNode = list.last;
+		list.Add(medium());
+		keptExpected = myNode->next;
+		for (int i = 0; i < 10; i++)
+			list.Add(medium());
+		for (int i = 0; i < 10; i++)
+			list.Add(high());
+		bool pass = false;
+		list.FreeAllNodes();
+		try
+		{
+			keptActual = myNode->next;
+			if (keptActual == keptExpected)
+				cerr << "Memory leak alert in copy constructor." << endl;
+			else
+				pass = true;
+		}
+		catch (...)
+		{
+			pass = true;
+		}
+		assert(pass == true);
 	}
+
 
 }
 

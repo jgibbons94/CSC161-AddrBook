@@ -26,11 +26,36 @@ namespace test
 	template<class T>
 	void TestLinkList_Iterator_notNotNull(GeneratorCallback<T> randomGenerator);
 
-
 	template<class T>
 	void TestLinkList_CopyConstructor_leaks(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 	template<class T>
 	void TestLinkList_Assignment_leaks(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+	template<class T>
+	void TestLinkList_Deconstructor(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+
+
+
+	template<class T>
+	void TestLinkList_AllocNode(GeneratorCallback<T> randomGenerator);
+	template<class T>
+	void TestLinkList_FindNode(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+
+	template<class T>
+	void TestLinkList_AddEnd(GeneratorCallback<T> randomGenerator);
+	template<class T>
+	void TestLinkList_AddBeginning(GeneratorCallback<T> randomGenerator);
+	template<class T>
+	void TestLinkList_InsertValueAfterSpecifiedNode(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+
+
+	template<class T>
+	void TestLinkList_RemoveNode(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+	template<class T>
+	void TestLinkList_FreeNode(GeneratorCallback<T> RandomGenerator);
+	template<class T>
+	void TestLinkList_FreeAllNodes(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+	template<class T>
+	void TestLinkList_FreeAllNodes_leaks(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 }
 #endif
 
@@ -58,8 +83,23 @@ namespace AddrBookLib
 		friend void test::TestLinkList_Iterator_Constructor<T>(GeneratorCallback<T> randomGenerator);
 		friend void test::TestLinkList_Iterator_boolNotNull(GeneratorCallback<T> randomGenerator);
 		friend void test::TestLinkList_Iterator_notNotNull<T>(GeneratorCallback<T> randomGenerator);
-		friend void test::TestLinkList_CopyConstructor_leaks<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_CopyConstructor_leaks(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 		friend void test::TestLinkList_Assignment_leaks<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_Deconstructor<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+
+		//private LinkList tests
+
+		friend void test::TestLinkList_AllocNode<T>(GeneratorCallback<T> randomGenerator);
+		friend void test::TestLinkList_FindNode(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_AddEnd<T>(GeneratorCallback<T> randomGenerator);
+		friend void test::TestLinkList_AddBeginning<T>(GeneratorCallback<T> randomGenerator);
+		friend void test::TestLinkList_InsertValueAfterSpecifiedNode<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+
+
+		friend void test::TestLinkList_RemoveNode<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_FreeNode<T>(GeneratorCallback<T> RandomGenerator);
+		friend void test::TestLinkList_FreeAllNodes<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestLinkList_FreeAllNodes_leaks<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 #endif
 
 

@@ -1,3 +1,5 @@
+//RandomGenerator.cpp
+//Written by Jesse Gibbons
 #include "RandomGenerators.h"
 #include <ctime>
 #include <cstdlib>

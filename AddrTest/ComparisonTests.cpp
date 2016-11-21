@@ -1,3 +1,5 @@
+//ComparisonTests.cpp
+//Written by Jesse Gibbons
 #include "ComparisonTests.h"
 #include "Tests.h"
 void test::TestTemplateInEqTests()

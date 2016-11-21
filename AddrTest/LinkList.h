@@ -1,3 +1,5 @@
+//LinkList.h
+//Written by Jesse Gibbons
 #ifndef LINK_LIST_H
 #define LINK_LIST_H
 #include <cassert>

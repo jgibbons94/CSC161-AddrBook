@@ -1,3 +1,5 @@
+//NodeTests.h
+//Written by Jesse Gibbons
 #ifndef NODE_TESTS_H
 #define NODE_TESTS_H
 #include <cassert>

@@ -40,7 +40,7 @@ namespace AddrBookLib
 		void ReadFromFile(std::istream & fileIn);
 
 		// In the following, logic is applied to check if the streams are standard c++ streams defined in <iostream>
-		friend std::istream& operator>>(std::istream& is, CategorizedContact& contact);
+		friend std::istream& operator >> (std::istream& is, CategorizedContact& contact);
 		friend std::ostream& operator<<(std::ostream& os, const CategorizedContact& contact);
 
 	private:

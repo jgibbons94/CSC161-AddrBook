@@ -162,7 +162,7 @@ void test::TestName_ToCout()
 }
 
 void test::TestName_ToOstream()
-{	
+{
 
 	AnnounceTests("Name To Ostream");
 	//setup

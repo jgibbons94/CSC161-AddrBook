@@ -30,7 +30,7 @@ namespace AddrBookLib
 
 	};
 
-	std::istream & operator>>(std::istream & is, Field & field);
+	std::istream & operator >> (std::istream & is, Field & field);
 	//precondition: is is a valid istream
 	//postcondition: the value in field is extracted from is.
 	// if is is std::cin, the newline character '\n' is used as the delimeter.

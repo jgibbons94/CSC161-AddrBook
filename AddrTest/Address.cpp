@@ -59,7 +59,7 @@ ostream & AddrBookLib::operator<<(ostream & os, const Address & addr)
 	return os;
 }
 
-istream & AddrBookLib::operator>>(istream & is, Address & addr)
+istream & AddrBookLib::operator >> (istream & is, Address & addr)
 {
 	if (IsStandardIstream(&is))
 	{

@@ -344,8 +344,8 @@ void test::TestContact_AllComparison()
 	Name na("Alice", "Andersen"), nb("Blake", "Buster"), nc("Catherine", "Coolidge");
 	Address address("Number 4 Privet Drive", "Little Winging", "England", "UK-50968");
 	Contact a(na, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null"),
-			b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null"),
-			c(nc, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
+		b(nb, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null"),
+		c(nc, address, "555-427-7907", "Harry@rowling.jk", "July 31 1980", "/dev/null");
 	RunAllInEqTests(a, b, c);
 }
 

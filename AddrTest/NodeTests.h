@@ -56,7 +56,7 @@ namespace test
 		//act
 		firstNode.next = &nextNode;
 		//assert
-		assert(firstNode.next->content==next);
+		assert(firstNode.next->content == next);
 	}
 
 	template<class T>

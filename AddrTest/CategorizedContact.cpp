@@ -30,7 +30,7 @@ void AddrBookLib::CategorizedContact::ReadFromFile(std::istream & fileIn)
 	Contact::ReadFromFile(fileIn);
 }
 
-istream & AddrBookLib::operator>>(istream & is, CategorizedContact & contact)
+istream & AddrBookLib::operator >> (istream & is, CategorizedContact & contact)
 {
 	if (IsStandardIstream(&is))
 	{

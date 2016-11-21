@@ -32,7 +32,7 @@ namespace test
 	void TestContact_FromCin();
 	void TestContact_FromIstream();
 	void TestContact_AllComparison();
-	
+
 	////comparison tests:
 	////0: A <  B
 	////1: A == B

@@ -166,7 +166,7 @@ namespace test
 		NTestLt(lesser, lesser);
 		TestLt(lesser, middle);
 		TestLt(lesser, greater);
-		
+
 		NTestLt(middle, lesser);
 		NTestLt(middle, middle);
 		TestLt(middle, greater);

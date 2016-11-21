@@ -38,10 +38,10 @@ void test::TestAll()
 	TestAddress();
 	TestContact();
 	TestCategorizedContact();
-	TestNode<int>(3,100);
+	TestNode<int>(3, 100);
 	TestNode<std::string>("This is a test string", "This is a second string.");
-	TestLinkList<int>(GenerateLowRandomNumber,GenerateMediumRandomNumber,GenerateHighRandomNumber);
-	TestLinkList<string>(GenerateLowRandomString,GenerateMediumRandomString,GenerateHighRandomString);
-	TestLinkList<CategorizedContact>(GenerateLowRandomCategorizedContact,GenerateMediumRandomCategorizedContact,GenerateHighRandomCategorizedContact);
-//	TestAddrBook();
+	TestLinkList<int>(GenerateLowRandomNumber, GenerateMediumRandomNumber, GenerateHighRandomNumber);
+	TestLinkList<string>(GenerateLowRandomString, GenerateMediumRandomString, GenerateHighRandomString);
+	TestLinkList<CategorizedContact>(GenerateLowRandomCategorizedContact, GenerateMediumRandomCategorizedContact, GenerateHighRandomCategorizedContact);
+	//	TestAddrBook();
 }

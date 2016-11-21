@@ -6,7 +6,7 @@
 
 namespace test
 {
-	template<class T> using GeneratorCallback = T(*)() ;
+	template<class T> using GeneratorCallback = T(*)();
 	int GenerateLowRandomNumber();
 	int GenerateMediumRandomNumber();
 	int GenerateHighRandomNumber();

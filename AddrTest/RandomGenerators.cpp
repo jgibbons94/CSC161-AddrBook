@@ -42,7 +42,7 @@ std::string test::GenerateLowRandomString()
 {
 	seed();
 	std::string lowStrings[] = { "Apple","Acrophobia","Arachnophobia","Aphid","Aardvark","Basilisk","Before","Beyond","Batman","Banana", "Boomerang""Cow","Crane","Clinton","Cookie" };
-	return lowStrings[rand() % (sizeof(lowStrings)/ sizeof(lowStrings[0]))];
+	return lowStrings[rand() % (sizeof(lowStrings) / sizeof(lowStrings[0]))];
 }
 
 std::string test::GenerateMediumRandomString()

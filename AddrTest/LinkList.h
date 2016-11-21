@@ -211,7 +211,7 @@ namespace AddrBookLib
 		ptrTNode FindPreviousNode(crefT dataIn) const;
 		bool HasOnlyOneElement() const;
 		//U
-		
+
 		/*
 			Bonus Points Opportunities:
 			5 Points - Handle ascending and descending by implementing addAscending and addDescending

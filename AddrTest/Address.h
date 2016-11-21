@@ -52,7 +52,7 @@ namespace AddrBookLib
 
 		// In the following, logic is applied to check if the streams are standard c++ streams defined in <iostream>
 		friend std::ostream& operator<<(std::ostream& os, const Address& addr);
-		friend std::istream& operator>>(std::istream& is, Address& addr);
+		friend std::istream& operator >> (std::istream& is, Address& addr);
 
 	private:
 		Field streetAddress;

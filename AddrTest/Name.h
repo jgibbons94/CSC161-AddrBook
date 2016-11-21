@@ -51,9 +51,9 @@ namespace AddrBookLib
 		friend bool operator>=(const Name & a, const Name & b);
 		friend bool operator<(const Name & a, const Name & b);
 		friend bool operator<=(const Name & a, const Name & b);
-		
+
 		// In the following, logic is applied to check if the streams are standard c++ streams defined in <iostream>
-		friend std::istream& operator>>(std::istream & is, Name & name);
+		friend std::istream& operator >> (std::istream & is, Name & name);
 		friend std::ostream& operator<<(std::ostream& os, const Name& name);
 	private:
 		Field firstName;

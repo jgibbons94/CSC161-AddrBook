@@ -63,7 +63,7 @@ bool AddrBookLib::operator<=(const Name & a, const Name & b)
 	return !(a > b);
 }
 
-istream & AddrBookLib::operator>>(istream & is, Name & name)
+istream & AddrBookLib::operator >> (istream & is, Name & name)
 {
 	if (IsStandardIstream(&is))
 	{

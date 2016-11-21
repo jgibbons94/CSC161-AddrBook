@@ -76,7 +76,7 @@ bool AddrBookLib::operator<=(const Contact & a, const Contact & b)
 	return (a < b) || (a == b);
 }
 
-istream & AddrBookLib::operator>>(istream & is, Contact & contact)
+istream & AddrBookLib::operator >> (istream & is, Contact & contact)
 {
 	if (IsStandardIstream(&is))
 	{

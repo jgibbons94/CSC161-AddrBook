@@ -12,7 +12,7 @@ using namespace std;
 #include "AddressTests.h"
 #include "ContactTests.h"
 #include "CategorizedContactTests.h"
-#include "AddrBookTests.h"
+//#include "AddrBookTests.h"
 #include "ComparisonTests.h"
 #include "NodeTests.h"
 #include "LinkListTests.h"
@@ -23,7 +23,7 @@ using namespace test;
 #include "Address.h"
 #include "Contact.h"
 #include "CategorizedContact.h"
-#include "AddrBook.h"
+//#include "AddrBook.h"
 using namespace AddrBookLib;
 
 void test::TestAll()

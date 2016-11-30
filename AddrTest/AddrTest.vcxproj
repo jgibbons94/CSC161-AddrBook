@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="Address.h" />
     <ClInclude Include="AddressTests.h" />
+    <ClInclude Include="BinNode.h" />
     <ClInclude Include="CategorizedContact.h" />
     <ClInclude Include="CategorizedContactTests.h" />
     <ClInclude Include="ComparisonTests.h" />

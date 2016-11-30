@@ -1,6 +1,6 @@
 #ifndef BIN_NODE_H
 #define BIN_NODE_H
-namespace AddrTestLib
+namespace AddrBookLib
 {
 	template<class T>
 	class BinTree;

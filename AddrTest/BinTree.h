@@ -98,6 +98,7 @@ namespace AddrBookLib
 		friend void test::TestBinTree_Assignment<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 		friend void test::TestBinTree_Assignment_leaks<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 		friend void test::TestBinTree_Deconstructor<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestBinTree_Add<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 #endif
 	};
 	//begin BinTree.tem
@@ -173,9 +174,9 @@ namespace AddrBookLib
 		{
 			parent = *next;
 			if (parent->data > data->data)
-				*next = parent->left;
+				next = &(parent->left);
 			else
-				*next = parent->right;
+				next = &(parent->right);
 
 		} while (*next != nullptr);//next is not null; *next is null, **next does not exist.
 		*next = data;

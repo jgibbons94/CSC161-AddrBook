@@ -21,14 +21,14 @@ namespace test
 
 	template<class T>
 	void TestBinTree_Constructor0_0();
-	//template<class T>
-	//void TestBinTree_ConstructorFirst();
-	//template<class T>
-	//void TestBinTree_ConstructorLast();
-	//template<class T>
-	//void TestBinTree_ConstructorAsc();
-	//template<class T>
-	//void TestBinTree_ConstructorDesc();
+	////template<class T>
+	////void TestBinTree_ConstructorFirst();
+	////template<class T>
+	////void TestBinTree_ConstructorLast();
+	////template<class T>
+	////void TestBinTree_ConstructorAsc();
+	////template<class T>
+	////void TestBinTree_ConstructorDesc();
 	template<class T>
 	void TestBinTree_CopyConstructor(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 	template<class T>
@@ -37,6 +37,8 @@ namespace test
 	void TestBinTree_Assignment(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 	template<class T>
 	void TestBinTree_Assignment_leaks(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+	template<class T>
+	void TestBinTree_Add(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 
 	//template<class T>
 	//void TestBinTree_Begin(GeneratorCallback<T> RandomGenerator);
@@ -121,10 +123,12 @@ namespace test
 		TestBinTree_CopyConstructor_leaks<T>(low, medium, high);
 		TestBinTree_Assignment<T>(low, medium, high);
 		TestBinTree_Assignment_leaks<T>(low, medium, high);
+
+		TestBinTree_Add<T>(low, medium, high);
+
 		//TestBinTree_Begin<T>(medium);
 		//TestBinTree_CountItems<T>(high);
 		//TestBinTree_IsEmpty<T>();
-		//TestBinTree_Add<T>(low);
 		//TestBinTree_RemoveByItemNumber<T>(low, medium, high);
 		//TestBinTree_RemoveByItem<T>(low, medium, high);
 		TestBinTree_Deconstructor<T>(low, medium, high);
@@ -264,6 +268,27 @@ namespace test
 		}
 		BinTree<T> tree2 = tree1;
 		assert(compareDifferentTreeNodePointers(tree1.root, tree2.root));
+	}
+	template<class T>
+	void TestBinTree_Add(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
+	{
+		bool pass1 = false,
+			pass2 = false,
+			pass3 = false;
+		BinTree<T> tree;
+		T vLow = low(),
+			vMedium = medium(),
+			vHigh = high();
+		tree.Add(vMedium);
+		tree.Add(vLow);
+		tree.Add(vHigh);
+		if (tree.root->data == vMedium)
+			pass1 = true;
+		if (tree.root->left->data == vLow)
+			pass2 = true;
+		if (tree.root->right->data == vHigh)
+			pass3 = true;
+		assert(pass1&&pass2&&pass3);
 	}
 	template<class T>
 	void TestBinTree_Deconstructor(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)

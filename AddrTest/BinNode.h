@@ -1,5 +1,6 @@
 #ifndef BIN_NODE_H
 #define BIN_NODE_H
+#include "BinTreeFriendTests.h"
 namespace AddrBookLib
 {
 	template<class T>
@@ -27,7 +28,18 @@ namespace AddrBookLib
 		T data;
 		BinNode<T>* left;
 		BinNode<T>* right;
-		friend class BinTree;
+		friend class BinTree<T>;
+		#ifdef BIN_TREE_TEST_FRIENDS
+		friend bool test::compareTreeNodeValues<T>(AddrBookLib::BinNode<T>* node1, AddrBookLib::BinNode<T>* node2);
+		friend bool test::compareDifferentTreeNodePointers(AddrBookLib::BinNode<T>* node1, AddrBookLib::BinNode<T>* node2);
+		friend void test::TestBinTree_CopyConstructor<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestBinTree_CopyConstructor_leaks<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestBinTree_Assignment<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestBinTree_Assignment_leaks<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestBinTree_Deconstructor<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend AddrBookLib::BinNode<T>* test::furthestLeft<T>(AddrBookLib::BinNode<T>* root);
+		friend AddrBookLib::BinNode<T>* test::furthestRight<T>(AddrBookLib::BinNode<T>* root);
+		#endif
 	};
 }
 

@@ -155,6 +155,8 @@
     <ClInclude Include="AddressTests.h" />
     <ClInclude Include="BinNode.h" />
     <ClInclude Include="BinTree.h" />
+    <ClInclude Include="BinTreeFriendTests.h" />
+    <ClInclude Include="BinTreeTests.h" />
     <ClInclude Include="CategorizedContact.h" />
     <ClInclude Include="CategorizedContactTests.h" />
     <ClInclude Include="ComparisonTests.h" />

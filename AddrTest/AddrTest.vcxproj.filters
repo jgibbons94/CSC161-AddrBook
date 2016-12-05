@@ -84,6 +84,12 @@
     <ClInclude Include="BinTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BinTreeTests.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="BinTreeFriendTests.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Name.cpp">
@@ -126,7 +132,7 @@
       <Filter>Source Files\Tests</Filter>
     </ClCompile>
     <ClCompile Include="RandomGenerators.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Tests</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

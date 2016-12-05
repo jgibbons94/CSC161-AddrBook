@@ -15,7 +15,8 @@ using namespace std;
 //#include "AddrBookTests.h"
 #include "ComparisonTests.h"
 #include "NodeTests.h"
-#include "LinkListTests.h"
+//#include "LinkListTests.h"
+#include "BinTreeTests.h"
 using namespace test;
 
 #include "Field.h"
@@ -40,8 +41,8 @@ void test::TestAll()
 	TestCategorizedContact();
 	TestNode<int>(3, 100);
 	TestNode<std::string>("This is a test string", "This is a second string.");
-	TestLinkList<int>(GenerateLowRandomNumber, GenerateMediumRandomNumber, GenerateHighRandomNumber);
-	TestLinkList<string>(GenerateLowRandomString, GenerateMediumRandomString, GenerateHighRandomString);
-	TestLinkList<CategorizedContact>(GenerateLowRandomCategorizedContact, GenerateMediumRandomCategorizedContact, GenerateHighRandomCategorizedContact);
+	TestBinTree<int>(GenerateLowRandomNumber, GenerateMediumRandomNumber, GenerateHighRandomNumber);
+	TestBinTree<string>(GenerateLowRandomString, GenerateMediumRandomString, GenerateHighRandomString);
+	TestBinTree<CategorizedContact>(GenerateLowRandomCategorizedContact, GenerateMediumRandomCategorizedContact, GenerateHighRandomCategorizedContact);
 	//	TestAddrBook();
 }

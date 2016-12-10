@@ -169,6 +169,14 @@ namespace AddrBookLib
 
 	}
 	template<class T>
+	inline int BinTree<T>::CountItems()
+	{
+		int count = 0;
+		//use an empty lambda, because all we are doing is traversing to get the count.
+		this->InOrderTraverse(root, count, [](refT, int) {});
+		return count;
+	}
+	template<class T>
 	inline void BinTree<T>::inOrderTraverse(TraversalCallback process)
 	{
 		int x = 0;

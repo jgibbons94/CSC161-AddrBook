@@ -43,11 +43,11 @@ namespace test
 	template<class T>
 	void TestBinTree_Remove(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 
+	template<class T>
+	void TestBinTree_CountItems(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 
 	//template<class T>
 	//void TestBinTree_Begin(GeneratorCallback<T> RandomGenerator);
-	//template<class T>
-	//void TestBinTree_CountItems(GeneratorCallback<T> RandomGenerator);
 	//template<class T>
 	//void TestBinTree_IsEmpty();
 	//template<class T>
@@ -126,15 +126,17 @@ namespace test
 		TestBinTree_CopyConstructor_leaks<T>(low, medium, high);
 		TestBinTree_Assignment<T>(low, medium, high);
 		TestBinTree_Assignment_leaks<T>(low, medium, high);
+		TestBinTree_Deconstructor<T>(low, medium, high);
 
 		TestBinTree_Add<T>(low, medium, high);
 		TestBinTree_Remove<T>(low, medium, high);
+		//for (int i = 0; i < GenerateHighRandomNumber(); i++)
+			TestBinTree_CountItems<T>(low, medium, high);
 		//TestBinTree_Begin<T>(medium);
 		//TestBinTree_CountItems<T>(high);
 		//TestBinTree_IsEmpty<T>();
 		//TestBinTree_RemoveByItemNumber<T>(low, medium, high);
 		//TestBinTree_RemoveByItem<T>(low, medium, high);
-		TestBinTree_Deconstructor<T>(low, medium, high);
 		//TestBinTree_ReadFile<T>(low, medium, high);
 		//TestBinTree_WriteFile<T>(low, medium, high);
 		//TestBinTree_PrintAll<T>(low, medium, high);
@@ -325,6 +327,22 @@ namespace test
 		findParent = tree.FindParentNode(leafToFind);
 		//assert
 		assert(findParent == removeParent);
+	}
+	template<class T>
+	void TestBinTree_CountItems(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
+	{
+		int lowCount = GenerateMediumRandomNumber()*GenerateMediumRandomNumber(),
+			mediumCount = GenerateMediumRandomNumber()*GenerateMediumRandomNumber(),
+			highCount = GenerateMediumRandomNumber()*GenerateMediumRandomNumber(),
+			expectedCount = lowCount + mediumCount + highCount;
+		BinTree<T> tree;
+		for (int i = 0; i < lowCount; i++)
+			tree.Add(medium());
+		for (int i = 0; i < mediumCount; i++)
+			tree.Add(high());
+		for (int i = 0; i < highCount; i++)
+			tree.Add(low());
+		assert(tree.CountItems() == expectedCount);
 	}
 	template<class T>
 	void TestBinTree_Deconstructor(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)

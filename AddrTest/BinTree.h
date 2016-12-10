@@ -61,7 +61,7 @@ namespace AddrBookLib
 		//Requirement: countItes()
 		int CountItems();
 		//Requirement: ReadFile(string fileName)
-		void ReadFile(string fileName);
+		void ReadFile(const string & fileName);
 		//Requirement: writeFile(string fileName)
 		void WriteFile(string fileName);
 		//Requirement: PrintAll()
@@ -107,6 +107,7 @@ namespace AddrBookLib
 		friend void test::TestBinTree_Deconstructor<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 		friend void test::TestBinTree_Add<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 		friend void test::TestBinTree_Remove<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestBinTree_ReadFile<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 #endif
 	};
 	//begin BinTree.tem
@@ -175,6 +176,30 @@ namespace AddrBookLib
 		//use an empty lambda, because all we are doing is traversing to get the count.
 		this->InOrderTraverse(root, count, [](refT, int) {});
 		return count;
+	}
+	template<class T>
+	inline void BinTree<T>::ReadFile(const string& fileName)
+	{
+
+		using namespace std;
+		ifstream fileIn(fileName);
+		T tmpItem;
+		char delim = ',';
+		if (!fileIn)
+		{
+			cerr << "Error opening file " << fileName << " to read." << endl << endl;
+			fileIn.close();
+			return;
+		}
+		fileIn >> tmpItem;
+		while (!fileIn.fail())
+		{
+			Add(tmpItem);
+			//read format fname1,lname1,street address1,city1,state1,zip1,phone1,email1,bday1,picture file1,
+			fileIn >> tmpItem;
+		}
+		fileIn.close();
+		return;
 	}
 	template<class T>
 	inline void BinTree<T>::inOrderTraverse(TraversalCallback process)
@@ -325,7 +350,7 @@ namespace AddrBookLib
 	inline int BinTree<T>::FindItemIndex(crefT itemToFind)
 	{
 		bool finished = false;
-		int index = -1;
+		int index = 0;
 		int returnedIndex = LookForItem(itemToFind, index, this->root);
 		return returnedIndex;
 	}

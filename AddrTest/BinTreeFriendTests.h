@@ -14,7 +14,8 @@ namespace test
 
 	template<class T>
 	void TestBinTree_Constructor0_0();
-
+	template<class T>
+	void TestBinTree_ReadFile(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 
 	//Friends of BinNode
 

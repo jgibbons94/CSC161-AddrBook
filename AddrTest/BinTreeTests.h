@@ -3,6 +3,7 @@
 #ifndef BIN_TREE_TESTS_H
 #define BIN_TREE_TESTS_H
 #include <cassert>
+#include <sstream>
 #include "Tests.h"
 //#include "LinkList_IteratorTests.h"
 #ifndef BIN_TREE_TEST_FRIENDS
@@ -62,8 +63,8 @@ namespace test
 	AddrBookLib::BinNode<T>* furthestRight(AddrBookLib::BinNode<T>* root);
 
 
-	//template<class T>
-	//void TestBinTree_ReadFile(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+	template<class T>
+	void TestBinTree_ReadFile(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 	//template<class T>
 	//void TestBinTree_WriteFile(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 	//template<class T>
@@ -118,7 +119,7 @@ namespace test
 		TestBinTree_Remove<T>(low, medium, high);
 		//for (int i = 0; i < GenerateHighRandomNumber(); i++)
 		TestBinTree_CountItems<T>(low, medium, high);
-
+		TestBinTree_ReadFile<T>(low, medium, high);
 	}
 
 	template<class T>
@@ -201,6 +202,45 @@ namespace test
 	{
 		if (root == nullptr || root->right == nullptr) return root;
 		return furthestLeft(root->right);
+	}
+
+	template<class T>
+	void TestBinTree_ReadFile(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
+	{
+		std::ofstream ofs;
+		ofs.open("test.txt");
+		T lowArr[10];
+		for (int i = 0; i < 10; i++)
+		{
+			lowArr[i] = low();
+			ofs << lowArr[i] << endl;
+		}
+		T mediumArr[10];
+		for (int i = 0; i < 10; i++)
+		{
+			mediumArr[i] = medium();
+			ofs << mediumArr[i] << endl;
+		}
+		T highArr[10];
+		for (int i = 0; i < 10; i++)
+		{
+			highArr[i] = high();
+			ofs << highArr[i] << endl;
+		}
+		ofs.close();
+		BinTree<T> tree;
+		tree.ReadFile("test.txt");
+		remove("test.txt");
+		int tree_size = tree.CountItems();
+		for (int i = 0; i < 10; i++)
+		{
+			int lowIndex = tree.FindItemIndex(lowArr[i]);
+			int mediumIndex = tree.FindItemIndex(mediumArr[i]);
+			int highIndex = tree.FindItemIndex(highArr[i]);
+			assert(lowIndex >= 0);
+			assert(mediumIndex>= 0);
+			assert(highIndex >= 0);
+		}
 	}
 
 	template<class T>

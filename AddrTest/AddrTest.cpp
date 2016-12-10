@@ -37,7 +37,7 @@
 #include <string>
 #include <thread>
 using namespace std;
-#include "LinkList.h"
+#include "BinTree.h"
 #include "AddrTest.h"
 using namespace AddrBookLib;
 #ifdef RUN_TESTS
@@ -259,7 +259,7 @@ void removeContacts(AddrBook& myAddrBook)
 	stringstream(answer) >> choiceRemove;
 
 	//call remove by index function, error processing is handled in the function
-	myAddrBook.RemoveByItemNumber(choiceRemove - 1);
+	myAddrBook.Remove(choiceRemove - 1);
 
 	Delay();
 }

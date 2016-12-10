@@ -2,6 +2,7 @@
 #define BIN_TREE_H
 #include "BinNode.h"
 #include "BinTreeFriendTests.h"
+#include "CategorizedContact.h"
 namespace AddrBookLib
 {
 	/*
@@ -110,7 +111,7 @@ namespace AddrBookLib
 		friend void test::TestBinTree_ReadFile<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 #endif
 	};
-	//typedef BinTree<CategorizedContact> AddrBook;
+	typedef BinTree<CategorizedContact> AddrBook;
 	//begin BinTree.tem
 	template<class T>
 	inline BinTree<T>::BinTree()
@@ -206,8 +207,8 @@ namespace AddrBookLib
 	inline void BinTree<T>::WriteFile(string fileName)
 	{
 		ofstream fileOut(fileName);
-//		T tmpItem;
-//		char delim = ',';
+		//		T tmpItem;
+		//		char delim = ',';
 		if (!fileOut)
 		{
 			cerr << "Error opening file " << fileName << " to write." << endl << endl;
@@ -215,6 +216,12 @@ namespace AddrBookLib
 			return;
 		}
 		WriteFile(root, fileOut);
+	}
+	template<class T>
+	inline void BinTree<T>::PrintAll()
+	{
+		int number = 1;
+		this->Print(this->root, number);
 	}
 	template<class T>
 	inline void BinTree<T>::inOrderTraverse(TraversalCallback process)
@@ -233,13 +240,23 @@ namespace AddrBookLib
 
 	}
 	template<class T>
+	inline void BinTree<T>::Print(PTBNode aNode, int & number)
+	{
+		if (aNode == nullptr)
+			return;
+		Print(aNode->left, number);
+		number++;
+		cout << number << ": " << aNode->data << endl;
+		Print(aNode->right, number);
+	}
+	template<class T>
 	inline void BinTree<T>::WriteFile(PTBNode node, ofstream & ofs)
 	{
 		if (node == nullptr)
 			return;
 		ofs << node->data << endl;
-		WriteFile(node->left,ofs);
-		WriteFile(node->right,ofs);
+		WriteFile(node->left, ofs);
+		WriteFile(node->right, ofs);
 	}
 	template<class T>
 	inline BinNode<T> * BinTree<T>::AllocBinNode(crefT dataIn)

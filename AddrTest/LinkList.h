@@ -278,7 +278,7 @@ namespace AddrBookLib
 	//This saves me the trouble of refactoring everything.
 	//It's just like how std::ostream is defined as basic_ostream<char>
 	//This way we can also have a wostream defined as basic_osteram<wchar>
-	typedef LinkList<CategorizedContact> AddrBook;
+	//typedef LinkList<CategorizedContact> AddrBook;
 	template<class T>
 	inline LinkList<T>::LinkList(LinkListInsertOrder initialInsertOrder)
 	{

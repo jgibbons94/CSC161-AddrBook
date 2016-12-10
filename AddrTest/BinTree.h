@@ -39,11 +39,12 @@ namespace AddrBookLib
 		//save some typing.
 		//When adding or removing data, pass a constant reference.
 		typedef const T & crefT;
+		typedef T& refT;
 		typedef BinTree<T> & refTBinTree;
 		//Callback for transversing the binary tree.
 		//the T reference refers to the data given in a node
 		//the int reference can be used by the traversal callback function to keep track of how many have been successfully processed so far.
-		using TraversalCallback = void(*)(refTBinTree, int&);
+		using TraversalCallback = void (*) (refT, int);
 		//typedef (void)(*TraversalCallback)(T&, int&);
 		//Requirement: default constructor
 		BinTree();
@@ -56,7 +57,7 @@ namespace AddrBookLib
 		//Requirement: Add(T dataIn)
 		void Add(crefT dataIn);
 		//Bonus: Rmove
-		void Remove(crefT dataToRemove);
+		void Remove(int indexToRemove);
 		//Requirement: countItes()
 		int CountItems();
 		//Requirement: ReadFile(string fileName)
@@ -82,6 +83,7 @@ namespace AddrBookLib
 		void WriteFile(PTBNode node, ofstream& ofs);
 		//Requirement: BinNode* AllocBinNode(Type dataIn)
 		BinNode<T>* AllocBinNode(crefT dataIn);
+		BinNode<T>* FindParentNode(crefT dataIn);
 		//Requirement: FreeAllBinNodes(BinNode*)
 		void FreeAllBinNodes(PTBNode aNode);
 		//Requirement: inOrderTraverse(BinNode*, int&, void process(Type&, int))
@@ -89,7 +91,12 @@ namespace AddrBookLib
 
 		void AddNode(PTBNode aNode);
 
+		BinNode<T>* FindByIndex(int indexToFind);
+		//return the index of the current node through the currentIndex reference.
+		BinNode<T>* LookForIndex(int targetIndex, int & currentIndex, PTBNode root);
 
+		int FindItemIndex(crefT itemToFind);
+		int LookForItem(crefT itemToFind, int& currentIndex, PTBNode root);
 		PTBNode root;
 #ifdef BIN_TREE_TEST_FRIENDS
 		friend void test::TestBinTree_Constructor0_0<T>();
@@ -99,6 +106,7 @@ namespace AddrBookLib
 		friend void test::TestBinTree_Assignment_leaks<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 		friend void test::TestBinTree_Deconstructor<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 		friend void test::TestBinTree_Add<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestBinTree_Remove<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 #endif
 	};
 	//begin BinTree.tem
@@ -107,14 +115,12 @@ namespace AddrBookLib
 	{
 		this->root = nullptr;
 	}
-
 	template<class T>
 	inline BinTree<T>::BinTree(const refTBinTree source)
 	{
 		this->root = nullptr;
 		this->CopyTree(source.root);
 	}
-
 	template<class T>
 	inline BinTree<T>& BinTree<T>::operator=(const refTBinTree source)
 	{
@@ -122,7 +128,6 @@ namespace AddrBookLib
 			this->CopyTree(source.root);
 		return *this;
 	}
-
 	template<class T>
 	inline BinTree<T>::~BinTree()
 	{
@@ -133,6 +138,41 @@ namespace AddrBookLib
 	{
 		PTBNode data = AllocBinNode(dataIn);
 		AddNode(data);
+	}
+	template<class T>
+	inline void BinTree<T>::Remove(int indexToRemove)
+	{
+		if (indexToRemove == 0) return;
+		PTBNode _nodeToRemove = FindByIndex(indexToRemove);
+		if (_nodeToRemove == nullptr)
+			return;
+		crefT dataToRemove = _nodeToRemove->data;
+		PTBNode parent = FindParentNode(dataToRemove);
+		if (parent == nullptr)
+			return;
+		PTBNode childToRemove = nullptr;
+		if (parent->data > dataToRemove)
+		{
+			childToRemove = parent->left;
+			parent->left = nullptr;
+		}
+		else
+		{
+			childToRemove = parent->right;
+			parent->right = nullptr;
+		}
+		CopyTree(childToRemove->left);
+		CopyTree(childToRemove->right);
+		//Because the data above the removed child is copied rather than added,
+		//we would have a memory leak if we didn't delete childToRemove and its children.
+		FreeAllBinNodes(childToRemove);
+
+	}
+	template<class T>
+	inline void BinTree<T>::inOrderTraverse(TraversalCallback process)
+	{
+		int x = 0;
+		this->InOrderTraverse(this->root, x, process);
 	}
 	template<class T>
 	inline void BinTree<T>::CopyTree(PTBNode rootToCopy)
@@ -150,6 +190,23 @@ namespace AddrBookLib
 		return new BinNode<T>(dataIn);//new BinNode<T>();
 	}
 	template<class T>
+	inline BinNode<T>* BinTree<T>::FindParentNode(crefT dataIn)
+	{
+		PTBNode parent = nullptr,
+			next = root;
+		while (next->data != dataIn)
+		{
+			parent = next;
+			if (next->data > dataIn)
+				next = next->left;
+			else
+				next = next->right;
+			if (next == nullptr)
+				return nullptr;
+		}
+		return parent;
+	}
+	template<class T>
 	inline void BinTree<T>::FreeAllBinNodes(PTBNode aNode)
 	{
 		if (aNode == nullptr)
@@ -157,6 +214,18 @@ namespace AddrBookLib
 		FreeAllBinNodes(aNode->left);
 		FreeAllBinNodes(aNode->right);
 		delete aNode;
+	}
+	template<class T>
+	inline void BinTree<T>::InOrderTraverse(PTBNode aNode, int & index, TraversalCallback process)
+	{
+		if (aNode == nullptr) return;
+		InOrderTraverse(aNode->left, index, process);
+
+		++index;
+		process(aNode->data, index);
+
+		InOrderTraverse(aNode->right, index, process);
+
 	}
 	template<class T>
 	inline void BinTree<T>::AddNode(PTBNode data)
@@ -168,7 +237,7 @@ namespace AddrBookLib
 		}
 		//root is not nullptr.
 		PTBNode parent = nullptr,
-			 * next = &root;
+			*next = &root;
 		//pointer to a pointer -- we want to be able to get a pointer that could point to a nullptr, and set the data later.
 		do
 		{
@@ -181,5 +250,98 @@ namespace AddrBookLib
 		} while (*next != nullptr);//next is not null; *next is null, **next does not exist.
 		*next = data;
 	}
+	template<class T>
+	inline BinNode<T>* BinTree<T>::FindByIndex(int indexToFind)
+	{
+		if (indexToFind < 0) return nullptr;
+		if (indexToFind == 0) return root;
+		int i = 0;
+		PTBNode nodeToReturn = LookForIndex(indexToFind, i, root);
+		return nodeToReturn;
+
+
+	}
+
+	template<class T>
+	inline BinNode<T>* BinTree<T>::LookForIndex(int targetIndex, int & currentIndex, PTBNode rootNode)
+	{
+		/*
+
+		Possible map of the tree:
+
+
+
+					 1
+				 2 <
+			  3 <
+			 /   4
+		5	<
+			  \               6
+			   \           7 <
+				\         /   \   9
+				 \	     /     8 <
+				  \		/         10
+				   11 <
+					   \		   12
+						\	   13 <
+						 \	  /    14
+						  15 <
+							  \    16
+							   17 <
+								   18
+
+
+
+
+		*/
+
+		if (rootNode == nullptr)
+			return nullptr;
+
+		//is it to the left?
+		PTBNode upperAnswer = LookForIndex(targetIndex, currentIndex, rootNode->left);
+		if (upperAnswer != nullptr)
+			return upperAnswer;
+		//is it this one?
+		++currentIndex;
+		if (currentIndex == targetIndex)
+			return rootNode;
+		//is it to the right?
+		upperAnswer = LookForIndex(targetIndex, currentIndex, rootNode->right);
+		if (upperAnswer != nullptr)
+			return upperAnswer;
+		return nullptr;
+	}
+
+	template<class T>
+	inline int BinTree<T>::FindItemIndex(crefT itemToFind)
+	{
+		bool finished = false;
+		int index = -1;
+		int returnedIndex = LookForItem(itemToFind, index, this->root);
+		return returnedIndex;
+	}
+
+	template<class T>
+	inline int BinTree<T>::LookForItem(crefT itemToFind, int & currentIndex, PTBNode rootNode)
+	{
+		int upperIndex = -1;
+		if (rootNode == nullptr)
+			return -1;
+		upperIndex = LookForItem(itemToFind, currentIndex, rootNode->left);
+		if (upperIndex > 0)
+			return upperIndex;
+		++currentIndex;
+		if (rootNode->data == itemToFind)
+			return currentIndex;
+		upperIndex = LookForItem(itemToFind, currentIndex, rootNode->right);
+		if (upperIndex > 0)
+			return upperIndex;
+		return -1;
+	}
+
+
+
+
 }
 #endif

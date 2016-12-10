@@ -40,6 +40,10 @@ namespace test
 	template<class T>
 	void TestBinTree_Add(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 
+	template<class T>
+	void TestBinTree_Remove(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+
+
 	//template<class T>
 	//void TestBinTree_Begin(GeneratorCallback<T> RandomGenerator);
 	//template<class T>
@@ -54,7 +58,6 @@ namespace test
 	//void TestBinTree_RemoveByItem(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 	template<class T>
 	void TestBinTree_Deconstructor(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
-
 
 
 	//helper processing functions
@@ -125,7 +128,7 @@ namespace test
 		TestBinTree_Assignment_leaks<T>(low, medium, high);
 
 		TestBinTree_Add<T>(low, medium, high);
-
+		TestBinTree_Remove<T>(low, medium, high);
 		//TestBinTree_Begin<T>(medium);
 		//TestBinTree_CountItems<T>(high);
 		//TestBinTree_IsEmpty<T>();
@@ -153,6 +156,7 @@ namespace test
 
 		//TestBinTree_Iterator<T>(low);
 	}
+
 	template<class T>
 	void TestBinTree_Constructor0_0()
 	{
@@ -289,6 +293,38 @@ namespace test
 		if (tree.root->right->data == vHigh)
 			pass3 = true;
 		assert(pass1&&pass2&&pass3);
+	}
+	template<class T>
+	void TestBinTree_Remove(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
+	{
+		//setup
+		BinTree<T> tree;
+		BinNode<T> *removeParent = nullptr,
+			*findParent = nullptr;
+		T leaf1 = medium(), leaf2 = medium();
+		while (leaf1 == leaf2)
+		{
+			leaf1 = medium();
+			leaf2 = medium();
+		}
+		T leafToRemove = (leaf1 < leaf2) ? leaf1 : leaf2;
+		T leafToFind = (leaf1 < leaf2) ? leaf1 : leaf2;
+		//act
+		//build a random tree of all high values
+		for (int i = 0; i < 100; i++)
+			tree.Add(high());
+		tree.Add(leafToRemove);
+		removeParent = tree.FindParentNode(leafToRemove);
+		//leafToFind will end up far left.
+		tree.Add(leafToFind);//Will be put on the left of leafToRemove, so it will take the place of leafToRemove. Therefore, its parent after leafToRemove should be leafToRemove's parent before it was removed.
+		int removeIndex = tree.FindItemIndex(leafToRemove);
+		//All of the following children will be children of leafToFind, even after leafToRemove is removed.
+		for (int i = 0; i < 100; i++)
+			tree.Add(low());
+		tree.Remove(removeIndex);
+		findParent = tree.FindParentNode(leafToFind);
+		//assert
+		assert(findParent == removeParent);
 	}
 	template<class T>
 	void TestBinTree_Deconstructor(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)

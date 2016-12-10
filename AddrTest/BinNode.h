@@ -40,6 +40,7 @@ namespace AddrBookLib
 		friend AddrBookLib::BinNode<T>* test::furthestLeft<T>(AddrBookLib::BinNode<T>* root);
 		friend AddrBookLib::BinNode<T>* test::furthestRight<T>(AddrBookLib::BinNode<T>* root);
 		friend void test::TestBinTree_Add<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+		friend void test::TestBinTree_Remove<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 		#endif
 	};
 }

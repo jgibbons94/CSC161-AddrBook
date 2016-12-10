@@ -41,6 +41,8 @@ namespace test
 	AddrBookLib::BinNode<T>* furthestRight(AddrBookLib::BinNode<T>* root);
 	template<class T>
 	void TestBinTree_Add(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+	template<class T>
+	void TestBinTree_Remove(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 }
 #endif//BIN_TREE_TEST_FRIENDS
 #endif//BIN_TREE_FRIEND_TESTS_H

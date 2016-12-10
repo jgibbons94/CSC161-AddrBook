@@ -65,8 +65,8 @@ namespace test
 
 	template<class T>
 	void TestBinTree_ReadFile(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
-	//template<class T>
-	//void TestBinTree_WriteFile(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+	template<class T>
+	void TestBinTree_WriteFile(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 	//template<class T>
 	//void TestBinTree_PrintAll(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 
@@ -120,6 +120,7 @@ namespace test
 		//for (int i = 0; i < GenerateHighRandomNumber(); i++)
 		TestBinTree_CountItems<T>(low, medium, high);
 		TestBinTree_ReadFile<T>(low, medium, high);
+		TestBinTree_WriteFile<T>(low, medium, high);
 	}
 
 	template<class T>
@@ -241,6 +242,36 @@ namespace test
 			assert(mediumIndex>= 0);
 			assert(highIndex >= 0);
 		}
+	}
+
+	template<class T>
+	void TestBinTree_WriteFile(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
+	{
+		BinTree<T> tree;
+		ifstream ifs;
+		int lineCount = 0;
+		int expectedLineCount = 301;
+		for (int i = 0;i < 100;i++)
+			tree.Add(low());
+		for (int i = 0;i < 100;i++)
+			tree.Add(medium());
+		for (int i = 0;i < 100;i++)
+			tree.Add(high());
+		tree.WriteFile("test.txt");
+		ifs.open("test.txt");
+		T temp;
+		ifs >> temp;
+		lineCount++;
+		while (!(ifs.fail()))
+		{
+			T temp;
+			ifs >> temp;
+			lineCount++;
+		}
+		ifs.close();
+		remove("test.txt");
+		assert(lineCount == expectedLineCount);
+
 	}
 
 	template<class T>

@@ -44,7 +44,7 @@ namespace AddrBookLib
 		//Callback for transversing the binary tree.
 		//the T reference refers to the data given in a node
 		//the int reference can be used by the traversal callback function to keep track of how many have been successfully processed so far.
-		using TraversalCallback = void (*) (refT, int);
+		using TraversalCallback = void(*) (refT, int);
 		//typedef (void)(*TraversalCallback)(T&, int&);
 		//Requirement: default constructor
 		BinTree();
@@ -110,6 +110,7 @@ namespace AddrBookLib
 		friend void test::TestBinTree_ReadFile<T>(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 #endif
 	};
+	//typedef BinTree<CategorizedContact> AddrBook;
 	//begin BinTree.tem
 	template<class T>
 	inline BinTree<T>::BinTree()
@@ -202,6 +203,20 @@ namespace AddrBookLib
 		return;
 	}
 	template<class T>
+	inline void BinTree<T>::WriteFile(string fileName)
+	{
+		ofstream fileOut(fileName);
+//		T tmpItem;
+//		char delim = ',';
+		if (!fileOut)
+		{
+			cerr << "Error opening file " << fileName << " to write." << endl << endl;
+			fileOut.close();
+			return;
+		}
+		WriteFile(root, fileOut);
+	}
+	template<class T>
 	inline void BinTree<T>::inOrderTraverse(TraversalCallback process)
 	{
 		int x = 0;
@@ -216,6 +231,15 @@ namespace AddrBookLib
 		CopyTree(rootToCopy->left);
 		CopyTree(rootToCopy->right);
 
+	}
+	template<class T>
+	inline void BinTree<T>::WriteFile(PTBNode node, ofstream & ofs)
+	{
+		if (node == nullptr)
+			return;
+		ofs << node->data << endl;
+		WriteFile(node->left,ofs);
+		WriteFile(node->right,ofs);
 	}
 	template<class T>
 	inline BinNode<T> * BinTree<T>::AllocBinNode(crefT dataIn)

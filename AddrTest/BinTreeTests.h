@@ -16,27 +16,28 @@
 namespace test
 {
 	using namespace AddrBookLib;
+
 	template<class T>
 	void TestBinTree(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 
 	template<class T>
 	void TestBinTree_Constructor0_0();
-	////template<class T>
-	////void TestBinTree_ConstructorFirst();
-	////template<class T>
-	////void TestBinTree_ConstructorLast();
-	////template<class T>
-	////void TestBinTree_ConstructorAsc();
-	////template<class T>
-	////void TestBinTree_ConstructorDesc();
+
 	template<class T>
 	void TestBinTree_CopyConstructor(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+
 	template<class T>
 	void TestBinTree_CopyConstructor_leaks(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+
 	template<class T>
 	void TestBinTree_Assignment(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+
 	template<class T>
 	void TestBinTree_Assignment_leaks(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+
+	template<class T>
+	void TestBinTree_Deconstructor(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
+
 	template<class T>
 	void TestBinTree_Add(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 
@@ -46,28 +47,17 @@ namespace test
 	template<class T>
 	void TestBinTree_CountItems(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
 
-	//template<class T>
-	//void TestBinTree_Begin(GeneratorCallback<T> RandomGenerator);
-	//template<class T>
-	//void TestBinTree_IsEmpty();
-	//template<class T>
-	//void TestBinTree_Add(GeneratorCallback<T> RandomGenerator);
-	//template<class T>
-	//void TestBinTree_RemoveByItemNumber(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
-	//template<class T>
-	//void TestBinTree_RemoveByItem(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
-	template<class T>
-	void TestBinTree_Deconstructor(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high);
-
-
 	//helper processing functions
 
 	template<class T>
 	bool compareTreeNodeValues(AddrBookLib::BinNode<T>* node1, AddrBookLib::BinNode<T>* node2);
+
 	template<class T>
 	bool compareDifferentTreeNodePointers(AddrBookLib::BinNode<T>* node1, AddrBookLib::BinNode<T>* node2);
+
 	template<class T>
 	AddrBookLib::BinNode<T>* furthestLeft(AddrBookLib::BinNode<T>* root);
+
 	template<class T>
 	AddrBookLib::BinNode<T>* furthestRight(AddrBookLib::BinNode<T>* root);
 
@@ -118,10 +108,6 @@ namespace test
 	{
 		AnnounceTests("LinkList<T>");
 		TestBinTree_Constructor0_0<T>();
-		//TestBinTree_ConstructorFirst<T>();
-		//TestBinTree_ConstructorLast<T>();
-		//TestBinTree_ConstructorAsc<T>();
-		//TestBinTree_ConstructorDesc<T>();
 		TestBinTree_CopyConstructor<T>(low, medium, high);
 		TestBinTree_CopyConstructor_leaks<T>(low, medium, high);
 		TestBinTree_Assignment<T>(low, medium, high);
@@ -131,32 +117,8 @@ namespace test
 		TestBinTree_Add<T>(low, medium, high);
 		TestBinTree_Remove<T>(low, medium, high);
 		//for (int i = 0; i < GenerateHighRandomNumber(); i++)
-			TestBinTree_CountItems<T>(low, medium, high);
-		//TestBinTree_Begin<T>(medium);
-		//TestBinTree_CountItems<T>(high);
-		//TestBinTree_IsEmpty<T>();
-		//TestBinTree_RemoveByItemNumber<T>(low, medium, high);
-		//TestBinTree_RemoveByItem<T>(low, medium, high);
-		//TestBinTree_ReadFile<T>(low, medium, high);
-		//TestBinTree_WriteFile<T>(low, medium, high);
-		//TestBinTree_PrintAll<T>(low, medium, high);
-		////private functions
-		//TestBinTree_AllocNode<T>(high);
-		//TestBinTree_FindNode<T>(low, medium, high);
-		//TestBinTree_HasOnlyOneElement<T>(low);
-		//TestBinTree_AddAsc<T>(low, medium, high);
-		//TestBinTree_AddDesc<T>(low, medium, high);
-		//TestBinTree_AddEnd<T>(medium);
-		//TestBinTree_AddBeginning<T>(medium);
-		//TestBinTree_InsertValueAfterSpecifiedNode<T>(low, medium, high);
-		//TestBinTree_Concat<T>(low, medium, high);
-		//TestBinTree_RemoveFirst<T>(low, medium, high);
-		//TestBinTree_RemoveNode<T>(low, medium, high);
-		//TestBinTree_FreeNode<T>(high);
-		//TestBinTree_FreeAllNodes<T>(low, medium, high);
-		//TestBinTree_FreeAllNodes_leaks<T>(low, medium, high);
+		TestBinTree_CountItems<T>(low, medium, high);
 
-		//TestBinTree_Iterator<T>(low);
 	}
 
 	template<class T>
@@ -215,6 +177,7 @@ namespace test
 		BinTree<T> tree2(tree1);
 		assert(compareDifferentTreeNodePointers(tree1.root, tree2.root));
 	}
+
 	template<class T>
 	bool compareDifferentTreeNodePointers(AddrBookLib::BinNode<T>* node1, AddrBookLib::BinNode<T>* node2)
 	{
@@ -225,18 +188,21 @@ namespace test
 			&& compareDifferentTreeNodePointers(node1->right, node2->right));
 
 	}
+
 	template<class T>
 	AddrBookLib::BinNode<T>* furthestLeft(AddrBookLib::BinNode<T>* root)
 	{
 		if (root == nullptr || root->left == nullptr) return root;
 		return furthestLeft(root->left);
 	}
+
 	template<class T>
 	AddrBookLib::BinNode<T>* furthestRight(AddrBookLib::BinNode<T>* root)
 	{
 		if (root == nullptr || root->right == nullptr) return root;
 		return furthestLeft(root->right);
 	}
+
 	template<class T>
 	void TestBinTree_Assignment(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
 	{
@@ -256,6 +222,7 @@ namespace test
 		BinTree<T> tree2 = tree1;
 		assert(compareTreeNodeValues(tree1.root, tree2.root));
 	}
+
 	template<class T>
 	void TestBinTree_Assignment_leaks(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
 	{
@@ -275,6 +242,7 @@ namespace test
 		BinTree<T> tree2 = tree1;
 		assert(compareDifferentTreeNodePointers(tree1.root, tree2.root));
 	}
+
 	template<class T>
 	void TestBinTree_Add(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
 	{
@@ -296,6 +264,7 @@ namespace test
 			pass3 = true;
 		assert(pass1&&pass2&&pass3);
 	}
+
 	template<class T>
 	void TestBinTree_Remove(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
 	{
@@ -328,6 +297,7 @@ namespace test
 		//assert
 		assert(findParent == removeParent);
 	}
+
 	template<class T>
 	void TestBinTree_CountItems(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
 	{
@@ -344,6 +314,7 @@ namespace test
 			tree.Add(low());
 		assert(tree.CountItems() == expectedCount);
 	}
+
 	template<class T>
 	void TestBinTree_Deconstructor(GeneratorCallback<T> low, GeneratorCallback<T> medium, GeneratorCallback<T> high)
 	{

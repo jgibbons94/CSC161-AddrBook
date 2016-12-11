@@ -1,15 +1,16 @@
 /*
  * This file contains miscelleneous functions to print HTML code
  * for the item book binary tree project for CSC161.
- * 
+ *
  * Written by Cathy Bishop, April 1998
  * Updated by Cathy Bishop, November, 2000
  * Updated by Julie Schneider, Nov., 2014
+ * Updated by Jesse Gibbons, Dec., 2016
  *
  */
 #include	"htmlfunc.h"
 
-// Misc HTML functions
+ // Misc HTML functions
 
 void	printHTMLhead(ostream &os, string title);
 void	printHTMLend(ostream &os);
@@ -101,14 +102,14 @@ void	printHTMLpages(BinaryTree<CategorizedContact> &book)
  */
 
 void	printHTMLrefs(CategorizedContact &item,
-						int counter)
+	int counter)
 {
 	char		fileName[13];
 
 	sprintf_s(fileName, "addr%4.4d.htm", counter);
 
-	htmlIndex << "<p><a href=" << fileName << "> "
-		<< item.GetFullName().GetLastName() << ", " << item.GetFullName().GetFirstName() << "</a>\n";
+	htmlIndex << "<p><a href='" << fileName << "'> "
+		<< item.GetFullName().GetLastName() << ", " << item.GetFullName().GetFirstName() << "</a></p>\n";
 }
 // field Contact::nameLastCommaFirst() const;
 
@@ -122,18 +123,24 @@ void	printHTMLrefs(CategorizedContact &item,
  * The easiest way to generate this number is to make it a counter
  * that counts the nodes as they are being traversed.
  *
+ * Old output = bad
+ * HTML and style should be separated.
+ *
  * The output from this function will look like this:
  *
- * <p align=center> <H1>
- * Cathy Bishop</H1>
- * <body bgcolor=white>
- * </font><font size=+2>
- * <p>Red Rocks Community College
- * <br>Lakewood, CO 80026
- * <p><b>phone:</b> 914-6250
- * <p><b>email:</b> cbishop@pobox.com
- * <p><b>Birthday:</b> January 28
- * </font>
+ * <p class='title'>
+ * <H1>
+ * Cathy Bishop
+ * </H1>
+ * <body>
+ * <p class='contact'>
+ * <h1>Red Rocks Community College</h1>
+ * <strong>Category: </strong> Other<br />
+ * <br>Lakewood, CO 80026<br />
+ * <p><strong>phone:</strong> 914-6250</p><br />
+ * <p><strong>email:</strong> cbishop@pobox.com</p><br />
+ * <p><strong>Birthday:</strong> January 28</p><br />
+ * </p>
  * </body>
  * </html>
  *
@@ -149,14 +156,14 @@ void	printHTMLrefs(CategorizedContact &item,
  */
 
 void	printHTMLpage(CategorizedContact &item,
-						int counter)
+	int counter)
 {
 	char		fileName[13];
 	ofstream	htmlPage;
 	string		title;
 
 	sprintf_s(fileName, "addr%4.4d.htm", counter);
-	
+
 	htmlPage.open(fileName);
 	if (!htmlPage)
 	{
@@ -171,36 +178,36 @@ void	printHTMLpage(CategorizedContact &item,
 
 	// Here's the formatted item
 
-	htmlPage << "</font>";
-	htmlPage << "<font size=+2>\n<p>";
-	
-	htmlPage << "<b>Category:</b> " << item.GetCategory() << "<br>" << endl;
+	//htmlPage << "</font>";
+	//htmlPage << "<font size=+2>\n<p>";
+	htmlPage << "<p class='contact'>\n";
+	htmlPage << "<div><strong>Category:</strong> " << item.GetCategory() << "<br></div>" << endl;
 
-	htmlPage << "<br><b>Address:</b><br>" << item.GetFullAddress().GetStreetAddress() << "<br>"
+	htmlPage << "<div><br><strong>Address:</strong><br>" << item.GetFullAddress().GetStreetAddress() << "<br>"
 		<< item.GetFullAddress().GetCity() << ", " << item.GetFullAddress().GetState()
-		<< "<br>" << item.GetFullAddress().GetZip() << endl;
+		<< "<br>" << item.GetFullAddress().GetZip() << "</div>" << endl;
 
 	// Here's the phone number
 
- 	htmlPage << "<p><b>phone:</b> " << item.GetPhone() << endl;
+	htmlPage << "<div><strong>phone:</strong> " << item.GetPhone() << "</div>" << endl;
 
 	// Here's the email item
 
- 	// htmlPage << "<p><b>email:</b> " << item.email() << endl;
- 	htmlPage << "<p><b>email:</b> <a href=mailto:" << item.GetEmail()
-		<< "> " << item.GetEmail() << "</a>\n";
+	// htmlPage << "<p><strong>email:</strong> " << item.email() << endl;
+	htmlPage << "<div><strong>email:</strong> <a href='mailto:" << item.GetEmail()
+		<< "'> " << item.GetEmail() << "</a></div>\n";
 
 	// Here's the birthday
 
- 	htmlPage << "<p><b>Birthday:</b> " << item.GetBirthday() << endl;
+	htmlPage << "<div><strong>Birthday:</strong> " << item.GetBirthday() << "</div>" << endl;
 
 	// Here's the optional picture
 
 	if (item.GetPictureFile() != " ")
- 		htmlPage << "<p><img src=" << item.GetPictureFile() 
-			 << ">\n";
+		htmlPage << "<div><img src='" << item.GetPictureFile()
+		<< "' /></div>\n";
 
-	htmlPage << "</font>";
+	htmlPage << "</p>";
 	printHTMLend(htmlPage);
 	htmlPage.close();
 }
@@ -216,9 +223,16 @@ void		printHTMLhead(ostream &os, string title)
 	else
 		pageTitle = title;
 
-	os	<< "<html>\n<head>\n<title>" << pageTitle << "</title>\n" 
-		<< "<p align=center> <h1>\n" 
-		<< pageTitle << "</h1>\n<body bgcolor=white>\n";
+	os << "<!doctype htmL>"
+		<< "<html>\n<head>\n<title>" << pageTitle << "</title>\n"
+		<< "<style>\np.title\n{\ntext-align:center;\n}\n"
+		<< "body\n{\nbackground-color:'white';\n}\n"
+		<< "p.contact\n{\nfont-size:larger;\n}\n"
+		<< "</style>\n"
+		<< "</head>\n"
+		<< "<body>\n"
+		<< "<p class='title'>\n<h1>\n"
+		<< pageTitle << "\n</h1>\n</p>\n";
 }
 
 

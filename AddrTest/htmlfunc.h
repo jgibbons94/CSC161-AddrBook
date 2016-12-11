@@ -1,10 +1,11 @@
 /*
  * This file contains the prototypes fo miscelleneous functions to
  * print HTML code for the address book binary tree project for CSC161.
- * 
+ *
  * Written by Cathy Bishop, April 1998
  * Updated by Cathy Bishop, November, 2000
  * Updated by Julie Schneider, Nov. 2014
+ * Updated by Jesse Gibbons, Dec., 2016
  *
  */
 
@@ -35,11 +36,11 @@ void	printHTMLpages(BinaryTree<CategorizedContact> &book);
 // Takes an address and prints an HTML reference to its HTML page.
 
 void	printHTMLrefs(CategorizedContact &item,
-						int counter);
+	int counter);
 
 // Takes an address and prints an HTML page.
 
 void	printHTMLpage(CategorizedContact &item,
-					int counter);
+	int counter);
 
 #endif

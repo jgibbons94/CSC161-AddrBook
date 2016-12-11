@@ -165,6 +165,7 @@
     <ClInclude Include="Field.h" />
     <ClInclude Include="AddrTest.h" />
     <ClInclude Include="FieldTests.h" />
+    <ClInclude Include="htmlfunc.h" />
     <ClInclude Include="Name.h" />
     <ClInclude Include="NameTests.h" />
     <ClInclude Include="Node.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="ContactTests.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="FieldTests.cpp" />
+    <ClCompile Include="htmlfunc.cpp" />
     <ClCompile Include="Name.cpp" />
     <ClCompile Include="NameTests.cpp" />
     <ClCompile Include="RandomGenerators.cpp" />

@@ -88,7 +88,7 @@ namespace AddrBookLib
 		//Requirement: FreeAllBinNodes(BinNode*)
 		void FreeAllBinNodes(PTBNode aNode);
 		//Requirement: inOrderTraverse(BinNode*, int&, void process(Type&, int))
-		void InOrderTraverse(PTBNode aNode, int&, TraversalCallback process);
+		void inOrderTraverse(PTBNode aNode, int&, TraversalCallback process);
 
 		void AddNode(PTBNode aNode);
 
@@ -176,7 +176,7 @@ namespace AddrBookLib
 	{
 		int count = 0;
 		//use an empty lambda, because all we are doing is traversing to get the count.
-		this->InOrderTraverse(root, count, [](refT, int) {});
+		this->inOrderTraverse(root, count, [](refT, int) {});
 		return count;
 	}
 	template<class T>
@@ -227,7 +227,7 @@ namespace AddrBookLib
 	inline void BinTree<T>::inOrderTraverse(TraversalCallback process)
 	{
 		int x = 0;
-		this->InOrderTraverse(this->root, x, process);
+		this->inOrderTraverse(this->root, x, process);
 	}
 	template<class T>
 	inline void BinTree<T>::CopyTree(PTBNode rootToCopy)
@@ -290,15 +290,15 @@ namespace AddrBookLib
 		delete aNode;
 	}
 	template<class T>
-	inline void BinTree<T>::InOrderTraverse(PTBNode aNode, int & index, TraversalCallback process)
+	inline void BinTree<T>::inOrderTraverse(PTBNode aNode, int & index, TraversalCallback process)
 	{
 		if (aNode == nullptr) return;
-		InOrderTraverse(aNode->left, index, process);
+		inOrderTraverse(aNode->left, index, process);
 
 		++index;
 		process(aNode->data, index);
 
-		InOrderTraverse(aNode->right, index, process);
+		inOrderTraverse(aNode->right, index, process);
 
 	}
 	template<class T>

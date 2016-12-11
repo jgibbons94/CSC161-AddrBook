@@ -21,9 +21,9 @@ using namespace std;
 #include	"categorizedContact.h"
 #include	"binnode.h"
 #include	"bintree.h"
-
+using namespace AddrBookLib;
 #define _CRT_SECURE_NO_WARNINGS
-
+template<class T> using BinaryTree = BinTree<T>;
 // Takes the binary tree of addresses and prints the HTML index file.
 
 void	printHTMLindex(BinaryTree<CategorizedContact> &book);

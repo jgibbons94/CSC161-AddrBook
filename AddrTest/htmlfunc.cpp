@@ -108,7 +108,7 @@ void	printHTMLrefs(CategorizedContact &item,
 	sprintf_s(fileName, "addr%4.4d.htm", counter);
 
 	htmlIndex << "<p><a href=" << fileName << "> "
-		<< item.getName().getLast() << ", " << item.getName().getFirst() << "</a>\n";
+		<< item.GetFullName().GetLastName() << ", " << item.GetFullName().GetFirstName() << "</a>\n";
 }
 // field Contact::nameLastCommaFirst() const;
 
@@ -166,7 +166,7 @@ void	printHTMLpage(CategorizedContact &item,
 
 	// The person's name will be the title for the page
 
-	title = item.getName().getLast() + ", " + item.getName().getFirst();
+	title = item.GetFullName().GetLastName() + ", " + item.GetFullName().GetFirstName();
 	printHTMLhead(htmlPage, title);
 
 	// Here's the formatted item
@@ -174,30 +174,30 @@ void	printHTMLpage(CategorizedContact &item,
 	htmlPage << "</font>";
 	htmlPage << "<font size=+2>\n<p>";
 	
-	htmlPage << "<b>Category:</b> " << item.getCategory() << "<br>" << endl;
+	htmlPage << "<b>Category:</b> " << item.GetCategory() << "<br>" << endl;
 
-	htmlPage << "<br><b>Address:</b><br>" << item.getAddress().getStreet() << "<br>"
-		<< item.getAddress().getCity() << ", " << item.getAddress().getState()
-		<< "<br>" << item.getAddress().getZip() << endl;
+	htmlPage << "<br><b>Address:</b><br>" << item.GetFullAddress().GetStreetAddress() << "<br>"
+		<< item.GetFullAddress().GetCity() << ", " << item.GetFullAddress().GetState()
+		<< "<br>" << item.GetFullAddress().GetZip() << endl;
 
 	// Here's the phone number
 
- 	htmlPage << "<p><b>phone:</b> " << item.getPhone() << endl;
+ 	htmlPage << "<p><b>phone:</b> " << item.GetPhone() << endl;
 
 	// Here's the email item
 
  	// htmlPage << "<p><b>email:</b> " << item.email() << endl;
- 	htmlPage << "<p><b>email:</b> <a href=mailto:" << item.getEmail()
-		<< "> " << item.getEmail() << "</a>\n";
+ 	htmlPage << "<p><b>email:</b> <a href=mailto:" << item.GetEmail()
+		<< "> " << item.GetEmail() << "</a>\n";
 
 	// Here's the birthday
 
- 	htmlPage << "<p><b>Birthday:</b> " << item.getBday() << endl;
+ 	htmlPage << "<p><b>Birthday:</b> " << item.GetBirthday() << endl;
 
 	// Here's the optional picture
 
-	if (item.getPicture() != " ")
- 		htmlPage << "<p><img src=" << item.getPicture() 
+	if (item.GetPictureFile() != " ")
+ 		htmlPage << "<p><img src=" << item.GetPictureFile() 
 			 << ">\n";
 
 	htmlPage << "</font>";

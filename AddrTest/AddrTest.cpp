@@ -40,6 +40,7 @@ using namespace std;
 #include "BinTree.h"
 #include "AddrTest.h"
 using namespace AddrBookLib;
+#include "htmlfunc.h"
 #ifdef RUN_TESTS
 #include "Tests.h"
 using namespace test;
@@ -159,6 +160,8 @@ int main(int argc, const char * argv[])
 
 	//when program is exited, write the file before leaving
 	myAddrBook.WriteFile("address.csv");
+	printHTMLindex(myAddrBook);
+	printHTMLpages(myAddrBook);
 	Delay();
 
 	return 0;

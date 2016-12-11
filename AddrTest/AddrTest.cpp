@@ -118,25 +118,27 @@ int main(int argc, const char * argv[])
 
 		case 3:
 		{
-			Field choice = GetCategoryFromUser(true, "All");
+			//Field choice = GetCategoryFromUser(true, "All");
+			AddrBook::TraversalCallback choiceCallback = GetCategoryPrintAction();
 			cout << "\n\tPrinting...\n\n";
 			Delay();
-			if (choice == "All") // print all contacts
+			/*if (choice == "All") // print all contacts
 			{
 				myAddrBook.PrintAll();
-			}
-			else
+			}*/
+			/*else
+			{*/
+			myAddrBook.inOrderTraverse(choiceCallback);
+			/*int j = 0;
+			for (AddrBook::Iterator i = myAddrBook.Begin(); i; i.Next())
 			{
-				int j = 0;
-				for (AddrBook::Iterator i = myAddrBook.Begin(); i; i.Next())
+				CategorizedContact contact = *i;
+				if (contact.GetCategory() == choice)
 				{
-					CategorizedContact contact = *i;
-					if (contact.GetCategory() == choice)
-					{
-						cout << j++ << " : " << contact;
-					}
+					cout << j++ << " : " << contact;
 				}
-			}
+			}*/
+			//}
 			cout << "\tReturning to Main Menu...\n\n";
 			Delay();
 			break;
@@ -357,4 +359,98 @@ Field AddrBookLib::GetCategoryFromUser(bool get, Field fldDefault, std::istream 
 		category = fldDefault;
 	}
 	return category;
+}
+
+AddrBook::TraversalCallback AddrBookLib::GetCategoryPrintAction(std::istream & is)
+{
+	//lambdas FTW!
+	AddrBook::TraversalCallback printFunc =
+		printFunc = [](CategorizedContact & contact, int index)
+	{
+		cout << index << ": " << contact << endl;
+		Delay(500);
+	};
+	Field reply = "";
+	Field category = "";
+	char choice = '\0';
+	cout << endl;
+	cout << "\t****************************************************************" << endl;
+	cout << "\t*                Please enter a category                       *" << endl;
+	cout << "\t*                                                              *" << endl;
+	cout << "\t*   (a)  Work                                                  *" << endl;
+	cout << "\t*   (b)  Family                                                *" << endl;
+	cout << "\t*   (c)  Friends                                               *" << endl;
+	cout << "\t*   (d)  Other                                                 *" << endl;
+	cout << "\t*   (e)  All Contacts                                          *" << endl;
+	cout << "\t*                                                              *" << endl;
+	cout << "\t****************************************************************" << endl;
+	cout << "\n\tPlease enter your selection: ";
+	is >> reply;
+
+	//converts the number into an integer for processing
+	stringstream(reply) >> choice;
+
+	switch (choice)
+	{
+	case 'a':
+	case 'A':
+		printFunc = [](CategorizedContact & contact, int index) {
+			//keep track of which index we are looking at.
+			static int ind = 1;
+			if (index == 1)
+				ind = 1;
+			Field category = "Work";
+			if (contact.GetCategory() == category)
+			{
+				cout << ind++ << ": " << contact << endl;
+				Delay(500);
+			}
+		};
+		break;
+	case 'b':
+	case 'B':
+
+		printFunc = [](CategorizedContact & contact, int index) {
+			static int ind = 1;
+			if (index == 1)
+				ind = 1;
+			Field category = "Family";
+			if (contact.GetCategory() == category)
+			{
+				cout << ind++ << ": " << contact << endl;
+				Delay(500);
+			}
+		};
+		break;
+	case 'c':
+	case 'C':
+		printFunc = [](CategorizedContact & contact, int index) {
+			static int ind = 1;
+			if (index == 1)
+				ind = 1;
+			Field category = "Friends";
+			if (contact.GetCategory() == category)
+			{
+				cout << ind++ << ": " << contact << endl;
+				Delay(500);
+			}
+		};
+		break;
+	case 'd':
+	case 'D':
+
+		printFunc = [](CategorizedContact & contact, int index) {
+			static int ind = 1;
+			if (index == 1)
+				ind = 1;
+			Field category = "Other";
+			if (contact.GetCategory() == category)
+			{
+				cout << ind++ << ": " << contact << endl;
+				Delay(500);
+			}
+		};
+		break;
+	}
+	return printFunc;
 }

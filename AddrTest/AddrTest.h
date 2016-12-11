@@ -4,13 +4,14 @@
 #define MY_FUNCS_H
 #include <string>
 #include <fstream>
-//#include "AddrBook.h"
+#include "BinTree.h"
 namespace AddrBookLib
 {
 	//check if min <= value <= max
 	inline bool InRange(int value, int min, int max) { return (value >= min && value <= max); }
 	//get a category from the user by displaying a menu to cout and getting input from in.
 	Field GetCategoryFromUser(bool get = false, Field fldDefault = "Other", std::istream & in = std::cin);
+	AddrBook::TraversalCallback GetCategoryPrintAction(std::istream & in = std::cin);
 	//delay for the specified number of miliseconds
 	void Delay(int milliseconds = 2000);
 	//check if the given ostream is a standard ostream (cout, cerr, clog)

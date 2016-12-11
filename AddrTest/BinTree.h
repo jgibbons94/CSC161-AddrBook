@@ -220,7 +220,7 @@ namespace AddrBookLib
 	template<class T>
 	inline void BinTree<T>::PrintAll()
 	{
-		int number = 1;
+		int number = 0;
 		this->Print(this->root, number);
 	}
 	template<class T>

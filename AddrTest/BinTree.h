@@ -60,15 +60,15 @@ namespace AddrBookLib
 		//Bonus: Rmove
 		void Remove(int indexToRemove);
 		//Requirement: countItes()
-		int CountItems();
+		int CountItems() const;
 		//Requirement: ReadFile(string fileName)
 		void ReadFile(const string & fileName);
 		//Requirement: writeFile(string fileName)
-		void WriteFile(string fileName);
+		void WriteFile(string fileName) const;
 		//Requirement: PrintAll()
-		void PrintAll();
+		void PrintAll() const;
 		//Requirement: inOrderTraverse(void process(T&, int))
-		void inOrderTraverse(TraversalCallback process);
+		void inOrderTraverse(TraversalCallback process) const;
 
 
 	private:
@@ -79,25 +79,25 @@ namespace AddrBookLib
 		//Requirement: CopyTree(BinNode*)
 		void CopyTree(PTBNode rootToCopy);
 		//Requirement: Print(BinNode*, int&)
-		void Print(PTBNode aNode, int& number);
+		void Print(PTBNode aNode, int& number) const;
 		//Requirement: WriteFile(BinNode*, ofstream&)
-		void WriteFile(PTBNode node, ofstream& ofs);
+		void WriteFile(PTBNode node, ofstream& ofs) const;
 		//Requirement: BinNode* AllocBinNode(Type dataIn)
 		BinNode<T>* AllocBinNode(crefT dataIn);
-		BinNode<T>* FindParentNode(crefT dataIn);
+		BinNode<T>* FindParentNode(crefT dataIn) const;
 		//Requirement: FreeAllBinNodes(BinNode*)
 		void FreeAllBinNodes(PTBNode aNode);
 		//Requirement: inOrderTraverse(BinNode*, int&, void process(Type&, int))
-		void inOrderTraverse(PTBNode aNode, int&, TraversalCallback process);
+		void inOrderTraverse(PTBNode aNode, int&, TraversalCallback process) const;
 
 		void AddNode(PTBNode aNode);
 
-		BinNode<T>* FindByIndex(int indexToFind);
+		BinNode<T>* FindByIndex(int indexToFind) const;
 		//return the index of the current node through the currentIndex reference.
-		BinNode<T>* LookForIndex(int targetIndex, int & currentIndex, PTBNode root);
+		BinNode<T>* LookForIndex(int targetIndex, int & currentIndex, PTBNode root) const;
 
-		int FindItemIndex(crefT itemToFind);
-		int LookForItem(crefT itemToFind, int& currentIndex, PTBNode root);
+		int FindItemIndex(crefT itemToFind) const;
+		int LookForItem(crefT itemToFind, int& currentIndex, PTBNode root) const;
 		PTBNode root;
 #ifdef BIN_TREE_TEST_FRIENDS
 		friend void test::TestBinTree_Constructor0_0<T>();
@@ -172,7 +172,7 @@ namespace AddrBookLib
 
 	}
 	template<class T>
-	inline int BinTree<T>::CountItems()
+	inline int BinTree<T>::CountItems()const
 	{
 		int count = 0;
 		//use an empty lambda, because all we are doing is traversing to get the count.
@@ -204,7 +204,7 @@ namespace AddrBookLib
 		return;
 	}
 	template<class T>
-	inline void BinTree<T>::WriteFile(string fileName)
+	inline void BinTree<T>::WriteFile(string fileName) const
 	{
 		ofstream fileOut(fileName);
 		//		T tmpItem;
@@ -218,13 +218,13 @@ namespace AddrBookLib
 		WriteFile(root, fileOut);
 	}
 	template<class T>
-	inline void BinTree<T>::PrintAll()
+	inline void BinTree<T>::PrintAll() const
 	{
 		int number = 0;
 		this->Print(this->root, number);
 	}
 	template<class T>
-	inline void BinTree<T>::inOrderTraverse(TraversalCallback process)
+	inline void BinTree<T>::inOrderTraverse(TraversalCallback process)const
 	{
 		int x = 0;
 		this->inOrderTraverse(this->root, x, process);
@@ -240,7 +240,7 @@ namespace AddrBookLib
 
 	}
 	template<class T>
-	inline void BinTree<T>::Print(PTBNode aNode, int & number)
+	inline void BinTree<T>::Print(PTBNode aNode, int & number) const
 	{
 		if (aNode == nullptr)
 			return;
@@ -250,7 +250,7 @@ namespace AddrBookLib
 		Print(aNode->right, number);
 	}
 	template<class T>
-	inline void BinTree<T>::WriteFile(PTBNode node, ofstream & ofs)
+	inline void BinTree<T>::WriteFile(PTBNode node, ofstream & ofs) const
 	{
 		if (node == nullptr)
 			return;
@@ -264,7 +264,7 @@ namespace AddrBookLib
 		return new BinNode<T>(dataIn);//new BinNode<T>();
 	}
 	template<class T>
-	inline BinNode<T>* BinTree<T>::FindParentNode(crefT dataIn)
+	inline BinNode<T>* BinTree<T>::FindParentNode(crefT dataIn) const
 	{
 		PTBNode parent = nullptr,
 			next = root;
@@ -290,7 +290,7 @@ namespace AddrBookLib
 		delete aNode;
 	}
 	template<class T>
-	inline void BinTree<T>::inOrderTraverse(PTBNode aNode, int & index, TraversalCallback process)
+	inline void BinTree<T>::inOrderTraverse(PTBNode aNode, int & index, TraversalCallback process) const
 	{
 		if (aNode == nullptr) return;
 		inOrderTraverse(aNode->left, index, process);
@@ -325,7 +325,7 @@ namespace AddrBookLib
 		*next = data;
 	}
 	template<class T>
-	inline BinNode<T>* BinTree<T>::FindByIndex(int indexToFind)
+	inline BinNode<T>* BinTree<T>::FindByIndex(int indexToFind) const
 	{
 		if (indexToFind < 0) return nullptr;
 		if (indexToFind == 0) return root;
@@ -337,7 +337,7 @@ namespace AddrBookLib
 	}
 
 	template<class T>
-	inline BinNode<T>* BinTree<T>::LookForIndex(int targetIndex, int & currentIndex, PTBNode rootNode)
+	inline BinNode<T>* BinTree<T>::LookForIndex(int targetIndex, int & currentIndex, PTBNode rootNode) const
 	{
 		/*
 
@@ -388,7 +388,7 @@ namespace AddrBookLib
 	}
 
 	template<class T>
-	inline int BinTree<T>::FindItemIndex(crefT itemToFind)
+	inline int BinTree<T>::FindItemIndex(crefT itemToFind) const
 	{
 		bool finished = false;
 		int index = 0;
@@ -397,7 +397,7 @@ namespace AddrBookLib
 	}
 
 	template<class T>
-	inline int BinTree<T>::LookForItem(crefT itemToFind, int & currentIndex, PTBNode rootNode)
+	inline int BinTree<T>::LookForItem(crefT itemToFind, int & currentIndex, PTBNode rootNode) const
 	{
 		int upperIndex = -1;
 		if (rootNode == nullptr)

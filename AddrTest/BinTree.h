@@ -118,12 +118,14 @@ namespace AddrBookLib
 	{
 		this->root = nullptr;
 	}
+
 	template<class T>
 	inline BinTree<T>::BinTree(const refTBinTree source)
 	{
 		this->root = nullptr;
 		this->CopyTree(source.root);
 	}
+
 	template<class T>
 	inline BinTree<T>& BinTree<T>::operator=(const refTBinTree source)
 	{
@@ -131,17 +133,20 @@ namespace AddrBookLib
 			this->CopyTree(source.root);
 		return *this;
 	}
+
 	template<class T>
 	inline BinTree<T>::~BinTree()
 	{
 		this->FreeAllBinNodes(this->root);
 	}
+
 	template<class T>
 	inline void BinTree<T>::Add(crefT dataIn)
 	{
 		PTBNode data = AllocBinNode(dataIn);
 		AddNode(data);
 	}
+
 	template<class T>
 	inline void BinTree<T>::Remove(int indexToRemove)
 	{
@@ -171,6 +176,7 @@ namespace AddrBookLib
 		FreeAllBinNodes(childToRemove);
 
 	}
+
 	template<class T>
 	inline int BinTree<T>::CountItems()const
 	{
@@ -179,6 +185,7 @@ namespace AddrBookLib
 		this->inOrderTraverse(root, count, [](refT, int) {});
 		return count;
 	}
+
 	template<class T>
 	inline void BinTree<T>::ReadFile(const string& fileName)
 	{
@@ -203,6 +210,7 @@ namespace AddrBookLib
 		fileIn.close();
 		return;
 	}
+
 	template<class T>
 	inline void BinTree<T>::WriteFile(string fileName) const
 	{
@@ -217,18 +225,21 @@ namespace AddrBookLib
 		}
 		WriteFile(root, fileOut);
 	}
+
 	template<class T>
 	inline void BinTree<T>::PrintAll() const
 	{
 		int number = 0;
 		this->Print(this->root, number);
 	}
+
 	template<class T>
 	inline void BinTree<T>::inOrderTraverse(TraversalCallback process)const
 	{
 		int x = 0;
 		this->inOrderTraverse(this->root, x, process);
 	}
+
 	template<class T>
 	inline void BinTree<T>::CopyTree(PTBNode rootToCopy)
 	{
@@ -239,6 +250,7 @@ namespace AddrBookLib
 		CopyTree(rootToCopy->right);
 
 	}
+
 	template<class T>
 	inline void BinTree<T>::Print(PTBNode aNode, int & number) const
 	{
@@ -249,6 +261,7 @@ namespace AddrBookLib
 		cout << number << ": " << aNode->data << endl;
 		Print(aNode->right, number);
 	}
+
 	template<class T>
 	inline void BinTree<T>::WriteFile(PTBNode node, ofstream & ofs) const
 	{
@@ -258,11 +271,13 @@ namespace AddrBookLib
 		WriteFile(node->left, ofs);
 		WriteFile(node->right, ofs);
 	}
+
 	template<class T>
 	inline BinNode<T> * BinTree<T>::AllocBinNode(crefT dataIn)
 	{
 		return new BinNode<T>(dataIn);//new BinNode<T>();
 	}
+
 	template<class T>
 	inline BinNode<T>* BinTree<T>::FindParentNode(crefT dataIn) const
 	{
@@ -280,6 +295,7 @@ namespace AddrBookLib
 		}
 		return parent;
 	}
+
 	template<class T>
 	inline void BinTree<T>::FreeAllBinNodes(PTBNode aNode)
 	{
@@ -289,6 +305,7 @@ namespace AddrBookLib
 		FreeAllBinNodes(aNode->right);
 		delete aNode;
 	}
+
 	template<class T>
 	inline void BinTree<T>::inOrderTraverse(PTBNode aNode, int & index, TraversalCallback process) const
 	{
@@ -301,6 +318,7 @@ namespace AddrBookLib
 		inOrderTraverse(aNode->right, index, process);
 
 	}
+
 	template<class T>
 	inline void BinTree<T>::AddNode(PTBNode data)
 	{

@@ -324,6 +324,7 @@ namespace AddrBookLib
 		} while (*next != nullptr);//next is not null; *next is null, **next does not exist.
 		*next = data;
 	}
+
 	template<class T>
 	inline BinNode<T>* BinTree<T>::FindByIndex(int indexToFind) const
 	{
